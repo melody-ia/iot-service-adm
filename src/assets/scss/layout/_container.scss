@@ -1,0 +1,232 @@
+.container {
+	width: calc(100% - 76px);
+	margin-left: auto;
+  min-height: 100vh;
+  height: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 154px;
+  transition: all .3s;
+
+	@include tablet {
+    width: 100%;
+    padding-top: 134px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  &_item {
+    width: calc(100% - 76px);
+  }
+}
+
+.container_item {
+  background-color: #fff;
+  position: fixed;
+  left: 76px;
+  top: 0;
+  padding: 0 45px; 
+  z-index: 5;
+  transition: all .2s ease-in;
+
+  @include tablet {
+    width: 100%;
+    padding: 0 20px;
+    left: 0;
+  }
+}
+
+.content_container {
+  padding-top: 14px;
+}
+
+.header {
+  height: 80px;
+  box-shadow: 0px 1px 0px #E2E8F0;
+
+  @include tablet {
+    height: 60px;
+  }
+
+  .ham_btn {
+    display: none;
+    width: 24px;
+    height: 24px;
+    position: relative;
+
+    span {
+      border-top: 2px solid #1C2434;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 4px;
+      width: 20px;
+      border-radius: 50px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 5px;
+        border-top: 2px solid #1C2434;
+        width: 100%;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 12px;
+        border-top: 2px solid #1C2434;
+        width: 100%;
+      }
+    }
+
+    @include tablet {
+      display: block;
+    }
+  }
+
+  .search_wrap {
+    width: 100%;
+    max-width: 816px;
+    margin-right: 50px;
+
+    @include tablet {
+      position: absolute;
+      left: 0;
+      top: 60px;
+      max-width: 100%;
+      background-color: #fff;
+      padding: 10px 20px;
+      border-top: 1px solid #E2E8F0;
+      display: none;
+
+      &.show {
+        display: block;
+      }
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      background: url(../img/icon/search.svg) no-repeat left 20px center;
+      padding-right: 10px;
+      padding-left: 42px;
+      border: 1px solid #E2E8F0;
+      border-radius: 50px;
+
+      @include tablet {
+        background: none;
+        padding: 0 20px;
+      }
+
+      &::placeholder {
+        color: var(	--color-lightGray);
+      }
+    }
+  }
+  .menu_wrap {
+    flex: 0 0 auto;
+
+    .menu_btn {
+      width: 24px;
+      height: 24px;
+      background-repeat: no-repeat;
+
+      &_search {
+        background-image: url(../img/icon/search_black.svg);
+        background-size: 24px;
+        display: none;
+
+        @include tablet {
+          display: block;
+        }
+      }
+      &_logout {
+        background-image: url(../img/icon/logout.svg);
+        margin-left: 20px;
+      }
+      &_alarm {
+        background-image: url(../img/icon/alarm.svg);
+        margin: 0 30px;
+
+        @include tablet {
+          margin: 0 20px;
+        }
+
+        &.active {
+          position: relative;
+
+          &::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border: 1px solid #fff;
+            background: #FF5789;
+            border-radius: 50%;
+            position: absolute;
+            right: 1px;
+            top: 0;
+          }
+        }
+      }
+    }
+    .info_text {
+      text-align: right;
+      font-weight: 500;
+      font-size: 14px;
+
+      span {
+        font-size: 12px;
+        color: var(--color-lightGray);
+      }
+    }
+  }
+}
+
+.lnb {
+  height: 60px;
+  top: 80px;
+  line-height: 60px;
+  border-top: 1px solid #EBEFF2;
+
+  @include tablet {
+    top: 60px;
+  }
+
+  &_tab_slide {
+    .swiper-slide {
+      width: auto;
+      height: auto;
+
+      &.active {
+        .lnb_btn {
+          font-weight: 500;
+          color: #1C2434;
+          position: relative;
+  
+          &::after {
+            content: '';
+            border-top: 1px solid #1C2434;
+            position: absolute;
+            left: 0;
+            bottom: 2px;
+            width: 100%;
+          }
+        }
+      }
+    }
+    .lnb_btn {
+      font-weight: 400;
+      color: var(--color-lightGray);
+      width: 100%;
+      height: 100%;
+      padding: 0 28px;
+      
+      @include tablet {
+        font-size: 14px;
+        padding: 0 15px;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.current_box {
+  padding: 16px 18px;
+
+  @include mobile { 
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .current_tit {
+    font-weight: 500;
+    font-size: 18px;
+    padding-left: 16px;
+    position: relative;
+    color: #1C2434;
+
+    @include mobile {
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    &::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #1C2434;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}

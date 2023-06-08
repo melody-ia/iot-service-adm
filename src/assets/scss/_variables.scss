@@ -1,0 +1,19 @@
+// 색상 
+body {
+	--color-gray: #939393;
+	--color-lightGray: #637381;
+	--color-green: #3BC996;	
+	--color-darkGreen: #3bc394;		
+}
+
+// 미디어쿼리
+@mixin tablet {
+  @media all and (max-width: 991px) {
+    @content;
+  }
+};
+@mixin mobile {
+  @media all and (max-width: 768px) {
+    @content;
+  }
+};
