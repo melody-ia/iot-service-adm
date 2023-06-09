@@ -5,6 +5,8 @@ export default function Lnb() {
   const slideTab = {
     slidesPerView: "auto",
     spaceBetween: 10,
+    slidesOffsetBefore: 20,
+    slidesOffsetAfter: 20,
   };
 
   return(
