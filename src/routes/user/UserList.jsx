@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import { ko } from 'date-fns/esm/locale';
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import CheckBox from "../../components/CheckBox";
+import Pagination from "../../components/Pagination";
 
 export default function UserList() {
   const [fixedDate] = useState(new Date());
@@ -41,129 +42,97 @@ export default function UserList() {
   }
 
   return(
-    <div className="user_list box_ty01">
+    <div className="user_list box_ty01 table_list">
       <div className="filter_wrap d-flex">
-        <div className="select_input input_ty02">
-          <input type="text" defaultValue="최근 가입일 순" readOnly/>
-          <ul className="select_box">
-            <li>최근 가입일 순</li>
-            <li>오래된 가입일 순</li>
-          </ul>
+        <div className="select_input_wrap d-flex">
+          <div className="select_input input_ty02">
+            <input type="text" defaultValue="최근 가입일 순" readOnly/>
+            <ul className="select_box">
+              <li>최근 가입일 순</li>
+              <li>오래된 가입일 순</li>
+            </ul>
+          </div>
+          <div className="select_input input_ty02">
+            <input type="text" defaultValue="전체" readOnly/>
+            <ul className="select_box">
+              <li>전체</li>
+              <li>계정 활성화</li>
+              <li>계정 비활성화</li>
+            </ul>
+          </div>
         </div>
-        <div className="select_input input_ty02">
-          <input type="text" defaultValue="전체" readOnly/>
-          <ul className="select_box">
-            <li>전체</li>
-            <li>계정 활성화</li>
-            <li>계정 비활성화</li>
-          </ul>
-        </div>
-        <div className="date_input input_ty02">
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-            locale={ko}
-            dateFormat="yyyy.MM.dd"
-            shouldCloseOnSelect={false}
-            disabledKeyboardNavigation
-            renderCustomHeader={({date, decreaseMonth, increaseMonth})=> (
-              <div className="react-datepicker__customHeader d-flex flex-ac flex-js">
-                <button onClick={decreaseMonth} className="arrow_left">
-                  <img src={arrowRight} alt="" />
-                </button>
-                <h5 className="year_month">{formatDate(date)}</h5>
-                <button onClick={increaseMonth} className="arrow_right">
-                  <img src={arrowRight} alt="" />
-                </button>
+        <div className="date_input_wrap d-flex">
+          <div className="date_input input_ty02">
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              selectsStart
+              startDate={startDate}
+              endDate={endDate}
+              locale={ko}
+              dateFormat="yyyy.MM.dd"
+              shouldCloseOnSelect={false}
+              disabledKeyboardNavigation
+              renderCustomHeader={({date, decreaseMonth, increaseMonth})=> (
+                <div className="react-datepicker__customHeader d-flex flex-ac flex-js">
+                  <button onClick={decreaseMonth} className="arrow_left">
+                    <img src={arrowRight} alt="" />
+                  </button>
+                  <h5 className="year_month">{formatDate(date)}</h5>
+                  <button onClick={increaseMonth} className="arrow_right">
+                    <img src={arrowRight} alt="" />
+                  </button>
+                </div>
+              )}
+              ref={calendarStart}
+              onInputClick={() => sOpenDatePicker()}
+            >
+              <div className="button-container">
+                <button className="btn_ctrl btn_ctrl-cancel btn_ty01 gray" onClick={sCancelDatePicker}>취소</button>
+                <button className="btn_ctrl btn_ctrl-confirm btn_ty01" onClick={sCloseDatePicker}>설정</button>
               </div>
-            )}
-            ref={calendarStart}
-            onInputClick={() => sOpenDatePicker()}
-          >
-            <div className="button-container">
-              <button className="btn_ctrl btn_ctrl-cancel btn_ty01 gray" onClick={sCancelDatePicker}>취소</button>
-              <button className="btn_ctrl btn_ctrl-confirm btn_ty01" onClick={sCloseDatePicker}>설정</button>
-            </div>
-          </DatePicker>
-        </div>
-        <div className="date_input input_ty02">
-          <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-            locale={ko}
-            dateFormat="yyyy.MM.dd"
-            shouldCloseOnSelect={false}
-            disabledKeyboardNavigation
-            renderCustomHeader={({date, decreaseMonth, increaseMonth})=> (
-              <div className="react-datepicker__customHeader d-flex flex-ac flex-js">
-                <button onClick={decreaseMonth} className="arrow_left">
-                  <img src={arrowRight} alt="" />
-                </button>
-                <h5 className="year_month">{formatDate(date)}</h5>
-                <button onClick={increaseMonth} className="arrow_right">
-                  <img src={arrowRight} alt="" />
-                </button>
+            </DatePicker>
+          </div>
+          <div className="date_input input_ty02">
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              selectsEnd
+              startDate={startDate}
+              endDate={endDate}
+              minDate={startDate}
+              locale={ko}
+              dateFormat="yyyy.MM.dd"
+              shouldCloseOnSelect={false}
+              disabledKeyboardNavigation
+              renderCustomHeader={({date, decreaseMonth, increaseMonth})=> (
+                <div className="react-datepicker__customHeader d-flex flex-ac flex-js">
+                  <button onClick={decreaseMonth} className="arrow_left">
+                    <img src={arrowRight} alt="" />
+                  </button>
+                  <h5 className="year_month">{formatDate(date)}</h5>
+                  <button onClick={increaseMonth} className="arrow_right">
+                    <img src={arrowRight} alt="" />
+                  </button>
+                </div>
+              )}
+              ref={calendarEnd}
+              onInputClick={() => eOpenDatePicker()}
+            >
+              <div className="button-container">
+                <button className="btn_ctrl btn_ctrl-cancel btn_ty01 gray" onClick={eCancelDatePicker}>취소</button>
+                <button className="btn_ctrl btn_ctrl-confirm btn_ty01" onClick={eCloseDatePicker}>설정</button>
               </div>
-            )}
-            ref={calendarEnd}
-            onInputClick={() => eOpenDatePicker()}
-          >
-            <div className="button-container">
-              <button className="btn_ctrl btn_ctrl-cancel btn_ty01 gray" onClick={eCancelDatePicker}>취소</button>
-              <button className="btn_ctrl btn_ctrl-confirm btn_ty01" onClick={eCloseDatePicker}>설정</button>
-            </div>
-          </DatePicker>
+            </DatePicker>
+          </div>
         </div>
         <button type="button" className="btn_ty01 btn_search">검색</button>
       </div>
-      {/* <div className="table_wrap">
-        <div className="table">
-          <div className="table_head row">
-            <span className="row_item check"><CheckBox for="user_all" id="user_all"/></span>
-            <span className="row_item num">NO</span>
-            <span className="row_item id">아이디</span>
-            <span className="row_item name">이름</span>
-            <span className="row_item gender">성별</span>
-            <span className="row_item birth">생년월일</span>
-            <span className="row_item people">거주인원 수</span>
-            <span className="row_item email">이메일</span>
-            <span className="row_item phone">휴대폰 번호</span>
-            <span className="row_item joinDate">가입일</span>
-            <span className="row_item active">계정활성화 여부</span>
-            <span className="row_item etc">비고</span>
-          </div>
-          <div className="table_body">
-            <div className="row">
-              <span className="row_item check"><CheckBox for="check" id="check" /></span>
-              <span className="row_item num">100</span>
-              <span className="row_item id disabled">wizzzzzzzzzzz</span>
-              <span className="row_item name">김위즈</span>
-              <span className="row_item gender">남</span>
-              <span className="row_item birth">1990.10.01</span>
-              <span className="row_item people">3</span>
-              <span className="row_item email">kimwewew@naver.com</span>
-              <span className="row_item phone">010-1111-1111</span>
-              <span className="row_item joinDate">2023.05.08</span>
-              <span className="row_item active">X</span>
-              <span className="row_item etc input_ty02">
-                <input type="text"/> 
-              </span>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className="table_wrap">
         <table className="table">
           <colgroup>
-            <col width="5%" />
-            <col width="10%" />
+            <col width="70px" />
+            <col width="100px" />
             <col width="180px" />
             <col width="120px" />
             <col width="120px" />
@@ -173,7 +142,7 @@ export default function UserList() {
             <col width="150px" />
             <col width="150px" />
             <col width="150px" />
-            <col width="180px" />
+            <col width="200px" />
           </colgroup>
           <thead>
             <tr>
@@ -193,24 +162,47 @@ export default function UserList() {
           </thead>
           <tbody>
             <tr>
-              <td className="row_item check"><CheckBox for="check" id="check" /></td>
-              <td className="row_item num">100</td>
-              <td className="row_item id disabled">wizzzzzzzzzzz</td>
-              <td className="row_item name">김위즈</td>
-              <td className="row_item gender">남</td>
-              <td className="row_item birth">1990.10.01</td>
-              <td className="row_item people">3</td>
-              <td className="row_item email">kimwewew@naver.com</td>
-              <td className="row_item phone">010-1111-1111</td>
-              <td className="row_item joinDate">2023.05.08</td>
-              <td className="row_item active">X</td>
-              <td className="row_item etc input_ty02">
+              <td className="check"><CheckBox for="check" id="check" /></td>
+              <td className="num">100</td>
+              <td className="id disabled">wizzzzzzzzzzz</td>
+              <td className="name">김위즈</td>
+              <td className="gender">남</td>
+              <td className="birth">1990.10.01</td>
+              <td className="people">3</td>
+              <td className="email">kimwewew<br/>@naver.com</td>
+              <td className="phone">010-1111-1111</td>
+              <td className="joinDate">2023.05.08</td>
+              <td className="active">X</td>
+              <td className="etc input_ty02">
+                <input type="text"/> 
+              </td>
+            </tr>
+            <tr>
+              <td className="check"><CheckBox for="check" id="check" /></td>
+              <td className="num">100</td>
+              <td className="id disabled">wizzzzzzzzzzz</td>
+              <td className="name">김위즈</td>
+              <td className="gender">남</td>
+              <td className="birth">1990.10.01</td>
+              <td className="people">3</td>
+              <td className="email">kimwewew<br/>@naver.com</td>
+              <td className="phone">010-1111-1111</td>
+              <td className="joinDate">2023.05.08</td>
+              <td className="active">X</td>
+              <td className="etc input_ty02">
                 <input type="text"/> 
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <div className="foot_btn_wrap d-flex flex-ac">
+        <button type="button" className="btn_ty01 btn_bg add">등록</button>
+        <button type="button" className="btn_ty01 btn_bg modify">수정</button>
+        <button type="button" className="btn_ty01 btn_bg del">삭제</button>
+        <button type="button" className="btn_ty01 btn_bg down">엑셀 다운로드</button>
+      </div>
+      <Pagination />
     </div>
   )
 }

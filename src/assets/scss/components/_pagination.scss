@@ -1,0 +1,54 @@
+#pagination {
+  width: 100%;
+  position: absolute;
+  bottom: 44px;
+  
+  .btn {
+    display: inline-block;
+    width: 42px;
+    height: 44px;
+    background: #FFFFFF;
+    border: 1px solid #E0E2E7;
+    flex: 0 0 auto;
+    margin-left: -1px;
+    position: relative;
+    color: #232325;
+    font-weight: 500;
+
+    @include tablet {
+      font-size: 14px;
+    }
+
+    @include mobile {
+      width: 32px;
+      height: 34px;
+    }
+
+    &.active {
+      color: var(--color-green);
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
+
+    &.arrow_left {
+      border-radius: 4px 0px 0px 4px;
+
+      img {
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+    &.arrow_right {
+      border-radius: 0px 4px 4px 0px;
+
+      img {
+        transform: translate(-50%, -50%) rotate(-90deg);
+      }
+    }
+  }
+}

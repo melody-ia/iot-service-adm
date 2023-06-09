@@ -291,6 +291,11 @@ body::-webkit-scrollbar-track {
   width: 100%;
   height: 40px;
 }
+@media all and (max-width: 991px) {
+  .input_ty02 input {
+    font-size: 14px;
+  }
+}
 .input_ty02 input::-webkit-input-placeholder {
   color: var(--color-lightGray);
 }
@@ -392,6 +397,14 @@ body::-webkit-scrollbar-track {
 .filter_wrap {
   padding: 16px 18px;
 }
+@media all and (max-width: 768px) {
+  .filter_wrap {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
 .filter_wrap .input_ty02 {
   display: inline-block;
   max-width: 240px;
@@ -399,17 +412,44 @@ body::-webkit-scrollbar-track {
   width: 100%;
   margin-right: 10px;
 }
+@media all and (max-width: 768px) {
+  .filter_wrap .input_ty02 {
+    max-width: 50%;
+  }
+  .filter_wrap .input_ty02:last-child {
+    margin-right: 0;
+  }
+}
 .filter_wrap .input_ty02 input,
 .filter_wrap .input_ty02 .select_box {
   color: var(--color-lightGray);
 }
-.filter_wrap .date_input {
+@media all and (max-width: 768px) {
+  .filter_wrap .date_input_wrap {
+    margin: 10px 0;
+  }
+}
+.filter_wrap .date_input_wrap .date_input {
   max-width: 200px;
+}
+@media all and (max-width: 768px) {
+  .filter_wrap .date_input_wrap .date_input {
+    max-width: 50%;
+  }
 }
 .filter_wrap .btn_search {
   padding: 0 20px;
 }
 
+.table {
+  table-layout: fixed;
+  width: 100%;
+}
+@media all and (max-width: 991px) {
+  .table {
+    font-size: 14px;
+  }
+}
 .table_wrap {
   overflow-x: auto;
 }
@@ -435,29 +475,62 @@ body::-webkit-scrollbar-track {
 .table tbody {
   color: var(--color-lightGray);
 }
+.table tbody td.id.disabled {
+  padding-right: 30px;
+  position: relative;
+}
+.table tbody td.id.disabled::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background: url(../img/icon/stop.svg) no-repeat;
+  width: 16px;
+  height: 16px;
+}
+.table tbody td.etc input {
+  background: transparent;
+}
 .table tr {
-  padding: 21px 18px;
+  height: 68px;
   text-align: center;
-  display: inline-block;
 }
 .table tr:nth-child(even) {
   background: #FBFCFC;
 }
-.table .check {
-  max-width: 70px;
-}
-.table .id, .table .email, .table .etc {
-  max-width: 180px;
-}
-.table .active, .table .phone, .table .joinDate {
-  max-width: 150px;
-}
-.table .num, .table .name, .table .gender, .table .birth, .table .people {
-  max-width: 120px;
-}
 .table th, .table td {
   word-wrap: break-word;
-  width: 100%;
+  padding: 0 18px;
+}
+
+.table_list {
+  padding-bottom: 88px;
+  min-height: 60vh;
+  position: relative;
+}
+.table_list .foot_btn_wrap {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 15px 18px 50px;
+}
+@media all and (max-width: 768px) {
+  .table_list .foot_btn_wrap {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+.table_list .foot_btn_wrap .btn_ty01 {
+  margin-left: 13px;
+}
+@media all and (max-width: 768px) {
+  .table_list .foot_btn_wrap .btn_ty01 {
+    margin-left: 4px;
+    font-size: 0;
+  }
 }
 
 .react-datepicker {
@@ -906,6 +979,7 @@ input, textarea {
 
 .content_container {
   padding-top: 14px;
+  padding-bottom: 60px;
 }
 
 .header {
@@ -1150,6 +1224,61 @@ input, textarea {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+}
+
+#pagination {
+  width: 100%;
+  position: absolute;
+  bottom: 44px;
+}
+#pagination .btn {
+  display: inline-block;
+  width: 42px;
+  height: 44px;
+  background: #FFFFFF;
+  border: 1px solid #E0E2E7;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  margin-left: -1px;
+  position: relative;
+  color: #232325;
+  font-weight: 500;
+}
+@media all and (max-width: 991px) {
+  #pagination .btn {
+    font-size: 14px;
+  }
+}
+@media all and (max-width: 768px) {
+  #pagination .btn {
+    width: 32px;
+    height: 34px;
+  }
+}
+#pagination .btn.active {
+  color: var(--color-green);
+}
+#pagination .btn img {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+#pagination .btn.arrow_left {
+  border-radius: 4px 0px 0px 4px;
+}
+#pagination .btn.arrow_left img {
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
+          transform: translate(-50%, -50%) rotate(90deg);
+}
+#pagination .btn.arrow_right {
+  border-radius: 0px 4px 4px 0px;
+}
+#pagination .btn.arrow_right img {
+  -webkit-transform: translate(-50%, -50%) rotate(-90deg);
+          transform: translate(-50%, -50%) rotate(-90deg);
 }
 
 .login {
