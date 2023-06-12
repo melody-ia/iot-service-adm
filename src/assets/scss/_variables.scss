@@ -7,6 +7,11 @@ body {
 }
 
 // 미디어쿼리
+@mixin desktop-sm {
+  @media all and (max-width: 1200px) {
+    @content;
+  }
+};
 @mixin tablet {
   @media all and (max-width: 991px) {
     @content;

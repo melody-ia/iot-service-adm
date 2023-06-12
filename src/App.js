@@ -5,6 +5,8 @@ import "./assets/scss/App.css";
 // component
 import Login from "./routes/login/Login";
 import UserList from "./routes/user/UserList";
+import UserAdd from "./routes/user/UserAdd";
+import UserInfo from "./routes/user/UserInfo";
 import Templeate from "./routes/layout/Template";
 
 function App() {
@@ -12,7 +14,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Templeate />}>
         <Route path="UserList" element={<UserList />} />
-        <Route />
+        <Route path="UserAdd" element={<UserAdd />}/>
+        <Route path="UserInfo" element={<UserInfo />}/>
         <Route />
         <Route />
         <Route />

@@ -1,9 +1,9 @@
-export default function RadioBtn() {
+export default function RadioBtn(props) {
   return(
     <div className="check_type radio">
-      <label htmlFor="">
-        <input type="radio" id="" name="" />
-        <span></span>
+      <label htmlFor={props.for}>
+        <input type="radio" id={props.id} name={props.name} />
+        <span>{props.text}</span>
       </label>
     </div>
   )

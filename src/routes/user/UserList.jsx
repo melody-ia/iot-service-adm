@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
@@ -45,8 +46,8 @@ export default function UserList() {
   return (
     <>
       <Lnb lnbType="user" />
-      <CurrentBox add={true} mod={true} del={true} down={true} />
-      <div className="user_list box_ty01 table_list">
+      <CurrentBox add={true} mod={true} del={true} down={true} tit="회원리스트" />
+      <div className="user_list box_ty01 table_type">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
@@ -144,20 +145,6 @@ export default function UserList() {
         </div>
         <div className="table_wrap">
           <table className="table">
-            <colgroup>
-              <col width="70px" />
-              <col width="100px" />
-              <col width="180px" />
-              <col width="120px" />
-              <col width="120px" />
-              <col width="120px" />
-              <col width="120px" />
-              <col width="180px" />
-              <col width="150px" />
-              <col width="150px" />
-              <col width="150px" />
-              <col width="200px" />
-            </colgroup>
             <thead>
               <tr>
                 <th className="check">
@@ -178,48 +165,52 @@ export default function UserList() {
             </thead>
             <tbody>
               <tr>
-                <td className="check">
-                  <CheckBox for="check" id="check" />
-                </td>
-                <td className="num">100</td>
-                <td className="id disabled">wizzzzzzzzzzz</td>
-                <td className="name">김위즈</td>
-                <td className="gender">남</td>
-                <td className="birth">1990.10.01</td>
-                <td className="people">3</td>
-                <td className="email">
-                  kimwewew
-                  <br />
-                  @naver.com
-                </td>
-                <td className="phone">010-1111-1111</td>
-                <td className="joinDate">2023.05.08</td>
-                <td className="active">X</td>
-                <td className="etc input_ty02">
-                  <input type="text" />
-                </td>
+                <Link to="/UserInfo" className="info_link">
+                  <td className="check">
+                    <CheckBox for="check" id="check" />
+                  </td>
+                  <td className="num">100</td>
+                  <td className="id disabled">wizzzzzzzzzzz</td>
+                  <td className="name">김위즈</td>
+                  <td className="gender">남</td>
+                  <td className="birth">1990.10.01</td>
+                  <td className="people">3</td>
+                  <td className="email">
+                    kimwewew
+                    <br />
+                    @naver.com
+                  </td>
+                  <td className="phone">010-1111-1111</td>
+                  <td className="joinDate">2023.05.08</td>
+                  <td className="active">X</td>
+                  <td className="etc input_ty02">
+                    <input type="text" />
+                  </td>
+                </Link>
               </tr>
               <tr>
-                <td className="check">
-                  <CheckBox for="check" id="check" />
-                </td>
-                <td className="num">100</td>
-                <td className="id disabled">wizzzzzzzzzzz</td>
-                <td className="name">김위즈</td>
-                <td className="gender">남</td>
-                <td className="birth">1990.10.01</td>
-                <td className="people">3</td>
-                <td className="email">
-                  kimwewew
-                  <br />
-                  @naver.com
-                </td>
-                <td className="phone">010-1111-1111</td>
-                <td className="joinDate">2023.05.08</td>
-                <td className="active">X</td>
-                <td className="etc input_ty02">
-                  <input type="text" />
-                </td>
+                <Link to="/UserInfo" className="info_link">
+                  <td className="check">
+                    <CheckBox for="check" id="check" />
+                  </td>
+                  <td className="num">100</td>
+                  <td className="id disabled">wizzzzzzzzzzz</td>
+                  <td className="name">김위즈</td>
+                  <td className="gender">남</td>
+                  <td className="birth">1990.10.01</td>
+                  <td className="people">3</td>
+                  <td className="email">
+                    kimwewew
+                    <br />
+                    @naver.com
+                  </td>
+                  <td className="phone">010-1111-1111</td>
+                  <td className="joinDate">2023.05.08</td>
+                  <td className="active">X</td>
+                  <td className="etc input_ty02">
+                    <input type="text" />
+                  </td>
+                </Link>
               </tr>
             </tbody>
           </table>

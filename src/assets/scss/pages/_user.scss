@@ -1,0 +1,21 @@
+// 회원정보
+.user_info {
+  &.noActive {
+    .user_id {
+      label {
+        position: relative;
+  
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: url(../img/icon/stop.svg) no-repeat center;
+          width: 18px;
+          height: 18px;	
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

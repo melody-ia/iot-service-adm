@@ -1,6 +1,7 @@
 @import './font';
 @import './variables';
 @import './common';
+@import './commonForm';
 @import './reset';
 
 // layout
@@ -11,3 +12,4 @@
 @import './components/pagination';
 // pages
 @import './pages/login';
+@import './pages/user';

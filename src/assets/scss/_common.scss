@@ -99,6 +99,14 @@ body {
 			background-color: #2795fc;
 		}
 	}
+	&.can {
+		background-image: url(../img/icon/cancel.svg);
+		background-color: #B5B5B5;
+
+		&:hover {
+			background-color: #ada7a7;
+		}
+	}
 	&.del {
 		background-image: url(../img/icon/trash.svg);
 		background-color: var(--color-lightGray);
@@ -121,6 +129,28 @@ body {
 		}
 	}
 }
+.bottom_btn_wrap {
+	padding: 80px 0;
+	display: flex;
+	justify-content: center;
+
+	@include mobile {
+		padding: 60px 0 30px;
+	}
+
+	.btn_ty01 {
+		max-width: 185px;
+		width: 100%;
+		margin-right: 20px;
+		height: 48px;
+		line-height: 48px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
 // 등록/수정/삭제/다운로드 버튼
 .setting_btn_wrap {
 	.btn_ty01 {
@@ -175,30 +205,66 @@ body {
 		cursor: pointer;
 	}
 	&.radio {
+		label {
+			font-size: 16px;
+
+			@include mobile {
+				font-size: 14px;
+			}
+		}
 		input:checked ~ span {
 			&::before {
-				border-color: var(--color-green);
+				border-width: 2px;
 				background-color: #fff;
-				content: '';
 			}
 			&::after {
 				content: '';
 				position: absolute;
 				left: 5px;
 				top: 6px;
-				width: 10px;
-				height: 10px;
+				width: 14px;
+				height: 14px;
 				border-radius: 50%;
 				background: var(--color-green);
 			}
 		}
 
 		span {
+			vertical-align: text-bottom;
+
 			&::before {
+				width: 24px;
+				height: 24px;
+				border-color:#E0E2E7;
 				border-radius: 50%;
+				margin-right: 20px;
+				box-sizing: border-box;
+
+				@include mobile {
+					width: 18px;
+					height: 18px;
+					margin-right: 10px;
+				}
 			}
 		}
 	}
+}
+.radio_group {
+	.tit {
+		display: inline-block;
+
+		@include tablet {
+			display: block;
+		}
+	}
+	.check_type.radio {
+		display: inline-block;
+		margin-right: 10%;
+		margin-bottom: 5px;
+	}
+}
+.radio_wrap {
+	width: 100%;
 }
 
 // input
@@ -228,7 +294,8 @@ body {
 
 }
 .input_ty02 {
-	input {
+	input,
+	textarea {
 		border: 1px solid #E0E2E7;
 		border-radius: 5px;
 		background: #fff;
@@ -242,7 +309,7 @@ body {
 		}
 
 		&::placeholder {
-			color: var(--color-lightGray);
+			color: #BEC8D0;
 		}
 	}
 }
@@ -252,6 +319,7 @@ body {
 	position: relative;
 	user-select: none;
 	cursor: pointer;
+	width: 100%;
 
 	&::before {
 		content: '';
@@ -329,148 +397,6 @@ body {
 	}
 }
 
-.filter_wrap {
-	padding: 16px 18px;
-
-	@include mobile {
-		flex-direction: column;
-	}
-
-	.input_ty02 {
-		display: inline-block;
-		max-width: 240px;
-		height: 40px;
-		width: 100%;
-		margin-right: 10px;
-
-		@include mobile {
-			max-width: 50%;
-			
-			&:last-child {
-				margin-right: 0;
-			}
-		}
-
-		input,
-		.select_box {
-			color: var(--color-lightGray);
-		}
-	}
-	.date_input_wrap  {
-		@include mobile {
-			margin: 10px 0;
-		}
-
-		.date_input {
-			max-width: 200px;
-
-			@include mobile {
-				max-width: 50%;
-			}
-		}
-	}
-
-	.btn_search {
-		padding: 0 20px;
-	}
-}
-
-.table {
-	table-layout: fixed;
-	width: 100%;
-
-	@include tablet {
-		font-size: 14px;
-	}
-
-	&_wrap {
-		overflow-x: auto;
-
-		&::-webkit-scrollbar {
-			width: 7px;
-			height: 7px;
-			
-			&-thumb {
-				background: #c1c1c1;
-				border-radius: 50px;
-			}
-			&-track {
-				background: #fafafa;
-				border-width: 0px 0.5px;
-				border-style: solid;
-				border-color: #E8E8E8;
-			}
-		}
-	}
-
-	thead {
-		border-top: 1px solid #EBEFF2;
-		border-bottom: 1px solid #EBEFF2;
-		background: #FBFCFC;
-	}
-
-	tbody {
-		color: var(--color-lightGray);
-
-		td.id.disabled {
-			padding-right: 30px;
-			position: relative;
-
-			&::after {
-				content: "";
-				position: absolute;
-				right: 10px;
-				top: 50%;
-				transform: translateY(-50%);
-				background: url(../img/icon/stop.svg) no-repeat;
-				width: 16px;
-				height: 16px;	
-			}
-		}
-		td.etc {
-			input {
-				background: transparent;
-			}
-		} 
-	}
-
-	tr {
-		height: 68px;
-		text-align: center;
-
-		&:nth-child(even) {
-			background: #FBFCFC;
-		}
-	}
-	th, td {
-		word-wrap: break-word;
-		padding: 0 18px;
-	}
-}
-
-.table_list {
-	padding-bottom: 88px;
-	min-height: 60vh;
-	position: relative;
-
-	.foot_btn_wrap {
-		justify-content: flex-end;
-		padding: 15px 18px 50px;
-
-		@include mobile {
-			justify-content: flex-start;
-		}
-
-		.btn_ty01 {
-			margin-left: 13px;
-
-			@include mobile {
-				margin-left: 4px;
-				font-size: 0;
-			}
-		}
-	}
-}
 
 // datepicker
 .react-datepicker {
