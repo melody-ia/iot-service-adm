@@ -37,7 +37,6 @@
 }
 
 .content_container {
-  padding-top: 14px;
   padding-bottom: 60px;
 }
 
@@ -225,6 +224,7 @@
       }
     }
     .lnb_btn {
+      display: inline-block;
       font-weight: 400;
       color: var(--color-lightGray);
       width: 100%;
