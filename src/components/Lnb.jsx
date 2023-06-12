@@ -57,7 +57,7 @@ export default function Lnb(props) {
       <Swiper className="lnb_tab_slide" {...slideTab}>
         {lnbTab[lnbType].map((el, idx) => {
           return (
-            <SwiperSlide key={idx} className={pathname === el[1] && "active"}>
+            <SwiperSlide key={idx} className={pathname.includes(el[1]) && "active"}>
               <Link to={el[1]} className="lnb_btn">
                 {el[0]}
               </Link>

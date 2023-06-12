@@ -1,3 +1,4 @@
+import { Link, useLocation } from "react-router-dom";
 export default function CurrentBox(props) {
   const btnList = [
     ["취소", "can"],
@@ -14,9 +15,9 @@ export default function CurrentBox(props) {
         {btnList.map((el, idx) => {
           if (props[el[1]])
             return (
-              <button key={idx} type="button" className={"btn_ty01 btn_bg " + el[1]}>
+              <Link to={el[1]} key={idx} className={"btn_ty01 btn_bg " + el[1]}>
                 {el[0]}
-              </button>
+              </Link>
             );
         })}
       </div>
