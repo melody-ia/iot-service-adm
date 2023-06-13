@@ -7,6 +7,9 @@ import Login from "./routes/login/Login";
 import UserList from "./routes/user_mgmt/UserList";
 import UserAdd from "./routes/user_mgmt/UserAdd";
 import UserBasicInfo from "./routes/user_info/UserBasicInfo";
+import UserInfo from "./routes/user_mgmt/UserInfo";
+import UserPromoHis from "./routes/user_mgmt/UserPromoHis";
+import UserPromoHisDetail from "./routes/user_mgmt/UserPromoHisDetail";
 import Templeate from "./routes/layout/Template";
 
 function App() {
@@ -16,12 +19,9 @@ function App() {
         <Route path="UserList" element={<UserList />} />
         <Route path="UserList/add" element={<UserAdd />} />
         <Route path="UserBasicInfo/:id" element={<UserBasicInfo />} />
-        <Route />
-        <Route />
-        <Route />
-        <Route />
-        <Route />
-        <Route />
+        <Route path="UserInfo/:id" element={<UserInfo />} />
+        <Route path="UserPromoHis/:id" element={<UserPromoHis />} />
+        <Route path="UserPromoHisDetail" element={<UserPromoHisDetail />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>
