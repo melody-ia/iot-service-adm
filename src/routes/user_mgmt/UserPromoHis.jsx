@@ -135,7 +135,7 @@ export default function UserPromoHis() {
             검색
           </button>
         </div>
-        <div className="table_wrap">
+        <div className="table_wrap line">
           <table className="table">  
             <colgroup>
               <col width={"80px"}/>
@@ -177,7 +177,7 @@ export default function UserPromoHis() {
             </tbody>
           </table>
         </div>
-        <div className="table_wrap">
+        <div className="table_wrap line">
           <table className="table">  
             <colgroup>
               <col width={"80px"}/>
@@ -219,7 +219,7 @@ export default function UserPromoHis() {
             </tbody>
           </table>
         </div>
-        <div className="table_wrap">
+        <div className="table_wrap line">
           <table className="table">  
             <colgroup>
               <col width={"80px"}/>
