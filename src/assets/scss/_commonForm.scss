@@ -41,6 +41,30 @@
 	.btn_search {
 		padding: 0 20px;
 	}
+
+	.tab_btn {
+		height: 52px;
+		margin-top: -10px;
+
+		li {
+			display: inline-block;
+			width: 130px;
+			color: var(--color-lightGray);
+			height: 100%;
+
+			.btn {
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+
+				&.active {
+					color: #1C2434;
+					border-bottom: 1px solid #1C2434;
+					font-weight: 500;
+				}
+			}
+		}
+	}
 }
 
 .table {
@@ -96,7 +120,7 @@
 
 		&.line {
 			border-bottom: 12px solid #fff;
-			
+
 			.table {
 				min-width: 1400px;
 				tr {

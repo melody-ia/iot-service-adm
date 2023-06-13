@@ -11,6 +11,7 @@ import UserInfo from "./routes/user_mgmt/UserInfo";
 import UserPromoHis from "./routes/user_mgmt/UserPromoHis";
 import UserPromoHisDetail from "./routes/user_mgmt/UserPromoHisDetail";
 import UserCalcHis from "./routes/user_info/UserCalcHis";
+import UserRankHis from "./routes/user_info/UserRankHis";
 import Templeate from "./routes/layout/Template";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="UserPromoHis/:id" element={<UserPromoHis />} />
         <Route path="UserPromoHisDetail" element={<UserPromoHisDetail />} />
         <Route path="UserCalcHis/:id" element={<UserCalcHis />} />
+        <Route path="UserRankHis/:id" element={<UserRankHis />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>

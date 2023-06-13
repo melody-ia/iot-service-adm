@@ -47,7 +47,7 @@
     }
   }
 }
-
+// 프로모션 참여 상세 내역
 .user_history_pro_detail {
   padding-top: 30px;
 
@@ -65,5 +65,16 @@
         }
       }     
     } 
+  }
+}
+
+// 탄소 중립 랭킹 변동 내역
+.user_history_rank {
+  .table_wrap.line {
+    thead {
+      tr {
+        height: 40px;
+      }
+    }
   }
 }

@@ -27,6 +27,10 @@
     &.active {
       color: var(--color-green);
     }
+    
+    &:hover {
+      background-color: #f9f9f9;
+    }
 
     img {
       width: 16px;
