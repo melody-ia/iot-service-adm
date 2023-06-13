@@ -13,7 +13,7 @@ export default function Lnb(props) {
       ["탈퇴/삭제회원", "url"],
     ],
     userInfo: [
-      ["회원 정보", "/UserInfo/" + id],
+      ["회원 정보", "/UserBasicInfo/" + id],
       ["프로모션 참여 내역", "/UserPromoHis/" + id],
       ["탄소발자국 계산 내역", "/UserCalcHis/" + id],
       ["탄소 중립 랭킹 변동 내역", "/UserRankHis/" + id],

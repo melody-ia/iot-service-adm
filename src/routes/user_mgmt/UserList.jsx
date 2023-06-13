@@ -1,11 +1,9 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
-import { Lnb, CurrentBox } from "../../components/bundle_components";
+import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
-import CheckBox from "../../components/CheckBox";
-import Pagination from "../../components/Pagination";
 
 export default function UserList() {
   const [fixedDate] = useState(new Date());
@@ -170,7 +168,7 @@ export default function UserList() {
                 </td>
                 <td className="num">100</td>
                 <td className="id disabled">
-                  <Link to="/UserInfo/wizzzzzzzzzzz1">wizzzzzzzzzzz1</Link>
+                  <Link to="/UserBasicInfo/wizzzzzzzzzzz1">wizzzzzzzzzzz1</Link>
                 </td>
                 <td className="name">김위즈</td>
                 <td className="gender">남</td>
@@ -194,7 +192,7 @@ export default function UserList() {
                 </td>
                 <td className="num">100</td>
                 <td className="id disabled">
-                  <Link to="/UserInfo/wizzzzzzzzzzz2">wizzzzzzzzzzz2</Link>
+                  <Link to="/UserBasicInfo/wizzzzzzzzzzz2">wizzzzzzzzzzz2</Link>
                 </td>
                 <td className="name">김위즈</td>
                 <td className="gender">남</td>

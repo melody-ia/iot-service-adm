@@ -6,18 +6,16 @@ export function useBtnEvent() {
   const { pathname } = useLocation();
 
   const btnFunction = {
-    can: () => {
-      const split = pathname.split("/");
-      const backPage = split.slice(0, split.length - 1).join("/");
-      return navigate(backPage);
-    },
+    can: () => navigate(-1),
 
     add: async () => {
       if (!pathname.includes("add")) return navigate(pathname + "/add");
-      const res = await axios.get("url");
+      const res = await axios.get("api");
     },
 
-    mod: () => navigate(pathname + "/mod"),
+    mod: async () => {
+      const res = await axios.get("api");
+    },
 
     del: () => {},
 
