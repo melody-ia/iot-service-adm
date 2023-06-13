@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
@@ -8,7 +8,6 @@ import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserList() {
-  const navigate = useNavigate();
   const [fixedDate] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -165,12 +164,14 @@ export default function UserList() {
               </tr>
             </thead>
             <tbody>
-              <tr onClick={() => navigate('/UserInfo')}>
+              <tr>
                 <td className="check">
                   <CheckBox for="check" id="check" />
                 </td>
                 <td className="num">100</td>
-                <td className="id disabled">wizzzzzzzzzzz</td>
+                <td className="id disabled">
+                  <Link to="/UserInfo/wizzzzzzzzzzz1">wizzzzzzzzzzz1</Link>
+                </td>
                 <td className="name">김위즈</td>
                 <td className="gender">남</td>
                 <td className="birth">1990.10.01</td>
@@ -187,12 +188,14 @@ export default function UserList() {
                   <input type="text" />
                 </td>
               </tr>
-              <tr onClick={() => navigate('/UserInfo')}>
+              <tr>
                 <td className="check">
                   <CheckBox for="check" id="check" />
                 </td>
                 <td className="num">100</td>
-                <td className="id disabled">wizzzzzzzzzzz</td>
+                <td className="id disabled">
+                  <Link to="/UserInfo/wizzzzzzzzzzz2">wizzzzzzzzzzz2</Link>
+                </td>
                 <td className="name">김위즈</td>
                 <td className="gender">남</td>
                 <td className="birth">1990.10.01</td>
@@ -207,7 +210,7 @@ export default function UserList() {
                 <td className="active">X</td>
                 <td className="etc input_ty02">
                   <input type="text" />
-                </td>           
+                </td>
               </tr>
             </tbody>
           </table>

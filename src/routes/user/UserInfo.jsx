@@ -2,8 +2,8 @@ import Radio from "../../components/RadioBtn";
 import img from "../../assets/img/img.png";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 
-export default function UserAdd() {
-  return(
+export default function UserInfo() {
+  return (
     <>
       <Lnb lnbType="userInfo" />
       <CurrentBox mod={true} del={true} down={true} tit="회원 정보" />
@@ -16,17 +16,17 @@ export default function UserAdd() {
               <div className="flex_box">
                 <div className="input_ty02 flex_left user_id">
                   <label htmlFor="">아이디</label>
-                  <input type="text" placeholder="직접입력" defaultValue={"wizzz"}/>
+                  <input type="text" placeholder="직접입력" defaultValue={"wizzz"} />
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">이메일</label>
-                  <input type="email" placeholder="직접입력" defaultValue={"kimwiz@naver.com"}/>
+                  <input type="email" placeholder="직접입력" defaultValue={"kimwiz@naver.com"} />
                 </div>
               </div>
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">이름</label>
-                  <input type="text" placeholder="직접입력" defaultValue={"김위즈"}/>
+                  <input type="text" placeholder="직접입력" defaultValue={"김위즈"} />
                 </div>
                 <div className="radio_group flex_right">
                   <span className="label">성별</span>
@@ -39,11 +39,11 @@ export default function UserAdd() {
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">생년월일</label>
-                  <input type="text" placeholder="직접입력" defaultValue={"1990.10.01"}/>
+                  <input type="text" placeholder="직접입력" defaultValue={"1990.10.01"} />
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">거주인원 수</label>
-                  <input type="text" placeholder="직접입력" defaultValue={"3"}/>
+                  <input type="text" placeholder="직접입력" defaultValue={"3"} />
                 </div>
               </div>
               <div className="flex_box">
@@ -79,7 +79,7 @@ export default function UserAdd() {
                   <div className="flex_right">
                     <span className="label">주요 이동수단</span>
                     <div className="select_input input_ty02">
-                      <input type="text" defaultValue="자가용" readOnly/>
+                      <input type="text" defaultValue="자가용" readOnly />
                       <ul className="select_box">
                         <li>자가용</li>
                         <li>지하철</li>
@@ -94,7 +94,7 @@ export default function UserAdd() {
                   <div className="flex_right">
                     <span className="label">차종</span>
                     <div className="select_input input_ty02">
-                      <input type="text" defaultValue="경형" readOnly/>
+                      <input type="text" defaultValue="경형" readOnly />
                       <ul className="select_box">
                         <li>경형</li>
                         <li>소형</li>
@@ -113,12 +113,14 @@ export default function UserAdd() {
                   <label htmlFor="">주소</label>
                   <div className="addr_wrap">
                     <input type="text" placeholder="직접입력" defaultValue={"서울시 강남구 대치동"} />
-                    <button type="button" className="btn_ty01 btn_search">검색</button>
+                    <button type="button" className="btn_ty01 btn_search">
+                      검색
+                    </button>
                   </div>
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">차종 배기량(CC)</label>
-                  <input type="text" placeholder="직접입력"/>
+                  <input type="text" placeholder="직접입력" />
                 </div>
               </div>
               <div className="flex_box">
@@ -129,7 +131,7 @@ export default function UserAdd() {
                 <div className="flex_right">
                   <span className="label">유종</span>
                   <div className="select_input input_ty02">
-                    <input type="text" defaultValue="가솔린" readOnly/>
+                    <input type="text" defaultValue="가솔린" readOnly />
                     <ul className="select_box">
                       <li>가솔린</li>
                       <li>디젤</li>
@@ -158,7 +160,7 @@ export default function UserAdd() {
                 <div className="flex_left">
                   <span className="label">직업</span>
                   <div className="select_input input_ty02">
-                    <input type="text" defaultValue="주부" readOnly/>
+                    <input type="text" defaultValue="주부" readOnly />
                     <ul className="select_box">
                       <li>주부</li>
                       <li>공무원</li>
@@ -172,7 +174,7 @@ export default function UserAdd() {
                 <div className="flex_right">
                   <span className="label">음식물 쓰레기 처리 방식</span>
                   <div className="select_input input_ty02">
-                    <input type="text" defaultValue="음식물처리기" readOnly/>
+                    <input type="text" defaultValue="음식물처리기" readOnly />
                     <ul className="select_box">
                       <li>음식물처리기</li>
                       <li>공동주택 세대별 카드</li>
@@ -191,7 +193,7 @@ export default function UserAdd() {
                 <div className="flex_right">
                   <span className="label">최종학력</span>
                   <div className="select_input input_ty02">
-                    <input type="text" defaultValue="대학원" readOnly/>
+                    <input type="text" defaultValue="대학원" readOnly />
                     <ul className="select_box">
                       <li>대학원</li>
                       <li>대학</li>
@@ -227,11 +229,15 @@ export default function UserAdd() {
             </div>
           </div>
           <div className="bottom_btn_wrap">
-            <button type="button" className="btn_ty01 cancel">취소</button>
-            <button type="button" className="btn_ty01">등록</button>
+            <button type="button" className="btn_ty01 cancel">
+              취소
+            </button>
+            <button type="button" className="btn_ty01">
+              등록
+            </button>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }

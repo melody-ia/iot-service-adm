@@ -1,9 +1,10 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 export default function Lnb(props) {
   const { pathname } = useLocation();
+  const { id } = useParams();
   const { lnbType } = props;
 
   const lnbTab = {
@@ -12,16 +13,16 @@ export default function Lnb(props) {
       ["탈퇴/삭제회원", "url"],
     ],
     userInfo: [
-      ["회원 정보", "/UserInfo"],
-      ["프로모션 참여 내역", "url"],
-      ["탄소발자국 계산 내역", "url"],
-      ["탄소 중립 랭킹 변동 내역", "url"],
-      ["도장 적립 내역", "url"],
-      ["포인트 지급/사용 내역", "url"],
-      ["1:1문의 내역", "url"],
-      ["등록 기기 내역", "url"],
+      ["회원 정보", "/UserInfo/" + id],
+      ["프로모션 참여 내역", "/UserPromoHis/" + id],
+      ["탄소발자국 계산 내역", "/UserCalcHis/" + id],
+      ["탄소 중립 랭킹 변동 내역", "/UserRankHis/" + id],
+      ["도장 적립 내역", "/UserStempHis" + id],
+      ["포인트 지급/사용 내역", "/UserPointHis/" + id],
+      ["1:1문의 내역", "/UserQnaHis" + id],
+      ["등록 기기 내역", "/UserDeviceHis" + id],
     ],
-    promotion: [
+    event: [
       ["데일리 챌린지 관리", "url"],
       ["탄소 중립 랭킹 관리", "url"],
       ["공개 배너 순위 관리", "url"],
@@ -29,7 +30,7 @@ export default function Lnb(props) {
       ["팝업 관리", "url"],
     ],
     calcHistory: [],
-    point: [
+    accumulated: [
       ["도장관리", "url"],
       ["포인트관리", "url"],
     ],

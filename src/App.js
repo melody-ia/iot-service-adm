@@ -15,7 +15,7 @@ function App() {
       <Route path="/" element={<Templeate />}>
         <Route path="UserList" element={<UserList />} />
         <Route path="UserList/add" element={<UserAdd />} />
-        <Route path="UserInfo" element={<UserInfo />} />
+        <Route path="UserInfo/:id" element={<UserInfo />} />
         <Route />
         <Route />
         <Route />
