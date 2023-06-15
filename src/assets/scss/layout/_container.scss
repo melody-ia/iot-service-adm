@@ -3,10 +3,14 @@
 	margin-left: auto;
   min-height: 100vh;
   height: 100%;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 45px;
+  padding-right: 45px;
   padding-top: 154px;
   transition: all .3s;
+
+  &.home {
+    padding-top: 106px;
+  }
 
 	@include tablet {
     width: 100%;

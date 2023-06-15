@@ -17,7 +17,7 @@ import Templeate from "./routes/layout/Template";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Templeate />}>
+        <Route path="/" element={<Templeate />}>
         <Route path="UserList" element={<UserList />} />
         <Route path="UserList/add" element={<UserAdd />} />
         <Route path="UserBasicInfo/:id" element={<UserBasicInfo />} />

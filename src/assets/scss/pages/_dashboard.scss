@@ -1,0 +1,221 @@
+.dashboard {
+  // (공통)
+  .box_ty01 {
+    padding: 24px 18px;
+    width: 100%;
+    margin-right: 26px;
+    margin-bottom: 26px;
+
+    @include mobile {
+      margin-bottom: 20px;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+  .circle_icon {
+    display: inline-block;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: url(../img/icon/graph.svg) no-repeat center / 32px, #F1F4F5;
+    margin-right: 18px;
+    flex: 0 0 auto;
+
+    @include tablet {
+      width: 46px;
+      height: 46px;
+      background-size: 25px;
+    }
+
+    &.dollar {
+      background-image: url(../img/icon/dollar.svg);
+    }
+    &.people {
+      background-image: url(../img/icon/people.svg);
+    }
+    &.document {
+      background-image: url(../img/icon/document.svg);
+    }
+    &.card {
+      background-image: url(../img/icon/card.svg);
+    }
+  }
+  .tit {
+    color: #1C2434;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  strong {
+    color: #23272E;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .dot_menu {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon/dots.svg) no-repeat center;
+  }
+  .c_gray {
+    color: #8B909A;
+  }
+
+  .row1 {
+    .box_ty01 {
+      display: flex;
+      align-items: center;
+      padding: 20px 18px;
+      width: calc(100% / 5 - 21px);
+
+      @include desktop {
+        width: calc(100% / 3 - 18px);
+
+        &:nth-child(2) {
+          margin-right: 0;
+        }
+
+        &:nth-child(1),
+        &:nth-child(2) {
+          width: calc(100% / 2 - 13px);
+        }
+      }
+
+      @include mobile {
+        width: 100% !important;
+        margin-right: 0 !important;
+      }
+    }
+
+    .tit {
+      color: var(--color-lightGray);
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    strong {
+      font-size: 24px;
+
+      @include tablet {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .row2 {
+    .box_ty01 {
+      width: calc(100% / 4 - 18px);
+
+      &.graph_ty03 {
+        width: calc(100% / 2 - 16px);
+
+        @include desktop {
+          width: 100%;
+        }
+      }
+
+      &.graph_ty02 {
+        .label_value {
+          display: inline-block;
+          color: #232D42;
+          font-weight: 500;
+          margin-left: 15px;
+        }
+        @include desktop {
+          margin-right: 0;
+        }
+      }
+
+      &.graph_ty01,
+      &.graph_ty02 {
+        @include desktop {
+          width: calc((100% / 2) - 13px);
+        }
+
+        @include mobile {
+          width: 100%;
+          margin-right: 0;
+        }
+      }
+    }
+
+    .graph_ty01 {
+      .tit {
+        margin-bottom: 40px;
+      }
+
+      .box_body_left {
+        flex: 0 0 auto;
+
+        .text {
+          font-size: 18px;
+          letter-spacing: -0.02em;
+          color: #23272E;
+        }
+        .date {
+          display: block;
+          font-weight: 500;
+          font-size: 14px;
+          margin: 20px 0;
+        }
+        strong {
+          font-size: 32px;
+        }
+        .figure_wrap {
+          font-size: 14px;
+          letter-spacing: -0.02em;
+
+          .up {
+            font-weight: 500;
+            color: #42A0F0;
+            background: url(../img/icon/arrow_up_blue.svg) no-repeat left center;
+            padding: 0 8px 0 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .table_wrap {
+    width: calc(80% - 26px);
+    margin-right: 26px;
+
+    @include desktop {
+      width: 100%;
+      margin-right: 0;
+    }
+
+    .table_type {
+      min-height: auto;
+      min-width: 1250px;
+      padding-bottom: 0;
+  
+      .table {
+        thead {
+          border: none;
+        }
+        th {
+          font-size: 15px;
+        }
+        td {
+          font-size: 14px;
+        }
+      }
+    }
+  }  
+
+  .bar_graph {
+    width: 20%;
+
+    @include desktop {
+      width: 100%;
+    }
+
+    .tit {
+      margin-bottom: 50px;
+    }
+  }
+}

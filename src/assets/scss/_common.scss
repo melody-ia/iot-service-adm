@@ -195,13 +195,14 @@ body {
 			content: '';
 			color: var(--color-gray);
 			text-align: center;
-			vertical-align: middle;
+			vertical-align: sub;
 			width: 16px;
 			height: 16px;
 			display: inline-block;
 			border-radius: 4px;
 			background-color: #fff;
 			border: 1px solid var(--color-green);
+			margin-right: 10px;
 		}
 	}
 	label {
@@ -497,6 +498,15 @@ body {
 		background: #323232;
 		border-radius: 40px;
 		color: #fff;
+	}
+
+	.react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range {
+		background-color: var(--color-green);
+	}
+	.react-datepicker__month .react-datepicker__month-text, .react-datepicker__month .react-datepicker__quarter-text {
+		width: 50px;
+		padding: 5px 10px;
+		margin: 5px 12px;
 	}
 
 	.react-datepicker__day--disabled, .react-datepicker__month-text--disabled, .react-datepicker__quarter-text--disabled, .react-datepicker__year-text--disabled {
