@@ -23,30 +23,9 @@
 // 프로모션 참여 내역, 상세 내역
 .user_history_pro, 
 .user_history_pro_detail {
-  .table_wrap {
-    margin: 0 20px;
-    border-bottom: 12px solid #fff;
-  }
   .table {
-    min-width: 1400px;
-
-    tr {    
-      height: 58px;
-
-      &:nth-child(even) {
-        background-color: #fff;
-      }
-      th {  
-        background-color: #FBFCFC;
-      }
+    tr {   
       td, th {
-        border: 1px solid #eee;
-        color: #000;
-
-        &.check {
-          width: 30px;
-        }
-
         &.promotion {
           a {
             display: inline-block;
@@ -68,7 +47,34 @@
     }
   }
 }
-
+// 프로모션 참여 상세 내역
 .user_history_pro_detail {
   padding-top: 30px;
+
+  .table_wrap {
+    margin: 0 20px;
+    border-bottom: 0;
+
+    .table {
+      tr {
+        td, th {      
+          &:first-child,
+          &:last-child {
+            border: 1px solid #eee;
+          }
+        }
+      }     
+    } 
+  }
+}
+
+// 탄소 중립 랭킹 변동 내역
+.user_history_rank {
+  .table_wrap.line {
+    thead {
+      tr {
+        height: 40px;
+      }
+    }
+  }
 }

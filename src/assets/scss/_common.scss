@@ -150,6 +150,12 @@ body {
 		}
 	}
 }
+.btn_sort {
+	width: 20px;
+	height: 20px;
+	background: url(../img/icon/sort.svg) no-repeat center / 20px;
+	vertical-align: sub;
+}
 
 // 등록/수정/삭제/다운로드 버튼
 .setting_btn_wrap {

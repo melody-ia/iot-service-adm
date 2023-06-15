@@ -6,9 +6,9 @@ export default function UserPromoHisDetail() {
   return (
     <>
       <Lnb lnbType="userInfo" />
-      <CurrentBox mod={true} del={true} down={true} tit="프로모션 참여 상세내역" />
+      <CurrentBox mod={true} del={true} down={true} tit="프로모션 참여 상세 내역" />
       <div className="user_history_pro_detail box_ty01 table_type">
-        <div className="table_wrap">
+        <div className="table_wrap line">
           <table className="table">  
             <colgroup>
               <col width={"80px"}/>
