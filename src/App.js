@@ -21,8 +21,8 @@ function App() {
         <Route path="UserList/add" element={<UserAdd />} />
         <Route path="UserBasicInfo/:id" element={<UserBasicInfo />} />
         <Route path="UserPromoHis/:id" element={<UserPromoHis />} />
-        {/* <Route path="UserPromoHis/:id/:id" element={<UserPromoHisDetail />} /> */}
-        <Route path="UserPromoHisDetail" element={<UserPromoHisDetail />} />
+        <Route path="UserPromoHis/:id/:id" element={<UserPromoHisDetail />} />
+        {/* <Route path="UserPromoHisDetail" element={<UserPromoHisDetail />} /> */}
         <Route path="UserCalcHis/:id" element={<UserCalcHis />} />
         <Route path="UserRankHis/:id" element={<UserRankHis />} />
       </Route>
