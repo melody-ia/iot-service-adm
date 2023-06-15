@@ -16,7 +16,7 @@ import UserRankHis from "./routes/user_info/UserRankHis";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Templeate />}>
+        <Route path="/" element={<Templeate />}>
         <Route path="UserList" element={<UserList />} />
         <Route path="UserList/add" element={<UserAdd />} />
         <Route path="UserBasicInfo/:id" element={<UserBasicInfo />} />
