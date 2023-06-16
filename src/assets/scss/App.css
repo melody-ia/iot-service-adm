@@ -677,9 +677,18 @@ body::-webkit-scrollbar-track {
   height: 40px;
   margin-right: 10px;
 }
+.filter_wrap .input_ty02.year {
+  max-width: 120px;
+}
+@media all and (max-width: 768px) {
+  .filter_wrap .input_ty02.year {
+    max-width: 100%;
+  }
+}
 @media all and (max-width: 768px) {
   .filter_wrap .input_ty02 {
-    max-width: 50%;
+    max-width: 100%;
+    width: 100%;
   }
   .filter_wrap .input_ty02:last-child {
     margin-right: 0;
@@ -694,12 +703,25 @@ body::-webkit-scrollbar-track {
     margin: 10px 0;
   }
 }
+@media all and (max-width: 360px) {
+  .filter_wrap .date_input_wrap {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
 .filter_wrap .date_input_wrap .date_input {
   max-width: 200px;
 }
 @media all and (max-width: 768px) {
   .filter_wrap .date_input_wrap .date_input {
-    max-width: 50%;
+    max-width: 100%;
+  }
+}
+@media all and (max-width: 360px) {
+  .filter_wrap .date_input_wrap .date_input:first-child {
+    margin-bottom: 10px;
   }
 }
 .filter_wrap .btn_search {
@@ -715,10 +737,20 @@ body::-webkit-scrollbar-track {
   color: var(--color-lightGray);
   height: 100%;
 }
+@media all and (max-width: 768px) {
+  .filter_wrap .tab_btn li {
+    width: 70px;
+  }
+}
 .filter_wrap .tab_btn li .btn {
   display: inline-block;
   width: 100%;
   height: 100%;
+}
+@media all and (max-width: 768px) {
+  .filter_wrap .tab_btn li .btn {
+    font-size: 14px;
+  }
 }
 .filter_wrap .tab_btn li .btn.active {
   color: #1C2434;
@@ -864,6 +896,14 @@ body::-webkit-scrollbar-track {
 .table th, .table td {
   word-wrap: break-word;
   padding: 10px 18px;
+}
+.table th.overflow, .table td.overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.table .input_ty02 input {
+  text-align: center;
 }
 
 .write_type {
@@ -1713,13 +1753,6 @@ input, textarea {
   width: 18px;
   vertical-align: sub;
 }
-.user_history_pro .table tr td.desc, .user_history_pro .table tr th.desc,
-.user_history_pro_detail .table tr td.desc,
-.user_history_pro_detail .table tr th.desc {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 .user_history_pro_detail {
   padding-top: 30px;
@@ -1732,8 +1765,34 @@ input, textarea {
   border: 1px solid #eee;
 }
 
+@media all and (max-width: 1200px) {
+  .user_history_rank .filter_wrap {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  .user_history_rank .filter_wrap .date_input_wrap {
+    margin-bottom: 25px;
+  }
+}
 .user_history_rank .table_wrap.line thead tr {
   height: 40px;
+}
+
+@media all and (max-width: 768px) {
+  .user_history_stemp .date_input_wrap {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .user_history_stemp .date_input_wrap .input_ty02:nth-child(2) {
+    margin: 10px 0;
+  }
+}
+.user_history_stemp .stemp_num {
+  text-align: center;
 }
 
 .dashboard .box_ty01 {

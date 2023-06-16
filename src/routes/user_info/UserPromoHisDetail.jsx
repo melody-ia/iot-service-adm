@@ -51,7 +51,7 @@ export default function UserPromoHisDetail() {
                 </td>
                 <td>2</td>
                 <td>2023-05-01</td>
-                <td className="desc">탄소를 줄이기 위해 오늘도 열심히 대중교통을 이용하고</td>
+                <td className="overflow">탄소를 줄이기 위해 오늘도 열심히 대중교통을 이용하고</td>
                 <td>+ 1</td>
                 <td>+ 15,000</td>
                 <td>프로모션 참여</td>
@@ -64,7 +64,7 @@ export default function UserPromoHisDetail() {
                 </td>
                 <td>1</td>
                 <td>2023-05-01</td>
-                <td className="desc">탄소를 줄이기 위해 오늘도 열심히 대중교통을 이용하고</td>
+                <td className="overflow">탄소를 줄이기 위해 오늘도 열심히 대중교통을 이용하고 대중교통을 이용하고</td>
                 <td>+ 1</td>
                 <td>+ 15,000</td>
                 <td>프로모션 참여</td>

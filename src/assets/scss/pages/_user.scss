@@ -20,7 +20,7 @@
   }
 }
 
-// 프로모션 참여 내역, 상세 내역
+// (공통) 프로모션 참여 내역, 상세 내역
 .user_history_pro, 
 .user_history_pro_detail {
   .table {
@@ -36,13 +36,7 @@
             width: 18px;
             vertical-align: sub;
           }
-        }
-
-        &.desc {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+        }        
       }
     }
   }
@@ -70,11 +64,37 @@
 
 // 탄소 중립 랭킹 변동 내역
 .user_history_rank {
+  .filter_wrap {
+    @include desktop-sm {
+      flex-direction: column-reverse;
+
+      .date_input_wrap {
+        margin-bottom: 25px;
+      }
+    }
+  }
   .table_wrap.line {
     thead {
       tr {
         height: 40px;
       }
     }
+  }
+}
+
+// 도장 적립 내역
+.user_history_stemp {
+  .date_input_wrap {
+    @include mobile {
+      flex-direction: column;
+
+      .input_ty02:nth-child(2) {
+        margin: 10px 0;
+      }
+    }
+  }
+
+  .stemp_num {
+    text-align: center;
   }
 }

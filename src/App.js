@@ -12,6 +12,8 @@ import UserPromoHis from "./routes/user_info/UserPromoHis";
 import UserPromoHisDetail from "./routes/user_info/UserPromoHisDetail";
 import UserCalcHis from "./routes/user_info/UserCalcHis";
 import UserRankHis from "./routes/user_info/UserRankHis";
+import UserStempHis from "./routes/user_info/UserStempHis";
+import UserPointHis from "./routes/user_info/UserPointHis";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         {/* <Route path="UserPromoHisDetail" element={<UserPromoHisDetail />} /> */}
         <Route path="UserCalcHis/:id" element={<UserCalcHis />} />
         <Route path="UserRankHis/:id" element={<UserRankHis />} />
+        <Route path="UserStempHis/:id" element={<UserStempHis />} />
+        <Route path="UserPointHis/:id" element={<UserPointHis />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>
