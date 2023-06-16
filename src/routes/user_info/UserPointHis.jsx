@@ -47,7 +47,7 @@ export default function UserPointHis() {
       <Lnb lnbType="userInfo" />
       <CurrentBox mod={true} del={true} down={true} tit="포인트 지급/사용 내역" />
       <div className="user_history_point box_ty01 table_type">
-        <div className="filter_wrap d-flex flex-js"> 
+        <div className="filter_wrap d-flex"> 
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02 year">
               <input type="text" defaultValue="전체" readOnly />
@@ -131,6 +131,9 @@ export default function UserPointHis() {
               </DatePicker>
             </div>           
           </div>
+          <button type="button" className="btn_ty01 btn_search">
+            검색
+          </button>
         </div>
         <div className="table_wrap line">
           <table className="table">      

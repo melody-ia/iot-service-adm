@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import logoImg from "../../assets/img/logo.svg";
 import iconPoint from "../../assets/img/icon/menu_point.svg";
@@ -11,6 +11,7 @@ import iconBoard from "../../assets/img/icon/menu_board.svg";
 export default function SideMenu(props) {
   const { sideShow, sideClose } = props;
   const [sideWide, setSideWide] = useState(false);
+  const { pathname } = useLocation();
 
   return (
     <div
@@ -23,17 +24,17 @@ export default function SideMenu(props) {
           <img src={logoImg} alt="" />
         </Link>
         <div className="side_menu_list">
-          <div className="btn_wrap user active">
+          <div className="btn_wrap user">
             <button type="button" className="list_btn">
               <img src={iconUser} alt="" className="list_btn_icon" />
               <span className="list_btn_text">회원관리</span>
             </button>
             <ul className="sub_menu_list">
-              <li className="list active" onClick={sideClose}>
-                <Link to="/UserList">회원 리스트</Link>
+              <li className={pathname==="/UserList"? "list active" : "list"} onClick={sideClose}>
+                <Link to="UserList">회원 리스트</Link>
               </li>
-              <li className="list">
-                <Link to="">탈퇴/삭제 회원</Link>
+              <li className={pathname==="/DeletedUserList"? "list active" : "list"}>
+                <Link to="DeletedUserList">탈퇴/삭제 회원</Link>
               </li>
             </ul>
           </div>

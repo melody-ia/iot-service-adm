@@ -7,7 +7,7 @@ export default function UserPromoHisDetail() {
     <>
       <Lnb lnbType="userInfo" />
       <CurrentBox mod={true} del={true} down={true} tit="프로모션 참여 상세 내역" />
-      <div className="user_history_pro_detail box_ty01 table_type">
+      <div className="user_history_pro_detail detail_form box_ty01 table_type">
         <div className="table_wrap line">
           <table className="table">  
             <colgroup>
@@ -18,20 +18,20 @@ export default function UserPromoHisDetail() {
             </colgroup>       
             <tbody>
               <tr>
-                <th colSpan={3} className="bg_gray">프로모션 명</th>
-                <td colSpan={6} className="bg_gray">데일리 챌린지_데일리 탄소 줄이기</td>
+                <th colSpan={3}>프로모션 명</th>
+                <td colSpan={6}>데일리 챌린지_데일리 탄소 줄이기</td>
               </tr>
               <tr>
-                <th colSpan={3} className="bg_gray">프로모션 진행 기간</th>
-                <td className="bg_gray">2023.03.01 – 2023.12.31</td>
-                <th colSpan={2} className="bg_gray">프로모션 참여 기간</th>
-                <td colSpan={3} className="bg_gray">2023.05.10 - 오늘날짜</td>
+                <th colSpan={3}>프로모션 진행 기간</th>
+                <td>2023.03.01 – 2023.12.31</td>
+                <th colSpan={2}>프로모션 참여 기간</th>
+                <td colSpan={3}>2023.05.10 - 오늘날짜</td>
               </tr>
               <tr>
-                <th colSpan={3} className="bg_gray">등록한 글 총 개수</th>
-                <td className="bg_gray">15</td>
-                <th colSpan={2} className="bg_gray">삭제한 글 총 개수</th>
-                <td colSpan={3} className="bg_gray">1</td>
+                <th colSpan={3}>등록한 글 총 개수</th>
+                <td>15</td>
+                <th colSpan={2}>삭제한 글 총 개수</th>
+                <td colSpan={3}>1</td>
               </tr>
               <tr>
                 <th>

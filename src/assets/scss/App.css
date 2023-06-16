@@ -110,7 +110,7 @@ body::-webkit-scrollbar-track {
   border-radius: 5px;
 }
 @media all and (max-width: 991px) {
-  .btn_ty01 {
+  .btn_ty01:not(.btn_search) {
     height: 35px;
     line-height: 34px;
     padding: 0 10px;
@@ -162,6 +162,13 @@ body::-webkit-scrollbar-track {
 }
 .btn_ty01.can:hover {
   background-color: #ada7a7;
+}
+.btn_ty01.res {
+  background-image: url(../img/icon/restoration.svg);
+  background-color: #2D77E7;
+}
+.btn_ty01.res:hover {
+  background-color: #266dd9;
 }
 .btn_ty01.del {
   background-image: url(../img/icon/trash.svg);
@@ -283,11 +290,19 @@ body::-webkit-scrollbar-track {
   content: "";
   position: absolute;
   left: 5px;
-  top: 6px;
+  top: 2px;
   width: 14px;
   height: 14px;
   border-radius: 50%;
   background: var(--color-green);
+}
+@media all and (max-width: 768px) {
+  .check_type.radio input:checked ~ span::after {
+    width: 10px;
+    height: 10px;
+    left: 4px;
+    top: 5px;
+  }
 }
 .check_type.radio span {
   vertical-align: text-bottom;
@@ -689,6 +704,7 @@ body::-webkit-scrollbar-track {
   .filter_wrap .input_ty02 {
     max-width: 100%;
     width: 100%;
+    margin-bottom: 10px;
   }
   .filter_wrap .input_ty02:last-child {
     margin-right: 0;
@@ -697,11 +713,6 @@ body::-webkit-scrollbar-track {
 .filter_wrap .input_ty02 input,
 .filter_wrap .input_ty02 .select_box {
   color: var(--color-lightGray);
-}
-@media all and (max-width: 768px) {
-  .filter_wrap .date_input_wrap {
-    margin: 10px 0;
-  }
 }
 @media all and (max-width: 360px) {
   .filter_wrap .date_input_wrap {
@@ -717,11 +728,6 @@ body::-webkit-scrollbar-track {
 @media all and (max-width: 768px) {
   .filter_wrap .date_input_wrap .date_input {
     max-width: 100%;
-  }
-}
-@media all and (max-width: 360px) {
-  .filter_wrap .date_input_wrap .date_input:first-child {
-    margin-bottom: 10px;
   }
 }
 .filter_wrap .btn_search {
@@ -1303,10 +1309,10 @@ input, textarea {
 .side_menu_list .btn_wrap .sub_menu_list .list.active {
   color: var(--color-green);
 }
-.side_menu_list .btn_wrap.active .list_btn {
+.side_menu_list .btn_wrap:hover .list_btn, .side_menu_list .btn_wrap.active .list_btn {
   background-color: #060F20;
 }
-.side_menu_list .btn_wrap.active .list_btn::after {
+.side_menu_list .btn_wrap:hover .list_btn::after, .side_menu_list .btn_wrap.active .list_btn::after {
   -webkit-transform: translateY(-50%) rotate(180deg);
           transform: translateY(-50%) rotate(180deg);
 }
@@ -1331,7 +1337,7 @@ input, textarea {
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }
-.side_menu.wide .btn_wrap.active .sub_menu_list {
+.side_menu.wide .btn_wrap:hover .sub_menu_list, .side_menu.wide .btn_wrap.active .sub_menu_list {
   display: block;
 }
 
@@ -1740,42 +1746,27 @@ input, textarea {
   margin-left: 5px;
 }
 
-.user_history_pro .table tr td.promotion a, .user_history_pro .table tr th.promotion a,
-.user_history_pro_detail .table tr td.promotion a,
-.user_history_pro_detail .table tr th.promotion a {
+.detail_form {
+  padding-top: 30px;
+}
+.detail_form .table_wrap {
+  margin: 0 20px;
+  border-bottom: 0;
+}
+.detail_form .table_wrap .table tr td:first-child, .detail_form .table_wrap .table tr td:last-child, .detail_form .table_wrap .table tr th:first-child, .detail_form .table_wrap .table tr th:last-child {
+  border: 1px solid #eee;
+}
+
+.user_history_pro .table tr td.promotion a, .user_history_pro .table tr th.promotion a {
   display: inline-block;
   width: 100%;
   height: 100%;
 }
-.user_history_pro .table tr td.promotion .arrow_right, .user_history_pro .table tr th.promotion .arrow_right,
-.user_history_pro_detail .table tr td.promotion .arrow_right,
-.user_history_pro_detail .table tr th.promotion .arrow_right {
+.user_history_pro .table tr td.promotion .arrow_right, .user_history_pro .table tr th.promotion .arrow_right {
   width: 18px;
   vertical-align: sub;
 }
 
-.user_history_pro_detail {
-  padding-top: 30px;
-}
-.user_history_pro_detail .table_wrap {
-  margin: 0 20px;
-  border-bottom: 0;
-}
-.user_history_pro_detail .table_wrap .table tr td:first-child, .user_history_pro_detail .table_wrap .table tr td:last-child, .user_history_pro_detail .table_wrap .table tr th:first-child, .user_history_pro_detail .table_wrap .table tr th:last-child {
-  border: 1px solid #eee;
-}
-
-@media all and (max-width: 1200px) {
-  .user_history_rank .filter_wrap {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
-  }
-  .user_history_rank .filter_wrap .date_input_wrap {
-    margin-bottom: 25px;
-  }
-}
 .user_history_rank .table_wrap.line thead tr {
   height: 40px;
 }
@@ -1787,12 +1778,68 @@ input, textarea {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .user_history_stemp .date_input_wrap .input_ty02:nth-child(2) {
-    margin: 10px 0;
-  }
 }
 .user_history_stemp .stemp_num {
   text-align: center;
+}
+
+@media all and (max-width: 1440px) {
+  .user_history_qna .filter_wrap {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .user_history_qna .filter_wrap .select_input_wrap {
+    width: 50%;
+    margin-bottom: 10px;
+  }
+  .user_history_qna .filter_wrap .select_input_wrap .input_ty02 {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+@media all and (max-width: 768px) {
+  .user_history_qna .filter_wrap .select_input_wrap {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+
+.user_history_qna_detail .table .align_left,
+.user_history_qna_detail .table .align_left input {
+  text-align: left;
+}
+.user_history_qna_detail .table .radio_box :first-child {
+  margin-right: 5px;
+}
+.user_history_qna_detail .table .radio_box .check_type.radio span {
+  font-size: 14px;
+}
+.user_history_qna_detail .table .radio_box .check_type.radio span::before {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+.user_history_qna_detail .table .radio_box .check_type.radio span::after {
+  width: 10px;
+  height: 10px;
+  top: 4px;
+  left: 4px;
+}
+.user_history_qna_detail .table textarea {
+  resize: none;
+  min-height: 120px;
+  max-height: 200px;
+}
+.user_history_qna_detail .table textarea::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+.user_history_qna_detail .table textarea::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 50px;
+}
+.user_history_qna_detail .table textarea::-webkit-scrollbar-track {
+  background: #fafafa;
 }
 
 .dashboard .box_ty01 {

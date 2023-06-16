@@ -22,6 +22,7 @@
 		@include mobile {
 			max-width: 100%;
 			width: 100%;
+			margin-bottom: 10px;
 			
 			&:last-child {
 				margin-right: 0;
@@ -34,10 +35,6 @@
 		}
 	}
 	.date_input_wrap  {
-		@include mobile {
-			margin: 10px 0;
-		}
-
 		@media all and (max-width: 360px) {
 			flex-direction: column;
 		}
@@ -47,12 +44,6 @@
 
 			@include mobile {
 				max-width: 100%;
-			}
-
-			@media all and (max-width: 360px) {
-				&:first-child {
-					margin-bottom: 10px;
-				}
 			}	
 		}
 	}

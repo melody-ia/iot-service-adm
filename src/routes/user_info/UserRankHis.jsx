@@ -47,12 +47,7 @@ export default function UserRankHis() {
       <Lnb lnbType="userInfo" />
       <CurrentBox mod={true} del={true} down={true} tit="탄소 중립 랭킹 변동 내역" />
       <div className="user_history_rank box_ty01 table_type">
-        <div className="filter_wrap d-flex flex-js">
-          <ul className="tab_btn">
-            <li><button type="button" className="btn active">일간</button></li>
-            <li><button type="button" className="btn">주간</button></li>
-            <li><button type="button" className="btn">월간</button></li>
-          </ul>         
+        <div className="filter_wrap d-flex">                
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">                   
               <DatePicker
@@ -126,6 +121,9 @@ export default function UserRankHis() {
               </DatePicker>
             </div>
           </div>
+          <button type="button" className="btn_ty01 btn_search">
+            검색
+          </button>
         </div>
         <div className="table_wrap line">
           <table className="table">      

@@ -183,7 +183,7 @@ export default function UserList() {
                 <td className="joinDate">2023.05.08</td>
                 <td className="active">X</td>
                 <td className="etc input_ty02">
-                  <input type="text" />
+                  <input type="text" placeholder="직접입력" />
                 </td>
               </tr>
               <tr>
@@ -207,7 +207,7 @@ export default function UserList() {
                 <td className="joinDate">2023.05.08</td>
                 <td className="active">X</td>
                 <td className="etc input_ty02">
-                  <input type="text" />
+                  <input type="text" placeholder="직접입력" />
                 </td>
               </tr>
             </tbody>
