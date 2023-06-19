@@ -9,22 +9,22 @@ import iconCalc from "../../assets/img/icon/menu_calc.svg";
 import iconBoard from "../../assets/img/icon/menu_board.svg";
 
 export default function SideMenu(props) {
-  const { sideShow, sideClose } = props;
+  const { sideOpen, sideClose } = props;
   const [sideWide, setSideWide] = useState(false);
   const { pathname } = useLocation();
 
   return (
     <div
-      className={sideWide || sideShow ? "side_menu wide" : "side_menu"}
-      onMouseOver={() => setSideWide(true)}
-      onMouseLeave={() => setSideWide(false)}
+      className={sideOpen || sideWide ? "side_menu wide" : "side_menu"}
+      onMouseOver={()=>setSideWide(true)}
+      onMouseLeave={()=>setSideWide(false)}
     >
       <div className="inner">
         <Link to="/" className="logo" onClick={sideClose}>
           <img src={logoImg} alt="" />
         </Link>
         <div className="side_menu_list">
-          <div className="btn_wrap user">
+          <div className="btn_wrap user active">
             <button type="button" className="list_btn">
               <img src={iconUser} alt="" className="list_btn_icon" />
               <span className="list_btn_text">회원관리</span>
@@ -33,19 +33,19 @@ export default function SideMenu(props) {
               <li className={pathname==="/UserList"? "list active" : "list"} onClick={sideClose}>
                 <Link to="UserList">회원 리스트</Link>
               </li>
-              <li className={pathname==="/DeletedUserList"? "list active" : "list"}>
+              <li className={pathname==="/DeletedUserList"? "list active" : "list"} onClick={sideClose}>
                 <Link to="DeletedUserList">탈퇴/삭제 회원</Link>
               </li>
             </ul>
           </div>
-          <div className="btn_wrap event">
+          <div className="btn_wrap event active">
             <button type="button" className="list_btn">
               <img src={iconEvent} alt="" className="list_btn_icon" />
               <span className="list_btn_text">프로모션/배너/팝업관리</span>
             </button>
             <ul className="sub_menu_list">
-              <li className="list">
-                <Link to="">데일리 챌린지 관리</Link>
+              <li className={pathname==="/ChallengeList"? "list active" : "list"}>
+                <Link to="ChallengeList">데일리 챌린지 관리</Link>
               </li>
               <li className="list">
                 <Link to="">탄소 중립 랭킹 관리</Link>

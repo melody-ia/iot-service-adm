@@ -29,7 +29,7 @@ export default function UserQnaHisDetail() {
                 <td>2023.05.08</td>
                 <th>답변여부</th>
                 <td>
-                  <div className="radio_box d-flex flex-ac">
+                  <div className="radio_box d-flex flex-ac flex-jc">
                     <RadioBtn for="yes" id="yes" name="state" text="답변완료" />
                     <RadioBtn for="no" id="no" name="state" text="답변대기" />
                   </div>

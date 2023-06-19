@@ -12,7 +12,7 @@ export default function Templeate() {
 
   return (
     <>
-      <SideMenu sideShow={showSide} sideClose={() => setShowSide(false)} />
+      <SideMenu sideOpen={showSide} sideClose={() => setShowSide(false)} />
       <div className={pathname === "/"? "container home" : "container"} >
         <Header sideOpen={() => setShowSide(true)} />
         {pathname === "/"? <Dashboard /> : ""} 

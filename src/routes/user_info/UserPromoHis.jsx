@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
+import arrowRightBlack from "../../assets/img/icon/angle_thin_right.svg";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
@@ -153,7 +154,7 @@ export default function UserPromoHis() {
                 <th className="tit">프로모션 명</th>
                 <td className="promotion" colSpan={3}>
                   <Link to={"/UserPromoHis/UserPromoHisDetail/" + id}>
-                    데일리 챌린지_데일리 탄소 줄이기 <img src={arrowRight} alt="오른쪽 화살표 아이콘" className="arrow_right" />
+                    데일리 챌린지_데일리 탄소 줄이기 <img src={arrowRightBlack} alt="오른쪽 화살표 아이콘" className="arrow_right" />
                   </Link>
                 </td>
               </tr>
@@ -201,7 +202,7 @@ export default function UserPromoHis() {
                 <th className="tit">프로모션 명</th>
                 <td className="promotion" colSpan={3}>
                   <Link to={"/UserPromoHis/UserPromoHisDetail/" + id}>
-                    데일리 챌린지_데일리 탄소 줄이기 <img src={arrowRight} alt="오른쪽 화살표 아이콘" className="arrow_right" />
+                    데일리 챌린지_데일리 탄소 줄이기 <img src={arrowRightBlack} alt="오른쪽 화살표 아이콘" className="arrow_right" />
                   </Link>
                 </td>
               </tr>
@@ -249,7 +250,7 @@ export default function UserPromoHis() {
                 <th className="tit">프로모션 명</th>
                 <td className="promotion" colSpan={3}>
                   <Link to={"/UserPromoHis/UserPromoHisDetail/" + id}>
-                    데일리 챌린지_데일리 탄소 줄이기 <img src={arrowRight} alt="오른쪽 화살표 아이콘" className="arrow_right" />
+                    데일리 챌린지_데일리 탄소 줄이기 <img src={arrowRightBlack} alt="오른쪽 화살표 아이콘" className="arrow_right" />
                   </Link>
                 </td>
               </tr>

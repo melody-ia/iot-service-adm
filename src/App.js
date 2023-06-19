@@ -17,6 +17,8 @@ import UserStempHis from "./routes/user_info/UserStempHis";
 import UserPointHis from "./routes/user_info/UserPointHis";
 import UserQnaHis from "./routes/user_info/UserQnaHis";
 import UserQnaHisDetail from "./routes/user_info/UserQnaHisDetail";
+import ChallengeList from "./routes/event/ChallengeList";
+import ChallengeListDetail from "./routes/event/ChallengeListDetail";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
         <Route path="UserPointHis/:id" element={<UserPointHis />} />
         <Route path="UserQnaHis/:id" element={<UserQnaHis />} />
         <Route path="UserQnaHis/:id/:id" element={<UserQnaHisDetail />} />
+        <Route path="ChallengeList" element={<ChallengeList />} />
+        <Route path="ChallengeList/:id/:id" element={<ChallengeListDetail />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>

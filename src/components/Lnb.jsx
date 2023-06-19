@@ -23,7 +23,7 @@ export default function Lnb(props) {
       ["등록 기기 내역", "/UserDeviceHis/" + id],
     ],
     event: [
-      ["데일리 챌린지 관리", "url"],
+      ["데일리 챌린지 관리", "/ChallengeList"],
       ["탄소 중립 랭킹 관리", "url"],
       ["공개 배너 순위 관리", "url"],
       ["배너 관리", "url"],

@@ -421,6 +421,18 @@ body {
 	}
 }
 
+.modal {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 90%;
+	max-width: 800px;
+	background-color: #fff;
+	border-radius: 5px;
+	z-index: 100;
+}
+
 
 // datepicker
 .react-datepicker {
