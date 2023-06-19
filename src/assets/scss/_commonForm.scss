@@ -88,6 +88,7 @@
 .table {
 	table-layout: fixed;
 	width: 100%;
+	background-color: #fff;
 
 	@include tablet {
 		font-size: 14px;

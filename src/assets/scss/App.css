@@ -780,6 +780,7 @@ body::-webkit-scrollbar-track {
 .table {
   table-layout: fixed;
   width: 100%;
+  background-color: #fff;
 }
 @media all and (max-width: 991px) {
   .table {
@@ -1778,6 +1779,7 @@ input, textarea {
 .user_history_pro .table tr td.promotion .arrow_right, .user_history_pro .table tr th.promotion .arrow_right {
   width: 18px;
   vertical-align: sub;
+  margin-left: 8px;
 }
 
 .user_history_rank .table_wrap.line thead tr {
@@ -2082,6 +2084,7 @@ input, textarea {
 .ch_list_detail .arrow_right {
   width: 18px;
   vertical-align: sub;
+  margin-left: 8px;
 }
 .ch_list_detail .radio_box :first-child {
   margin-right: 5px;
@@ -2104,7 +2107,7 @@ input, textarea {
   border-top: none;
 }
 .ch_list_detail .banner_table img {
-  width: 100%;
+  width: 50%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
@@ -2143,4 +2146,154 @@ input, textarea {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+}
+
+.ch_add .write_type {
+  padding: 0;
+  max-width: none;
+}
+.ch_add .wirte_area {
+  padding: 28px;
+}
+.ch_add .box_ty01 {
+  margin-bottom: 14px;
+}
+.ch_add input:disabled {
+  background: #F4F4F4;
+}
+.ch_add .radio_wrap label {
+  margin: 0;
+}
+.ch_add .radio_group .check_type.radio {
+  margin-right: 8%;
+}
+.ch_add .radio_group .check_type.radio span::before {
+  vertical-align: bottom;
+}
+.ch_add .icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+.ch_add .plus_area {
+  counter-reset: number;
+}
+.ch_add .plus_area .flex_left,
+.ch_add .plus_area .flex_right {
+  max-width: 596px;
+}
+@media all and (max-width: 1200px) {
+  .ch_add .plus_area .flex_left,
+  .ch_add .plus_area .flex_right {
+    max-width: 100%;
+  }
+}
+.ch_add .plus_area .flex_box label {
+  max-width: 194px;
+}
+.ch_add .plus_area .plus_tit {
+  padding: 28px;
+  border-bottom: 1px solid #EBEFF2;
+  margin-bottom: 0;
+}
+.ch_add .plus_area .plus_tit .flex_left {
+  max-width: 650px;
+}
+@media all and (max-width: 1200px) {
+  .ch_add .plus_area .plus_tit .flex_left {
+    max-width: 100%;
+  }
+}
+.ch_add .numBox {
+  padding: 28px 150px 28px 82px;
+  position: relative;
+}
+@media all and (max-width: 1200px) {
+  .ch_add .numBox {
+    padding-right: 100px;
+  }
+}
+@media all and (max-width: 768px) {
+  .ch_add .numBox {
+    padding-right: 28px;
+    padding-left: 65px;
+  }
+}
+.ch_add .numBox:nth-child(odd) {
+  background: #FBFCFC;
+}
+.ch_add .numBox::before {
+  content: counter(number);
+  counter-increment: number;
+  position: absolute;
+  left: 28px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: var(--color-lightGray);
+  width: 24px;
+  height: 24px;
+  border: 1px solid #E0E2E7;
+  border-radius: 5px;
+  text-align: center;
+}
+@media all and (max-width: 768px) {
+  .ch_add .numBox::before {
+    left: 20px;
+  }
+}
+.ch_add .btn_del {
+  background: url(../img/icon/trash_gray.svg) no-repeat center, #fff;
+  border: 1px solid var(--color-lightGray);
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+@media all and (max-width: 768px) {
+  .ch_add .btn_del {
+    left: 20px;
+    right: auto;
+    top: 20px;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    width: 26px;
+    height: 26px;
+    background-size: 15px;
+  }
+}
+.ch_add .banner_table img {
+  width: 50%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.ch_add .banner_table .select_input input {
+  border: none;
+}
+.ch_add .banner_table tr {
+  height: 90px;
+}
+.ch_add .banner_table td {
+  position: relative;
+}
+.ch_add .banner_table .icon {
+  width: 28px;
+  height: 28px;
+}
+.ch_add .banner_table .btn_del {
+  position: static;
+  display: block;
+  -webkit-transform: translate(0);
+          transform: translate(0);
+  width: 25px;
+  height: 25px;
+  margin: 5px auto 0;
+  background-size: 15px;
 }

@@ -21,6 +21,7 @@
   .arrow_right {
     width: 18px;
     vertical-align: sub;
+    margin-left: 8px;
   }
   .radio_box {
     :first-child {
@@ -49,7 +50,7 @@
     }
 
     img {
-      width: 100%;
+      width: 50%;
       height: 100%;
       object-fit: contain;
     }
@@ -96,4 +97,166 @@
     padding-top: 60px;
     justify-content: flex-end;
   }
+}
+
+// 데일리 챌린지 등록/수정
+.ch_add {
+  .write_type {
+    padding: 0;
+    max-width: none;;
+  }
+  .wirte_area {
+    padding: 28px;
+  }
+  .box_ty01 {
+    margin-bottom: 14px;
+  }
+  input:disabled {
+    background: #F4F4F4;
+  }
+  .radio_wrap {
+    label {
+      margin: 0;
+    }
+  }
+  .radio_group .check_type.radio {
+    margin-right: 8%;
+
+    span::before {
+      vertical-align: bottom;
+    }
+  }
+
+  .icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-left: 10px;
+  }
+
+  .plus_area {
+    counter-reset: number;
+
+    .flex_left,
+    .flex_right {
+      max-width: 596px;
+
+      @include desktop-sm {
+        max-width: 100%;
+      }
+    }
+    .flex_box label {
+      max-width: 194px;
+    }
+
+    .plus_tit {
+      padding: 28px;
+      border-bottom: 1px solid #EBEFF2;
+      margin-bottom: 0;
+
+      .flex_left {
+        max-width: 650px;
+
+        @include desktop-sm {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+  .numBox {
+    padding: 28px 150px 28px 82px;
+    position: relative;
+
+    @include desktop-sm {
+      padding-right: 100px;
+    }
+    @include mobile {
+      padding-right: 28px;
+      padding-left: 65px;
+    }
+
+    &:nth-child(odd) {
+      background: #FBFCFC;
+    }
+
+    &::before {
+      content: counter(number);
+      counter-increment: number;
+      position: absolute;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-lightGray);
+      width: 24px;
+      height: 24px;
+      border: 1px solid #E0E2E7;
+      border-radius: 5px;
+      text-align: center;
+
+      @include mobile {
+        left: 20px;
+      }
+    }    
+  }
+  .btn_del {
+    background: url(../img/icon/trash_gray.svg) no-repeat center, #fff;
+    border: 1px solid var(--color-lightGray);
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    position: absolute;
+    right: 4%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include mobile {
+      left: 20px;
+      right: auto;
+      top: 20px;
+      transform: translateY(0);
+      width: 26px;
+      height: 26px;
+      background-size: 15px;
+    }
+  }
+  .banner_table {    
+    img {
+      width: 50%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .select_input {
+      input {
+        border: none;
+      }
+    }
+
+    tr {
+      height: 90px;
+    }
+
+    td {
+      position: relative;
+    }
+    .icon {
+      width: 28px;
+      height: 28px;
+    }
+    .btn_del {
+      position: static;
+      display: block;
+      transform: translate(0);
+      width: 25px;
+      height: 25px;
+      margin: 5px auto 0;
+      background-size: 15px;
+    }
+  }
+}
+
+// 탄소 중립 랭킹 관리
+.ranking_setting {
+  
 }
