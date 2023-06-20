@@ -31,8 +31,8 @@ export default function Lnb(props) {
     ],
     calcHistory: [["탄소 발자국 계산 내역", "/CalculatorList"]],
     accumulated: [
-      ["도장관리", "url"],
-      ["포인트관리", "url"],
+      ["도장 관리", "/Stamp"],
+      ["포인트 관리", "/Point"],
     ],
     board: [
       ["이벤트/뉴스관리", "url"],
