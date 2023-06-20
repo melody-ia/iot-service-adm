@@ -21,6 +21,9 @@ import ChallengeList from "./routes/event/ChallengeList";
 import ChallengeListDetail from "./routes/event/ChallengeListDetail";
 import ChallengeAdd from "./routes/event/ChallengeAdd";
 import RankingSetting from "./routes/event/RankingSetting";
+import BannerRanking from "./routes/event/BannerRanking";
+import BannerSetting from "./routes/event/BannerSetting";
+import BannerAdd from "./routes/event/BannerAdd";
 
 function App() {
   return (
@@ -43,6 +46,9 @@ function App() {
         <Route path="ChallengeList/:id/:id" element={<ChallengeListDetail />} />
         <Route path="ChallengeList/add" element={<ChallengeAdd />} />
         <Route path="RankingSetting" element={<RankingSetting />} />
+        <Route path="BannerRanking" element={<BannerRanking />} />
+        <Route path="BannerSetting" element={<BannerSetting />} />
+        <Route path="BannerSetting/add" element={<BannerAdd />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>

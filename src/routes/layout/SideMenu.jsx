@@ -47,14 +47,14 @@ export default function SideMenu(props) {
               <li className={pathname==="/ChallengeList"? "list active" : "list"}>
                 <Link to="ChallengeList">데일리 챌린지 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">탄소 중립 랭킹 관리</Link>
+              <li className={pathname==="/RankingSetting"? "list active" : "list"}>
+                <Link to="RankingSetting">탄소 중립 랭킹 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">공개 배너 순위 관리</Link>
+              <li className={pathname==="/BannerRanking"? "list active" : "list"}>
+                <Link to="BannerRanking">공개 배너 순위 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">배너 관리</Link>
+              <li className={pathname==="/BannerSetting"? "list active" : "list"}>
+                <Link to="BannerSetting">배너 관리</Link>
               </li>
               <li className="list">
                 <Link to="">팝업 관리</Link>
