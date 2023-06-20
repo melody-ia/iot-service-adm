@@ -24,15 +24,15 @@ export default function Lnb(props) {
     ],
     event: [
       ["데일리 챌린지 관리", "/ChallengeList"],
-      ["탄소 중립 랭킹 관리", "url"],
-      ["공개 배너 순위 관리", "url"],
-      ["배너 관리", "url"],
-      ["팝업 관리", "url"],
+      ["탄소 중립 랭킹 관리", "/RankingSetting"],
+      ["공개 배너 순위 관리", "/BannerRanking"],
+      ["배너 관리", "/BannerSetting"],
+      ["팝업 관리", "/PopupSetting"],
     ],
-    calcHistory: [],
+    calcHistory: [["탄소 발자국 계산 내역", "/CalculatorList"]],
     accumulated: [
-      ["도장관리", "url"],
-      ["포인트관리", "url"],
+      ["도장 관리", "/Stamp"],
+      ["포인트 관리", "/Point"],
     ],
     board: [
       ["이벤트/뉴스관리", "url"],

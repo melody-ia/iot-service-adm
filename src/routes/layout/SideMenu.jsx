@@ -47,37 +47,37 @@ export default function SideMenu(props) {
               <li className={pathname==="/ChallengeList"? "list active" : "list"}>
                 <Link to="ChallengeList">데일리 챌린지 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">탄소 중립 랭킹 관리</Link>
+              <li className={pathname==="/RankingSetting"? "list active" : "list"}>
+                <Link to="RankingSetting">탄소 중립 랭킹 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">공개 배너 순위 관리</Link>
+              <li className={pathname==="/BannerRanking"? "list active" : "list"}>
+                <Link to="BannerRanking">공개 배너 순위 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">배너 관리</Link>
+              <li className={pathname==="/BannerSetting"? "list active" : "list"}>
+                <Link to="BannerSetting">배너 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">팝업 관리</Link>
+              <li className={pathname==="/PopupSetting"? "list active" : "list"}>
+                <Link to="PopupSetting">팝업 관리</Link>
               </li>
             </ul>
           </div>
           <div className="btn_wrap calc">
-            <Link to="" className="list_btn">
+            <Link to="CalculatorList" className="list_btn">
               <img src={iconCalc} alt="" className="list_btn_icon" />
               <span className="list_btn_text">탄소발자국 계산내역 관리</span>
             </Link>
           </div>
-          <div className="btn_wrap point">
+          <div className="btn_wrap point active">
             <button type="button" className="list_btn">
               <img src={iconPoint} alt="" className="list_btn_icon" />
               <span className="list_btn_text">도장/포인트 관리</span>
             </button>
             <ul className="sub_menu_list">
-              <li className="list">
-                <Link to="">도장 관리</Link>
+              <li className={pathname==="/Stamp"? "list active" : "list"}>
+                <Link to="/Stamp">도장 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">포인트 관리</Link>
+              <li className={pathname==="/Point"? "list active" : "list"}>
+                <Link to="/Point">포인트 관리</Link>
               </li>
             </ul>
           </div>

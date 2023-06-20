@@ -19,6 +19,16 @@ import UserQnaHis from "./routes/user_info/UserQnaHis";
 import UserQnaHisDetail from "./routes/user_info/UserQnaHisDetail";
 import ChallengeList from "./routes/event/ChallengeList";
 import ChallengeListDetail from "./routes/event/ChallengeListDetail";
+import ChallengeAdd from "./routes/event/ChallengeAdd";
+import RankingSetting from "./routes/event/RankingSetting";
+import BannerRanking from "./routes/event/BannerRanking";
+import BannerSetting from "./routes/event/BannerSetting";
+import BannerAdd from "./routes/event/BannerAdd";
+import PopupSetting from "./routes/event/PopupSetting";
+import PopupAdd from "./routes/event/PopupAdd";
+import CalculatorList from "./routes/calculator/CalculatorList";
+import Stamp from "./routes/accumulated/Stamp";
+import Point from "./routes/accumulated/Point";
 
 function App() {
   return (
@@ -39,6 +49,16 @@ function App() {
         <Route path="UserQnaHis/:id/:id" element={<UserQnaHisDetail />} />
         <Route path="ChallengeList" element={<ChallengeList />} />
         <Route path="ChallengeList/:id/:id" element={<ChallengeListDetail />} />
+        <Route path="ChallengeList/add" element={<ChallengeAdd />} />
+        <Route path="RankingSetting" element={<RankingSetting />} />
+        <Route path="BannerRanking" element={<BannerRanking />} />
+        <Route path="BannerSetting" element={<BannerSetting />} />
+        <Route path="BannerSetting/add" element={<BannerAdd />} />
+        <Route path="PopupSetting" element={<PopupSetting />} />
+        <Route path="PopupSetting/add" element={<PopupAdd />} />
+        <Route path="CalculatorList" element={<CalculatorList />} />
+        <Route path="Stamp" element={<Stamp />} />
+        <Route path="Point" element={<Point />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>

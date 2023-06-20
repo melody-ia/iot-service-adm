@@ -2,7 +2,7 @@ import { Lnb, CurrentBox } from "../../components/bundle_components";
 import { useState } from "react";
 import RadioBtn from "../../components/RadioBtn";
 import banner from "../../assets/img/banner.png";
-import arrowRightBlack from "../../assets/img/icon/angle_thin_right.svg";
+import arrowRightGreen from "../../assets/img/icon/angle_right_green.svg";
 import ChallengeListDetailModal from "./ChallengeListDetailModal";
 
 export default function ChallengeListDetail() {  
@@ -53,7 +53,7 @@ export default function ChallengeListDetail() {
                 <td colSpan={2}>2023.05.08 – 2023.07.08</td>
               </tr>
               <tr>
-                <th colSpan={3} className="member" onClick={()=>setModalOpen(true)}>총 참여 회원 수 <img src={arrowRightBlack} alt="오른쪽 화살표 아이콘" className="arrow_right" /></th>
+                <th colSpan={3} className="member" onClick={()=>setModalOpen(true)}>총 참여 회원 수 <img src={arrowRightGreen} alt="오른쪽 화살표 아이콘" className="arrow_right" /></th>
                 <td colSpan={2}>123,456</td>
                 <th colSpan={3}>총 등록된 글 개수</th>
                 <td colSpan={2}>200,000</td>
@@ -107,9 +107,9 @@ export default function ChallengeListDetail() {
           </table>
           <table className="table banner_table">  
             <colgroup>
-              <col width={"50px"}/>
-              <col width={"720px"}/>
-              <col width={"770px"}/>
+              <col width={"80px"}/>
+              <col width={"700px"}/>
+              <col width={"700px"}/>
             </colgroup>
             <tbody>
               <tr>
