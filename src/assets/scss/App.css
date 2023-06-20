@@ -1026,15 +1026,35 @@ body::-webkit-scrollbar-track {
   color: var(--color-green);
   margin-right: 14px;
 }
-.flex_box .btn_file_add .plus {
+.flex_box .btn_file_add label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.flex_box .btn_file_add label .plus {
   display: inline-block;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
   font-size: 22px;
   font-weight: 600;
 }
-.flex_box .btn_file_add p {
+.flex_box .btn_file_add label p {
+  display: block;
   font-size: 12px;
+}
+.flex_box .btn_file_add label input[type=file] {
+  position: absolute;
+  visibility: hidden;
 }
 .flex_box .profile_img {
   font-size: 12px;
@@ -1711,6 +1731,108 @@ input, textarea {
           transform: translate(-50%, -50%) rotate(-90deg);
 }
 
+.search_addr_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  visibility: hidden;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.search_addr_background.active {
+  visibility: visible;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.search_addr_background.active .search_addr_wrap {
+  bottom: 0;
+}
+.search_addr_background .search_addr_wrap {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px;
+  width: 100vw;
+  height: 80vh;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #fff;
+  z-index: 10;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.search_addr_background .search_addr_wrap header {
+  margin-bottom: 24px;
+}
+.search_addr_background .search_addr_wrap header h3 {
+  text-align: center;
+  margin: -2px 0 20px;
+  font-size: 14px;
+}
+.search_addr_background .search_addr_wrap header form {
+  width: 100%;
+}
+.search_addr_background .search_addr_wrap header form input {
+  padding: 8px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgba(238, 238, 238, 0.9333333333);
+}
+.search_addr_background .search_addr_wrap header .btn_close {
+  position: absolute;
+  top: 12px;
+  right: 24px;
+  font-size: 22px;
+  font-weight: 300;
+}
+.search_addr_background .search_addr_wrap .search_addr_guide dt {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.search_addr_background .search_addr_wrap .search_addr_guide dd {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.search_addr_background .search_addr_wrap .search_addr_guide dd span {
+  color: #777;
+}
+.search_addr_background .search_addr_wrap .search_addr_list {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.search_addr_background .search_addr_wrap .search_addr_list::-webkit-scrollbar {
+  display: none;
+}
+.search_addr_background .search_addr_wrap .search_addr_list dt {
+  margin: 24px 0 16px 0;
+  font-size: 14px;
+}
+.search_addr_background .search_addr_wrap .search_addr_list dd {
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+}
+.search_addr_background .search_addr_wrap .search_addr_list dd p {
+  font-size: 14px;
+}
+.search_addr_background .search_addr_wrap .search_addr_list dd span {
+  color: #777;
+  font-size: 14px;
+}
+
 .login {
   width: 100vw;
   height: 100vh;
@@ -1857,6 +1979,14 @@ input, textarea {
 }
 .user_history_qna_detail .table textarea::-webkit-scrollbar-track {
   background: #fafafa;
+}
+
+.ip_box {
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .dashboard .box_ty01 {

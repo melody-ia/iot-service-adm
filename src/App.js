@@ -35,7 +35,7 @@ import NewsDetail from "./routes/board/NewsDetail";
 function App() {
   return (
     <Routes>
-        <Route path="/" element={<Templeate />}>
+      <Route path="/" element={<Templeate />}>
         <Route path="UserList" element={<UserList />} />
         <Route path="UserList/add" element={<UserAdd />} />
         <Route path="DeletedUserList" element={<DeletedUserList />} />

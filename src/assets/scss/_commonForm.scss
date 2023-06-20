@@ -346,14 +346,27 @@
 			color: var(--color-green);
 			margin-right: 14px;
 
-			.plus {
-				display: inline-block;
-				transform: rotate(45deg);
-				font-size: 22px;
-				font-weight: 600;
-			}
-			p {
-				font-size: 12px;
+			label{
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				width: 100%;
+				height: 100%;
+				cursor: pointer;
+				.plus {
+					display: inline-block;
+					transform: rotate(45deg);
+					font-size: 22px;
+					font-weight: 600;
+				}
+				p {
+					display: block;
+					font-size: 12px;
+				}
+				input[type="file"]{
+					position: absolute;
+					visibility:hidden;
+				}
 			}
 		}
 		.profile_img {
