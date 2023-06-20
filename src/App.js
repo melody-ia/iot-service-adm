@@ -31,6 +31,7 @@ import Stamp from "./routes/accumulated/Stamp";
 import Point from "./routes/accumulated/Point";
 import News from "./routes/board/News";
 import NewsDetail from "./routes/board/NewsDetail";
+import NewsAdd from "./routes/board/NewsAdd";
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
         <Route path="Point" element={<Point />} />
         <Route path="News" element={<News />} />
         <Route path="News/:id/:id" element={<NewsDetail />} />
+        <Route path="News/add" element={<NewsAdd />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>
