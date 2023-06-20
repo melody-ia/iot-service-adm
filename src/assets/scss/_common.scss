@@ -1,7 +1,8 @@
 body {
 	background: #F1F4F5;
 
-	&::-webkit-scrollbar {
+	&::-webkit-scrollbar,
+	textarea::-webkit-scrollbar {
 		width: 7px;
 		height: 7px;
 		
@@ -35,6 +36,9 @@ body {
 }
 .w100 {
 	width: 100%;
+}
+.align_left {
+	text-align: left;
 }
 
 // button

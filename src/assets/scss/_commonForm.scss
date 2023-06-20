@@ -247,6 +247,48 @@
 		}
 	}
 }
+// (공통) 상세 내역
+.detail_form {
+  padding-top: 30px;
+
+	.radio_box {
+    :first-child {
+      margin-right: 5px;
+    }
+  
+    .check_type.radio span {
+      font-size: 14px;
+  
+      &::before {
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+      }
+      &::after {
+        width: 10px;
+        height: 10px;
+        top: 4px;
+        left: 4px;
+      }
+    }
+  }
+
+  .table_wrap {
+    margin: 0 20px;
+    border-bottom: 0;
+
+    .table {
+      tr {
+        td, th {      
+          &:first-child,
+          &:last-child {
+            border: 1px solid #eee;
+          }
+        }
+      }     
+    } 
+  }
+}
 
 .write {
 	&_type {

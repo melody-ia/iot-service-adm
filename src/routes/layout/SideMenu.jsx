@@ -81,23 +81,23 @@ export default function SideMenu(props) {
               </li>
             </ul>
           </div>
-          <div className="btn_wrap board">
+          <div className="btn_wrap board active">
             <button type="button" className="list_btn">
               <img src={iconBoard} alt="" className="list_btn_icon" />
               <span className="list_btn_text">게시판 관리</span>
             </button>
             <ul className="sub_menu_list">
-              <li className="list">
-                <Link to="">이벤트/뉴스관리</Link>
+              <li className={pathname==="/News"? "list active" : "list"}>
+                <Link to="/News">이벤트/뉴스관리</Link>
               </li>
-              <li className="list">
-                <Link to="">탄소중립TIP 자료실 관리</Link>
+              <li className={pathname==="/Tip"? "list active" : "list"}>
+                <Link to="/Tip">탄소중립TIP 자료실 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">FAQ 관리</Link>
+              <li className={pathname==="/Faq"? "list active" : "list"}>
+                <Link to="/Faq">FAQ 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">1:1문의 관리</Link>
+              <li className={pathname==="/Qna"? "list active" : "list"}>
+                <Link to="/Qna">1:1문의 관리</Link>
               </li>
             </ul>
           </div>

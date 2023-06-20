@@ -20,27 +20,6 @@
   }
 }
 
-// (공통) 상세 내역
-.detail_form {
-  padding-top: 30px;
-
-  .table_wrap {
-    margin: 0 20px;
-    border-bottom: 0;
-
-    .table {
-      tr {
-        td, th {      
-          &:first-child,
-          &:last-child {
-            border: 1px solid #eee;
-          }
-        }
-      }     
-    } 
-  }
-}
-
 // 프로모션 참여 내역
 .user_history_pro {
   .table {
@@ -117,7 +96,6 @@
 // 1:1 문의 상세 내역
 .user_history_qna_detail {
   .table {
-    .align_left,
     .align_left input {
       text-align: left;
     }
@@ -146,20 +124,7 @@
     textarea {
       resize: none;
       min-height: 120px;
-      max-height: 200px;
-
-      &::-webkit-scrollbar {
-        width: 7px;
-        height: 7px;
-        
-        &-thumb {
-          background: #c1c1c1;
-          border-radius: 50px;
-        }
-        &-track {
-          background: #fafafa;
-        }
-      }
+      max-height: 200px;      
     }
   }
 }

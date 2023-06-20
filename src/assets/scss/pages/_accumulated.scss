@@ -1,6 +1,8 @@
 // (공통) 도장 관리/포인트 관리
 .accumulated {
   .table {
+    min-height: 450px;
+    
     .date_input {
       input {
         border: none;
@@ -16,16 +18,12 @@
 
 // 포인트 관리
 .point {  
-  .table {
-    // min-height: 450px;
-  }
   .point_input {
     input {
       margin-right: 10px;
     }
   }
   .number {
-    text-align: center;
     input {
       width: 80px;
       padding: 10px;

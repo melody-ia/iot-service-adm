@@ -23,27 +23,6 @@
     vertical-align: sub;
     margin-left: 8px;
   }
-  .radio_box {
-    :first-child {
-      margin-right: 5px;
-    }
-  
-    .check_type.radio span {
-      font-size: 14px;
-  
-      &::before {
-        width: 18px;
-        height: 18px;
-        margin-right: 10px;
-      }
-      &::after {
-        width: 10px;
-        height: 10px;
-        top: 4px;
-        left: 4px;
-      }
-    }
-  }
   .banner_table {
     th {
       border-top: none;
@@ -101,6 +80,9 @@
 
 // 데일리 챌린지 등록/수정
 .ch_add {
+  .table_wrap.line {
+    border-bottom: none;
+  }
   .write_type {
     padding: 0;
     max-width: none;;
