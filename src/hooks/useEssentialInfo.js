@@ -9,14 +9,14 @@ export function useEssentialInfo(option) {
     id: { val: "", isValid: false },
     id_dup: { isValid: false },
     pw: { val: "", isValid: false },
-    pw_cfm: { val: "", isValid: false },
+    // pw_cfm: { val: "", isValid: false },
     name: {
       val: "",
       isValid: false,
     },
     gender: {
-      val: "",
-      isValid: false,
+      val: "남",
+      isValid: true,
     },
     birth: {
       val: "",
@@ -40,7 +40,7 @@ export function useEssentialInfo(option) {
     id: "아이디 입력 형식이 잘못되었습니다.",
     id_dup: "아이디 중복확인이 되지 않았습니다.",
     pw: "비밀번호 입력 형식이 잘못되었습니다.",
-    pw_cfm: "입력하신 비밀번호와 일치하지 않습니다.",
+    // pw_cfm: "입력하신 비밀번호와 일치하지 않습니다.",
     name: "이름 입력 형식이 잘못되었습니다.",
     birth: "생년월일 입력 형식이 잘못되었습니다",
     email: "이메일 입력 형식이 잘못되었습니다.",
@@ -73,19 +73,19 @@ export function useEssentialInfo(option) {
         setForm({ ...form, [type]: { val, isValid: exp[type].test(val) }, id_dup: { isValid: false } });
         break;
       }
-      case "pw": {
-        const pwCfmVal = form.pw_cfm.val;
-        setForm({
-          ...form,
-          [type]: { val, isValid: exp[type].test(val) },
-          pw_cfm: { val: pwCfmVal, isValid: val === pwCfmVal },
-        });
-        break;
-      }
-      case "pw_cfm": {
-        setForm({ ...form, [type]: { val, isValid: val === form.pw.val } });
-        break;
-      }
+      // case "pw": {
+      //   const pwCfmVal = form.pw_cfm.val;
+      //   setForm({
+      //     ...form,
+      //     [type]: { val, isValid: exp[type].test(val) },
+      //     pw_cfm: { val: pwCfmVal, isValid: val === pwCfmVal },
+      //   });
+      //   break;
+      // }
+      // case "pw_cfm": {
+      //   setForm({ ...form, [type]: { val, isValid: val === form.pw.val } });
+      //   break;
+      // }
       case "email_f": {
         const emailB = form.email.val.split("@")[1];
         val = val + "@" + emailB;
@@ -143,7 +143,7 @@ export function useEssentialInfo(option) {
         break;
       }
       case "email": {
-        if (form[type].val && !form[type].isValid && form[type].val !== "@") {
+        if (form[type].val && !form[type].isValid) {
           return { state: "error", alert: <p className="error_text">{errorText[type]}</p> };
         }
         break;

@@ -19,6 +19,8 @@ export default function UserAdd() {
   const { fileData, deleteFile, uploadFile } = useUploadFile(allowType, 1, 1);
   const [addrBox, setAddrBox] = useState("");
 
+  console.log(choiceForm);
+
   const dataSubmit = () => {
     const formData = new FormData();
     fileData.forEach(el => {
@@ -44,20 +46,30 @@ export default function UserAdd() {
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">아이디</label>
-                  <div className="d-flex ip_box">
+                  <div className="d-flex ip_box id_wrap">
                     <input type="text" placeholder="직접입력" value={form.id.val} data-type="id" onChange={valid} />
-                    {/* <p>에러메시지</p> */}
+                    <button type="button" className="btn_ty01 btn_search" onClick={dupCheck}>
+                      중복확인
+                    </button>
+                    {errorCheck("id_dup")?.alert}
                   </div>
                 </div>
-                <div className="input_ty02 flex_left">
+
+                <div className="input_ty02 flex_right">
                   <label htmlFor="">비밀번호</label>
-                  <input type="password" placeholder="직접입력" value={form.pw.val} data-type="pw" onChange={valid} />
+                  <div className="d-flex ip_box">
+                    <input type="password" placeholder="직접입력" value={form.pw.val} data-type="pw" onChange={valid} />
+                    {errorCheck("pw")?.alert}
+                  </div>
                 </div>
               </div>
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">이름</label>
-                  <input type="text" placeholder="직접입력" value={form.name.val} data-type="name" onChange={valid} />
+                  <div className="d-flex ip_box">
+                    <input type="text" placeholder="직접입력" value={form.name.val} data-type="name" onChange={valid} />
+                    {errorCheck("name")?.alert}
+                  </div>
                 </div>
                 <div className="radio_group flex_right">
                   <span className="label">성별</span>
@@ -66,7 +78,19 @@ export default function UserAdd() {
                       ["남", "male"],
                       ["여", "female"],
                     ].map((el, idx) => {
-                      return <Radio for={el[1]} id={el[1]} name="gender" text={el[0]} dataType="gender" dataValue={el[0]} onClick={valid} />;
+                      return (
+                        <Radio
+                          key={idx}
+                          for={el[1]}
+                          id={el[1]}
+                          name="gender"
+                          text={el[0]}
+                          dataType="gender"
+                          dataValue={el[0]}
+                          onClick={valid}
+                          checked={form.gender.val === el[0] && true}
+                        />
+                      );
                     })}
                   </div>
                 </div>
@@ -74,21 +98,33 @@ export default function UserAdd() {
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">생년월일</label>
-                  <input type="text" placeholder="직접입력" data-type="birth" value={form.birth.val} onChange={valid} />
+                  <div className="d-flex ip_box">
+                    <input type="text" placeholder="직접입력" data-type="birth" value={form.birth.val} onChange={valid} />
+                    {errorCheck("birth")?.alert}
+                  </div>
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">거주인원 수</label>
-                  <input type="text" placeholder="직접입력" data-type="family" value={form.family.val} onChange={valid} />
+                  <div className="d-flex ip_box">
+                    <input type="text" placeholder="직접입력" data-type="family" value={form.family.val} onChange={valid} />
+                    {errorCheck("family")?.alert}
+                  </div>
                 </div>
               </div>
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">이메일</label>
-                  <input type="email" placeholder="직접입력" data-type="email" value={form.email.val} onChange={valid} />
+                  <div className="d-flex ip_box">
+                    <input type="email" placeholder="직접입력" data-type="email" value={form.email.val} onChange={valid} />
+                    {errorCheck("email")?.alert}
+                  </div>
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">휴대폰 번호</label>
-                  <input type="text" placeholder="직접입력" data-type="ph" value={form.ph.val} onChange={valid} />
+                  <div className="d-flex ip_box">
+                    <input type="text" placeholder="직접입력" data-type="ph" value={form.ph.val} onChange={valid} />
+                    {errorCheck("ph")?.alert}
+                  </div>
                 </div>
               </div>
             </div>
@@ -124,8 +160,13 @@ export default function UserAdd() {
                 <div className="row">
                   <div className="flex_right">
                     <span className="label">주요 이동수단</span>
-                    <div className="select_input input_ty02">
-                      <input type="text" defaultValue="자가용" readOnly />
+                    <div
+                      className="select_input input_ty02"
+                      onClick={() => {
+                        handleSelectBox("transSel");
+                      }}
+                    >
+                      <input type="text" value={choiceForm.how_move} placeholder="선택하세요" readOnly />
                       {selectList.transSel && (
                         <ul className="select_box">
                           {["자가용", "지하철", "버스", "기차", "오토바이", "자전거", "도보"].map((el, idx) => {
@@ -141,8 +182,13 @@ export default function UserAdd() {
                   </div>
                   <div className="flex_right">
                     <span className="label">차종</span>
-                    <div className="select_input input_ty02">
-                      <input type="text" defaultValue="경형" readOnly />
+                    <div
+                      className="select_input input_ty02"
+                      onClick={() => {
+                        handleSelectBox("carSel");
+                      }}
+                    >
+                      <input type="text" value={choiceForm.car_type} placeholder="선택하세요" readOnly />
                       {selectList.carSel && (
                         <ul className="select_box">
                           {["경형", "소형", "준중형", "중형", "준대형", "대형", "스포츠카"].map((el, idx) => {
@@ -162,7 +208,7 @@ export default function UserAdd() {
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">주소</label>
                   <div className="addr_wrap">
-                    <input type="text" placeholder="직접입력" />
+                    <input type="text" placeholder="직접입력" value={choiceForm.addr} />
                     <button
                       type="button"
                       className="btn_ty01 btn_search"
@@ -182,12 +228,17 @@ export default function UserAdd() {
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">상세주소</label>
-                  <input type="text" placeholder="직접입력" />
+                  <input type="text" placeholder="직접입력" data-type="addr_detail" value={choiceForm.addr_detail} onChange={dataSel} />
                 </div>
                 <div className="flex_right">
                   <span className="label">유종</span>
-                  <div className="select_input input_ty02">
-                    <input type="text" defaultValue="가솔린" readOnly />
+                  <div
+                    className="select_input input_ty02"
+                    onClick={() => {
+                      handleSelectBox("oilSel");
+                    }}
+                  >
+                    <input type="text" placeholder="선택하세요" value={choiceForm.oil_type} readOnly />
                     {selectList.oilSel && (
                       <ul className="select_box">
                         {["가솔린", "디젤", "하이브리드", "LPG", "전기", "수도"].map((el, idx) => {
@@ -205,7 +256,7 @@ export default function UserAdd() {
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">주택형태</label>
-                  <input type="text" placeholder="직접입력" />
+                  <input type="text" placeholder="아파트, 다세대, 단독" />
                 </div>
                 <div className="radio_group flex_right">
                   <span className="label">음식물 처리기 소유 여부</span>
@@ -214,18 +265,23 @@ export default function UserAdd() {
                       ["있음", "yes"],
                       ["없음", "no"],
                     ].map((el, idx) => {
-                      return <Radio for={el[1]} id={el[1]} name="have" text={el[0]} dataType="is_have" dataValue={el[0]} onClick={dataSel} />;
+                      return (
+                        <Radio key={idx} for={el[1]} id={el[1]} name="have" text={el[0]} dataType="is_have" dataValue={el[0]} onClick={dataSel} />
+                      );
                     })}
-                    {/* <Radio for="yes" id="yes" name="have" text="있음" />
-                    <Radio for="no" id="no" name="have" text="없음" /> */}
                   </div>
                 </div>
               </div>
               <div className="flex_box">
                 <div className="flex_left">
                   <span className="label">직업</span>
-                  <div className="select_input input_ty02">
-                    <input type="text" defaultValue="주부" readOnly />
+                  <div
+                    className="select_input input_ty02"
+                    onClick={() => {
+                      handleSelectBox("jobSel");
+                    }}
+                  >
+                    <input type="text" placeholder="선택하세요" value={choiceForm.job} readOnly />
                     {selectList.jobSel && (
                       <ul className="select_box">
                         {["주부", "공무원", "회사원", "자영업", "학생", "무직"].map((el, idx) => {
@@ -241,8 +297,13 @@ export default function UserAdd() {
                 </div>
                 <div className="flex_right">
                   <span className="label">음식물 쓰레기 처리 방식</span>
-                  <div className="select_input input_ty02">
-                    <input type="text" defaultValue="음식물처리기" readOnly />
+                  <div
+                    className="select_input input_ty02"
+                    onClick={() => {
+                      handleSelectBox("methodSel");
+                    }}
+                  >
+                    <input type="text" placeholder="선택하세요" value={choiceForm.disposal} readOnly />
                     {selectList.methodSel && (
                       <ul className="select_box">
                         {["음식물처리기", "공동주택 세대별 카드", "공동주택 종량제 스티커", "음식물 전용 봉투 및 전용 용기"].map((el, idx) => {
@@ -264,8 +325,13 @@ export default function UserAdd() {
                 </div>
                 <div className="flex_right">
                   <span className="label">최종학력</span>
-                  <div className="select_input input_ty02">
-                    <input type="text" defaultValue="대학원" readOnly />
+                  <div
+                    className="select_input input_ty02"
+                    onClick={() => {
+                      handleSelectBox("abilitySel");
+                    }}
+                  >
+                    <input type="text" placeholder="선택하세요" value={choiceForm.ability} readOnly />
                     {selectList.abilitySel && (
                       <ul className="select_box">
                         {["대학원", "대학", "전문대", "고등학교", "중학교", "초등학교", "해당사항 없음"].map((el, idx) => {
@@ -290,6 +356,7 @@ export default function UserAdd() {
                     ].map((el, idx) => {
                       return (
                         <Radio
+                          key={idx}
                           for={el[1]}
                           id={el[1]}
                           name="active"
@@ -310,14 +377,16 @@ export default function UserAdd() {
                       ["기혼", "married"],
                       ["미혼", "single"],
                     ].map((el, idx) => {
-                      return <Radio for={el[1]} id={el[1]} name="marry" text={el[0]} dataType="is_married" dataValue={el[0]} onClick={dataSel} />;
+                      return (
+                        <Radio key={idx} for={el[1]} id={el[1]} name="marry" text={el[0]} dataType="is_married" dataValue={el[0]} onClick={dataSel} />
+                      );
                     })}
                   </div>
                 </div>
               </div>
               <div className="input_ty02 flex_box">
                 <label htmlFor="">비고</label>
-                <textarea placeholder="직접입력"></textarea>
+                <textarea placeholder="직접입력" data-type="comment" onChange={dataSel}></textarea>
               </div>
             </div>
           </div>
@@ -325,7 +394,14 @@ export default function UserAdd() {
             <button type="button" className="btn_ty01 cancel">
               취소
             </button>
-            <button type="button" className="btn_ty01" onClick={dataSubmit}>
+            <button
+              type="button"
+              className="btn_ty01"
+              disabled={!validPass()}
+              onClick={() => {
+                alert("완료");
+              }}
+            >
               등록
             </button>
           </div>

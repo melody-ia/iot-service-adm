@@ -288,16 +288,19 @@
       min-height: 124px;
     }
 
-		.addr_wrap {
+		.addr_wrap,
+		.id_wrap {
       width: 100%;
+			display: flex;
 
       input {
-        width: calc(100% - 68px);
+        // width: calc(100% - 68px);
+				flex-grow: 1;
       }
     }
     .btn_search {
       margin-left: 8px;
-      width: 60px;
+      // width: 60px;
 
       @include tablet {
         height: 40px;

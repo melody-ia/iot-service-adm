@@ -165,6 +165,12 @@
 }
 
 .ip_box {
+  position: relative;
   width: 100%;
-  flex-direction: column;
+
+  .error_text {
+    position: absolute;
+    bottom: -28px;
+    color: red;
+  }
 }

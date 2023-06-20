@@ -18,6 +18,7 @@ export function useSelectInfo() {
     ability: "",
     is_married: "",
     active: "계정활성화",
+    comment: "",
   });
 
   const dataSel = e => {
