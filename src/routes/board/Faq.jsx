@@ -5,7 +5,7 @@ import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import { Link, useParams } from "react-router-dom";
 
-export default function News() {
+export default function Faq() {
   const { id } = useParams();
   const [fixedDate] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
@@ -45,8 +45,8 @@ export default function News() {
   return (
     <>
       <Lnb lnbType="board" />
-      <CurrentBox add={true} mod={true} del={true} down={true} tit="이벤트/뉴스 리스트" />
-      <div className="news box_ty01 table_type">
+      <CurrentBox add={true} mod={true} del={true} down={true} tit="FAQ 리스트" />
+      <div className="faq box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
@@ -61,8 +61,11 @@ export default function News() {
               <input type="text" defaultValue="구분" readOnly />
               <ul className="select_box">
                 <li>구분</li>
-                <li>이벤트</li>
-                <li>뉴스</li>         
+                <li>탄소발자국</li>
+                <li>챌린지</li>         
+                <li>랭킹</li>         
+                <li>회원</li>         
+                <li>기타</li>         
               </ul>
             </div>           
             <div className="select_input input_ty02">
@@ -181,8 +184,8 @@ export default function News() {
                   <CheckBox for="check" id="check" />
                 </td>
                 <td className="num">2</td>
-                <td>이벤트</td>
-                <td><Link to={"/News/NewsDetail/" + id} >신규 가입 이벤트 진행</Link></td>
+                <td>탄소발자국</td>
+                <td><Link to={"/Faq/FaqDetail/" + id} >탄소발자국에 대해서 알려주세요.</Link></td>
                 <td>2023.05.01</td>
                 <td>
                   <div className="radio_group">
@@ -203,8 +206,8 @@ export default function News() {
                   <CheckBox for="check" id="check" />
                 </td>
                 <td className="num">1</td>
-                <td>뉴스</td>
-                <td>신규 가입 이벤트 진행</td>
+                <td>챌린지</td>
+                <td><Link to={"/Faq/FaqDetail/" + id} >챌리지 방법 알려주세요.</Link></td>
                 <td>2023.05.01</td>
                 <td>
                   <div className="radio_group">

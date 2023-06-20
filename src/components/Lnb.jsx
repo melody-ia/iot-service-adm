@@ -36,9 +36,9 @@ export default function Lnb(props) {
     ],
     board: [
       ["이벤트/뉴스 관리", "/News"],
-      ["탄소중립TIP 자료실 관리", "url"],
-      ["FAQ 관리", "url"],
-      ["1:1문의 관리", "url"],
+      ["탄소중립TIP 자료실 관리", "/Tip"],
+      ["FAQ 관리", "/Faq"],
+      ["1:1문의 관리", "/Qna"],
     ],
     device: [
       ["기기 목록 관리", "url"],

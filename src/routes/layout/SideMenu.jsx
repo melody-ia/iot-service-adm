@@ -90,14 +90,14 @@ export default function SideMenu(props) {
               <li className={pathname==="/News"? "list active" : "list"}>
                 <Link to="/News">이벤트/뉴스관리</Link>
               </li>
-              <li className="list">
-                <Link to="">탄소중립TIP 자료실 관리</Link>
+              <li className={pathname==="/Tip"? "list active" : "list"}>
+                <Link to="/Tip">탄소중립TIP 자료실 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">FAQ 관리</Link>
+              <li className={pathname==="/Faq"? "list active" : "list"}>
+                <Link to="/Faq">FAQ 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">1:1문의 관리</Link>
+              <li className={pathname==="/Qna"? "list active" : "list"}>
+                <Link to="/Qna">1:1문의 관리</Link>
               </li>
             </ul>
           </div>

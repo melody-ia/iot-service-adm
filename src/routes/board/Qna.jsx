@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
-import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../components/bundle_components";
+import { Lnb, CurrentBox, Pagination, RadioBtn } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import { Link, useParams } from "react-router-dom";
 
-export default function News() {
+export default function Qna() {
   const { id } = useParams();
   const [fixedDate] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
@@ -45,32 +45,45 @@ export default function News() {
   return (
     <>
       <Lnb lnbType="board" />
-      <CurrentBox add={true} mod={true} del={true} down={true} tit="이벤트/뉴스 리스트" />
-      <div className="news box_ty01 table_type">
+      <CurrentBox mod={true} del={true} down={true} tit="1:1문의 리스트" />
+      <div className="qna box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
               <input type="text" defaultValue="전체" readOnly />
               <ul className="select_box">
                 <li>전체</li>
-                <li>최근 등록일 순</li>
-                <li>오래된 등록일 순</li>
+                <li>최근 문의일 순</li>
+                <li>오래된 문의일 순</li>
               </ul>
             </div>
+            <div className="select_input input_ty02">
+              <input type="text" defaultValue="문의일" readOnly />
+              <ul className="select_box">
+                <li>문의일</li>
+                <li>답변일</li>        
+              </ul>
+            </div>           
+            <div className="select_input input_ty02">
+              <input type="text" defaultValue="답변여부" readOnly />
+              <ul className="select_box">
+                <li>답변여부</li>
+                <li>답변완료</li>
+                <li>답변대기</li>         
+              </ul>
+            </div>           
             <div className="select_input input_ty02">
               <input type="text" defaultValue="구분" readOnly />
               <ul className="select_box">
                 <li>구분</li>
-                <li>이벤트</li>
-                <li>뉴스</li>         
-              </ul>
-            </div>           
-            <div className="select_input input_ty02">
-              <input type="text" defaultValue="공개여부" readOnly />
-              <ul className="select_box">
-                <li>공개여부</li>
-                <li>공개</li>
-                <li>비공개</li>         
+                <li>데일리 챌린지</li>
+                <li>프로모션/이벤트</li>    
+                <li>탄소발자국 계산기</li>     
+                <li>기기관리</li>     
+                <li>랭킹</li>     
+                <li>포인트</li>     
+                <li>회원</li>     
+                <li>기타</li>     
               </ul>
             </div>           
           </div>            
@@ -155,78 +168,60 @@ export default function News() {
           <table className="table">   
             <colgroup>
               <col width={"auto"} />
-              <col width={"80px"} />
               <col width={"120px"} />
-              <col width={"400px"} />
+              <col width={"120px"} />
+              <col width={"120px"} />
               <col width={"150px"} />
-              <col width={"230px"} />
-              <col width={"250px"} />
+              <col width={"160px"} />
+              <col width={"400px"} />
+              <col width={"200px"} />
             </colgroup>
             <thead>
-              <tr>
-                <th className="check">
-                  <CheckBox for="check" id="check" />
-                </th>
+              <tr>               
                 <th className="num">NO</th>
+                <th>아이디</th>
+                <th>문의일</th>
+                <th>답변일</th>
+                <th>답변여부</th>
                 <th>구분</th>
-                <th>제목</th>
-                <th>등록일</th>
-                <th>공개여부</th>
+                <th>내용</th>
                 <th>비고</th>
               </tr>
             </thead>    
             <tbody>            
               <tr>
-                <td className="check">
-                  <CheckBox for="check" id="check" />
-                </td>
                 <td className="num">2</td>
-                <td>이벤트</td>
-                <td><Link to={"/News/NewsDetail/" + id} >신규 가입 이벤트 진행</Link></td>
+                <td>wwwizz</td>             
                 <td>2023.05.01</td>
-                <td>
-                  <div className="radio_group">
-                    <div className="radio_wrap">
-                      <RadioBtn for="show01" id="show01" name="show" text="공개" />
-                      <RadioBtn for="noshow01" id="noshow01" name="show" text="비공개" />
-                    </div>
-                  </div>
-                </td> 
-                <td>
-                  <div className="input_ty02">
-                    <input type="text" placeholder={"직접 입력"}/>
-                  </div>
+                <td>2023.05.01</td>
+                <td>답변완료</td>
+                <td>프로모션/이벤트</td>
+                <td className="overflow">
+                  <Link to={"/Qna/QnaDetail/" + id} >
+                    데일리 발자국 챌린지에 글 쓰고 등록까지 했는데 포인트 적립이 안
+                    됐어요. 저번에도 그렇고 이번에 또 이렇게 문의하게 됐는데요 왜..
+                  </Link>
                 </td>
-              </tr>                                              
+                <td></td>
+              </tr>                                                                                         
               <tr>
-                <td className="check">
-                  <CheckBox for="check" id="check" />
-                </td>
                 <td className="num">1</td>
-                <td>뉴스</td>
-                <td>신규 가입 이벤트 진행</td>
+                <td>kkdididi</td>             
                 <td>2023.05.01</td>
-                <td>
-                  <div className="radio_group">
-                    <div className="radio_wrap">
-                      <RadioBtn for="show02" id="show02" name="show02" text="공개" />
-                      <RadioBtn for="noshow02" id="noshow02" name="show02" text="비공개" />
-                    </div>
-                  </div>
-                </td> 
-                <td>
-                  <div className="input_ty02">
-                    <input type="text" placeholder={"직접 입력"}/>
-                  </div>
+                <td>-</td>
+                <td>답변대기</td>
+                <td>데일리챌린지</td>
+                <td className="overflow">
+                  <Link to={"/Qna/QnaDetail/" + id} >
+                  안녕하세요 문의 드립니다. 
+                  </Link>
                 </td>
-              </tr>                                              
+                <td>내부 담당자 확인 후 처리</td>
+              </tr>                                                                                         
             </tbody>
           </table>
         </div>
         <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg add">
-            등록
-          </button>
           <button type="button" className="btn_ty01 btn_bg mod">
             수정
           </button>

@@ -32,6 +32,14 @@ import Point from "./routes/accumulated/Point";
 import News from "./routes/board/News";
 import NewsDetail from "./routes/board/NewsDetail";
 import NewsAdd from "./routes/board/NewsAdd";
+import Tip from "./routes/board/Tip";
+import TipDetail from "./routes/board/TipDetail";
+import TipAdd from "./routes/board/TipAdd";
+import Faq from "./routes/board/Faq";
+import FaqDetail from "./routes/board/FaqDetail";
+import FaqAdd from "./routes/board/FaqAdd";
+import Qna from "./routes/board/Qna";
+import QnaDetail from "./routes/board/QnaDetail";
 
 function App() {
   return (
@@ -65,6 +73,14 @@ function App() {
         <Route path="News" element={<News />} />
         <Route path="News/:id/:id" element={<NewsDetail />} />
         <Route path="News/add" element={<NewsAdd />} />
+        <Route path="Tip" element={<Tip />} />
+        <Route path="Tip/:id/:id" element={<TipDetail />} />
+        <Route path="Tip/add" element={<TipAdd />} />
+        <Route path="Faq" element={<Faq />} />
+        <Route path="Faq/:id/:id" element={<FaqDetail />} />
+        <Route path="Faq/add" element={<FaqAdd />} />
+        <Route path="Qna" element={<Qna />} />
+        <Route path="Qna/:id/:id" element={<QnaDetail />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>

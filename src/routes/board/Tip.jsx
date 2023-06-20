@@ -5,7 +5,7 @@ import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import { Link, useParams } from "react-router-dom";
 
-export default function News() {
+export default function Tip() {
   const { id } = useParams();
   const [fixedDate] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
@@ -45,8 +45,8 @@ export default function News() {
   return (
     <>
       <Lnb lnbType="board" />
-      <CurrentBox add={true} mod={true} del={true} down={true} tit="이벤트/뉴스 리스트" />
-      <div className="news box_ty01 table_type">
+      <CurrentBox add={true} mod={true} del={true} down={true} tit="탄소중립 TIP 자료실 리스트" />
+      <div className="tip box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
@@ -58,21 +58,13 @@ export default function News() {
               </ul>
             </div>
             <div className="select_input input_ty02">
-              <input type="text" defaultValue="구분" readOnly />
-              <ul className="select_box">
-                <li>구분</li>
-                <li>이벤트</li>
-                <li>뉴스</li>         
-              </ul>
-            </div>           
-            <div className="select_input input_ty02">
               <input type="text" defaultValue="공개여부" readOnly />
               <ul className="select_box">
                 <li>공개여부</li>
                 <li>공개</li>
                 <li>비공개</li>         
               </ul>
-            </div>           
+            </div>             
           </div>            
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">                   
@@ -156,11 +148,10 @@ export default function News() {
             <colgroup>
               <col width={"auto"} />
               <col width={"80px"} />
-              <col width={"120px"} />
-              <col width={"400px"} />
+              <col width={"500px"} />
               <col width={"150px"} />
+              <col width={"220px"} />
               <col width={"230px"} />
-              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -168,7 +159,6 @@ export default function News() {
                   <CheckBox for="check" id="check" />
                 </th>
                 <th className="num">NO</th>
-                <th>구분</th>
                 <th>제목</th>
                 <th>등록일</th>
                 <th>공개여부</th>
@@ -181,8 +171,7 @@ export default function News() {
                   <CheckBox for="check" id="check" />
                 </td>
                 <td className="num">2</td>
-                <td>이벤트</td>
-                <td><Link to={"/News/NewsDetail/" + id} >신규 가입 이벤트 진행</Link></td>
+                <td><Link to={"/Tip/TipDetail/" + id} >탄소발자국 계산기 사용법</Link></td>
                 <td>2023.05.01</td>
                 <td>
                   <div className="radio_group">
@@ -197,14 +186,13 @@ export default function News() {
                     <input type="text" placeholder={"직접 입력"}/>
                   </div>
                 </td>
-              </tr>                                              
+              </tr>                                                                                        
               <tr>
                 <td className="check">
                   <CheckBox for="check" id="check" />
                 </td>
                 <td className="num">1</td>
-                <td>뉴스</td>
-                <td>신규 가입 이벤트 진행</td>
+                <td><Link to={"/Tip/TipDetail/" + id} >탄소 중립 실천 가이드 자료</Link></td>
                 <td>2023.05.01</td>
                 <td>
                   <div className="radio_group">
@@ -219,7 +207,7 @@ export default function News() {
                     <input type="text" placeholder={"직접 입력"}/>
                   </div>
                 </td>
-              </tr>                                              
+              </tr>                                                                                        
             </tbody>
           </table>
         </div>
