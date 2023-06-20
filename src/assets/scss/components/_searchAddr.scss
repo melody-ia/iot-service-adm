@@ -1,0 +1,98 @@
+.search_addr_background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  visibility: hidden;
+  transition: all .5s;
+  &.active{
+    visibility: visible;
+    background-color: rgba(0,0,0,0.5);
+
+    .search_addr_wrap {
+      bottom: 0;
+    }
+  }
+  .search_addr_wrap{
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 100vw;
+    height: 80vh;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #fff;
+    z-index: 10;
+    transition: all .5s;
+  
+    header{
+      margin-bottom: 24px;
+      h3{
+        text-align: center;
+        margin: -2px 0 20px;
+        font-size: 14px;
+      }
+      form{
+        width: 100%;
+        input{
+          padding: 8px;
+          width: 100%;
+          border-radius: 10px;
+          background-color: #eeee;
+        }
+      }
+      .btn_close{
+        position: absolute;
+        top: 12px;
+        right: 24px;
+        font-size: 22px;
+        font-weight: 300;
+      }
+    }
+  
+    .search_addr_guide{
+      dt{
+        margin-bottom: 12px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      dd{
+        margin-bottom: 8px;
+        font-size: 14px;
+        span{
+          color: #777;
+        }
+      }
+    }
+
+    .search_addr_list{
+      flex-grow: 1;
+      overflow-y: scroll;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      &::-webkit-scrollbar{
+        display: none;
+      }
+      dt{
+        margin: 24px 0 16px 0 ;
+        font-size: 14px;
+      }
+      dd{
+        padding: 8px 0;
+        border-bottom: 1px solid #ccc;
+        p{
+          font-size: 14px;
+        }
+        span{
+          color: #777;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

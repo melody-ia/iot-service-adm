@@ -23,7 +23,7 @@ import ChallengeListDetail from "./routes/event/ChallengeListDetail";
 function App() {
   return (
     <Routes>
-        <Route path="/" element={<Templeate />}>
+      <Route path="/" element={<Templeate />}>
         <Route path="UserList" element={<UserList />} />
         <Route path="UserList/add" element={<UserAdd />} />
         <Route path="DeletedUserList" element={<DeletedUserList />} />
