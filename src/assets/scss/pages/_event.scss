@@ -347,63 +347,12 @@
 
 }
 
-// 배너 등록
-.banner_add {
+// (공통) 배너/팝업 등록
+.add_type {
   padding: 20px;
 
   .table {
     border: 1px solid #EBEFF2;
-  }
-
-  .size_info {
-    background: #f8f8f8;
-    margin: 0 0 50px;
-    padding: 20px;
-    border-radius: 5px;
-
-    @include mobile {
-      margin: 0 0 25px;
-      padding-left: 32px;
-    }
-
-    .size_tit {
-      font-size: 16px;
-      padding-left: 25px;
-      position: relative;
-      margin-bottom: 30px;
-      font-weight: 500;
-
-      @include mobile {
-        margin-bottom: 15px;
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 3px;
-        background: url(../img/icon/notice.svg) no-repeat;
-        width: 18px;
-        height: 18px;        
-      }
-    }
-
-    ul {
-      li {
-        display: inline-block;
-        width: 49%;
-        font-size: 15px;
-        margin: 0 10px 5px 0;
-
-        @include desktop-sm {
-          width: 100%;
-        }
-        @include mobile {
-          font-size: 13px;
-          text-indent: -14px;
-        }
-      }
-    }
   }
 
   .date_input {
@@ -445,15 +394,59 @@
     }
   }
 
+  .foot_btn_wrap {
+    padding: 20px 0;
+  }
+} 
+
+// (공통) 사이즈 안내창
+.size_info {
+  background: #f8f8f8;
+  margin: 0 0 50px;
+  padding: 20px;
+  border-radius: 5px;
+
   @include mobile {
-    .foot_btn_wrap {
-      padding: 20px 0;
-      justify-content: center;
-  
-      .btn_ty01 {
+    margin: 0 0 25px;
+    padding-left: 32px;
+  }
+
+  .size_tit {
+    font-size: 16px;
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 30px;
+    font-weight: 500;
+
+    @include mobile {
+      margin-bottom: 15px;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 3px;
+      background: url(../img/icon/notice.svg) no-repeat;
+      width: 18px;
+      height: 18px;        
+    }
+  }
+
+  ul {
+    li {
+      display: inline-block;
+      width: 49%;
+      font-size: 15px;
+      margin: 0 10px 5px 0;
+
+      @include desktop-sm {
+        width: 100%;
+      }
+      @include mobile {
         font-size: 13px;
-        padding-left: 40px;
+        text-indent: -14px;
       }
     }
   }
-} 
+}

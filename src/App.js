@@ -24,6 +24,8 @@ import RankingSetting from "./routes/event/RankingSetting";
 import BannerRanking from "./routes/event/BannerRanking";
 import BannerSetting from "./routes/event/BannerSetting";
 import BannerAdd from "./routes/event/BannerAdd";
+import PopupSetting from "./routes/event/PopupSetting";
+import PopupAdd from "./routes/event/PopupAdd";
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
         <Route path="BannerRanking" element={<BannerRanking />} />
         <Route path="BannerSetting" element={<BannerSetting />} />
         <Route path="BannerSetting/add" element={<BannerAdd />} />
+        <Route path="PopupSetting" element={<PopupSetting />} />
+        <Route path="PopupSetting/add" element={<PopupAdd />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>

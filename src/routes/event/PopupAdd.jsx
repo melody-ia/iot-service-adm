@@ -5,9 +5,8 @@ import { ko } from "date-fns/esm/locale";
 import banner from "../../assets/img/banner.png";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import plus from "../../assets/img/icon/border_plus.svg";
-import search from "../../assets/img/icon/search.svg";
 
-export default function BannerAdd() {  
+export default function PopupAdd() {  
   const [fixedDate] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -46,61 +45,60 @@ export default function BannerAdd() {
   return(
     <>
       <Lnb lnbType="event" />
-      <CurrentBox mod={true} del={true} tit="배너 등록/수정"/>
-      <div className="banner_add box_ty01 table_type add_type">
+      <CurrentBox mod={true} del={true} tit="팝업 등록/수정"/>
+      <div className="popup_add box_ty01 table_type add_type">
         <div className="size_info">
-          <h5 className="size_tit">배너 위치별 사이즈 안내</h5>
+          <h5 className="size_tit">팝업 사이즈 안내</h5>
           <ul>
-            <li>1. 메인 상단: 가로 1080px 세로 480px</li>
-            <li>2. 메인 중간: 가로 1080px 세로 365px</li>
-            <li>3. 카테고리: 가로 1080px 세로 210px</li>
-            <li>4. 데일리 발자국 챌린지 리스트 상단: 가로 1080px 세로 610px</li>
-            <li>5. 데일리 발자국 챌린지 글쓰기 상단: 가로 1080px 세로 480px</li>
-            <li>6. 탄소중립랭킹 중간: 가로 1080px 세로 610px</li>
-            <li>7. 탄소중립랭킹 하단: 가로 1080px 세로 210px</li>
-            <li>8. 이벤트/뉴스 상단: 가로 1080px 세로 1020px</li>
-            <li>9. GL 추천제품: 가로 1080px 세로 1020px</li>
+            <li>팝업 사이즈: 가로 1080px 세로 365px (세로 사이즈는 변동 가능)</li>
           </ul>
         </div>
         <div className="table_wrap line">
           <table className="table"> 
             <colgroup>
               <col width={"80px"}/>
-              <col width={"50%"}/>
-              <col width={"150px"}/>
               <col width={"300px"}/>
+              <col width={"80px"}/>
+              <col width={"50%"}/>
             </colgroup>
             <tbody>
-              <tr>
-                <th rowSpan={3}>
-                  배너이미지
+              <tr>               
+                <th>팝업 이름</th>
+                <td className="input_ty02">
+                  <input type="text" />
+                </td>
+                <th rowSpan={4}>
+                  팝업 이미지
                   <div className="btn_wrap">
                     <button type="button"><img src={plus} alt="" /></button>
-                    {/* 새창으로 미리보기 */}
-                    <button type="button" className="btn_view"><img src={search} alt="" /></button>
                   </div>
                 </th>
-                <td rowSpan={3}>
+                <td rowSpan={4}>
                   <img src={banner} alt="" />
                 </td>
-                <th>배너 위치</th>
+              </tr>
+              <tr>
+                <th>팝업 위치</th>
                 <td>
                   <div className="select_input input_ty02">
-                    <input type="text" defaultValue="메인 상단" readOnly />
+                    <input type="text" defaultValue="메인" readOnly />
                     <ul className="select_box">
-                      <li>메인 상단</li>
-                      <li>메인 중간</li>
-                      <li>카테고리</li>
-                      <li>데일리 발자국 챌린지 리스트 상단</li>
-                      <li>데일리 발자국 챌린지 글쓰기 상단</li>
-                      <li>탄소중립랭킹 중간</li>
-                      <li>탄소중립랭킹 하단</li>
-                      <li>이벤트/뉴스 상단</li>
-                      <li>GL 추천 제품</li>
+                      <li>메인</li>
+                      <li>데일리 챌린지 리스트</li>
+                      <li>탄소중립실천랭킹</li>
+                      <li>탄소발자국계산기</li>
+                      <li>이벤트/뉴스 리스트</li>
+                      <li>GL 추천제품</li>
+                      <li>마이페이지 개인정보수정</li>
+                      <li>MY 챌린지 현황</li>
+                      <li>MY 챌린지 적립 내역</li>
+                      <li>MY 발자국 계산 내역</li>
+                      <li>MY 랭킹 현황</li>
+                      <li>MY ECO Point</li>
                     </ul>
                   </div>
                 </td>
-              </tr>
+              </tr>              
               <tr>
                 <th>공개 기한</th>
                 <td>

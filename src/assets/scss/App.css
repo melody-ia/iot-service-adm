@@ -2370,78 +2370,28 @@ input, textarea {
   }
 }
 
-.banner_add {
+.add_type {
   padding: 20px;
 }
-.banner_add .table {
+.add_type .table {
   border: 1px solid #EBEFF2;
 }
-.banner_add .size_info {
-  background: #f8f8f8;
-  margin: 0 0 50px;
-  padding: 20px;
-  border-radius: 5px;
-}
-@media all and (max-width: 768px) {
-  .banner_add .size_info {
-    margin: 0 0 25px;
-    padding-left: 32px;
-  }
-}
-.banner_add .size_info .size_tit {
-  font-size: 16px;
-  padding-left: 25px;
-  position: relative;
-  margin-bottom: 30px;
-  font-weight: 500;
-}
-@media all and (max-width: 768px) {
-  .banner_add .size_info .size_tit {
-    margin-bottom: 15px;
-  }
-}
-.banner_add .size_info .size_tit::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 3px;
-  background: url(../img/icon/notice.svg) no-repeat;
-  width: 18px;
-  height: 18px;
-}
-.banner_add .size_info ul li {
-  display: inline-block;
-  width: 49%;
-  font-size: 15px;
-  margin: 0 10px 5px 0;
-}
-@media all and (max-width: 1200px) {
-  .banner_add .size_info ul li {
-    width: 100%;
-  }
-}
-@media all and (max-width: 768px) {
-  .banner_add .size_info ul li {
-    font-size: 13px;
-    text-indent: -14px;
-  }
-}
-.banner_add .date_input {
+.add_type .date_input {
   width: 150px;
 }
-.banner_add .date_input input {
+.add_type .date_input input {
   font-size: 16px;
 }
-.banner_add .select_input {
+.add_type .select_input {
   text-align: left;
 }
-.banner_add .input_ty02 input {
+.add_type .input_ty02 input {
   text-align: left;
 }
-.banner_add .btn_wrap {
+.add_type .btn_wrap {
   margin-top: 8px;
 }
-.banner_add .btn_wrap .btn_view {
+.add_type .btn_wrap .btn_view {
   width: 24px;
   height: 24px;
   border: 1px solid var(--color-lightGray);
@@ -2451,22 +2401,64 @@ input, textarea {
   vertical-align: top;
   margin-left: 5px;
 }
-.banner_add .btn_wrap .btn_view img {
+.add_type .btn_wrap .btn_view img {
   width: 15px;
   height: 15px;
   -o-object-fit: contain;
      object-fit: contain;
   vertical-align: revert;
 }
+.add_type .foot_btn_wrap {
+  padding: 20px 0;
+}
+
+.size_info {
+  background: #f8f8f8;
+  margin: 0 0 50px;
+  padding: 20px;
+  border-radius: 5px;
+}
 @media all and (max-width: 768px) {
-  .banner_add .foot_btn_wrap {
-    padding: 20px 0;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+  .size_info {
+    margin: 0 0 25px;
+    padding-left: 32px;
   }
-  .banner_add .foot_btn_wrap .btn_ty01 {
+}
+.size_info .size_tit {
+  font-size: 16px;
+  padding-left: 25px;
+  position: relative;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+@media all and (max-width: 768px) {
+  .size_info .size_tit {
+    margin-bottom: 15px;
+  }
+}
+.size_info .size_tit::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  background: url(../img/icon/notice.svg) no-repeat;
+  width: 18px;
+  height: 18px;
+}
+.size_info ul li {
+  display: inline-block;
+  width: 49%;
+  font-size: 15px;
+  margin: 0 10px 5px 0;
+}
+@media all and (max-width: 1200px) {
+  .size_info ul li {
+    width: 100%;
+  }
+}
+@media all and (max-width: 768px) {
+  .size_info ul li {
     font-size: 13px;
-    padding-left: 40px;
+    text-indent: -14px;
   }
 }

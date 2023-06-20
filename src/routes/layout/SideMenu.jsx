@@ -56,8 +56,8 @@ export default function SideMenu(props) {
               <li className={pathname==="/BannerSetting"? "list active" : "list"}>
                 <Link to="BannerSetting">배너 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">팝업 관리</Link>
+              <li className={pathname==="/PopupSetting"? "list active" : "list"}>
+                <Link to="PopupSetting">팝업 관리</Link>
               </li>
             </ul>
           </div>
