@@ -1,12 +1,11 @@
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
-import { Lnb, CurrentBox } from "../../components/bundle_components";
+import { Lnb, CurrentBox, Pagination } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
-import CheckBox from "../../components/CheckBox";
-import Pagination from "../../components/Pagination";
 
-export default function RankingSetting() {
+export default function CalculatorList() {
   const [fixedDate] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -44,19 +43,40 @@ export default function RankingSetting() {
 
   return (
     <>
-      <Lnb lnbType="event" />
-      <CurrentBox mod={true} del={true} down={true} tit="탄소 중립 랭킹 관리" />
-      <div className="ranking_setting box_ty01 table_type">
-        <div className="filter_wrap d-flex">    
+      <Lnb lnbType="calcHistory" />
+      <CurrentBox down={true} tit="탄소발자국 계산 내역 리스트" />
+      <div className="calc_list box_ty01 table_type">
+        <div className="filter_wrap d-flex">
+          <div className="select_input_wrap d-flex">
+            <div className="select_input input_ty02">
+              <input type="text" defaultValue="전체" readOnly />
+              <ul className="select_box">
+                <li>전체</li>
+                <li>CO2발생량 높은 순</li>
+                <li>CO2발생량 낮은 순</li>
+              </ul>
+            </div>
+          </div>
+          <div className="select_input_wrap d-flex">
+            <div className="select_input input_ty02">
+              <input type="text" defaultValue="계산일" readOnly />
+              <ul className="select_box">
+                <li>계산일</li>
+                <li>생년월일</li>
+              </ul>
+            </div>
+          </div>
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
               <input type="text" defaultValue="전체(성별)" readOnly />
               <ul className="select_box">
-                <li>전체</li>
+                <li>전체(성별)</li>
                 <li>남성</li>
                 <li>여성</li>
               </ul>
             </div>
+          </div>
+          <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
               <input type="text" defaultValue="전체(지역)" readOnly />
               <ul className="select_box">
@@ -75,10 +95,10 @@ export default function RankingSetting() {
                 <li>부산</li>
                 <li>울산</li>
               </ul>
-            </div>           
-          </div>            
+            </div>
+          </div>
           <div className="date_input_wrap d-flex">
-            <div className="date_input input_ty02">                   
+            <div className="date_input input_ty02">
               <DatePicker
                 selected={startDate}
                 onChange={date => setStartDate(date)}
@@ -154,69 +174,50 @@ export default function RankingSetting() {
             검색
           </button>
         </div>
-        <div className="table_wrap line">
-          <table className="table">      
+        <div className="table_wrap">
+          <table className="table">
             <thead>
               <tr>
-                <th rowSpan={2} className="check">
-                  <CheckBox for="check" id="check" />
-                </th>
-                <th rowSpan={2} className="num">NO</th>
-                <th rowSpan={2}>변동일</th>
-                <th rowSpan={2}>아이디</th>
-                <th rowSpan={2}>성별</th>
-                <th rowSpan={2}>생년월일</th>
-                <th rowSpan={2}>거주인원 수 <button type="sort" className="btn_sort"></button></th>
-                <th rowSpan={2}>포인트 <button type="sort" className="btn_sort"></button></th>
-                <th rowSpan={2}>전체순위 <button type="sort" className="btn_sort"></button></th>
-                <th colSpan={2}>지역순위</th>
-              </tr>
-              <tr>
+                <th className="num">NO</th>
+                <th>계산일</th>
+                <th>아이디</th>
                 <th>지역</th>
-                <th>순위 <button type="sort" className="btn_sort"></button></th>
+                <th>성별</th>
+                <th>생년월일</th>
+                <th>거주인원 수</th>
+                <th>총 CO2발생량 (kg)</th>
+                <th>소나무 (그루)</th>
               </tr>
-            </thead>    
-            <tbody>            
+            </thead>
+            <tbody>
               <tr>
-                <td className="check">
-                  <CheckBox for="check" id="check" />
-                </td>
-                <td className="num">1</td>
-                <td>2023.05.08</td>
-                <td>rrr12345</td>
-                <td>남</td>
-                <td>1990.01.01 </td>
-                <td>3</td>
-                <td>20,000</td>
-                <td>1</td>
-                <td>서울시 강남구</td>
-                <td>1</td>
-              </tr>              
-              <tr>
-                <td className="check">
-                  <CheckBox for="check" id="check" />
-                </td>
-                <td className="num">2</td>
-                <td>2023.05.08</td>
-                <td>asdf123</td>
-                <td>여</td>
-                <td>2000.01.01 </td>
-                <td>1</td>
-                <td>100,000</td>
                 <td>2</td>
+                <td>2023.05.08</td>
+                <td>
+                  <Link to="/UserCalcHis/:id"> wizzzzz</Link>
+                </td>
+                <td>서울시 강남구</td>
+                <td>남성</td>
+                <td>1990.10.01</td>
                 <td>-</td>
-                <td>-</td>
-              </tr>              
+                <td>6,570.2</td>
+                <td>1,164</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>2023.05.08</td>
+                <td>abc1234</td>
+                <td>강원도 삼척시</td>
+                <td>여성</td>
+                <td>1990.10.01</td>
+                <td>3</td>
+                <td>6,570.2</td>
+                <td>1,164</td>
+              </tr>
             </tbody>
           </table>
         </div>
         <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
           <button type="button" className="btn_ty01 btn_bg down">
             엑셀 다운로드
           </button>

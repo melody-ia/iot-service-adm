@@ -26,6 +26,7 @@ import BannerSetting from "./routes/event/BannerSetting";
 import BannerAdd from "./routes/event/BannerAdd";
 import PopupSetting from "./routes/event/PopupSetting";
 import PopupAdd from "./routes/event/PopupAdd";
+import CalculatorList from "./routes/calculator/CalculatorList";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
         <Route path="BannerSetting/add" element={<BannerAdd />} />
         <Route path="PopupSetting" element={<PopupSetting />} />
         <Route path="PopupSetting/add" element={<PopupAdd />} />
+        <Route path="CalculatorList" element={<CalculatorList />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>

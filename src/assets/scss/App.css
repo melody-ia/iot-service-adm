@@ -2462,3 +2462,24 @@ input, textarea {
     text-indent: -14px;
   }
 }
+
+@media all and (max-width: 1440px) {
+  .calc_list .filter_wrap {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .calc_list .filter_wrap .select_input_wrap {
+    width: 50%;
+    margin-bottom: 10px;
+  }
+  .calc_list .filter_wrap .select_input_wrap .input_ty02 {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+@media all and (max-width: 768px) {
+  .calc_list .filter_wrap .select_input_wrap {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}

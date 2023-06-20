@@ -29,7 +29,7 @@ export default function Lnb(props) {
       ["배너 관리", "/BannerSetting"],
       ["팝업 관리", "/PopupSetting"],
     ],
-    calcHistory: [],
+    calcHistory: [["탄소 발자국 계산 내역", "/CalculatorList"]],
     accumulated: [
       ["도장관리", "url"],
       ["포인트관리", "url"],

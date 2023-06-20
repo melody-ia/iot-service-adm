@@ -61,8 +61,8 @@ export default function SideMenu(props) {
               </li>
             </ul>
           </div>
-          <div className="btn_wrap calc">
-            <Link to="" className="list_btn">
+          <div className={pathname==="/CalculatorList"? "btn_wrap calc active" : "btn_wrap calc"}>
+            <Link to="CalculatorList" className="list_btn">
               <img src={iconCalc} alt="" className="list_btn_icon" />
               <span className="list_btn_text">탄소발자국 계산내역 관리</span>
             </Link>
