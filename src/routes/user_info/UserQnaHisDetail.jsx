@@ -1,5 +1,4 @@
-import { Lnb, CurrentBox } from "../../components/bundle_components";
-import RadioBtn from "../../components/RadioBtn";
+import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 
 export default function UserQnaHisDetail() {
   return (

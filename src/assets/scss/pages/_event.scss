@@ -101,6 +101,9 @@
 
 // 데일리 챌린지 등록/수정
 .ch_add {
+  .table_wrap.line {
+    border-bottom: none;
+  }
   .write_type {
     padding: 0;
     max-width: none;;

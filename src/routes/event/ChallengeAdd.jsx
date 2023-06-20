@@ -176,7 +176,7 @@ export default function UserAdd() {
           <table className="table banner_table">  
             <colgroup>
               <col width={"80px"}/>
-              <col width={"700px"}/>
+              <col width={"250px"}/>
               <col width={"700px"}/>
             </colgroup>
             <tbody>

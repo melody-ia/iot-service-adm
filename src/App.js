@@ -29,6 +29,8 @@ import PopupAdd from "./routes/event/PopupAdd";
 import CalculatorList from "./routes/calculator/CalculatorList";
 import Stamp from "./routes/accumulated/Stamp";
 import Point from "./routes/accumulated/Point";
+import News from "./routes/board/News";
+import NewsDetail from "./routes/board/NewsDetail";
 
 function App() {
   return (
@@ -59,6 +61,8 @@ function App() {
         <Route path="CalculatorList" element={<CalculatorList />} />
         <Route path="Stamp" element={<Stamp />} />
         <Route path="Point" element={<Point />} />
+        <Route path="News" element={<News />} />
+        <Route path="News/:id/:id" element={<NewsDetail />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>
