@@ -6,80 +6,71 @@ export default function NewsDetail() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox mod={true} del={true} down={true} tit="이벤트/뉴스 상세보기" />
-      <div className="news_detail detail_form box_ty01 table_type">
-        <div className="table_wrap line">
-          <table className="table">  
-            <colgroup>
-              <col width={"230px"} />
-              <col width={"auto"} />
-              <col width={"230px"} />
-              <col width={"auto"} />
-              <col width={"230px"} />
-              <col width={"auto"} />
-            </colgroup>
-            <tbody>
-              <tr>
-                <th>구분</th>
-                <td>
-                  <div className="radio_box d-flex flex-ac flex-jc">
-                    <RadioBtn for="event" id="event" name="category" text="이벤트" />
-                    <RadioBtn for="news" id="news" name="category" text="뉴스" />
+      <div className="news_detail box_ty01 view_form">
+        <div className="write_type">
+          <div className="wirte_area">
+            <div className="flex_box">
+              <div className="input_ty02 flex_left">
+                <label htmlFor="">구분</label>
+                <div className="select_input input_ty02">
+                  <input type="text" defaultValue="이벤트" readOnly />
+                  <ul className="select_box">
+                    <li>이벤트</li>
+                    <li>뉴스</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="flex_right">
+                <label htmlFor="">공개여부</label>
+                <div className="radio_group d-flex w100">
+                  <RadioBtn for="show" id="show" name="show" text="공개" />
+                  <RadioBtn for="noshow" id="noshow" name="show" text="비공개" />
+                </div>
+              </div>             
+            </div>
+            <div className="flex_box">
+              <div className="input_ty02 flex_left">
+                <label htmlFor="">등록일</label>
+                <input type="text" placeholder="직접입력" defaultValue={"2023.05.08"} readOnly/>
+              </div>
+              <div className="flex_right"></div>
+            </div>
+            <div className="flex_box">
+              <div className="input_ty02 flex_left w100">
+                <label htmlFor="">제목</label>
+                <input type="text" defaultValue={"신규 가입 이벤트 진행"} readOnly/>
+              </div>          
+            </div>
+            <div className="flex_box">
+              <div className="input_ty02 flex_left w100">
+                <span className="label">내용</span>
+                <textarea className="textarea" defaultValue={"신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다."} readOnly></textarea>
+              </div>      
+            </div>
+            <div className="flex_box img_area">
+              <span className="label">상단 이미지</span>
+              <img src={banner} alt="" />
+            </div>
+            <div className="flex_box">
+              <div className="input_ty02 flex_left w100">
+                <label htmlFor="">첨부파일</label>
+                <div className="file_box input_ty02">
+                  <div className="row">
+                    <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly />
                   </div>
-                </td>
-                <th>등록일</th>
-                <td>2023.05.08</td>
-                <th>공개여부</th>
-                <td>
-                  <div className="radio_box d-flex flex-ac flex-jc">
-                    <RadioBtn for="show" id="show" name="show" text="공개" />
-                    <RadioBtn for="noshow" id="noshow" name="show" text="비공개" />
+                  <div className="row">
+                    <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly/>
                   </div>
-                </td>               
-              </tr>
-              <tr>
-                <th>제목</th>
-                <td colSpan={5} className="align_left">신규 가입 이벤트 진행</td>              
-              </tr>
-              <tr>
-                <th>내용</th>
-                <td colSpan={5} className="align_left">
-                  <p>신규 가입 이벤트 진행합니다.</p>
-                  <p>신규 가입 이벤트 진행합니다.</p>
-                  <p>신규 가입 이벤트 진행합니다.</p>
-                  <p>신규 가입 이벤트 진행합니다.</p>
-                  <p>신규 가입 이벤트 진행합니다.</p>
-                  <p>신규 가입 이벤트 진행합니다.</p>
-                  <p>신규 가입 이벤트 진행합니다.</p>
-                  <p>신규 가입 이벤트 진행합니다.</p>
-                </td>
-              </tr>
-              <tr>
-                <th>상단 이미지</th>
-                <td colSpan={2}><img src={banner} alt="" /></td>
-                <th>첨부 파일</th>
-                <td colSpan={2} className="align_left">
-                  <p>신규 가입 안내1.jpg</p>
-                  <p>신규 가입 안내2.jpg</p>
-                  <p>신규 가입 안내3.jpg</p>
-                </td>
-              </tr>
-              <tr>
-                <th>비고</th>
-                <td colSpan={5} className="align_left">-</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
+                </div>
+              </div>
+            </div>            
+            <div className="flex_box">
+              <div className="input_ty02 flex_left w100">
+                <label htmlFor="">비고</label>
+                <textarea className="textarea" readOnly></textarea>
+              </div>
+            </div>
+          </div>         
         </div>
       </div>
     </>

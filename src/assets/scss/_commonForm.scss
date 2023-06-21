@@ -35,7 +35,7 @@
 		}
 	}
 	.date_input_wrap  {
-		@media all and (max-width: 360px) {
+		@include mobile-sm {
 			flex-direction: column;
 		}
 
@@ -46,6 +46,11 @@
 				max-width: 100%;
 			}	
 		}
+	}
+	.select_input_wrap {
+		@include mobile-sm {
+			flex-direction: column;
+		}	
 	}
 
 	.btn_search {
@@ -288,6 +293,92 @@
       }     
     } 
   }
+}
+
+// (공통) 게시판 관리 > 상세보기, 등록/수정
+.view_form {
+	.w100 {
+		max-width: 100%;
+
+		&.flex_left {
+			margin-right: 0;
+		}
+	}
+	.textarea {
+		min-height: 200px;
+	}
+	.img_area {
+		margin-bottom: 30px;
+		align-items: center;
+
+		@include desktop-sm {
+			margin-bottom: 15px;
+			align-items: flex-start;
+		}
+
+		img {
+			width: 40%;
+
+			@include tablet {
+				width: 100%;
+			}
+		}
+	}
+	.btn_plus {
+		color: var(--color-lightGray);
+		border: 1px solid #E0E2E7;
+		border-radius: 5px;
+		text-align: left;
+		padding: 8px 16px;
+		width: 100%;
+
+		@include tablet {
+			font-size: 14px;
+		}
+
+		span {
+			display: inline-block;
+			font-size: 15px;
+			font-weight: bold;
+			transform: rotate(45deg);
+			color: var(--color-lightGray);
+		}
+	}
+	.btn_close {
+		position: absolute;
+		width: 18px;
+		height: 18px;
+		right: 10px;
+		top: 50%;
+		transform: translateY(-60%);
+		color: var(--color-lightGray);
+	}
+
+	.file_box {
+		width: 100%;
+
+		.row {
+			position: relative;
+			margin-bottom: 10px;
+			
+			input {
+				color: var(--color-lightGray);
+				padding-right: 30px;
+			}
+		}
+	}
+
+	&.add {
+		.file_box {
+			width: calc(95% - 250px);
+			margin: -20px 5% 30px auto;
+	
+			@include desktop-sm {
+				width: 100%;
+				margin: 0 0 15px;
+			}			
+		}
+	}	
 }
 
 .write {

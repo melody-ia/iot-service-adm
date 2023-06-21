@@ -6,70 +6,58 @@ export default function TipDetail() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox mod={true} del={true} down={true} tit="탄소중립 TIP 자료실 상세보기" />
-      <div className="top_detail detail_form box_ty01 table_type">
-        <div className="table_wrap line">
-          <table className="table">  
-            <colgroup>
-              <col width={"230px"} />
-              <col width={"auto"} />
-              <col width={"230px"} />
-              <col width={"auto"} />
-            </colgroup>
-            <tbody>
-              <tr>
-                <th>등록일</th>
-                <td>2023.05.08</td>
-                <th>공개여부</th>
-                <td>
-                  <div className="radio_box d-flex flex-ac flex-jc">
-                    <RadioBtn for="show" id="show" name="show" text="공개" />
-                    <RadioBtn for="noshow" id="noshow" name="show" text="비공개" />
+      <div className="tip_detail box_ty01 view_form">
+        <div className="write_type">
+          <div className="wirte_area">
+            <div className="flex_box">
+              <div className="input_ty02 flex_left">
+                <label htmlFor="">등록일</label>
+                <input type="text" placeholder="직접입력" defaultValue={"2023.05.08"} readOnly/>
+              </div>
+              <div className="flex_right">
+                <label htmlFor="">공개여부</label>
+                <div className="radio_group d-flex w100">
+                  <RadioBtn for="show" id="show" name="show" text="공개" />
+                  <RadioBtn for="noshow" id="noshow" name="show" text="비공개" />
+                </div>
+              </div>             
+            </div>            
+            <div className="flex_box">
+              <div className="input_ty02 flex_left w100">
+                <label htmlFor="">제목</label>
+                <input type="text" defaultValue={"탄소발자국 계산기 사용법"} readOnly/>
+              </div>          
+            </div>
+            <div className="flex_box">
+              <div className="input_ty02 flex_left w100">
+                <span className="label">내용</span>
+                <textarea className="textarea" defaultValue={"탄소발자국 계산기 사용법 탄소발자국 계산기 사용법탄소발자국 계산기 사용법 탄소발자국 계산기 사용법 탄소발자국 계산기 사용법 탄소발자국 계산기 사용법"} readOnly></textarea>
+              </div>      
+            </div>
+            <div className="flex_box img_area">
+              <span className="label">상단 이미지</span>
+              <img src={banner} alt="" />
+            </div>
+            <div className="flex_box">
+              <div className="flex_left w100">
+                <label htmlFor="">첨부파일</label>
+                <div className="file_box input_ty02">
+                  <div className="row">
+                    <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly />
                   </div>
-                </td>               
-              </tr>
-              <tr>
-                <th>제목</th>
-                <td colSpan={3} className="align_left">탄소발자국 계산기 사용법</td>              
-              </tr>
-              <tr>
-                <th>내용</th>
-                <td colSpan={3} className="align_left">
-                  <p>탄소발자국 계산기 사용법</p>
-                  <p>탄소발자국 계산기 사용법</p>
-                  <p>탄소발자국 계산기 사용법</p>
-                  <p>탄소발자국 계산기 사용법</p>
-                  <p>탄소발자국 계산기 사용법</p>
-                  <p>탄소발자국 계산기 사용법</p>
-                  <p>탄소발자국 계산기 사용법</p>
-                  <p>탄소발자국 계산기 사용법</p>
-                </td>
-              </tr>
-              <tr>
-                <th>상단 이미지</th>
-                <td><img src={banner} alt="" /></td>
-                <th>첨부 파일</th>
-                <td className="align_left">
-                  <p>사용 안내1.pdf</p>
-                  <p>탄소발자국2.jpg</p>
-                </td>
-              </tr>
-              <tr>
-                <th>비고</th>
-                <td colSpan={3} className="align_left">-</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
+                  <div className="row">
+                    <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly/>
+                  </div>
+                </div>
+              </div>
+            </div>            
+            <div className="flex_box">
+              <div className="input_ty02 flex_left w100">
+                <label htmlFor="">비고</label>
+                <textarea className="textarea" readOnly></textarea>
+              </div>
+            </div>
+          </div>         
         </div>
       </div>
     </>
