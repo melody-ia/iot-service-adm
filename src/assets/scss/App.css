@@ -308,7 +308,7 @@ body textarea::-webkit-scrollbar-track {
     width: 10px;
     height: 10px;
     left: 4px;
-    top: 5px;
+    top: 4px;
   }
 }
 .check_type.radio span {
@@ -944,6 +944,9 @@ body textarea::-webkit-scrollbar-track {
 .table .input_ty02 input {
   text-align: center;
 }
+.table .check_type:not(.radio) span::before {
+  margin-right: 0;
+}
 
 .detail_form {
   padding-top: 30px;
@@ -1140,7 +1143,6 @@ body textarea::-webkit-scrollbar-track {
     font-size: 14px;
   }
 }
-.flex_box .select_input input,
 .flex_box .select_box {
   color: var(--color-lightGray);
 }

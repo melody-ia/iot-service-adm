@@ -158,7 +158,8 @@ export default function News() {
               <col width={"120px"} />
               <col width={"400px"} />
               <col width={"150px"} />
-              <col width={"230px"} />
+              <col width={"240px"} />
+              <col width={"100px"} />
               <col width={"250px"} />
             </colgroup>
             <thead>
@@ -171,6 +172,7 @@ export default function News() {
                 <th>제목</th>
                 <th>등록일</th>
                 <th>공개여부</th>
+                <th>종료여부</th>
                 <th>비고</th>
               </tr>
             </thead>    
@@ -191,6 +193,9 @@ export default function News() {
                     </div>
                   </div>
                 </td> 
+                <td>
+                  <CheckBox for="check" id="check" />
+                </td>
                 <td>
                   <div className="input_ty02">
                     <input type="text" placeholder={"직접 입력"}/>
@@ -213,6 +218,9 @@ export default function News() {
                     </div>
                   </div>
                 </td> 
+                <td>
+                  <CheckBox for="check" id="check" disabled />
+                </td>
                 <td>
                   <div className="input_ty02">
                     <input type="text" placeholder={"직접 입력"}/>
