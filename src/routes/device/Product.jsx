@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
-import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../components/bundle_components";
+import { Lnb, CurrentBox, CheckBox, RadioBtn } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
-import { Link, useParams } from "react-router-dom";
+import pdImg from "../../assets/img/GL-011_detail.png";
+import plus from "../../assets/img/icon/border_plus.svg";
 
-export default function News() {
-  const { id } = useParams();
+export default function Product() {
   const [fixedDate] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -44,9 +44,9 @@ export default function News() {
 
   return (
     <>
-      <Lnb lnbType="board" />
-      <CurrentBox add={true} mod={true} del={true} down={true} tit="이벤트/뉴스 리스트" />
-      <div className="news board_list box_ty01 table_type">
+      <Lnb lnbType="device" />
+      <CurrentBox mod={true} del={true} down={true} tit="GL 추천제품 리스트" />
+      <div className="product box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
@@ -57,19 +57,20 @@ export default function News() {
               </ul>
             </div>
             <div className="select_input input_ty02">
-              <input type="text" defaultValue="구분" readOnly />
+              <input type="text" defaultValue="전체(공개여부)" readOnly />
               <ul className="select_box">
-                <li>구분</li>
-                <li>이벤트</li>
-                <li>뉴스</li>         
+                <li>전체(공개여부)</li>
+                <li>공개</li>
+                <li>비공개</li>         
               </ul>
             </div>           
             <div className="select_input input_ty02">
-              <input type="text" defaultValue="공개여부" readOnly />
+              <input type="text" defaultValue="전체(아이콘)" readOnly />
               <ul className="select_box">
-                <li>공개여부</li>
-                <li>공개</li>
-                <li>비공개</li>         
+                <li>전체(아이콘)</li>
+                <li>BEST</li>
+                <li>NEW</li>         
+                <li>등록안함</li>         
               </ul>
             </div>           
           </div>            
@@ -156,10 +157,15 @@ export default function News() {
               <col width={"auto"} />
               <col width={"80px"} />
               <col width={"120px"} />
-              <col width={"400px"} />
               <col width={"150px"} />
-              <col width={"230px"} />
-              <col width={"250px"} />
+              <col width={"130px"} />
+              <col width={"130px"} />
+              <col width={"200px"} />
+              <col width={"150px"} />
+              <col width={"150px"} />
+              <col width={"150px"} />
+              <col width={"170px"} />
+              <col width={"200px"} />
             </colgroup>
             <thead>
               <tr>
@@ -167,10 +173,15 @@ export default function News() {
                   <CheckBox for="check" id="check" />
                 </th>
                 <th className="num">NO</th>
-                <th>구분</th>
-                <th>제목</th>
                 <th>등록일</th>
+                <th>제품이미지</th>
+                <th>구분</th>
+                <th>제조사</th>
+                <th>제품명</th>
+                <th>제품 코드</th>
+                <th>링크</th>
                 <th>공개여부</th>
+                <th>아이콘</th>
                 <th>비고</th>
               </tr>
             </thead>    
@@ -179,16 +190,29 @@ export default function News() {
                 <td className="check">
                   <CheckBox for="check" id="check" />
                 </td>
-                <td className="num">2</td>
-                <td>이벤트</td>
-                <td><Link to={"/News/NewsDetail/" + id} >신규 가입 이벤트 진행</Link></td>
-                <td>2023.05.01</td>
+                <td className="num"></td>
+                <td></td>
+                <td className="pd_img">
+                  <button type="button" className="btn_add"><img src={plus} alt="" /></button>
+                </td>
                 <td>
-                  <div className="radio_group">
-                    <div className="radio_wrap">
-                      <RadioBtn for="show01" id="show01" name="show" text="공개" />
-                      <RadioBtn for="noshow01" id="noshow01" name="show" text="비공개" />
-                    </div>
+                  <div className="input_ty02"><input type="text" placeholder="직접입력" /></div>
+                </td>
+                <td><div className="input_ty02"><input type="text" placeholder="직접입력" /></div></td>
+                <td><div className="input_ty02"><input type="text" placeholder="직접입력" /></div></td>
+                <td><div className="input_ty02"><input type="text" placeholder="직접입력" /></div></td>
+                <td><div className="input_ty02"><input type="text" placeholder="직접입력" /></div></td>
+                <td>
+                  <div className="radio_wrap">
+                    <RadioBtn for="show01" id="show01" name="show01" text="공개" />
+                    <RadioBtn for="noshow01" id="noshow01" name="show01" text="비공개" />
+                  </div>
+                </td> 
+                <td>
+                  <div className="radio_wrap">
+                    <RadioBtn for="best01" id="best01" name="icon01" text="BEST" />
+                    <RadioBtn for="new01" id="new01" name="icon01" text="NEW" />
+                    <RadioBtn for="no01" id="no01" name="icon01" text="등록안함" />
                   </div>
                 </td> 
                 <td>
@@ -196,47 +220,82 @@ export default function News() {
                     <input type="text" placeholder={"직접 입력"}/>
                   </div>
                 </td>
-              </tr>                                              
+              </tr>                                                                                           
+              <tr>
+                <td className="check">
+                  <CheckBox for="check" id="check" />
+                </td>
+                <td className="num">2</td>
+                <td>2023.06.01</td>
+                <td>
+                  <div className="pd_img">
+                    <img src={pdImg} alt="" className="img" />
+                    <button type="button" className="btn_edit"></button>
+                  </div>
+                </td>
+                <td>음식물 처리기</td>
+                <td>GL</td>
+                <td>지엘 미생물 음식물처리기 가정용 GL-010 시리즈 블랙/화이트 1.2kg 분쇄기 건조기</td>
+                <td>GL-010LHW</td>
+                <td>https://smartstore.naver.com/glecomall/products/6857771373</td>
+                <td>  
+                  <div className="radio_wrap">
+                    <RadioBtn for="show01" id="show01" name="show01" text="공개" />
+                    <RadioBtn for="noshow01" id="noshow01" name="show01" text="비공개" />
+                  </div> 
+                </td> 
+                <td>
+                  <div className="radio_wrap">
+                    <RadioBtn for="best01" id="best01" name="icon01" text="BEST" />
+                    <RadioBtn for="new01" id="new01" name="icon01" text="NEW" />
+                    <RadioBtn for="no01" id="no01" name="icon01" text="등록안함" />
+                  </div>
+                </td> 
+                <td>
+                  <div className="input_ty02">
+                    <input type="text" placeholder={"직접 입력"}/>
+                  </div>
+                </td>
+              </tr>                                                                                           
               <tr>
                 <td className="check">
                   <CheckBox for="check" id="check" />
                 </td>
                 <td className="num">1</td>
-                <td>뉴스</td>
-                <td>신규 가입 이벤트 진행</td>
-                <td>2023.05.01</td>
+                <td>2023.06.01</td>
                 <td>
-                  <div className="radio_group">
-                    <div className="radio_wrap">
-                      <RadioBtn for="show02" id="show02" name="show02" text="공개" />
-                      <RadioBtn for="noshow02" id="noshow02" name="show02" text="비공개" />
-                    </div>
+                  <div className="pd_img">
+                    <img src={pdImg} alt="" className="img" />
+                    <button type="button" className="btn_edit"></button>
                   </div>
+                </td>
+                <td>음식물 처리기</td>
+                <td>GL</td>
+                <td>지엘 미생물 음식물처리기 가정용 GL-010 시리즈 블랙/화이트 1.2kg 분쇄기 건조기</td>
+                <td>GL-010LHW</td>
+                <td>https://smartstore.naver.com/glecomall/products/6857771373</td>
+                <td>
+                  <div className="radio_wrap">
+                    <RadioBtn for="show01" id="show01" name="show01" text="공개" />
+                    <RadioBtn for="noshow01" id="noshow01" name="show01" text="비공개" />
+                  </div>                 
+                </td> 
+                <td>        
+                  <div className="radio_wrap">
+                    <RadioBtn for="best01" id="best01" name="icon01" text="BEST" />
+                    <RadioBtn for="new01" id="new01" name="icon01" text="NEW" />
+                    <RadioBtn for="no01" id="no01" name="icon01" text="등록안함" />
+                  </div>          
                 </td> 
                 <td>
                   <div className="input_ty02">
                     <input type="text" placeholder={"직접 입력"}/>
                   </div>
                 </td>
-              </tr>                                              
+              </tr>                                                                                           
             </tbody>
           </table>
-        </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg add">
-            등록
-          </button>
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
-        <Pagination />
+        </div>      
       </div>
     </>
   );

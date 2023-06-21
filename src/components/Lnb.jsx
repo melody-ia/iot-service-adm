@@ -42,7 +42,7 @@ export default function Lnb(props) {
     ],
     device: [
       ["기기 목록 관리", "url"],
-      ["GL 추천제품 관리", "url"],
+      ["GL 추천제품 관리", "/Product"],
     ],
   };
 

@@ -2739,18 +2739,18 @@ input, textarea {
 }
 
 @media all and (max-width: 1440px) {
-  .qna .filter_wrap, .news .filter_wrap, .faq .filter_wrap, .tip .filter_wrap {
+  .board_list .filter_wrap {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .qna .filter_wrap .input_ty02, .news .filter_wrap .input_ty02, .faq .filter_wrap .input_ty02, .tip .filter_wrap .input_ty02 {
+  .board_list .filter_wrap .input_ty02 {
     margin-bottom: 10px;
     max-width: 100%;
     width: 100%;
   }
-  .qna .filter_wrap .input_ty02:last-child, .news .filter_wrap .input_ty02:last-child, .faq .filter_wrap .input_ty02:last-child, .tip .filter_wrap .input_ty02:last-child {
+  .board_list .filter_wrap .input_ty02:last-child {
     margin-right: 0;
   }
 }
@@ -2769,5 +2769,55 @@ input, textarea {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+}
+.product .pd_img {
+  position: relative;
+}
+.product .pd_img .img {
+  width: 60px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.product .pd_img .btn_edit {
+  position: absolute;
+  right: 15px;
+  bottom: -5px;
+  width: 25px;
+  height: 25px;
+  background: url(../img/icon/edit.svg) no-repeat center/16px, var(--color-green);
+  border-radius: 5px;
+}
+.product .radio_wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-left: 10px;
+}
+.product .radio_wrap .check_type {
+  margin-bottom: 5px;
+}
+@media all and (max-width: 1440px) {
+  .product .filter_wrap {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .product .filter_wrap .input_ty02 {
+    margin-bottom: 10px;
+    max-width: 100%;
+    width: 100%;
+  }
+  .product .filter_wrap .input_ty02:last-child {
+    margin-right: 0;
   }
 }

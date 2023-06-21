@@ -101,7 +101,7 @@ export default function SideMenu(props) {
               </li>
             </ul>
           </div>
-          <div className="btn_wrap device">
+          <div className="btn_wrap device active">
             <button type="button" className="list_btn">
               <img src={iconDevice} alt="" className="list_btn_icon" />
               <span className="list_btn_text">기기관리</span>
@@ -110,8 +110,8 @@ export default function SideMenu(props) {
               <li className="list">
                 <Link to="">기기 목록 관리</Link>
               </li>
-              <li className="list">
-                <Link to="">GL 추천제품 관리</Link>
+              <li className={pathname==="/Product"? "list active" : "list"}>
+                <Link to="/Product">GL 추천제품 관리</Link>
               </li>
             </ul>
           </div>

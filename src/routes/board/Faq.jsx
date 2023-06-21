@@ -46,13 +46,12 @@ export default function Faq() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox add={true} mod={true} del={true} down={true} tit="FAQ 리스트" />
-      <div className="faq box_ty01 table_type">
+      <div className="faq board_list box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
-              <input type="text" defaultValue="전체" readOnly />
+              <input type="text" defaultValue="최근 등록일 순" readOnly />
               <ul className="select_box">
-                <li>전체</li>
                 <li>최근 등록일 순</li>
                 <li>오래된 등록일 순</li>
               </ul>
