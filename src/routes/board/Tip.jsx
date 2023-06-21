@@ -46,7 +46,7 @@ export default function Tip() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox add={true} mod={true} del={true} down={true} tit="탄소중립 TIP 자료실 리스트" />
-      <div className="tip board_list box_ty01 table_type">
+      <div className="tip box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">

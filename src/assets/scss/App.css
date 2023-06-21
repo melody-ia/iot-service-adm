@@ -499,7 +499,7 @@ body textarea::-webkit-scrollbar-track {
 .select_box li:hover {
   background: #f5f5f5;
 }
-@media all and (max-width: 768px) {
+@media all and (max-width: 991px) {
   .select_box li {
     font-size: 14px;
   }
@@ -702,7 +702,7 @@ body textarea::-webkit-scrollbar-track {
 .filter_wrap {
   padding: 16px 18px;
 }
-@media all and (max-width: 768px) {
+@media all and (max-width: 1440px) {
   .filter_wrap {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -716,21 +716,27 @@ body textarea::-webkit-scrollbar-track {
   height: 40px;
   margin-right: 10px;
 }
-.filter_wrap .input_ty02.year {
-  max-width: 120px;
+.filter_wrap .input_ty02.wide {
+  max-width: 275px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
 }
-@media all and (max-width: 768px) {
-  .filter_wrap .input_ty02.year {
+@media all and (max-width: 991px) {
+  .filter_wrap .input_ty02.wide {
     max-width: 100%;
   }
 }
-@media all and (max-width: 768px) {
-  .filter_wrap .input_ty02 {
+.filter_wrap .input_ty02.year {
+  max-width: 120px;
+}
+@media all and (max-width: 1440px) {
+  .filter_wrap .input_ty02, .filter_wrap .input_ty02.year {
     max-width: 100%;
     width: 100%;
     margin-bottom: 10px;
   }
-  .filter_wrap .input_ty02:last-child {
+  .filter_wrap .input_ty02:last-child, .filter_wrap .input_ty02.year:last-child {
     margin-right: 0;
   }
 }
@@ -749,7 +755,7 @@ body textarea::-webkit-scrollbar-track {
 .filter_wrap .date_input_wrap .date_input {
   max-width: 200px;
 }
-@media all and (max-width: 768px) {
+@media all and (max-width: 1440px) {
   .filter_wrap .date_input_wrap .date_input {
     max-width: 100%;
   }
@@ -2053,24 +2059,12 @@ input, textarea {
   text-align: center;
 }
 
-@media all and (max-width: 1440px) {
-  .user_history_qna .filter_wrap {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .user_history_qna .filter_wrap .select_input_wrap {
-    width: 50%;
-    margin-bottom: 10px;
-  }
-  .user_history_qna .filter_wrap .select_input_wrap .input_ty02 {
-    width: 100%;
-    max-width: 100%;
-  }
-}
 @media all and (max-width: 768px) {
   .user_history_qna .filter_wrap .select_input_wrap {
-    width: 100%;
-    margin-bottom: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 
@@ -2317,21 +2311,6 @@ input, textarea {
 }
 .dashboard .bar_graph .tit {
   margin-bottom: 50px;
-}
-
-@media all and (max-width: 1200px) {
-  .ch_list .filter_wrap {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .ch_list .filter_wrap .select_input_wrap {
-    margin-bottom: 10px;
-  }
-}
-@media all and (max-width: 768px) {
-  .ch_list .filter_wrap .select_input_wrap {
-    margin-bottom: 0;
-  }
 }
 
 .ch_list_detail .arrow_right {
@@ -2592,18 +2571,12 @@ input, textarea {
 .banner_setting .basic .check_type.radio span::before {
   margin-right: 0;
 }
-@media all and (max-width: 1200px) {
-  .banner_setting .filter_wrap {
+@media all and (max-width: 991px) {
+  .banner_setting .select_input_wrap {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-  }
-  .banner_setting .filter_wrap .input_ty02 {
-    margin-bottom: 10px;
-  }
-  .banner_setting .filter_wrap .date_input_wrap .date_input {
-    max-width: 100%;
   }
 }
 
@@ -2700,24 +2673,12 @@ input, textarea {
   }
 }
 
-@media all and (max-width: 1440px) {
-  .calc_list .filter_wrap {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .calc_list .filter_wrap .select_input_wrap {
-    width: 50%;
-    margin-bottom: 10px;
-  }
-  .calc_list .filter_wrap .select_input_wrap .input_ty02 {
-    width: 100%;
-    max-width: 100%;
-  }
-}
 @media all and (max-width: 768px) {
   .calc_list .filter_wrap .select_input_wrap {
-    width: 100%;
-    margin-bottom: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 
@@ -2742,33 +2703,8 @@ input, textarea {
   margin: 0 10px;
 }
 
-@media all and (max-width: 1440px) {
-  .board_list .filter_wrap {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  .board_list .filter_wrap .input_ty02 {
-    margin-bottom: 10px;
-    max-width: 100%;
-    width: 100%;
-  }
-  .board_list .filter_wrap .input_ty02:last-child {
-    margin-right: 0;
-  }
-}
 @media all and (max-width: 768px) {
   .qna .filter_wrap .select_input_wrap {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-}
-@media all and (max-width: 480px) {
-  .news .filter_wrap .select_input_wrap,
-  .faq .filter_wrap .select_input_wrap {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -2808,22 +2744,6 @@ input, textarea {
 }
 .product .radio_wrap .check_type {
   margin-bottom: 5px;
-}
-@media all and (max-width: 1440px) {
-  .product .filter_wrap {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  .product .filter_wrap .input_ty02 {
-    margin-bottom: 10px;
-    max-width: 100%;
-    width: 100%;
-  }
-  .product .filter_wrap .input_ty02:last-child {
-    margin-right: 0;
-  }
 }
 
 #search {

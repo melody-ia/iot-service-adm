@@ -46,7 +46,7 @@ export default function Faq() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox add={true} mod={true} del={true} down={true} tit="FAQ 리스트" />
-      <div className="faq board_list box_ty01 table_type">
+      <div className="faq box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">

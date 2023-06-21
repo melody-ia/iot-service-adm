@@ -65,7 +65,7 @@ export default function BannerSetting() {
                 <li>공개기한</li>
               </ul>
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02 wide">
               <input type="text" defaultValue="전체" readOnly />
               <ul className="select_box">
                 <li>전체</li>

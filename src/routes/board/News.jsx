@@ -46,7 +46,7 @@ export default function News() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox add={true} mod={true} del={true} down={true} tit="이벤트/뉴스 리스트" />
-      <div className="news board_list box_ty01 table_type">
+      <div className="news box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">

@@ -1,34 +1,5 @@
-@include desktop {
-  .board_list {
-    .filter_wrap {
-      flex-direction: column;
-
-      .input_ty02 {
-        margin-bottom: 10px;
-        max-width: 100%;
-        width: 100%;
-
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-    }
-  }
-}
-
 @include mobile {
   .qna {
-    .filter_wrap {
-      .select_input_wrap {
-        flex-direction: column;
-      }
-    }
-  }
-}
-
-@include mobile-sm {
-  .news,
-  .faq {
     .filter_wrap {
       .select_input_wrap {
         flex-direction: column;

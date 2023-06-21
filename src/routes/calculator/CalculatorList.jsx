@@ -56,8 +56,6 @@ export default function CalculatorList() {
                 <li>CO2발생량 낮은 순</li>
               </ul>
             </div>
-          </div>
-          <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
               <input type="text" defaultValue="계산일" readOnly />
               <ul className="select_box">
@@ -65,8 +63,6 @@ export default function CalculatorList() {
                 <li>생년월일</li>
               </ul>
             </div>
-          </div>
-          <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
               <input type="text" defaultValue="전체(성별)" readOnly />
               <ul className="select_box">
@@ -75,8 +71,6 @@ export default function CalculatorList() {
                 <li>여성</li>
               </ul>
             </div>
-          </div>
-          <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
               <input type="text" defaultValue="전체(지역)" readOnly />
               <ul className="select_box">
@@ -176,6 +170,17 @@ export default function CalculatorList() {
         </div>
         <div className="table_wrap">
           <table className="table">
+            <colgroup>
+              <col width={"auto"} />
+              <col width={"150px"} />
+              <col width={"200px"} />
+              <col width={"200px"} />
+              <col width={"100px"} />
+              <col width={"150px"} />
+              <col width={"120px"} />
+              <col width={"200px"} />
+              <col width={"150px"} />
+            </colgroup>
             <thead>
               <tr>
                 <th className="num">NO</th>

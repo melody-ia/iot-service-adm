@@ -57,18 +57,14 @@ export default function UserQnaHis() {
                 <li>최신 문의일 순</li>
                 <li>오래된 문의일 순</li>
               </ul>
-            </div>           
-          </div>                           
-          <div className="select_input_wrap d-flex">
+            </div>
             <div className="select_input input_ty02">
               <input type="text" defaultValue="문의일" readOnly />
               <ul className="select_box">
                 <li>문의일</li>
                 <li>답변일</li>
               </ul>
-            </div>           
-          </div>                           
-          <div className="select_input_wrap d-flex">
+            </div>
             <div className="select_input input_ty02">
               <input type="text" defaultValue="전체" readOnly />
               <ul className="select_box">
@@ -76,9 +72,7 @@ export default function UserQnaHis() {
                 <li>답변완료</li>
                 <li>답변대기</li>
               </ul>
-            </div>           
-          </div>                           
-          <div className="select_input_wrap d-flex">
+            </div>
             <div className="select_input input_ty02">
               <input type="text" defaultValue="전체" readOnly />
               <ul className="select_box">
@@ -93,7 +87,7 @@ export default function UserQnaHis() {
                 <li>기타</li>
               </ul>
             </div>           
-          </div>                           
+          </div>                                                      
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">                   
               <DatePicker
