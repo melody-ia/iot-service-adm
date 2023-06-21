@@ -2820,3 +2820,38 @@ input, textarea {
     margin-right: 0;
   }
 }
+
+#search {
+  padding: 35px 20px;
+}
+#search .search_list {
+  font-weight: 500;
+  border-bottom: 1px solid #E2E8F0;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+#search .search_list:last-child {
+  border-bottom: none;
+}
+#search .search_list li:not(.sh_tit) {
+  margin-bottom: 5px;
+}
+#search .sh_tit {
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+#search .match_text {
+  color: var(--color-green);
+  margin: 3px;
+}
+#search .c_gray {
+  color: var(--color-gray);
+  font-weight: normal;
+  margin-left: 10px;
+  font-size: 14px;
+}
+#search .btn_more {
+  margin: 20px 0 0;
+  background: url(../img/icon/angle_thin_right_g.svg) no-repeat right center;
+  padding-right: 20px;
+}

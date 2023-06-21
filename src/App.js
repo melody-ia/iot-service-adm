@@ -41,6 +41,7 @@ import FaqAdd from "./routes/board/FaqAdd";
 import Qna from "./routes/board/Qna";
 import QnaDetail from "./routes/board/QnaDetail";
 import Product from "./routes/device/Product";
+import SearchPage from "./routes/SearchPage";
 
 function App() {
   return (
@@ -83,6 +84,7 @@ function App() {
         <Route path="Qna" element={<Qna />} />
         <Route path="Qna/:id/:id" element={<QnaDetail />} />
         <Route path="Product" element={<Product />} />
+        <Route path="SearchPage" element={<SearchPage />} />
       </Route>
       <Route path="/Login" element={<Login />} />
     </Routes>

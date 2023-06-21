@@ -1,0 +1,37 @@
+#search {
+  padding: 35px 20px;
+
+  .search_list {
+    font-weight: 500;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+    li:not(.sh_tit) {
+      margin-bottom: 5px;
+    }
+  }
+  .sh_tit {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+  .match_text {
+    color: var(--color-green);
+    margin: 3px;
+  }
+  .c_gray {
+    color: var(--color-gray);
+    font-weight: normal;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
+  .btn_more {
+    margin: 20px 0 0;  
+    background: url(../img/icon/angle_thin_right_g.svg) no-repeat right center;
+    padding-right: 20px;
+  }
+}

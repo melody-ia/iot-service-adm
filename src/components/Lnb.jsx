@@ -44,6 +44,14 @@ export default function Lnb(props) {
       ["기기 목록 관리", "url"],
       ["GL 추천제품 관리", "/Product"],
     ],
+    search: [
+      ["전체", "/SearchPage"],
+      ["메뉴", "/SearchPage/" + id],
+      ["이벤트/뉴스 관리", "/SearchPage/" + id],
+      ["탄소중립 TIP 자료실", "/SearchPage/" + id],
+      ["FAQ 관리 ", "/SearchPage/" + id],
+      ["1:1문의 관리", "/SearchPage/" + id],
+    ],
   };
 
   const slideTab = {
