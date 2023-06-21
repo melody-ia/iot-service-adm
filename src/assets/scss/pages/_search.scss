@@ -17,6 +17,10 @@
   .sh_tit {
     font-size: 18px;
     margin-bottom: 18px;
+
+    @include mobile {
+      font-size: 16px;
+    }
   }
   .match_text {
     color: var(--color-green);
