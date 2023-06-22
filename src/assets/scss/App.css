@@ -99,7 +99,7 @@ body textarea::-webkit-scrollbar-track {
 }
 
 .align_left {
-  text-align: left;
+  text-align: left !important;
 }
 
 .btn_ty01 {
@@ -2089,26 +2089,6 @@ input, textarea {
   }
 }
 
-.user_history_qna_detail .table .align_left input {
-  text-align: left;
-}
-.user_history_qna_detail .table .radio_box :first-child {
-  margin-right: 5px;
-}
-.user_history_qna_detail .table .radio_box .check_type.radio span {
-  font-size: 14px;
-}
-.user_history_qna_detail .table .radio_box .check_type.radio span::before {
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
-}
-.user_history_qna_detail .table .radio_box .check_type.radio span::after {
-  width: 10px;
-  height: 10px;
-  top: 4px;
-  left: 4px;
-}
 .user_history_qna_detail .table textarea {
   resize: none;
   min-height: 120px;

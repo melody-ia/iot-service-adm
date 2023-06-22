@@ -80,31 +80,6 @@
 // 1:1 문의 상세 내역
 .user_history_qna_detail {
   .table {
-    .align_left input {
-      text-align: left;
-    }
-    .radio_box {
-      :first-child {
-        margin-right: 5px;
-      }
-
-      .check_type.radio span {
-        font-size: 14px;
-  
-        &::before {
-          width: 18px;
-          height: 18px;
-          margin-right: 10px;
-        }
-        &::after {
-          width: 10px;
-          height: 10px;
-          top: 4px;
-          left: 4px;
-        }
-      }
-    }
-  
     textarea {
       resize: none;
       min-height: 120px;
