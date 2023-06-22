@@ -289,27 +289,42 @@ body textarea::-webkit-scrollbar-track {
     font-size: 14px;
   }
 }
+.check_type.radio label span {
+  padding-left: 35px;
+}
+.check_type.radio label span::before {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.check_type.radio label span::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-green);
+  display: none;
+}
+@media all and (max-width: 768px) {
+  .check_type.radio label span::after {
+    width: 10px;
+    height: 10px;
+    left: 4px;
+  }
+}
 .check_type.radio input:checked ~ span::before {
   border-width: 2px;
   background-color: #fff;
 }
 .check_type.radio input:checked ~ span::after {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: 2px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--color-green);
-}
-@media all and (max-width: 768px) {
-  .check_type.radio input:checked ~ span::after {
-    width: 10px;
-    height: 10px;
-    left: 4px;
-    top: 4px;
-  }
+  display: block;
 }
 .check_type.radio span {
   vertical-align: text-bottom;
@@ -962,16 +977,15 @@ body textarea::-webkit-scrollbar-track {
 }
 .detail_form .radio_box .check_type.radio span {
   font-size: 14px;
+  padding-left: 25px;
 }
 .detail_form .radio_box .check_type.radio span::before {
   width: 18px;
   height: 18px;
-  margin-right: 10px;
 }
 .detail_form .radio_box .check_type.radio span::after {
   width: 10px;
   height: 10px;
-  top: 4px;
   left: 4px;
 }
 .detail_form .table_wrap {
@@ -2400,6 +2414,8 @@ input, textarea {
   height: 24px;
   vertical-align: middle;
   margin-left: 10px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .ch_add .plus_area {
   counter-reset: number;
@@ -2532,15 +2548,18 @@ input, textarea {
 .banner_ranking .banner_img img {
   width: 50%;
 }
-.banner_ranking .btn_up {
-  -webkit-transform: rotate(-90deg);
-          transform: rotate(-90deg);
-  margin: 0 5px;
+.banner_ranking .btn_arrow {
+  margin: 0 2px;
+  width: 28px;
+  height: 28px;
 }
-.banner_ranking .btn_down {
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-  margin: 0 5px;
+.banner_ranking .btn_arrow img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.banner_ranking .btn_arrow.btn_down {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 .banner_ranking tr:last-child .btn_down {
   display: none;
@@ -2551,6 +2570,7 @@ input, textarea {
 
 .banner_ranking_modal {
   padding: 35px 20px;
+  max-width: 1580px;
 }
 .banner_ranking_modal .table_wrap {
   max-height: 500px;
@@ -2767,13 +2787,19 @@ input, textarea {
 #search .search_list li:not(.sh_tit) {
   margin-bottom: 5px;
 }
+@media all and (max-width: 768px) {
+  #search .search_list li:not(.sh_tit) {
+    font-size: 14px;
+  }
+}
 #search .sh_tit {
   font-size: 18px;
-  margin-bottom: 18px;
+  margin-bottom: 15px;
 }
 @media all and (max-width: 768px) {
   #search .sh_tit {
     font-size: 16px;
+    margin-bottom: 10px;
   }
 }
 #search .match_text {

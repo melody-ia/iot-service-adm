@@ -52,7 +52,7 @@ export default function PopupSetting() {
               <input type="text" defaultValue="등록일" readOnly />
               <ul className="select_box">
                 <li>등록일</li>
-                <li>공개기한</li>
+                <li>공개 기한</li>
               </ul>
             </div>
             <div className="select_input input_ty02">
@@ -164,7 +164,7 @@ export default function PopupSetting() {
                 <th>팝업 이름</th>
                 <th>팝업 위치</th>
                 <th>등록일</th>
-                <th>공개기한</th>
+                <th>공개 기한</th>
                 <th>공개여부</th>
                 <th>비고</th>
               </tr>

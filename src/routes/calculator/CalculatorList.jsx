@@ -52,8 +52,8 @@ export default function CalculatorList() {
               <input type="text" defaultValue="전체" readOnly />
               <ul className="select_box">
                 <li>전체</li>
-                <li>CO2발생량 높은 순</li>
-                <li>CO2발생량 낮은 순</li>
+                <li>CO2 발생량 높은 순</li>
+                <li>CO2 발생량 낮은 순</li>
               </ul>
             </div>
             <div className="select_input input_ty02">
@@ -190,7 +190,7 @@ export default function CalculatorList() {
                 <th>성별</th>
                 <th>생년월일</th>
                 <th>거주인원 수</th>
-                <th>총 CO2발생량 (kg)</th>
+                <th>총 CO2 발생량 (kg)</th>
                 <th>소나무 (그루)</th>
               </tr>
             </thead>

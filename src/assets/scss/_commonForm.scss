@@ -274,16 +274,15 @@
   
     .check_type.radio span {
       font-size: 14px;
-  
+			padding-left: 25px;
+
       &::before {
         width: 18px;
         height: 18px;
-        margin-right: 10px;
       }
       &::after {
         width: 10px;
         height: 10px;
-        top: 4px;
         left: 4px;
       }
     }

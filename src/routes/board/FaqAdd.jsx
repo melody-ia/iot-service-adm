@@ -145,6 +145,14 @@ export default function NewsAdd() {
                 <textarea className="textarea" placeholder="직접입력"></textarea>
               </div>
             </div>
+          </div>
+          <div className="bottom_btn_wrap">
+            <button type="button" className="btn_ty01 cancel">
+              취소
+            </button>
+            <button type="button" className="btn_ty01">
+              등록
+            </button>
           </div>         
         </div>
       </div>

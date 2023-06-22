@@ -208,12 +208,12 @@ export default function PopupAdd() {
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg add">
-            등록
-          </button>
-          <button type="button" className="btn_ty01 btn_bg can">
+        <div className="bottom_btn_wrap">
+          <button type="button" className="btn_ty01 cancel">
             취소
+          </button>
+          <button type="button" className="btn_ty01">
+            등록
           </button>
         </div>         
       </div>

@@ -62,7 +62,7 @@ export default function BannerSetting() {
               <input type="text" defaultValue="업로드일" readOnly />
               <ul className="select_box">
                 <li>업로드일</li>
-                <li>공개기한</li>
+                <li>공개 기한</li>
               </ul>
             </div>
             <div className="select_input input_ty02 wide">
@@ -166,9 +166,9 @@ export default function BannerSetting() {
               <col width={"80px"}/>
               <col width={"350px"}/>
               <col width={"200px"}/>
-              <col width={"200px"}/>
+              <col width={"150px"}/>
               <col width={"250px"}/>
-              <col width={"250px"}/>
+              <col width={"240px"}/>
               <col width={"300px"}/>
             </colgroup>
             <thead>

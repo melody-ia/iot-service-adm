@@ -1,7 +1,7 @@
 import { Lnb, CurrentBox, CheckBox } from "../../components/bundle_components";
 import { useState } from "react";
 import banner from "../../assets/img/banner.png";
-import arrowRightGreen from "../../assets/img/icon/angle_right_green.svg";
+import arrowRightGreen from "../../assets/img/icon/angle_up_green_fill.svg";
 import BannerRankingModal from "./BannerRankingModal";
 import plus from "../../assets/img/icon/border_plus.svg";
 
@@ -46,8 +46,8 @@ export default function BannerRanking() {
                 <td>메인 상단</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
-                  <button type="button" className="btn_up"><img src={arrowRightGreen} alt="" /></button>  
-                  <button type="button" className="btn_down"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_down"><img src={arrowRightGreen} alt="" /></button>  
                 </td> 
               </tr>
               <tr>
@@ -59,8 +59,8 @@ export default function BannerRanking() {
                 <td>메인 상단</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
-                  <button type="button" className="btn_up"><img src={arrowRightGreen} alt="" /></button>  
-                  <button type="button" className="btn_down"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_down"><img src={arrowRightGreen} alt="" /></button>  
                 </td> 
               </tr>
               <tr>
@@ -72,8 +72,8 @@ export default function BannerRanking() {
                 <td>메인 상단</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
-                  <button type="button" className="btn_up"><img src={arrowRightGreen} alt="" /></button>  
-                  <button type="button" className="btn_down"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_down"><img src={arrowRightGreen} alt="" /></button>  
                 </td> 
               </tr>
             </tbody>
@@ -112,8 +112,8 @@ export default function BannerRanking() {
                 <td>메인 상단</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
-                  <button type="button" className="btn_up"><img src={arrowRightGreen} alt="" /></button>  
-                  <button type="button" className="btn_down"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_down"><img src={arrowRightGreen} alt="" /></button>  
                 </td> 
               </tr>
             </tbody>
@@ -152,8 +152,8 @@ export default function BannerRanking() {
                 <td>메인 상단</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
-                  <button type="button" className="btn_up"><img src={arrowRightGreen} alt="" /></button>  
-                  <button type="button" className="btn_down"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_down"><img src={arrowRightGreen} alt="" /></button>  
                 </td> 
               </tr>
             </tbody>
@@ -192,8 +192,8 @@ export default function BannerRanking() {
                 <td>메인 상단</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
-                  <button type="button" className="btn_up"><img src={arrowRightGreen} alt="" /></button>  
-                  <button type="button" className="btn_down"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_down"><img src={arrowRightGreen} alt="" /></button>  
                 </td> 
               </tr>
             </tbody>
@@ -232,8 +232,8 @@ export default function BannerRanking() {
                 <td>메인 상단</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
-                  <button type="button" className="btn_up"><img src={arrowRightGreen} alt="" /></button>  
-                  <button type="button" className="btn_down"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_down"><img src={arrowRightGreen} alt="" /></button>  
                 </td> 
               </tr>
             </tbody>
@@ -272,8 +272,8 @@ export default function BannerRanking() {
                 <td>메인 상단</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
-                  <button type="button" className="btn_up"><img src={arrowRightGreen} alt="" /></button>  
-                  <button type="button" className="btn_down"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_down"><img src={arrowRightGreen} alt="" /></button>  
                 </td> 
               </tr>
             </tbody>
@@ -312,8 +312,8 @@ export default function BannerRanking() {
                 <td>메인 상단</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
-                  <button type="button" className="btn_up"><img src={arrowRightGreen} alt="" /></button>  
-                  <button type="button" className="btn_down"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_down"><img src={arrowRightGreen} alt="" /></button>  
                 </td> 
               </tr>
             </tbody>
@@ -352,8 +352,8 @@ export default function BannerRanking() {
                 <td>메인 상단</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
-                  <button type="button" className="btn_up"><img src={arrowRightGreen} alt="" /></button>  
-                  <button type="button" className="btn_down"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_down"><img src={arrowRightGreen} alt="" /></button>  
                 </td> 
               </tr>
             </tbody>
@@ -392,8 +392,8 @@ export default function BannerRanking() {
                 <td>메인 상단</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
-                  <button type="button" className="btn_up"><img src={arrowRightGreen} alt="" /></button>  
-                  <button type="button" className="btn_down"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
+                  <button type="button" className="btn_arrow btn_down"><img src={arrowRightGreen} alt="" /></button>  
                 </td> 
               </tr>
             </tbody>

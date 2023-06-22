@@ -52,9 +52,9 @@ export default function UserQnaHis() {
         <div className="filter_wrap d-flex"> 
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
-              <input type="text" defaultValue="최신 문의일 순" readOnly />
+              <input type="text" defaultValue="최근 문의일 순" readOnly />
               <ul className="select_box">
-                <li>최신 문의일 순</li>
+                <li>최근 문의일 순</li>
                 <li>오래된 문의일 순</li>
               </ul>
             </div>

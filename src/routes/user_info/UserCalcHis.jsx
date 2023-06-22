@@ -152,7 +152,7 @@ export default function UserCalcHis() {
                 <th className="num">NO</th>
                 <th>계산일</th>
                 <th colSpan={4}>계산 상세 내역</th>
-                <th>총 CO2발생량 (kg)</th>
+                <th>총 CO2 발생량 (kg)</th>
                 <th>소나무 (그루)</th>
               </tr>
             </thead>    
