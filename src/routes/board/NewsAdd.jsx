@@ -30,16 +30,13 @@ export default function NewsAdd() {
             </div>
             <div className="flex_box">
               <div className="input_ty02 flex_left">
-                <label htmlFor="">등록일</label>
-                <input type="text" placeholder="직접입력" defaultValue={"2023.05.08"} />
-              </div>
-              <div className="flex_right"></div>
-            </div>
-            <div className="flex_box">
-              <div className="input_ty02 flex_left w100">
                 <label htmlFor="">제목</label>
-                <input type="text" placeholder="직접입력" defaultValue={"신규 가입 이벤트 진행"}/>
-              </div>          
+                <input type="text" defaultValue={"신규 가입 이벤트 진행"}/>
+              </div>
+              <div className="input_ty02 flex_right">
+                <label htmlFor="">등록일</label>
+                <input type="text" placeholder="직접입력" defaultValue={"2023.05.08"}/>
+              </div>
             </div>
             <div className="flex_box">
               <div className="input_ty02 flex_left w100">

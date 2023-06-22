@@ -308,6 +308,14 @@
 
 // (공통) 게시판 관리 > 상세보기, 등록/수정
 .view_form {
+	.flex_box {		
+		label, .label {
+			max-width: 220px;
+		}
+	}
+	.flex_left, .flex_right {
+		max-width: 100%;
+	}
 	.w100 {
 		max-width: 100%;
 
@@ -364,7 +372,6 @@
 		transform: translateY(-60%);
 		color: var(--color-lightGray);
 	}
-
 	.file_box {
 		width: 100%;
 
@@ -378,11 +385,10 @@
 			}
 		}
 	}
-
 	&.add {
 		.file_box {
-			width: calc(95% - 250px);
-			margin: -20px 5% 30px auto;
+			width: calc(100% - 220px);
+			margin: -20px 0 30px auto;
 	
 			@include desktop-sm {
 				width: 100%;

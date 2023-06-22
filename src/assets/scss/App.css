@@ -982,6 +982,12 @@ body textarea::-webkit-scrollbar-track {
   border: 1px solid #eee;
 }
 
+.view_form .flex_box label, .view_form .flex_box .label {
+  max-width: 220px;
+}
+.view_form .flex_left, .view_form .flex_right {
+  max-width: 100%;
+}
 .view_form .w100 {
   max-width: 100%;
 }
@@ -1056,8 +1062,8 @@ body textarea::-webkit-scrollbar-track {
   padding-right: 30px;
 }
 .view_form.add .file_box {
-  width: calc(95% - 250px);
-  margin: -20px 5% 30px auto;
+  width: calc(100% - 220px);
+  margin: -20px 0 30px auto;
 }
 @media all and (max-width: 1200px) {
   .view_form.add .file_box {
