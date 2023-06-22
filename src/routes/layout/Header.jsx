@@ -13,10 +13,10 @@ export default function Header(props) {
         <input type="text" placeholder="Search" />
       </div>
       <div className="menu_wrap d-flex flex-ac">
-        <button type="button" className="menu_btn menu_btn_search" onClick={() => setShowSearch(!showSearch)}></button>
-        <button type="button" className="menu_btn menu_btn_logout"></button>
+        <button type="button" className="menu_btn menu_btn_search" onClick={() => setShowSearch(!showSearch)} title="검색"></button>
+        <button type="button" className="menu_btn menu_btn_logout" title="로그아웃"></button>
         {/* 알림 있을시 active 클래스 추가 */}
-        <button type="button" className="menu_btn menu_btn_alarm active"></button>
+        <button type="button" className="menu_btn menu_btn_alarm active" title="알림"></button>
         <p className="info_text">
           GREEN TALK <br /> <span>Admin</span>
         </p>
