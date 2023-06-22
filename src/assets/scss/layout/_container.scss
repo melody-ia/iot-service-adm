@@ -133,6 +133,15 @@
   .menu_wrap {
     flex: 0 0 auto;
 
+    & > * {
+      margin-left: 30px;
+
+      @include tablet {
+        margin-left: 20px;
+      }
+
+    }
+
     .menu_btn {
       width: 24px;
       height: 24px;
@@ -149,15 +158,9 @@
       }
       &_logout {
         background-image: url(../img/icon/logout.svg);
-        margin-left: 20px;
       }
       &_alarm {
         background-image: url(../img/icon/alarm.svg);
-        margin: 0 30px;
-
-        @include tablet {
-          margin: 0 20px;
-        }
 
         &.active {
           position: relative;

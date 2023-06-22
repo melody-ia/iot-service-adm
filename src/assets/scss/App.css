@@ -1694,6 +1694,14 @@ input, textarea {
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
 }
+.header .menu_wrap > * {
+  margin-left: 30px;
+}
+@media all and (max-width: 991px) {
+  .header .menu_wrap > * {
+    margin-left: 20px;
+  }
+}
 .header .menu_wrap .menu_btn {
   width: 24px;
   height: 24px;
@@ -1711,16 +1719,9 @@ input, textarea {
 }
 .header .menu_wrap .menu_btn_logout {
   background-image: url(../img/icon/logout.svg);
-  margin-left: 20px;
 }
 .header .menu_wrap .menu_btn_alarm {
   background-image: url(../img/icon/alarm.svg);
-  margin: 0 30px;
-}
-@media all and (max-width: 991px) {
-  .header .menu_wrap .menu_btn_alarm {
-    margin: 0 20px;
-  }
 }
 .header .menu_wrap .menu_btn_alarm.active {
   position: relative;
