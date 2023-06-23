@@ -5,7 +5,7 @@ import { ko } from "date-fns/esm/locale";
 import banner from "../../assets/img/banner.png";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import plus from "../../assets/img/icon/border_plus.svg";
-import search from "../../assets/img/icon/search.svg";
+import zoom from "../../assets/img/icon/zoomIn.svg";
 
 export default function BannerAdd() {  
   const [fixedDate] = useState(new Date());
@@ -77,7 +77,7 @@ export default function BannerAdd() {
                   <div className="btn_wrap">
                     <button type="button"><img src={plus} alt="" /></button>
                     {/* 새창으로 미리보기 */}
-                    <button type="button" className="btn_view"><img src={search} alt="" /></button>
+                    <button type="button" className="btn_view"><img src={zoom} alt="" /></button>
                   </div>
                 </th>
                 <td rowSpan={3}>
