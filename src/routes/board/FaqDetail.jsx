@@ -23,16 +23,13 @@ export default function NewsDetail() {
             </div>
             <div className="flex_box">
               <div className="input_ty02 flex_left">
-                <label htmlFor="">등록일</label>
-                <input type="text" defaultValue={"2023.05.08"} readOnly />
-              </div>
-              <div className="flex_right"></div>
-            </div>            
-            <div className="flex_box">
-              <div className="input_ty02 flex_left w100">
                 <label htmlFor="">제목</label>
                 <input type="text" defaultValue={"탄소발자국에 대해서 알려주세요"} readOnly/>
-              </div>          
+              </div>
+              <div className="input_ty02 flex_right">
+                <label htmlFor="">등록일</label>
+                <input type="text" placeholder="직접입력" defaultValue={"2023.05.08"} readOnly/>
+              </div>
             </div>
             <div className="flex_box">
               <div className="input_ty02 flex_left w100">

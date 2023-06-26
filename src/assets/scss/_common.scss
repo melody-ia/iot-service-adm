@@ -38,7 +38,7 @@ body {
 	width: 100%;
 }
 .align_left {
-	text-align: left;
+	text-align: left !important;
 }
 
 // button
@@ -232,6 +232,35 @@ body {
 			@include mobile {
 				font-size: 14px;
 			}
+
+			span {
+				padding-left: 35px;
+
+				&::before {
+					position: absolute;
+					left: 0;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+				&::after {
+					content: '';
+					position: absolute;
+					left: 5px;
+					top: 50%;
+					transform: translateY(-50%);
+					width: 14px;
+					height: 14px;
+					border-radius: 50%;
+					background: var(--color-green);
+					display: none;
+	
+					@include mobile {
+						width: 10px;
+						height: 10px;
+						left: 4px;
+					}
+				}
+			}
 		}
 		input:checked ~ span {
 			&::before {
@@ -239,21 +268,22 @@ body {
 				background-color: #fff;
 			}
 			&::after {
-				content: '';
-				position: absolute;
-				left: 5px;
-				top: 2px;
-				width: 14px;
-				height: 14px;
-				border-radius: 50%;
-				background: var(--color-green);
+				display: block;
+				// content: '';
+				// position: absolute;
+				// left: 5px;
+				// top: 2px;
+				// width: 14px;
+				// height: 14px;
+				// border-radius: 50%;
+				// background: var(--color-green);
 
-				@include mobile {
-					width: 10px;
-					height: 10px;
-					left: 4px;
-					top: 5px;
-				}
+				// @include mobile {
+				// 	width: 10px;
+				// 	height: 10px;
+				// 	left: 4px;
+				// 	top: 4px;
+				// }
 			}
 		}
 
@@ -423,7 +453,7 @@ body {
 			background: #f5f5f5;
 		}
 
-		@include mobile {
+		@include tablet {
 			font-size: 14px;
 		}
 	}

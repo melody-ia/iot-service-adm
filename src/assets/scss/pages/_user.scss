@@ -68,26 +68,10 @@
 
 // 1:1 문의 내역
 .user_history_qna {
-  @include desktop {
-    .filter_wrap {
-      flex-wrap: wrap;
-
-      .select_input_wrap {
-        width: 50%;
-        margin-bottom: 10px;
-
-        .input_ty02 {
-          width: 100%;
-          max-width: 100%;
-        }
-      }
-    }
-  }
   @include mobile {
     .filter_wrap {
       .select_input_wrap {
-        width: 100%;
-        margin-bottom: 0;
+        flex-direction: column;
       }
     }
   }
@@ -96,31 +80,6 @@
 // 1:1 문의 상세 내역
 .user_history_qna_detail {
   .table {
-    .align_left input {
-      text-align: left;
-    }
-    .radio_box {
-      :first-child {
-        margin-right: 5px;
-      }
-
-      .check_type.radio span {
-        font-size: 14px;
-  
-        &::before {
-          width: 18px;
-          height: 18px;
-          margin-right: 10px;
-        }
-        &::after {
-          width: 10px;
-          height: 10px;
-          top: 4px;
-          left: 4px;
-        }
-      }
-    }
-  
     textarea {
       resize: none;
       min-height: 120px;

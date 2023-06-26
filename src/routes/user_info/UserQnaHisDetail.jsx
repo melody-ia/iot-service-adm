@@ -59,7 +59,7 @@ export default function UserQnaHisDetail() {
                 <th>비고</th>
                 <td colSpan={7}>
                   <div className="input_ty02 align_left">
-                    <input type="text" placeholder="직접입력" defaultValue={"블랙리스트"}/>
+                    <input type="text" placeholder="직접입력" className="align_left" defaultValue={"블랙리스트"}/>
                   </div>
                 </td>
               </tr>

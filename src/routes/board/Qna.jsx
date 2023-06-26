@@ -46,7 +46,7 @@ export default function Qna() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox mod={true} del={true} down={true} tit="1:1문의 리스트" />
-      <div className="qna board_list box_ty01 table_type">
+      <div className="qna box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">

@@ -52,21 +52,10 @@
         margin-bottom: 22px;
         display: flex;
         align-items: center;
-        transition: all .2s;
-
-        &_text {
-          opacity: 0;
-          visibility: hidden;
-          font-weight: 500;
-          padding-left: 10px;
-          white-space: nowrap;
-        }        
-
-        &_icon {
-          width: 18px;
-          height: 18px;
-          flex: 0 0 auto;
-        }
+        background: url(../img/icon/menu_user.svg) no-repeat left 10px center;
+        font-weight: 500;
+        font-size: 0;
+        white-space: nowrap;
 
         &::after {
           content: "";
@@ -79,7 +68,18 @@
           background: url(../img/icon/angle_down_w.svg) no-repeat center;
           opacity: 0;
           visibility: hidden;
-          transition: all .2s, opacity .1s;
+        }
+
+        &.active {     
+          background-color: #060F20;
+
+          &::after {
+            transform: translateY(-50%) rotate(180deg);
+          }        
+        }
+  
+        &:hover {
+          background-color: #060F20;
         }
       }
       .sub_menu_list {
@@ -107,27 +107,36 @@
           }
         }
       }
-
-      &.active {
+      
+      &.event {
         .list_btn {
-          background-color: #060F20;
+          background-image: url(../img/icon/menu_event.svg);
+        }
+      } 
+      &.calc {
+        .list_btn {
+          background-image: url(../img/icon/menu_calc.svg);
 
           &::after {
-            transform: translateY(-50%) rotate(180deg);
+            display: none !important;
           }
         }
-      }
-
-      &:hover {
+      } 
+      &.point {
         .list_btn {
-          background-color: #060F20;
+          background-image: url(../img/icon/menu_point.svg);
         }
-      }
-      &.calc {
-        .list_btn::after {
-          display: none !important;
+      } 
+      &.board {
+        .list_btn {
+          background-image: url(../img/icon/menu_board.svg);
         }
-      }
+      } 
+      &.device {
+        .list_btn {
+          background-image: url(../img/icon/menu_device.svg);
+        }
+      } 
     }
   }
 
@@ -139,22 +148,23 @@
       .list_btn {
         width: 100%;
         padding-right: 30px;
+        font-size: 16px;
+        padding-left: 38px;
 
-        &::after,
-        &_text {
+        &::after {
           opacity: 1;
           visibility: visible;
         }
         &::after {
           transition: opacity .5s;
         }
-      }
 
-      &.active {
-        .sub_menu_list {
-          display: block;
+        &.active {
+          & + .sub_menu_list {
+            display: block;
+          }
         }
-      }
+      }      
     }
   }
 }

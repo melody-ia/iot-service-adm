@@ -136,10 +136,10 @@ export default function UserStempHis() {
                 </div>
               </DatePicker>
             </div>
-            <button type="button" className="btn_ty01 btn_search">
-            검색
-            </button>
           </div>
+          <button type="button" className="btn_ty01 btn_search">
+            검색
+          </button>
         </div>
         <div className="table_wrap line">
           <table className="table">      

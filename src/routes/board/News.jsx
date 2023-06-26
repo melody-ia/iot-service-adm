@@ -46,7 +46,7 @@ export default function News() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox add={true} mod={true} del={true} down={true} tit="이벤트/뉴스 리스트" />
-      <div className="news board_list box_ty01 table_type">
+      <div className="news box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
@@ -158,7 +158,8 @@ export default function News() {
               <col width={"120px"} />
               <col width={"400px"} />
               <col width={"150px"} />
-              <col width={"230px"} />
+              <col width={"240px"} />
+              <col width={"100px"} />
               <col width={"250px"} />
             </colgroup>
             <thead>
@@ -171,6 +172,7 @@ export default function News() {
                 <th>제목</th>
                 <th>등록일</th>
                 <th>공개여부</th>
+                <th>종료여부</th>
                 <th>비고</th>
               </tr>
             </thead>    
@@ -191,6 +193,9 @@ export default function News() {
                     </div>
                   </div>
                 </td> 
+                <td>
+                  <CheckBox for="check" id="check" />
+                </td>
                 <td>
                   <div className="input_ty02">
                     <input type="text" placeholder={"직접 입력"}/>
@@ -213,6 +218,9 @@ export default function News() {
                     </div>
                   </div>
                 </td> 
+                <td>
+                  <CheckBox for="check" id="check" disabled />
+                </td>
                 <td>
                   <div className="input_ty02">
                     <input type="text" placeholder={"직접 입력"}/>

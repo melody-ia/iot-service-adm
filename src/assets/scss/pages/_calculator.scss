@@ -1,24 +1,9 @@
+// 탄수 발 자국 계산 내역 리스트
 .calc_list {
-  @include desktop {
-    .filter_wrap {
-      flex-wrap: wrap;
-
-      .select_input_wrap {
-        width: 50%;
-        margin-bottom: 10px;
-
-        .input_ty02 {
-          width: 100%;
-          max-width: 100%;
-        }
-      }
-    }
-  }
   @include mobile {
     .filter_wrap {
       .select_input_wrap {
-        width: 100%;
-        margin-bottom: 0;
+        flex-direction: column;
       }
     }
   }

@@ -273,7 +273,16 @@ export default function ChallengeList() {
                 <td>200,000</td>
                 <td>1,000,000</td>
                 <td>1,000,000</td>
-                <td>진행중</td>
+                <td>
+                  <div className="select_input input_ty02">
+                    <input type="text" defaultValue="진행중" readOnly />
+                    <ul className="select_box">
+                      <li>진행중</li>
+                      <li>진행중지</li>
+                      <li>진행완료</li>
+                    </ul>
+                  </div>
+                </td>
               </tr>
               <tr>
                 <td className="check">
@@ -292,7 +301,16 @@ export default function ChallengeList() {
                 <td>200,000</td>
                 <td>1,000,000</td>
                 <td>1,000,000</td>
-                <td>진행완료</td>
+                <td>
+                  <div className="select_input input_ty02">
+                    <input type="text" defaultValue="진행중지" readOnly />
+                    <ul className="select_box">
+                      <li>진행중</li>
+                      <li>진행중지</li>
+                      <li>진행완료</li>
+                    </ul>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>

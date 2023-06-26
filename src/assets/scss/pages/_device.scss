@@ -28,21 +28,5 @@
     .check_type {
       margin-bottom: 5px;
     }
-  }
-
-  @include desktop {
-    .filter_wrap {
-      flex-direction: column;
-
-      .input_ty02 {
-        margin-bottom: 10px;
-        max-width: 100%;
-        width: 100%;
-
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-    }
-  }
+  } 
 }

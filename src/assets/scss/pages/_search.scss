@@ -12,11 +12,20 @@
     }
     li:not(.sh_tit) {
       margin-bottom: 5px;
+      
+      @include mobile {
+        font-size: 14px;
+      }
     }
   }
   .sh_tit {
     font-size: 18px;
-    margin-bottom: 18px;
+    margin-bottom: 15px;
+
+    @include mobile {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
   }
   .match_text {
     color: var(--color-green);

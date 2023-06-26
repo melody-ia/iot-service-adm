@@ -12,13 +12,7 @@ export default function NewsDetail() {
             <div className="flex_box">
               <div className="input_ty02 flex_left">
                 <label htmlFor="">구분</label>
-                <div className="select_input input_ty02">
-                  <input type="text" defaultValue="이벤트" readOnly />
-                  <ul className="select_box">
-                    <li>이벤트</li>
-                    <li>뉴스</li>
-                  </ul>
-                </div>
+                <input type="text" defaultValue="이벤트" readOnly />
               </div>
               <div className="flex_right">
                 <label htmlFor="">공개여부</label>
@@ -30,16 +24,13 @@ export default function NewsDetail() {
             </div>
             <div className="flex_box">
               <div className="input_ty02 flex_left">
+                <label htmlFor="">제목</label>
+                <input type="text" defaultValue={"신규 가입 이벤트 진행"} readOnly/>
+              </div>
+              <div className="input_ty02 flex_right">
                 <label htmlFor="">등록일</label>
                 <input type="text" placeholder="직접입력" defaultValue={"2023.05.08"} readOnly/>
               </div>
-              <div className="flex_right"></div>
-            </div>
-            <div className="flex_box">
-              <div className="input_ty02 flex_left w100">
-                <label htmlFor="">제목</label>
-                <input type="text" defaultValue={"신규 가입 이벤트 진행"} readOnly/>
-              </div>          
             </div>
             <div className="flex_box">
               <div className="input_ty02 flex_left w100">

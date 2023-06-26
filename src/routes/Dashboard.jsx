@@ -45,7 +45,7 @@ export default function Dashboard() {
       </div>
       <div className="row row2">
         <div className="box_ty01 graph_ty01">
-          <div className="box_head d-flex flex-ac flex-js">
+          <div className="box_head d-flex flex-js">
             <h4 className="tit">TEXT</h4>
             <button className="dot_menu"></button>
           </div>
@@ -65,7 +65,7 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="box_ty01 graph_ty02">
-          <div className="box_head d-flex flex-ac flex-js">
+          <div className="box_head d-flex flex-js">
             <h4 className="tit">TEXT</h4>
             <button className="dot_menu"></button>
           </div>
@@ -74,7 +74,7 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="box_ty01 graph_ty03">
-          <div className="box_head d-flex flex-ac flex-js">
+          <div className="box_head d-flex flex-js">
             <h4 className="tit">TEXT</h4>
             <button className="dot_menu"></button>
           </div>
@@ -86,7 +86,7 @@ export default function Dashboard() {
       <div className="row row3">
         <div className="table_wrap box_ty01">
           <div className="table_type">
-            <div className="box_head d-flex flex-ac flex-js">
+            <div className="box_head d-flex flex-js">
               <h4 className="tit">TEXT</h4>
               <button className="dot_menu"></button>
             </div>
