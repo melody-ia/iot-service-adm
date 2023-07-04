@@ -87,7 +87,7 @@ export default function Dashboard() {
         <div className="table_wrap box_ty01">
           <div className="table_type">
             <div className="box_head d-flex flex-js">
-              <h4 className="tit">TEXT</h4>
+              <h4 className="tit">신규 가입 회원</h4>
               <button className="dot_menu"></button>
             </div>
             <table className="table">
@@ -154,7 +154,7 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="bar_graph box_ty01">
-          <h4 className="tit">주간 방문자 수</h4>
+          <h4 className="tit">주간 방문자 수<button className="dot_menu"></button></h4>
         <ChartColumn />
         </div>
       </div>

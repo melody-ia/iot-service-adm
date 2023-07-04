@@ -445,7 +445,7 @@ body textarea::-webkit-scrollbar-track {
 .select_input::before {
   content: "";
   position: absolute;
-  right: 10px;
+  right: 18px;
   top: 10px;
   background: url(../img/icon/angle_down.svg);
   width: 20px;
@@ -1463,12 +1463,12 @@ input, textarea {
 .side_menu_list .btn_wrap .list_btn::after {
   content: "";
   position: absolute;
-  right: 10px;
+  right: 15px;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 11px;
+  height: 8px;
   background: url(../img/icon/angle_down_w.svg) no-repeat center;
   opacity: 0;
   visibility: hidden;
@@ -1641,7 +1641,7 @@ input, textarea {
 }
 .header .search_wrap {
   width: 100%;
-  max-width: 816px;
+  max-width: 532px;
   margin-right: 50px;
 }
 @media all and (max-width: 991px) {
@@ -1817,7 +1817,7 @@ input, textarea {
 .current_box .current_tit {
   font-weight: 500;
   font-size: 18px;
-  padding-left: 16px;
+  padding-left: 21px;
   position: relative;
   color: #1C2434;
 }
@@ -2107,6 +2107,10 @@ input, textarea {
   color: red;
 }
 
+.user_list .table_wrap td {
+  font-size: 14px;
+}
+
 .dashboard .box_ty01 {
   padding: 24px 18px;
   width: 100%;
@@ -2206,9 +2210,16 @@ input, textarea {
   color: var(--color-lightGray);
   font-size: 14px;
   margin-bottom: 0;
+  margin-bottom: 5px;
+}
+@media all and (max-width: 480px) {
+  .dashboard .row1 .tit {
+    margin-bottom: 0;
+  }
 }
 .dashboard .row1 strong {
   font-size: 24px;
+  line-height: 1;
 }
 @media all and (max-width: 991px) {
   .dashboard .row1 strong {
@@ -2265,7 +2276,7 @@ input, textarea {
   display: block;
   font-weight: 500;
   font-size: 14px;
-  margin: 20px 0;
+  margin: 22px 0 20px;
 }
 .dashboard .row2 .graph_ty01 .box_body_left strong {
   font-size: 32px;
@@ -2273,6 +2284,7 @@ input, textarea {
 .dashboard .row2 .graph_ty01 .box_body_left .figure_wrap {
   font-size: 14px;
   letter-spacing: -0.02em;
+  margin-top: 5px;
 }
 .dashboard .row2 .graph_ty01 .box_body_left .figure_wrap .up {
   font-weight: 500;
@@ -2283,6 +2295,7 @@ input, textarea {
 .dashboard .table_wrap {
   width: calc(80% - 26px);
   margin-right: 26px;
+  padding: 24px 18px 40px;
 }
 @media all and (max-width: 1440px) {
   .dashboard .table_wrap {
@@ -2299,13 +2312,34 @@ input, textarea {
   border: none;
 }
 .dashboard .table_wrap .table_type .table th {
-  font-size: 15px;
+  font-size: 16px;
 }
 .dashboard .table_wrap .table_type .table td {
   font-size: 14px;
 }
 .dashboard .bar_graph {
   width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.dashboard .bar_graph h4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 @media all and (max-width: 1440px) {
   .dashboard .bar_graph {
@@ -2313,7 +2347,7 @@ input, textarea {
   }
 }
 .dashboard .bar_graph .tit {
-  margin-bottom: 50px;
+  margin-bottom: 0;
 }
 
 .ch_list_detail .arrow_right {

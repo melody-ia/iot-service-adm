@@ -157,7 +157,7 @@ export default function UserList() {
                 <th className="email">이메일</th>
                 <th className="phone">휴대폰 번호</th>
                 <th className="joinDate">가입일</th>
-                <th className="active">계정활성화 여부</th>
+                <th className="active">계정활성화여부</th>
                 <th className="etc">비고</th>
               </tr>
             </thead>

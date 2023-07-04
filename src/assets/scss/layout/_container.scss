@@ -93,7 +93,8 @@
 
   .search_wrap {
     width: 100%;
-    max-width: 816px;
+    // max-width: 816px;
+    max-width:532px;
     margin-right: 50px;
 
     @include tablet {

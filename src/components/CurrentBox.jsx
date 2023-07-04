@@ -7,7 +7,7 @@ export default function CurrentBox(props) {
     ["등록", "add"],
     ["수정", "mod"],
     ["삭제", "del"],
-    ["액셀 다운로드", "down"],
+    ["엑셀 다운로드", "down"],
   ];
   return (
     <div className="current_box d-flex flex-ac flex-js box_ty01">

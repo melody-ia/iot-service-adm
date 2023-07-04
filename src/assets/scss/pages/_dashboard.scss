@@ -94,10 +94,16 @@
       color: var(--color-lightGray);
       font-size: 14px;
       margin-bottom: 0;
+      margin-bottom:5px;
+
+      @include mobile-sm{
+        margin-bottom:0;
+      }
     }
 
     strong {
       font-size: 24px;
+      line-height:1;
 
       @include tablet {
         font-size: 18px;
@@ -159,7 +165,7 @@
           display: block;
           font-weight: 500;
           font-size: 14px;
-          margin: 20px 0;
+          margin: 22px 0 20px;
         }
         strong {
           font-size: 32px;
@@ -167,6 +173,7 @@
         .figure_wrap {
           font-size: 14px;
           letter-spacing: -0.02em;
+          margin-top:5px;
 
           .up {
             font-weight: 500;
@@ -182,6 +189,7 @@
   .table_wrap {
     width: calc(80% - 26px);
     margin-right: 26px;
+    padding:24px 18px 40px; 
 
     @include desktop {
       width: 100%;
@@ -198,7 +206,7 @@
           border: none;
         }
         th {
-          font-size: 15px;
+          font-size: 16px;
         }
         td {
           font-size: 14px;
@@ -209,13 +217,22 @@
 
   .bar_graph {
     width: 20%;
+    display:flex;
+    flex-flow:column;
+    justify-content:space-between;
+
+    h4{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
 
     @include desktop {
       width: 100%;
     }
 
     .tit {
-      margin-bottom: 50px;
+      margin-bottom: 0;
     }
   }
 }
