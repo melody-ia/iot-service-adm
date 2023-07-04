@@ -2107,7 +2107,8 @@ input, textarea {
   color: red;
 }
 
-.user_list .table_wrap td {
+.user_list .table_wrap td,
+.deleted_user_list .table_wrap td {
   font-size: 14px;
 }
 
