@@ -1838,8 +1838,10 @@ input, textarea {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
-.current_box .setting_btn_wrap .btn_ty01 {
-  margin-top: 15px;
+@media all and (max-width: 768px) {
+  .current_box .setting_btn_wrap .btn_ty01 {
+    margin-top: 15px;
+  }
 }
 
 #pagination {

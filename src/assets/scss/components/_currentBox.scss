@@ -30,9 +30,12 @@
       transform: translateY(-50%);
     }
   }
-  .setting_btn_wrap {
-    .btn_ty01 {
-      margin-top: 15px;
+
+  @include mobile {
+    .setting_btn_wrap {
+      .btn_ty01 {
+        margin-top: 15px; 
+      }
     }
   }
 }
