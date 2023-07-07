@@ -11,7 +11,7 @@ export default function CurrentBox(props) {
   ];
   return (
     <div className="current_box d-flex flex-ac flex-js box_ty01">
-      <h3 className="current_tit">{props.tit}</h3>
+      {!props.hideTit&&<h3 className="current_tit">{props.tit}</h3>}
       <div className="setting_btn_wrap d-flex flex-ac">
         {btnList.map((el, idx) => {
           if (props[el[1]])
@@ -25,3 +25,4 @@ export default function CurrentBox(props) {
     </div>
   );
 }
+

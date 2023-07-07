@@ -2,8 +2,10 @@ import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
-import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import { Link, useParams } from "react-router-dom";
+import { useSelectBox } from "../../hooks/bundle_hooks";
+
+import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 
 export default function Faq() {
   const { id } = useParams();
@@ -42,6 +44,20 @@ export default function Faq() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    signUp_state : false,
+    faq_sort : false,
+    open_state : false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    signUp_state : '최근 등록일 순',
+    faq_sort : '구분',
+    open_state : '공개여부',
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
   return (
     <>
       <Lnb lnbType="board" />
@@ -49,31 +65,41 @@ export default function Faq() {
       <div className="faq box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('signUp_state')}}>
               <input type="text" defaultValue="최근 등록일 순" readOnly />
-              <ul className="select_box">
-                <li>최근 등록일 순</li>
-                <li>오래된 등록일 순</li>
-              </ul>
+              {selectList.signUp_state && (
+                <ul className="select_box">
+                  {['최근 등록일 순', '오래된 등록일 순', '지급중지', '지급종료'].map((signUpState, index) => {
+                    return (
+                      <li key={signUpState} data-value={signUpState} data-type="signUp_state" onClick={searchOptionSel}>{signUpState}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('faq_sort')}}>
               <input type="text" defaultValue="구분" readOnly />
-              <ul className="select_box">
-                <li>구분</li>
-                <li>탄소발자국</li>
-                <li>챌린지</li>         
-                <li>랭킹</li>         
-                <li>회원</li>         
-                <li>기타</li>         
-              </ul>
+              {selectList.faq_sort && (
+                <ul className="select_box">
+                  {['구분', '탄소발자국', '챌린지', '랭킹', '회원', '기타'].map((faqSort, index) => {
+                    return (
+                      <li key={faqSort} data-value={faqSort} data-type="faq_sort" onClick={searchOptionSel}>{faqSort}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>           
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('open_state')}}>
               <input type="text" defaultValue="공개여부" readOnly />
-              <ul className="select_box">
-                <li>공개여부</li>
-                <li>공개</li>
-                <li>비공개</li>         
-              </ul>
+              {selectList.open_state && (
+                <ul className="select_box">
+                  {['공개여부', '공개', '비공개'].map((openState, index) => {
+                    return (
+                      <li key={openState} data-value={openState} data-type="open_state" onClick={searchOptionSel}>{openState}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>           
           </div>            
           <div className="date_input_wrap d-flex">
@@ -167,7 +193,7 @@ export default function Faq() {
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th className="num">NO</th>
                 <th>구분</th>
@@ -180,7 +206,7 @@ export default function Faq() {
             <tbody>            
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td className="num">2</td>
                 <td>탄소발자국</td>
@@ -202,7 +228,7 @@ export default function Faq() {
               </tr>                                              
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td className="num">1</td>
                 <td>챌린지</td>
@@ -225,20 +251,7 @@ export default function Faq() {
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg add">
-            등록
-          </button>
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+        <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} />
         <Pagination />
       </div>
     </>

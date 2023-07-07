@@ -2,6 +2,9 @@ import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
+import { useSelectBox } from "../../hooks/bundle_hooks";
+import { useNavigate } from "react-router-dom";
+
 import banner from "../../assets/img/banner.png";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import plus from "../../assets/img/icon/border_plus.svg";
@@ -42,6 +45,18 @@ export default function PopupAdd() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    popup_loaction : false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    popup_loaction : '메인'
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
+  const history = useNavigate();
+
   return(
     <>
       <Lnb lnbType="event" />
@@ -80,22 +95,17 @@ export default function PopupAdd() {
               <tr>
                 <th>팝업 위치</th>
                 <td>
-                  <div className="select_input input_ty02">
+                  <div className="select_input input_ty02" onClick={() => {handleSelectBox("popup_loaction")}}>
                     <input type="text" defaultValue="메인" readOnly />
-                    <ul className="select_box">
-                      <li>메인</li>
-                      <li>데일리 챌린지 리스트</li>
-                      <li>탄소중립실천랭킹</li>
-                      <li>탄소발자국계산기</li>
-                      <li>이벤트/뉴스 리스트</li>
-                      <li>GL 추천제품</li>
-                      <li>마이페이지 개인정보수정</li>
-                      <li>MY 챌린지 현황</li>
-                      <li>MY 챌린지 적립 내역</li>
-                      <li>MY 발자국 계산 내역</li>
-                      <li>MY 랭킹 현황</li>
-                      <li>MY ECO Point</li>
-                    </ul>
+                    {selectList.popup_loaction && (
+                      <ul className="select_box">
+                        {['메인', '데일리 챌린지 리스트', '탄소중립실천랭킹', '탄소발자국계산기', '이벤트/뉴스 리스트', 'GL 추천제품', '마이페이지 개인정보수정', 'MY 챌린지 현황', 'MY 챌린지 적립 내역', 'MY 발자국 계산 내역', 'MY 랭킹 현황', 'MY ECO Point'].map((popupLoaction, index) => {
+                          return (
+                            <li key={popupLoaction} data-value={popupLoaction} datat-type="popupLoaction" onClick={searchOptionSel}>{popupLoaction}</li>
+                          )
+                        })}
+                      </ul>
+                    )}
                   </div>
                 </td>
               </tr>              
@@ -209,7 +219,7 @@ export default function PopupAdd() {
           </table>
         </div>
         <div className="bottom_btn_wrap">
-          <button type="button" className="btn_ty01 cancel">
+          <button type="button" className="btn_ty01 cancel" onClick={() => history(-1)}>
             취소
           </button>
           <button type="button" className="btn_ty01">

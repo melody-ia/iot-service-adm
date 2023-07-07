@@ -4,6 +4,7 @@ import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../component
 import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import { Link, useParams } from "react-router-dom";
+import { useSelectBox } from "../../hooks/bundle_hooks";
 
 export default function News() {
   const { id } = useParams();
@@ -42,6 +43,20 @@ export default function News() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    signUp_date : false,
+    division_sort : false,
+    open_state : false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    signUp_date : '최근 등록일 순',
+    division_sort : '구분',
+    open_state : '공개여부',
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
   return (
     <>
       <Lnb lnbType="board" />
@@ -49,28 +64,41 @@ export default function News() {
       <div className="news box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('signUp_date')}}>
               <input type="text" defaultValue="최근 등록일 순" readOnly />
-              <ul className="select_box">
-                <li>최근 등록일 순</li>
-                <li>오래된 등록일 순</li>
-              </ul>
+              {selectList.signUp_date && (
+                <ul className="select_box">
+                  {['최근 등록일 순', '오래된 등록일 순'].map((signUpDate, index) => {
+                    return (
+                      <li key={signUpDate} data-value={signUpDate} data-type="signUp_date" onClick={searchOptionSel}>{signUpDate}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('division_sort')}}>
               <input type="text" defaultValue="구분" readOnly />
-              <ul className="select_box">
-                <li>구분</li>
-                <li>이벤트</li>
-                <li>뉴스</li>         
-              </ul>
+              {selectList.division_sort && (
+                <ul className="select_box">
+                  {['구분', '이벤트', '뉴스'].map((divisionSort, index) => {
+                    return (
+                      <li key={divisionSort} data-value={divisionSort} data-type="division_sort" onClick={searchOptionSel}>{divisionSort}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>           
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('open_state')}}>
               <input type="text" defaultValue="공개여부" readOnly />
-              <ul className="select_box">
-                <li>공개여부</li>
-                <li>공개</li>
-                <li>비공개</li>         
-              </ul>
+              {selectList.open_state && (
+                <ul className="select_box">
+                  {['공개여부', '공개', '비공개'].map((openState, index) => {
+                    return (
+                      <li key={openState} data-value={openState} data-type="open_state" onClick={searchOptionSel}>{openState}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>           
           </div>            
           <div className="date_input_wrap d-flex">
@@ -165,7 +193,7 @@ export default function News() {
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th className="num">NO</th>
                 <th>구분</th>
@@ -179,7 +207,7 @@ export default function News() {
             <tbody>            
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1_1" id="wr_1_1" name="wr_1" />
                 </td>
                 <td className="num">2</td>
                 <td>이벤트</td>
@@ -194,7 +222,7 @@ export default function News() {
                   </div>
                 </td> 
                 <td>
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1_2" id="wr_1_2" name="wr_1" />
                 </td>
                 <td>
                   <div className="input_ty02">
@@ -204,7 +232,7 @@ export default function News() {
               </tr>                                              
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2_1" id="wr_2_1" name="wr_2" />
                 </td>
                 <td className="num">1</td>
                 <td>뉴스</td>
@@ -219,7 +247,7 @@ export default function News() {
                   </div>
                 </td> 
                 <td>
-                  <CheckBox for="check" id="check" disabled />
+                  <CheckBox for="wr_2_2" id="wr_2_2" name="wr_2" />
                 </td>
                 <td>
                   <div className="input_ty02">
@@ -230,20 +258,7 @@ export default function News() {
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg add">
-            등록
-          </button>
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+        <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} />
         <Pagination />
       </div>
     </>

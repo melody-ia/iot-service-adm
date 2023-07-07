@@ -2,10 +2,13 @@ import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
+import { useSelectBox } from "../../hooks/bundle_hooks";
+
 import banner from "../../assets/img/banner.png";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import plus from "../../assets/img/icon/border_plus.svg";
 import zoom from "../../assets/img/icon/zoomIn.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function BannerAdd() {  
   const [fixedDate] = useState(new Date());
@@ -43,11 +46,23 @@ export default function BannerAdd() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    banner_location : false
+  });
+  const [searchOption, setSearchOption] = useState({
+    banner_location : '전체'
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
+  const history = useNavigate();
+
   return(
     <>
       <Lnb lnbType="event" />
       <CurrentBox mod={true} del={true} tit="배너 등록/수정"/>
-      <div className="banner_add box_ty01 table_type add_type">
+      <div className="banner_add box_ty01 table_type add_type" >
         <div className="size_info">
           <h5 className="size_tit">배너 위치별 사이즈 안내</h5>
           <ul>
@@ -85,19 +100,17 @@ export default function BannerAdd() {
                 </td>
                 <th>배너 위치</th>
                 <td>
-                  <div className="select_input input_ty02">
+                  <div className="select_input input_ty02" onClick={() => {handleSelectBox("banner_location")}}>
                     <input type="text" defaultValue="메인 상단" readOnly />
-                    <ul className="select_box">
-                      <li>메인 상단</li>
-                      <li>메인 중간</li>
-                      <li>카테고리</li>
-                      <li>데일리 발자국 챌린지 리스트 상단</li>
-                      <li>데일리 발자국 챌린지 글쓰기 상단</li>
-                      <li>탄소중립랭킹 중간</li>
-                      <li>탄소중립랭킹 하단</li>
-                      <li>이벤트/뉴스 상단</li>
-                      <li>GL 추천 제품</li>
-                    </ul>
+                    {selectList.banner_location && (
+                      <ul className="select_box">
+                        {['메인 상단', '메인 중간', '카테고리', '데일리 발자국 챌린지 리스트 상단', '데일리 발자국 챌린지 글쓰기 상단', '데일리 발자국 챌린지 리스트 상단', '탄소중립랭킹 중간', '탄소중립랭킹 하단', '이벤트/뉴스 상단', 'GL 추천 제품'].map((bannerLocation, index) => {
+                          return (
+                            <li key={bannerLocation} data-value={bannerLocation} data-type="banner_location" onClick={searchOptionSel}>{bannerLocation}</li>
+                          )
+                        })}
+                      </ul>  
+                    )}
                   </div>
                 </td>
               </tr>
@@ -211,7 +224,7 @@ export default function BannerAdd() {
           </table>
         </div>
         <div className="bottom_btn_wrap">
-          <button type="button" className="btn_ty01 cancel">
+          <button type="button" className="btn_ty01 cancel" onClick={() => history(-1)}>
             취소
           </button>
           <button type="button" className="btn_ty01">

@@ -4,6 +4,7 @@ import { Lnb, CurrentBox, Pagination, RadioBtn } from "../../components/bundle_c
 import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import { Link, useParams } from "react-router-dom";
+import { useSelectBox } from "../../hooks/bundle_hooks";
 
 export default function Qna() {
   const { id } = useParams();
@@ -42,6 +43,22 @@ export default function Qna() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    inquiry_order : false,
+    inquiry_date : false,
+    answer_state : false,
+    inquiry_sort : false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    inquiry_order : '전체',
+    inquiry_date : '문의일', 
+    answer_state : '답변여부',
+    inquiry_sort : '구분'
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
   return (
     <>
       <Lnb lnbType="board" />
@@ -49,42 +66,53 @@ export default function Qna() {
       <div className="qna box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('inquiry_order')}}>
               <input type="text" defaultValue="전체" readOnly />
-              <ul className="select_box">
-                <li>전체</li>
-                <li>최근 문의일 순</li>
-                <li>오래된 문의일 순</li>
-              </ul>
+              {selectList.inquiry_order && (
+                <ul className="select_box">
+                  {['전체', '최근 문의일 순', '오래된 문의일 순'].map((inquiryOrder, index) => {
+                    return (
+                      <li key={inquiryOrder} data-value={inquiryOrder} data-type="inquiry_order" onClick={searchOptionSel}>{inquiryOrder}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('inquiry_date')}}>
               <input type="text" defaultValue="문의일" readOnly />
-              <ul className="select_box">
-                <li>문의일</li>
-                <li>답변일</li>        
-              </ul>
+              {selectList.inquiry_date && (
+                <ul className="select_box">
+                  {['전체', '최근 문의일 순', '오래된 문의일 순'].map((inquiryDate, index) => {
+                    return (
+                      <li key={inquiryDate} data-value={inquiryDate} data-type="inquiry_date" onClick={searchOptionSel}>{inquiryDate}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>           
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('answer_state')}}>
               <input type="text" defaultValue="답변여부" readOnly />
-              <ul className="select_box">
-                <li>답변여부</li>
-                <li>답변완료</li>
-                <li>답변대기</li>         
-              </ul>
+              {selectList.answer_state && (
+                <ul className="select_box">
+                  {['답변여부', '답변완료', '답변대기'].map((answerState, index) => {
+                    return (
+                      <li key={answerState} data-value={answerState} data-type="answer_state" onClick={searchOptionSel}>{answerState}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>           
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('inquiry_sort')}}>
               <input type="text" defaultValue="구분" readOnly />
-              <ul className="select_box">
-                <li>구분</li>
-                <li>데일리 챌린지</li>
-                <li>프로모션/이벤트</li>    
-                <li>탄소발자국 계산기</li>     
-                <li>기기관리</li>     
-                <li>랭킹</li>     
-                <li>포인트</li>     
-                <li>회원</li>     
-                <li>기타</li>     
-              </ul>
+              {selectList.inquiry_sort && (
+                <ul className="select_box">
+                  {['구분', '데일리 챌린지', '프로모션/이벤트', '탄소발자국 계산기', '기기관리', '랭킹', '포인트', '회원', '기타'].map((inquirySort, index) => {
+                    return (
+                      <li key={inquirySort} data-value={inquirySort} data-type="inquiry_sort" onClick={searchOptionSel}>{inquirySort}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>           
           </div>            
           <div className="date_input_wrap d-flex">
@@ -221,17 +249,7 @@ export default function Qna() {
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+        <CurrentBox mod={true} del={true} down={true} hideTit={true} />
         <Pagination />
       </div>
     </>

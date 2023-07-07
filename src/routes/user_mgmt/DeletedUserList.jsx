@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
+import { useSelectBox } from "../../hooks/bundle_hooks";
 
 export default function DeletedUserList() {
   const [fixedDate] = useState(new Date());
@@ -41,6 +42,18 @@ export default function DeletedUserList() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    join_date: false,
+    account_date: false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    join_date: "최근 가입일 순",
+    account_date: "전체",
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
   return (
     <>
       <Lnb lnbType="user" />
@@ -48,19 +61,29 @@ export default function DeletedUserList() {
       <div className="deleted_user_list box_ty01 table_type">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox("join_date")}}>
               <input type="text" defaultValue="최근 가입일 순" readOnly />
-              <ul className="select_box">
-                <li>최근 가입일 순</li>
-                <li>오래된 가입일 순</li>
-              </ul>
+              {selectList.join_date && (
+                <ul className="select_box">
+                  {["최근 가입일 순", "오래된 가입일 순"].map((joinDate, index) => {
+                    return (
+                      <li key={joinDate} data-type="join_date" data-value={joinDate} onClick={searchOptionSel}>{joinDate}</li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox("account_date")}}>
               <input type="text" defaultValue="가입일" readOnly />
-              <ul className="select_box">
-                <li>가입일</li>
-                <li>탈퇴/삭제일</li>
-              </ul>
+              {selectList.account_date && (
+                <ul className="select_box">
+                  {["가입일", "탈퇴/삭제일"].map((accountDate, index) => {
+                    return (
+                      <li key={accountDate} data-type="account_date" data-value={accountDate} onClick={searchOptionSel}>{accountDate}</li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>
           </div>
           <div className="date_input_wrap d-flex">
@@ -181,7 +204,7 @@ export default function DeletedUserList() {
                 <td className="phone">010-1111-1111</td>
                 <td className="joinDate">2023.05.08</td>
                 <td className="active">2023.05.08 </td>
-                <td className="etc input_ty02">
+                <td className="etc input_ty02 userlist">
                   <input type="text" placeholder="직접입력"/>
                 </td>
               </tr>
@@ -205,24 +228,14 @@ export default function DeletedUserList() {
                 <td className="phone">010-1111-1111</td>
                 <td className="joinDate">2023.05.08</td>
                 <td className="active">2023.05.08 </td>
-                <td className="etc input_ty02">
+                <td className="etc input_ty02 userlist">
                   <input type="text" placeholder="직접입력"/>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg res">
-            복원
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+        <CurrentBox res={true} del={true} down={true} hideTit={true} />
         <Pagination />
       </div>
     </>

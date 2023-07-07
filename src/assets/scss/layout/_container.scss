@@ -93,8 +93,8 @@
 
   .search_wrap {
     width: 100%;
-    // max-width: 816px;
-    max-width:532px;
+    max-width: 816px;
+    // max-width:532px;
     margin-right: 50px;
 
     @include tablet {
@@ -198,12 +198,14 @@
   top: 80px;
   line-height: 60px;
   border-top: 1px solid #EBEFF2;
-  padding-left: 0;
+  // padding-left: 0;
   padding-right: 0;
   box-shadow: 0 0 6px 0 rgba(0,0,0,0.08);
+  padding-left:25px;
 
   @include tablet {
     top: 60px;
+    padding-left:0;
   }
 
   &_tab_slide {

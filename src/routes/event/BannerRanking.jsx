@@ -27,7 +27,7 @@ export default function BannerRanking() {
             <thead>
               <tr>
                 <th className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </th>
                 <th>순서</th>
                 <th>배너 이미지</th>
@@ -39,7 +39,7 @@ export default function BannerRanking() {
             <tbody>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1_1" id="wr_1_1" name="wr_1_1" />
                 </td>
                 <td>1</td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
@@ -52,7 +52,7 @@ export default function BannerRanking() {
               </tr>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1_2" id="wr_1_2" name="wr_1_2" />
                 </td>
                 <td>2</td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
@@ -65,7 +65,7 @@ export default function BannerRanking() {
               </tr>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1_3" id="wr_1_3" name="wr_1_3" />
                 </td>
                 <td>3</td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
@@ -93,7 +93,7 @@ export default function BannerRanking() {
             <thead>
               <tr>
                 <th className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </th>
                 <th>순서</th>
                 <th>배너 이미지</th>
@@ -105,11 +105,11 @@ export default function BannerRanking() {
             <tbody>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2_1" id="wr_2_1" name="wr_2_1" />
                 </td>
                 <td>1</td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
-                <td>메인 상단</td>          
+                <td>메인 중간</td>          
                 <td>2023.05.08 – 2023.07.08</td>         
                 <td>
                   <button type="button" className="btn_arrow btn_up"><img src={arrowRightGreen} alt="" /></button>  
@@ -133,7 +133,7 @@ export default function BannerRanking() {
             <thead>
               <tr>
                 <th className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_3" id="wr_3" name="wr_3" />
                 </th>
                 <th>순서</th>
                 <th>배너 이미지</th>
@@ -145,7 +145,7 @@ export default function BannerRanking() {
             <tbody>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_3_1" id="wr_3_1" name="wr_3_1" />
                 </td>
                 <td>1</td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
@@ -173,7 +173,7 @@ export default function BannerRanking() {
             <thead>
               <tr>
                 <th className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_4" id="wr_4" name="wr_4" />
                 </th>
                 <th>순서</th>
                 <th>배너 이미지</th>
@@ -185,7 +185,7 @@ export default function BannerRanking() {
             <tbody>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_4_1" id="wr_4_1" name="wr_4_1" />
                 </td>
                 <td>1</td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
@@ -213,7 +213,7 @@ export default function BannerRanking() {
             <thead>
               <tr>
                 <th className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_5" id="wr_5" name="wr_5" />
                 </th>
                 <th>순서</th>
                 <th>배너 이미지</th>
@@ -225,7 +225,7 @@ export default function BannerRanking() {
             <tbody>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_5_1" id="wr_5_1" name="wr_5_1" />
                 </td>
                 <td>1</td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
@@ -253,7 +253,7 @@ export default function BannerRanking() {
             <thead>
               <tr>
                 <th className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_6" id="wr_6" />
                 </th>
                 <th>순서</th>
                 <th>배너 이미지</th>
@@ -265,7 +265,7 @@ export default function BannerRanking() {
             <tbody>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_6_1" id="wr_6_1" name="wr_6_1" />
                 </td>
                 <td>1</td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
@@ -293,7 +293,7 @@ export default function BannerRanking() {
             <thead>
               <tr>
                 <th className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_7" id="wr_7" name="wr_7" />
                 </th>
                 <th>순서</th>
                 <th>배너 이미지</th>
@@ -305,7 +305,7 @@ export default function BannerRanking() {
             <tbody>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_7_1" id="wr_7_1" name="wr_7_1" />
                 </td>
                 <td>1</td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
@@ -333,7 +333,7 @@ export default function BannerRanking() {
             <thead>
               <tr>
                 <th className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_8" id="wr_8" name="wr_8" />
                 </th>
                 <th>순서</th>
                 <th>배너 이미지</th>
@@ -345,7 +345,7 @@ export default function BannerRanking() {
             <tbody>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_8_1" id="wr_8_1" name="wr_8_1" />
                 </td>
                 <td>1</td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
@@ -373,7 +373,7 @@ export default function BannerRanking() {
             <thead>
               <tr>
                 <th className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_9" id="wr_9" name="wr_9" />
                 </th>
                 <th>순서</th>
                 <th>배너 이미지</th>
@@ -385,7 +385,7 @@ export default function BannerRanking() {
             <tbody>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_9_1" id="wr_9_1" name="wr_9_1" />
                 </td>
                 <td>1</td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   

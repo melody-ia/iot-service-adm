@@ -34,12 +34,12 @@ export default function NewsDetail() {
             </div>
             <div className="flex_box">
               <div className="input_ty02 flex_left w100">
-                <span className="label">내용</span>
+                <label htmlFor="">내용</label>
                 <textarea className="textarea" defaultValue={"신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다."} readOnly></textarea>
               </div>      
             </div>
             <div className="flex_box img_area">
-              <span className="label">상단 이미지</span>
+              <label htmlFor="">상단 이미지</label>
               <img src={banner} alt="" />
             </div>
             <div className="flex_box">

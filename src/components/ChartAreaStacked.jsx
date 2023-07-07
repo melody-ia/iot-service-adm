@@ -43,13 +43,14 @@ export default function ChartAreaStacked() {
       },
       fontFamily: "NotoSansKR",
       itemMargin: {
-        horizontal: 20,
+        horizontal: 16,
       },
       offsetY: -10,
       markers: {
         width: 10,
         height: 10,
-        offsetX: -10,
+        offsetX: -6,
+        offsetY: 1,
       },
     },
     yaxis: {
@@ -78,7 +79,7 @@ export default function ChartAreaStacked() {
 
   return (
     <div className="chart_area">
-      <Chart options={options} series={series} type="area" height={200} />
+      <Chart options={options} series={series} type="area" height={250} />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import Radio from "../../components/RadioBtn";
 import img from "../../assets/img/img.png";
 import { Lnb, CurrentBox, FindAddr } from "../../components/bundle_components";
 import { useEssentialInfo, useSelectInfo, useSelectBox, useUploadFile } from "../../hooks/bundle_hooks";
+import { useNavigate } from "react-router-dom";
 
 export default function UserAdd() {
   const allowType = ["jpg", "jpeg", "png", "gif"];
@@ -33,6 +34,8 @@ export default function UserAdd() {
     joinData = { ...joinData, ...choiceForm, profile_picture: formData };
     console.log(joinData);
   };
+
+  const history = useNavigate();
 
   return (
     <>
@@ -71,8 +74,9 @@ export default function UserAdd() {
                     {errorCheck("name")?.alert}
                   </div>
                 </div>
-                <div className="radio_group flex_right">
-                  <span className="label">성별</span>
+                <div className="radio_group flex_right gender">
+                  {/* <span className="label">성별</span> */}
+                  <label htmlFor="">성별</label>
                   <div className="radio_wrap">
                     {[
                       ["남", "male"],
@@ -134,12 +138,14 @@ export default function UserAdd() {
             <h4 className="write_tit">선택정보</h4>
             <div className="wirte_area">
               <div className="flex_box">
-                <div className="flex_left">
-                  <span className="label">프로필 사진</span>
+                <div className="input_ty02 flex_left">
+                  {/* <span className="label">프로필 사진</span> */}
+                  <label htmlFor="">프로필 사진</label>
                   <div className="file_wrap">
                     <button className="btn_file_add">
                       <label htmlFor="file">
-                        <span className="plus">&times;</span>
+                        {/* <span className="plus">&times;</span> */}
+                        <span className="file-plus"></span>
                         <p>파일첨부</p>
                         <input type="file" id="file" onChange={uploadFile} />
                       </label>
@@ -158,8 +164,9 @@ export default function UserAdd() {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="flex_right">
-                    <span className="label">주요 이동수단</span>
+                  <div className="input_ty02 flex_right">
+                    {/* <span className="label">주요 이동수단</span> */}
+                    <label htmlFor="">주요 이동수단</label>
                     <div
                       className="select_input input_ty02"
                       onClick={() => {
@@ -180,8 +187,9 @@ export default function UserAdd() {
                       )}
                     </div>
                   </div>
-                  <div className="flex_right">
-                    <span className="label">차종</span>
+                  <div className="input_ty02 flex_right">
+                    {/* <span className="label">차종</span> */}
+                    <label htmlFor="">차종</label>
                     <div
                       className="select_input input_ty02"
                       onClick={() => {
@@ -230,8 +238,9 @@ export default function UserAdd() {
                   <label htmlFor="">상세주소</label>
                   <input type="text" placeholder="직접입력" data-type="addr_detail" value={choiceForm.addr_detail} onChange={dataSel} />
                 </div>
-                <div className="flex_right">
-                  <span className="label">유종</span>
+                <div className="input_ty02 flex_right">
+                  {/* <span className="label">유종</span> */}
+                  <label htmlFor="">유종</label>
                   <div
                     className="select_input input_ty02"
                     onClick={() => {
@@ -258,8 +267,9 @@ export default function UserAdd() {
                   <label htmlFor="">주택형태</label>
                   <input type="text" placeholder="아파트, 다세대, 단독" />
                 </div>
-                <div className="radio_group flex_right">
-                  <span className="label">음식물 처리기 소유 여부</span>
+                <div className="radio_group flex_right hands">
+                  {/* <span className="label">음식물 처리기 소유 여부</span> */}
+                  <label htmlFor="">음식물 처리기 소유 여부</label>
                   <div className="radio_wrap">
                     {[
                       ["있음", "yes"],
@@ -273,8 +283,9 @@ export default function UserAdd() {
                 </div>
               </div>
               <div className="flex_box">
-                <div className="flex_left">
-                  <span className="label">직업</span>
+                <div className="input_ty02 flex_left">
+                  <label htmlFor="">직업</label>
+                  {/* <span className="label">직업</span> */}
                   <div
                     className="select_input input_ty02"
                     onClick={() => {
@@ -295,8 +306,9 @@ export default function UserAdd() {
                     )}
                   </div>
                 </div>
-                <div className="flex_right">
-                  <span className="label">음식물 쓰레기 처리 방식</span>
+                <div className="input_ty02 flex_right">
+                  {/* <span className="label">음식물 쓰레기 처리 방식</span> */}
+                  <label htmlFor="">음식물 쓰레기 처리 방식</label>
                   <div
                     className="select_input input_ty02"
                     onClick={() => {
@@ -323,8 +335,9 @@ export default function UserAdd() {
                   <label htmlFor="">가입일</label>
                   <input type="text" placeholder="직접입력" defaultValue={"2023.05.30"} />
                 </div>
-                <div className="flex_right">
-                  <span className="label">최종학력</span>
+                <div className="input_ty02 flex_right">
+                  {/* <span className="label">최종학력</span> */}
+                  <label htmlFor="">최종학력</label>
                   <div
                     className="select_input input_ty02"
                     onClick={() => {
@@ -349,7 +362,7 @@ export default function UserAdd() {
               <div className="flex_box">
                 <div className="radio_group flex_left">
                   <span className="label">계정활성화 여부</span>
-                  <div className="radio_wrap">
+                  <div className="radio_wrap account">
                     {[
                       ["계정활성화", "active"],
                       ["계정비활성화", "noActive"],
@@ -370,9 +383,10 @@ export default function UserAdd() {
                     })}
                   </div>
                 </div>
-                <div className="radio_group flex_right">
-                  <span className="label">결혼여부</span>
-                  <div className="radio_wrap">
+                <div className="radio_group flex_right marry">
+                  {/* <span className="label">결혼여부</span> */}
+                  <label htmlFor="">결혼여부</label>
+                  <div className="radio_wrap hands">
                     {[
                       ["기혼", "married"],
                       ["미혼", "single"],
@@ -390,8 +404,9 @@ export default function UserAdd() {
               </div>
             </div>
           </div>
-          <div className="bottom_btn_wrap">
-            <button type="button" className="btn_ty01 cancel">
+        </div>
+        <div className="bottom_btn_wrap">
+            <button type="button" className="btn_ty01 cancel" onClick={() => history(-1)}>
               취소
             </button>
             <button
@@ -405,7 +420,6 @@ export default function UserAdd() {
               등록
             </button>
           </div>
-        </div>
       </div>
       <FindAddr addrBox={addrBox} setAddrBox={setAddrBox} choiceForm={choiceForm} setChoiceForm={setChoiceForm} />
     </>

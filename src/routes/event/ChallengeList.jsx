@@ -13,6 +13,8 @@ export default function ChallengeList() {
     sort_date: false,
     search_type: false,
     search_state: false,
+    progress_state: false,
+    progress_state2: false,
   });
   const [fixedDate] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
@@ -55,6 +57,8 @@ export default function ChallengeList() {
     search_state: "전체",
     search_dateS: startDate,
     search_dateE: endDate,
+    progress_state: "진행중",
+    progress_state2: "진행중",
   });
   const searchOptionSel = e => {
     setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
@@ -224,7 +228,7 @@ export default function ChallengeList() {
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="user_all" id="user_all" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th className="num">NO</th>
                 <th>프로모션 명</th>
@@ -258,7 +262,7 @@ export default function ChallengeList() {
             <tbody>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td className="num">2</td>
                 <td>
@@ -273,20 +277,26 @@ export default function ChallengeList() {
                 <td>200,000</td>
                 <td>1,000,000</td>
                 <td>1,000,000</td>
-                <td>
+                <td onClick={() => {handleSelectBox("progress_state")}}>
                   <div className="select_input input_ty02">
                     <input type="text" defaultValue="진행중" readOnly />
-                    <ul className="select_box">
-                      <li>진행중</li>
-                      <li>진행중지</li>
-                      <li>진행완료</li>
-                    </ul>
+                    {selectList.progress_state && (
+                      <ul className="select_box">
+                        {["전체", "진행중", "진행중지", "진행완료"].map((el, idx) => {
+                          return (
+                            <li key={idx} data-type="progress_state" data-value={el} onClick={searchOptionSel}>
+                              {el}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
                   </div>
                 </td>
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td className="num">1</td>
                 <td>
@@ -301,34 +311,27 @@ export default function ChallengeList() {
                 <td>200,000</td>
                 <td>1,000,000</td>
                 <td>1,000,000</td>
-                <td>
+                <td onClick={() => {handleSelectBox("progress_state2")}}>
                   <div className="select_input input_ty02">
                     <input type="text" defaultValue="진행중지" readOnly />
-                    <ul className="select_box">
-                      <li>진행중</li>
-                      <li>진행중지</li>
-                      <li>진행완료</li>
-                    </ul>
+                    {selectList.progress_state2 && (
+                      <ul className="select_box">
+                        {["전체", "진행중", "진행중지", "진행완료"].map((el, idx) => {
+                          return (
+                            <li key={idx} data-type="progress_state2" data-value={el} onClick={searchOptionSel}>
+                              {el}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg add">
-            등록
-          </button>
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+        <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} />
         <Pagination />
       </div>
     </>

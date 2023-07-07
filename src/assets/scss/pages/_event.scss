@@ -399,3 +399,56 @@
     }
   }
 }
+
+// 230705
+.ch_add{
+    .input_ty02{
+        input{height:48px; line-height:48px; border-radius:8px;}
+        &::before{top:15px;}
+    }
+    .flex_left{margin-right:11%;
+        &.mr12{margin-right:11.5%;}
+    }
+    .btn_del{right:6%;}
+    .radio_group{
+        .radio_wrap{display:flex;
+            .check_type.radio{flex:1; margin-right:0;
+                &:last-child{flex:initial;}
+            }
+        }
+    }
+    .numBox{padding:28px 28px 28px 82px;
+        @include desktop-b{padding:28px 150px 28px 82px}
+    }
+    .stamp_policy{
+        .plus_area{
+            .flex_right{max-width:650px;}
+            .stamp_signup{max-width:248px;}
+        }
+    }
+    .point_pay{
+        .plus_area{
+            .flex_right{max-width:650px;}
+            .point_signup{max-width:248px;}
+        }
+    }
+}
+
+// 230707
+.banner_setting,
+.popup_setting,
+.news,
+.tip,
+.faq{
+    .radio_group{margin:0;
+        .radio_wrap{@include displayFlex(center, center, null);
+            .check_type.radio{flex:1; margin:0;
+                label{
+                    span{
+                        @include mobile{padding-left:30px;}
+                    }
+                }
+            }
+        }
+    }
+}

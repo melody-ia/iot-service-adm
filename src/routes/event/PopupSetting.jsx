@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
+import { useSelectBox } from "../../hooks/bundle_hooks";
+
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import banner from "../../assets/img/banner.png";
 
@@ -41,6 +43,18 @@ export default function PopupSetting() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    signUp_date : false,
+    open_state : false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    signUp_date : '전체',
+    open_state : '업로드일',
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
   return (
     <>
       <Lnb lnbType="event" />
@@ -48,20 +62,29 @@ export default function PopupSetting() {
       <div className="popup_setting box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox("signUp_date")}}>
               <input type="text" defaultValue="등록일" readOnly />
-              <ul className="select_box">
-                <li>등록일</li>
-                <li>공개 기한</li>
-              </ul>
+              {selectList.signUp_date && (
+                <ul className="select_box">
+                  {['등록일', '공개 기한'].map((signUpDate, index) => {
+                    return (
+                      <li key={signUpDate} data-value={signUpDate} data-type="signUp_date" onClick={searchOptionSel}>{signUpDate}</li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox("open_state")}}>
               <input type="text" defaultValue="전체" readOnly />
-              <ul className="select_box">
-                <li>전체</li>
-                <li>공개</li>
-                <li>비공개</li>               
-              </ul>
+              {selectList.open_state && (
+                <ul className="select_box">
+                  {['전체', '공개', '비공개',].map((openState, index) => {
+                    return (
+                      <li key={openState} data-value={openState} data-type="open_state" onClick={searchOptionSel}>{openState}</li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>           
           </div>            
           <div className="date_input_wrap d-flex">
@@ -157,7 +180,7 @@ export default function PopupSetting() {
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="popup_check01" id="popup_check01" name="popup_check" />
                 </th>
                 <th className="num">NO</th>
                 <th>팝업 이미지</th>
@@ -172,7 +195,7 @@ export default function PopupSetting() {
             <tbody>            
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="popup_check02" id="popup_check02" name="popup_check" />
                 </td>
                 <td className="num">2</td>
                 <td className="banner_img"><img src={banner} alt="" /></td>   
@@ -183,8 +206,8 @@ export default function PopupSetting() {
                 <td>
                   <div className="radio_group flex_right">
                     <div className="radio_wrap">
-                      <RadioBtn for="show01" id="show01" name="show" text="공개" />
-                      <RadioBtn for="noshow01" id="noshow01" name="show" text="비공개" />
+                      <RadioBtn for="show01" id="show01" name="openState01" text="공개" />
+                      <RadioBtn for="noshow01" id="noshow01" name="openState01" text="비공개" />
                     </div>
                   </div>
                 </td> 
@@ -207,8 +230,8 @@ export default function PopupSetting() {
                 <td>
                   <div className="radio_group flex_right">
                     <div className="radio_wrap">
-                      <RadioBtn for="show01" id="show01" name="show" text="공개" />
-                      <RadioBtn for="noshow01" id="noshow01" name="show" text="비공개" />
+                      <RadioBtn for="show02" id="show02" name="openState02" text="공개" />
+                      <RadioBtn for="noshow02" id="noshow02" name="openState02" text="비공개" />
                     </div>
                   </div>
                 </td> 
@@ -221,20 +244,7 @@ export default function PopupSetting() {
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg add">
-            등록
-          </button>
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+        <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} />
         <Pagination />
       </div>
     </>

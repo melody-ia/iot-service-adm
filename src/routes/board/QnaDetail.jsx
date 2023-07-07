@@ -1,6 +1,17 @@
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
+import { useSelectBox } from "../../hooks/bundle_hooks";
+import { useState } from 'react';
 
 export default function QnaDetail() {
+  const { selectList, handleSelectBox } = useSelectBox({
+    inquiry_sort : false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    inquiry_sort : '구분'
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
   return (
     <>
       <Lnb lnbType="board" />
@@ -34,26 +45,24 @@ export default function QnaDetail() {
             <div className="flex_box">
               <div className="input_ty02 flex_left">
                 <label htmlFor="">구분</label>
-                <div className="select_input input_ty02">
+                <div className="select_input input_ty02" onClick={() => {handleSelectBox('inquiry_sort')}}>
                   <input type="text" defaultValue="구분" readOnly />
-                  <ul className="select_box">
-                    <li>구분</li>
-                    <li>데일리 챌린지</li>
-                    <li>프로모션/이벤트</li>    
-                    <li>탄소발자국 계산기</li>     
-                    <li>기기관리</li>     
-                    <li>랭킹</li>     
-                    <li>포인트</li>     
-                    <li>회원</li>     
-                    <li>기타</li>     
-                  </ul>
+                  {selectList.inquiry_sort && (
+                    <ul className="select_box">
+                      {['구분', '데일리 챌린지', '프로모션/이벤트', '탄소발자국 계산기', '기기관리', '랭킹', '포인트', '회원', '기타'].map((inquirySort, index) => {
+                        return (
+                          <li key={inquirySort} data-value={inquirySort} data-type="inquiry_sort" onClick={searchOptionSel}>{inquirySort}</li>
+                        )
+                      })}
+                    </ul>  
+                  )}
                 </div>
               </div>
               <div className="flex_right"></div>
             </div>            
             <div className="flex_box">
               <div className="input_ty02 flex_left w100">
-                <span className="label">내용</span>
+                <label htmlFor="">내용</label>
                 <textarea className="textarea" defaultValue={"탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요"} readOnly></textarea>
               </div>      
             </div>

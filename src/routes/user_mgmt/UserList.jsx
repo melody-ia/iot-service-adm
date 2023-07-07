@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
+import { useSelectBox } from "../../hooks/bundle_hooks";
 
 export default function UserList() {
   const [fixedDate] = useState(new Date());
@@ -41,6 +42,49 @@ export default function UserList() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    sort_join: false,
+    account_type: false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    sort_join: "최근 가입일 순",
+    account_type: "전체",
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
+  
+  const userList_form = [
+    { no:100, 
+        id:'wizzzzzzzzzzz1', 
+        name:'김위즈', 
+        gender:'남', 
+        birth:'1999.10.01', 
+        reside:'3', 
+        email:'kimwewewa\
+        @naver.com', 
+        num:'010-1111-1111', 
+        join:'2023.05.08', 
+        accountAc:'x', 
+        etc:'직접입력' 
+    },
+    { no:100, 
+        id:'wizzzzzzzzzzz1', 
+        name:'김위즈', 
+        gender:'남', 
+        birth:'1999.10.01', 
+        reside:'3', 
+        email:'kimwewewa\
+        @naver.com', 
+        num:'010-1111-1111', 
+        join:'2023.05.08', 
+        accountAc:'x', 
+        etc:'직접입력' 
+    },
+  ]
+  
+
   return (
     <>
       <Lnb lnbType="user" />
@@ -48,20 +92,29 @@ export default function UserList() {
       <div className="user_list box_ty01 table_type">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox("sort_join")}}>
               <input type="text" defaultValue="최근 가입일 순" readOnly />
-              <ul className="select_box">
-                <li>최근 가입일 순</li>
-                <li>오래된 가입일 순</li>
-              </ul>
+              {selectList.sort_join && (
+                <ul className="select_box">
+                  {["최근 가입일 순", "오래된 가입일 순"].map((join, index) => {
+                    return (
+                      <li key={join} data-type="sort_join" data-value={join} onClick={searchOptionSel}>{join}</li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox("account_type")}}>
               <input type="text" defaultValue="전체" readOnly />
-              <ul className="select_box">
-                <li>전체</li>
-                <li>계정 활성화</li>
-                <li>계정 비활성화</li>
-              </ul>
+              {selectList.account_type && (
+                <ul className="select_box">
+                  {["전체", "계정 활성화", "계정 비활성화"].map((account, index) => {
+                    return (
+                      <li key={account} data-type="account_type" data-value={account} onClick={searchOptionSel}>{account}</li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>
           </div>
           <div className="date_input_wrap d-flex">
@@ -137,16 +190,16 @@ export default function UserList() {
               </DatePicker>
             </div>
           </div>
-          <button type="button" className="btn_ty01 btn_search">
+          <button type="button" className="m-txt-4 btn_ty01 btn_search">
             검색
           </button>
         </div>
         <div className="table_wrap">
-          <table className="table">
+          <table className="table reTable">
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="user_all" id="user_all" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_userList" />
                 </th>
                 <th className="num">NO</th>
                 <th className="id">아이디</th>
@@ -162,71 +215,34 @@ export default function UserList() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="check">
-                  <CheckBox for="check" id="check" />
-                </td>
-                <td className="num">100</td>
-                <td className="id disabled">
-                  <Link to="/UserBasicInfo/wizzzzzzzzzzz1">wizzzzzzzzzzz1</Link>
-                </td>
-                <td className="name">김위즈</td>
-                <td className="gender">남</td>
-                <td className="birth">1990.10.01</td>
-                <td className="people">3</td>
-                <td className="email">
-                  kimwewew
-                  <br />
-                  @naver.com
-                </td>
-                <td className="phone">010-1111-1111</td>
-                <td className="joinDate">2023.05.08</td>
-                <td className="active">X</td>
-                <td className="etc input_ty02">
-                  <input type="text" placeholder="직접입력" />
-                </td>
-              </tr>
-              <tr>
-                <td className="check">
-                  <CheckBox for="check" id="check" />
-                </td>
-                <td className="num">100</td>
-                <td className="id disabled">
-                  <Link to="/UserBasicInfo/wizzzzzzzzzzz2">wizzzzzzzzzzz2</Link>
-                </td>
-                <td className="name">김위즈</td>
-                <td className="gender">남</td>
-                <td className="birth">1990.10.01</td>
-                <td className="people">3</td>
-                <td className="email">
-                  kimwewew
-                  <br />
-                  @naver.com
-                </td>
-                <td className="phone">010-1111-1111</td>
-                <td className="joinDate">2023.05.08</td>
-                <td className="active">X</td>
-                <td className="etc input_ty02">
-                  <input type="text" placeholder="직접입력" />
-                </td>
-              </tr>
+              {userList_form.map((item) => {
+                return (
+                    <tr>
+                        <td className="check">
+                        <CheckBox for="wr_2" id="wr_2" name="wr_userList" />
+                        </td>
+                        <td className="num">{item.no}</td>
+                        <td className="id disabled">
+                        <Link to="/UserBasicInfo/wizzzzzzzzzzz2">{item.id}</Link>
+                        </td>
+                        <td className="name">{item.name}</td>
+                        <td className="gender">{item.gender}</td>
+                        <td className="birth">{item.birth}</td>
+                        <td className="people">{item.reside}</td>
+                        <td className="email">{item.email}</td>
+                        <td className="phone">{item.num}</td>
+                        <td className="joinDate">{item.join}</td>
+                        <td className="active">{item.accountAc}</td>
+                        <td className="etc input_ty02 userlist">
+                        <input type="text" placeholder={item.etc} />
+                        </td>
+                    </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg add">
-            등록
-          </button>
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+        <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} />
         <Pagination />
       </div>
     </>

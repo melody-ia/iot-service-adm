@@ -11,11 +11,11 @@ export default function ChartAreaCircle() {
       },
       fontFamily: "NotoSansKR",
       itemMargin: {
-        horizontal: 30,
-        vertical: 12
+        horizontal: 10,
+        vertical: 20
       },
       markers: {
-        offsetX: -10,
+        offsetX: -20,
         offsetY: 10
       },
       formatter: function(label, opts) {
@@ -23,8 +23,9 @@ export default function ChartAreaCircle() {
       } 
     },
     series: [82, 60],
-    labels: ['TEXT', 'TEXT'],
-    colors: ['#CCF0E3', '#3BC996'],
+    // series: [90, 70],
+    labels: ['text', 'text'],
+    colors: ['#3BC996', '#CCF0E3'],
     stroke: {
       lineCap: 'round'
     },
@@ -33,10 +34,10 @@ export default function ChartAreaCircle() {
         dataLabels: {
           value: {
             fontSize: "24px",
-            fontWeight: 600,
+            fontWeight: 500,
             fontFamily: "NotoSansKR",
             color: "#1F2937",
-            offsetY: 10
+            offsetY: 9
           },
           name: {
             show: false,
@@ -48,7 +49,7 @@ export default function ChartAreaCircle() {
           }
         },
         hollow: {
-          size: '45%',
+          size: '50%',
         },
         track: {
           background: '#E9ECEF',

@@ -2,6 +2,8 @@ import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../component
 import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
+import { useSelectBox } from "../../hooks/bundle_hooks";
+
 import banner from "../../assets/img/banner.png";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 
@@ -41,6 +43,20 @@ export default function BannerSetting() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    upload_state : false,
+    upload_date : false,
+    banner_location : false
+  });
+  const [searchOption, setSearchOption] = useState({
+    upload_state : '전체',
+    upload_date : '업로드일',
+    banner_location : '전체'
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
   return(
     <>
       <Lnb lnbType="event" />
@@ -48,37 +64,41 @@ export default function BannerSetting() {
       <div className="banner_setting box_ty01 table_type">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox("upload_state")}}>
               <input type="text" defaultValue="전체" readOnly />
-              <ul className="select_box">
-                <li>전체</li>
-                <li>최근 업로드 순</li>
-                <li>오래된 업로드 순</li>
-                <li>공개</li>
-                <li>비공개</li>
-              </ul>
+              {selectList.upload_state && (
+                <ul className="select_box">
+                  {['전체', '최근 업로드 순', '오래된 업로드 순', '공개', '비공개'].map((uploadState, index) => {
+                    return (
+                      <li key={uploadState} data-value={uploadState} data-type="upload_state" onClick={searchOptionSel}>{uploadState}</li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox("upload_data")}}>
               <input type="text" defaultValue="업로드일" readOnly />
-              <ul className="select_box">
-                <li>업로드일</li>
-                <li>공개 기한</li>
-              </ul>
+              {selectList.upload_data && (
+                <ul className="select_box">
+                  {['업로드일', '공개 기한'].map((uploadDate, index) => {
+                    return (
+                      <li key={uploadDate} data-value={uploadDate} data-type="upload_date" onClick={searchOptionSel}>{uploadDate}</li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>
-            <div className="select_input input_ty02 wide">
+            <div className="select_input input_ty02 wide" onClick={() => {handleSelectBox("banner_location")}}>
               <input type="text" defaultValue="전체" readOnly />
-              <ul className="select_box">
-                <li>전체</li>
-                <li>메인 상단</li>
-                <li>메인 중간</li>
-                <li>카테고리</li>
-                <li>데일리 발자국 챌린지 리스트 상단</li>
-                <li>데일리 발자국 챌린지 글쓰기 상단</li>
-                <li>탄소중립랭킹 중간</li>
-                <li>탄소중립랭킹 하단</li>
-                <li>이벤트/뉴스 상단</li>
-                <li>GL 추천 제품</li>
-              </ul>
+              {selectList.banner_location && (
+                <ul className="select_box">
+                  {['전체', '메인 상단', '메인 중간', '카테고리', '데일리 발자국 챌린지 리스트 상단', '데일리 발자국 챌린지 글쓰기 상단', '탄소중립랭킹 중간', '탄소중립랭킹 하단', '이벤트/뉴스 상단', 'GL 추천 제품'].map((bannerLocation, index) => {
+                    return (
+                      <li key={bannerLocation} data-value={bannerLocation} data-type="banner_location" onClick={searchOptionSel}>{bannerLocation}</li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>
           </div>
           <div className="date_input_wrap d-flex">
@@ -174,7 +194,7 @@ export default function BannerSetting() {
             <thead>
               <tr>
                 <th className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="banner_check01" id="banner_check01" name="banner_check01" />
                 </th>
                 <th>NO</th>
                 <th>기본</th>
@@ -189,11 +209,11 @@ export default function BannerSetting() {
             <tbody>
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="banner_check02" id="banner_check02" name="banner_check02" />
                 </td>
                 <td>4</td>
                 <td className="basic">
-                  <RadioBtn for="basic01" id="basic01" name="basic"/>
+                  <RadioBtn for="wr_1" id="wr_1" name="wr_1"/>
                 </td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
                 <td>메인 상단</td>          
@@ -211,11 +231,11 @@ export default function BannerSetting() {
               </tr>              
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="banner_check03" id="banner_check03" name="banner_check03" />
                 </td>
                 <td>3</td>
                 <td className="basic">
-                  <RadioBtn for="basic02" id="basic02" name="basic"/>
+                  <RadioBtn for="wr_2" id="wr_2" name="wr_2"/>
                 </td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
                 <td>카테고리</td>          
@@ -233,11 +253,11 @@ export default function BannerSetting() {
               </tr>              
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="banner_check04" id="banner_check04" name="banner_check04" />
                 </td>
                 <td>2</td>
                 <td className="basic">
-                  <RadioBtn for="basic03" id="basic03" name="basic"/>
+                  <RadioBtn for="wr_3" id="wr_3" name="wr_3"/>
                 </td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
                 <td>데일리 챌린지</td>          
@@ -255,11 +275,11 @@ export default function BannerSetting() {
               </tr>              
               <tr>
                 <td className="check"> 
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="banner_check05" id="banner_check05" name="banner_check05" />
                 </td>
                 <td>1</td>
                 <td className="basic">
-                  <RadioBtn for="basic04" id="basic04" name="basic"/>
+                  <RadioBtn for="wr_4" id="wr_4" name="wr_4"/>
                 </td>             
                 <td className="banner_img"><img src={banner} alt="" /></td>   
                 <td>메인 상단(기본)</td>          
@@ -278,20 +298,7 @@ export default function BannerSetting() {
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg add">
-            등록
-          </button>
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+        <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} />
         <Pagination />              
       </div>
     </>

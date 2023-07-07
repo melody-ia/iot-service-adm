@@ -190,7 +190,8 @@
 			&::after {
 				content: "";
 				position: absolute;
-				right: 10px;
+				// right: 10px;
+				right:26px;
 				top: 50%;
 				transform: translateY(-50%);
 				background: url(../img/icon/stop.svg) no-repeat center;
@@ -220,7 +221,9 @@
 		}
 
 		.check {
-			width: 70px;
+			// width: 70px;
+			// 230705
+			width:50px;
 		}
 		.num {
 			width: 100px;
@@ -245,7 +248,9 @@
 	}
 	th, td {
 		word-wrap: break-word;
-		padding: 10px 18px;
+		// padding: 10px 18px;
+		// 230705
+		line-height:1; padding:8px 18px;
 
 		&.overflow {
 			white-space: nowrap;
@@ -595,5 +600,53 @@
 			margin: 0 0 15px 0;
 			align-items: flex-start;
 		}
+	}
+}
+
+// 230705
+.flex_box.flex_box_mb{margin-bottom:0;}
+.flex_left.flex_box_mr{margin-right:0;}
+
+.faq_add{
+	.write_type{max-width:1541px;}
+	.flex_box{
+		.flex_left{margin-right:13%;
+			&.flex_box_mr{margin-right:0;}
+		}
+		label{max-width:248px;}
+	}
+	.input_ty02{
+		input{height:48px; line-height:48px; border-radius:8px;}
+		&::before{top:15px;}
+	}
+	.check_type.radio label span{padding-left:45px;}
+}
+.tip_add{
+	.input_ty02{
+		input{height:48px; line-height:48px; border-radius:8px;}
+	}
+}
+.find_file{
+	&_wrap{width:100%; height:55px; line-height:55px; position:relative; padding:0 17px; border:1px solid #E0E2E7; border-radius:8px;
+		.file_label{@include displayFlex(center, null, null); column-gap:4px; color:#637381;
+			span{width:19px; height:19px; display:block; background:url(../img/icon-plus.png) center no-repeat; background-size:cover;}
+		}
+		.file{width:100%; height:100%; position:absolute; top:0; left:0; opacity:0; cursor:pointer;}
+	}
+	&.input_ty02{
+		input{height:55px; line-height:55px;}
+	}
+	
+}
+.view_form{
+	.flex_box{
+		.label{max-width:248px}
+	}
+	&.add{
+		.file_box{width:calc(100% - 248px);}
+	}
+	.textarea{border-radius:8px;
+		&.faq_content{min-height:349px; padding:20px 16px;}
+		&.faq_note{min-height:88px; padding:12px 16px;}
 	}
 }

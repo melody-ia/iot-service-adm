@@ -28,7 +28,7 @@ export default function ChartColumn() {
     grid: { show: false },
     dataLabels: {
       enabled: true,
-      offsetY: -20,
+      offsetY: -30,
       style: {
         fontSize: '12px',
         colors: ["#000"],
@@ -46,6 +46,7 @@ export default function ChartColumn() {
       labels: {
         style: {
           colors: ["#637381"],
+          fontSize:"14px",
           fontFamily: "NotoSansKR"
         }
       }
@@ -59,7 +60,7 @@ export default function ChartColumn() {
 
   return (
     <div className="chart_area">
-      <Chart options={options} series={series} type="bar" height={270} />
+      <Chart options={options} series={series} type="bar" height={304} />
     </div>
   );
 }

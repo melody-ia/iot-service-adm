@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import { Lnb, CurrentBox, CheckBox, RadioBtn } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
+import { useSelectBox } from "../../hooks/bundle_hooks";
+
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import pdImg from "../../assets/img/GL-011_detail.png";
 import plus from "../../assets/img/icon/border_plus.svg";
@@ -42,6 +44,20 @@ export default function Product() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    signUp_date : false,
+    open_state : false,
+    icon_sort : false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    signUp_date : '최근 등록일 순',
+    open_state : '전체(공개여부)',
+    icon_sort : '전체(아이콘)'
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
   return (
     <>
       <Lnb lnbType="device" />
@@ -49,29 +65,41 @@ export default function Product() {
       <div className="product box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('signUp_date')}}>
               <input type="text" defaultValue="최근 등록일 순" readOnly />
-              <ul className="select_box">
-                <li>최근 등록일 순</li>
-                <li>오래된 등록일 순</li>
-              </ul>
+              {selectList.signUp_date && (
+                <ul className="select_box">
+                  {['최근 등록일 순', '오래된 등록일 순'].map((signUpDate, index) => {
+                    return (
+                      <li key={signUpDate} data-value={signUpDate} data-type="signUp_date" onClick={searchOptionSel}>{signUpDate}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('open_state')}}>
               <input type="text" defaultValue="전체(공개여부)" readOnly />
-              <ul className="select_box">
-                <li>전체(공개여부)</li>
-                <li>공개</li>
-                <li>비공개</li>         
-              </ul>
+              {selectList.open_state && (
+                <ul className="select_box">
+                  {['전체(공개여부)', '공개', '비공개'].map((openState, index) => {
+                    return (
+                      <li key={openState} data-value={openState} data-type="open_state" onClick={searchOptionSel}>{openState}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>           
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('icon_sort')}}>
               <input type="text" defaultValue="전체(아이콘)" readOnly />
-              <ul className="select_box">
-                <li>전체(아이콘)</li>
-                <li>BEST</li>
-                <li>NEW</li>         
-                <li>등록안함</li>         
-              </ul>
+              {selectList.icon_sort && (
+                <ul className="select_box">
+                  {['전체(아이콘)', 'BEST', 'NEW', '등록안함'].map((iconSort, index) => {
+                    return (
+                      <li key={iconSort} data-value={iconSort} data-type="icon_sort" onClick={searchOptionSel}>{iconSort}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>           
           </div>            
           <div className="date_input_wrap d-flex">
@@ -170,7 +198,7 @@ export default function Product() {
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th className="num">NO</th>
                 <th>등록일</th>
@@ -188,7 +216,7 @@ export default function Product() {
             <tbody>            
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td className="num"></td>
                 <td></td>
@@ -204,15 +232,15 @@ export default function Product() {
                 <td><div className="input_ty02"><input type="text" placeholder="직접입력" /></div></td>
                 <td>
                   <div className="radio_wrap">
-                    <RadioBtn for="show01" id="show01" name="show01" text="공개" />
-                    <RadioBtn for="noshow01" id="noshow01" name="show01" text="비공개" />
+                    <RadioBtn for="wr_open_1_1" id="wr_open_1_1" name="wr_open_1" text="공개" />
+                    <RadioBtn for="wr_open_1_2" id="wr_open_1_2" name="wr_open_1" text="비공개" />
                   </div>
                 </td> 
                 <td>
                   <div className="radio_wrap">
-                    <RadioBtn for="best01" id="best01" name="icon01" text="BEST" />
-                    <RadioBtn for="new01" id="new01" name="icon01" text="NEW" />
-                    <RadioBtn for="no01" id="no01" name="icon01" text="등록안함" />
+                    <RadioBtn for="wr_icon_1_1" id="wr_icon_1_1" name="wr_icon_1" text="BEST" />
+                    <RadioBtn for="wr_icon_1_2" id="wr_icon_1_2" name="wr_icon_1" text="NEW" />
+                    <RadioBtn for="wr_icon_1_3" id="wr_icon_1_3" name="wr_icon_1" text="등록안함" />
                   </div>
                 </td> 
                 <td>
@@ -223,7 +251,7 @@ export default function Product() {
               </tr>                                                                                           
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td className="num">2</td>
                 <td>2023.06.01</td>
@@ -240,15 +268,15 @@ export default function Product() {
                 <td>https://smartstore.naver.com/glecomall/products/6857771373</td>
                 <td>  
                   <div className="radio_wrap">
-                    <RadioBtn for="show01" id="show01" name="show01" text="공개" />
-                    <RadioBtn for="noshow01" id="noshow01" name="show01" text="비공개" />
+                    <RadioBtn for="wr_open_2_1" id="wr_open_2_1" name="wr_open_2" text="공개" />
+                    <RadioBtn for="wr_open_2_2" id="wr_open_2_2" name="wr_open_2" text="비공개" />
                   </div> 
                 </td> 
                 <td>
                   <div className="radio_wrap">
-                    <RadioBtn for="best01" id="best01" name="icon01" text="BEST" />
-                    <RadioBtn for="new01" id="new01" name="icon01" text="NEW" />
-                    <RadioBtn for="no01" id="no01" name="icon01" text="등록안함" />
+                    <RadioBtn for="wr_icon_2_1" id="wr_icon_2_1" name="wr_icon_2" text="BEST" />
+                    <RadioBtn for="wr_icon_2_2" id="wr_icon_2_2" name="wr_icon_2" text="NEW" />
+                    <RadioBtn for="wr_icon_2_3" id="wr_icon_2_3" name="wr_icon_2" text="등록안함" />
                   </div>
                 </td> 
                 <td>
@@ -259,7 +287,7 @@ export default function Product() {
               </tr>                                                                                           
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_3" id="wr_3" name="wr_3" />
                 </td>
                 <td className="num">1</td>
                 <td>2023.06.01</td>
@@ -276,15 +304,15 @@ export default function Product() {
                 <td>https://smartstore.naver.com/glecomall/products/6857771373</td>
                 <td>
                   <div className="radio_wrap">
-                    <RadioBtn for="show01" id="show01" name="show01" text="공개" />
-                    <RadioBtn for="noshow01" id="noshow01" name="show01" text="비공개" />
+                    <RadioBtn for="wr_open_3_1" id="wr_open_3_1" name="wr_open_3" text="공개" />
+                    <RadioBtn for="wr_open_3_2" id="wr_open_3_2" name="wr_open_3" text="비공개" />
                   </div>                 
                 </td> 
                 <td>        
                   <div className="radio_wrap">
-                    <RadioBtn for="best01" id="best01" name="icon01" text="BEST" />
-                    <RadioBtn for="new01" id="new01" name="icon01" text="NEW" />
-                    <RadioBtn for="no01" id="no01" name="icon01" text="등록안함" />
+                    <RadioBtn for="wr_icon_3_1" id="wr_icon_3_1" name="wr_icon_3" text="BEST" />
+                    <RadioBtn for="wr_icon_3_2" id="wr_icon_3_2" name="wr_icon_3" text="NEW" />
+                    <RadioBtn for="wr_icon_3_3" id="wr_icon_3_3" name="wr_icon_3" text="등록안함" />
                   </div>          
                 </td> 
                 <td>

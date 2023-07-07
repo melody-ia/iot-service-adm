@@ -7,6 +7,14 @@ body {
 }
 
 // 미디어쿼리
+
+// 230705 추가
+@mixin desktop-b{
+  @media all and (max-width: 1850px){
+    @content;
+  }
+}
+
 @mixin desktop {
   @media all and (max-width: 1440px) {
     @content;
@@ -22,6 +30,13 @@ body {
     @content;
   }
 };
+
+@mixin tablet-m{
+  @media all and (max-width: 860px){
+    @content;
+  }
+}
+
 @mixin mobile {
   @media all and (max-width: 768px) {
     @content;

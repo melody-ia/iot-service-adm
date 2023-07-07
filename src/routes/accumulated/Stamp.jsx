@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import { Lnb, CurrentBox, CheckBox } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
+import { useSelectBox } from "../../hooks/bundle_hooks";
+
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 
 export default function Stamp() {
@@ -40,6 +42,18 @@ export default function Stamp() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    pay_state : false,
+    pay_opt_state : false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    pay_state : '전체',
+    pay_opt_state : '전체'
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
   return (
     <>
       <Lnb lnbType="accumulated" />
@@ -47,14 +61,17 @@ export default function Stamp() {
       <div className="stamp box_ty01 table_type accumulated">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('pay_state')}}>
               <input type="text" defaultValue="전체" readOnly />
-              <ul className="select_box">
-                <li>전체</li>
-                <li>적립중</li>
-                <li>적립중지</li>
-                <li>적립종료</li>
-              </ul>
+              {selectList.pay_state && (
+                <ul className="select_box">
+                  {['전체', '적립중', '적립중지', '적립종료'].map((payState, index) => {
+                    return(
+                      <li key={payState} data-value={payState} data-type="pay_state" onClick={searchOptionSel}>{payState}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>            
           </div>
           <div className="date_input_wrap d-flex">
@@ -150,7 +167,7 @@ export default function Stamp() {
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="user_all" id="user_all" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th className="num">NO</th>
                 <th colSpan={4}>도장 적립 정책</th>
@@ -162,7 +179,7 @@ export default function Stamp() {
             <tbody>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td className="num"></td>
                 <td>글 등록 개수</td>
@@ -251,14 +268,17 @@ export default function Stamp() {
                 </td>
                 <td>
                   <div className="select_input_wrap d-flex">
-                    <div className="select_input input_ty02">
+                    <div className="select_input input_ty02" onClick={() => {handleSelectBox("pay_opt_state")}}>
                       <input type="text" defaultValue="전체" readOnly />
-                      <ul className="select_box">
-                        <li>전체</li>
-                        <li>적립중</li>
-                        <li>적립중지</li>
-                        <li>적립종료</li>
-                      </ul>
+                      {selectList.pay_opt_state && (
+                        <ul className="select_box">
+                          {['전체', '적립중', '적립중지', '적립종료'].map((payOptState, index) => {
+                            return(
+                              <li key={payOptState} data-value={payOptState} data-type="pay_opt_state" onClick={searchOptionSel}>{payOptState}</li>
+                            )
+                          })}
+                        </ul>  
+                      )}
                     </div>            
                   </div>
                 </td>
@@ -268,7 +288,7 @@ export default function Stamp() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td className="num">2</td>
                 <td>글 등록 개수</td>
@@ -358,7 +378,7 @@ export default function Stamp() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_3" id="wr_3" name="wr_3" />
                 </td>
                 <td className="num">1</td>
                 <td>글 등록 개수</td>

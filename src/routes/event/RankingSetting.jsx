@@ -5,6 +5,7 @@ import { ko } from "date-fns/esm/locale";
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
+import { useSelectBox } from "../../hooks/bundle_hooks";
 
 export default function RankingSetting() {
   const [fixedDate] = useState(new Date());
@@ -42,6 +43,18 @@ export default function RankingSetting() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    gender_sort: false,
+    region_sort: false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    gender_sort: "전체",
+    region_sort: "전체(지역)",
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
   return (
     <>
       <Lnb lnbType="event" />
@@ -49,32 +62,29 @@ export default function RankingSetting() {
       <div className="ranking_setting box_ty01 table_type">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
-              <input type="text" defaultValue="전체(성별)" readOnly />
-              <ul className="select_box">
-                <li>전체</li>
-                <li>남성</li>
-                <li>여성</li>
-              </ul>
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox("gender_sort")}}>
+              <input type="text" defaultValue="전체(성별)" readOnly/>
+              {selectList.gender_sort && (
+                <ul className="select_box">
+                  {["전체", "남성", "여성"].map((gender, index) => {
+                    return (
+                      <li key={gender} data-type="gender_sort" data-value={gender} onClick={searchOptionSel}>{gender}</li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => handleSelectBox("region_sort")}>
               <input type="text" defaultValue="전체(지역)" readOnly />
-              <ul className="select_box">
-                <li>전체(지역)</li>
-                <li>서울시</li>
-                <li>경기도</li>
-                <li>강원도</li>
-                <li>경상도</li>
-                <li>전라도</li>
-                <li>충청도</li>
-                <li>제주도</li>
-                <li>인천</li>
-                <li>대전</li>
-                <li>대구</li>
-                <li>광주</li>
-                <li>부산</li>
-                <li>울산</li>
-              </ul>
+              {selectList.region_sort && (
+                <ul className="select_box">
+                  {["전체(지역)", "서울시", "경기도", "강원도", "경상도", "전라도", "충청도", "제주도", "인천", "대전", "대구", "광주", "부산", "울산",].map((region, index) => {
+                    return (
+                      <li key={region} data-type="region_sort" data-value={region} onClick={searchOptionSel}>{region}</li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>           
           </div>            
           <div className="date_input_wrap d-flex">
@@ -159,7 +169,7 @@ export default function RankingSetting() {
             <thead>
               <tr>
                 <th rowSpan={2} className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </th>
                 <th rowSpan={2} className="num">NO</th>
                 <th rowSpan={2}>변동일</th>
@@ -179,7 +189,7 @@ export default function RankingSetting() {
             <tbody>            
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td className="num">1</td>
                 <td>2023.05.08</td>
@@ -210,17 +220,7 @@ export default function RankingSetting() {
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+        <CurrentBox add={false} mod={true} del={true} down={true} hideTit={true} />
         <Pagination />
       </div>
     </>

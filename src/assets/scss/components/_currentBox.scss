@@ -35,8 +35,14 @@
   @include mobile {
     .setting_btn_wrap {
       .btn_ty01 {
-        margin-top: 15px; 
+        margin-top: 15px; background-position:center;
       }
     }
   }
+}
+
+// 230705
+.current_box{
+    .current_tit{flex:1; padding-left:16px}
+    .setting_btn_wrap{flex:1; justify-content:flex-end;}
 }

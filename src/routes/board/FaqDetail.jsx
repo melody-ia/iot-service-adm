@@ -33,7 +33,7 @@ export default function NewsDetail() {
             </div>
             <div className="flex_box">
               <div className="input_ty02 flex_left w100">
-                <span className="label">내용</span>
+                <label htmlFor="">내용</label>
                 <textarea className="textarea" defaultValue={"탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요"} readOnly></textarea>
               </div>      
             </div>

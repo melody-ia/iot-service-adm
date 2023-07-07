@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { Lnb, CurrentBox, Pagination } from "../../components/bundle_components";
 import { ko } from "date-fns/esm/locale";
+import { useSelectBox } from "../../hooks/bundle_hooks";
+
 import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 
 export default function CalculatorList() {
@@ -41,6 +43,23 @@ export default function CalculatorList() {
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
 
+  const { selectList, handleSelectBox } = useSelectBox({
+    co2_state : false,
+    cal_standard : false,
+    gender : false,
+    region : false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    co2_state : '전체',
+    cal_standard : '계산일',
+    banner_location : '메인 상단',
+    gender : '전체(성별)',
+    region : '전체(지역)',
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
   return (
     <>
       <Lnb lnbType="calcHistory" />
@@ -48,47 +67,53 @@ export default function CalculatorList() {
       <div className="calc_list box_ty01 table_type">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('co2_state')}}>
               <input type="text" defaultValue="전체" readOnly />
-              <ul className="select_box">
-                <li>전체</li>
-                <li>CO2 발생량 높은 순</li>
-                <li>CO2 발생량 낮은 순</li>
-              </ul>
+              {selectList.co2_state && (
+                <ul className="select_box">
+                  {['전체', 'CO2 발생량 높은 순', 'CO2 발생량 낮은 순'].map((co2State, index) => {
+                    return(
+                      <li key={co2State} data-value={co2State} data-type="co2_state" onClick={searchOptionSel}>{co2State}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('cal_standard')}}>
               <input type="text" defaultValue="계산일" readOnly />
-              <ul className="select_box">
-                <li>계산일</li>
-                <li>생년월일</li>
-              </ul>
+              {selectList.cal_standard && (
+                <ul className="select_box">
+                  {['계산일', '생년월일'].map((calStandard, index) => {
+                    return(
+                      <li key={calStandard} data-value={calStandard} data-type="cal_standard" onClick={searchOptionSel}>{calStandard}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02" onClick={() => {handleSelectBox('gender')}}>
               <input type="text" defaultValue="전체(성별)" readOnly />
-              <ul className="select_box">
-                <li>전체(성별)</li>
-                <li>남성</li>
-                <li>여성</li>
-              </ul>
+              {selectList.gender && (
+                <ul className="select_box">
+                  {['전체(성별)', '남성', '여성'].map((gender, index) => {
+                    return(
+                      <li key={gender} data-value={gender} data-type="gender" onClick={searchOptionSel}>{gender}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>
-            <div className="select_input input_ty02">
+            <div className="select_input input_ty02"  onClick={() => {handleSelectBox('region')}}>
               <input type="text" defaultValue="전체(지역)" readOnly />
-              <ul className="select_box">
-                <li>전체(지역)</li>
-                <li>서울시</li>
-                <li>경기도</li>
-                <li>강원도</li>
-                <li>경상도</li>
-                <li>전라도</li>
-                <li>충청도</li>
-                <li>제주도</li>
-                <li>인천</li>
-                <li>대전</li>
-                <li>대구</li>
-                <li>광주</li>
-                <li>부산</li>
-                <li>울산</li>
-              </ul>
+              {selectList.region && (
+                <ul className="select_box">
+                  {['전체(지역)', '서울시', '경기도', '강원도', '경상도', '전라도', '충청도', '제주도', '인천', '대전', '대구', '광주', '부산', '울산'].map((region, index) => {
+                    return(
+                      <li key={region} data-value={region} data-type="region" onClick={searchOptionSel}>{region}</li>
+                    )
+                  })}
+                </ul>  
+              )}
             </div>
           </div>
           <div className="date_input_wrap d-flex">
@@ -222,11 +247,7 @@ export default function CalculatorList() {
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+        <CurrentBox down={true} hideTit={true} />
         <Pagination />
       </div>
     </>

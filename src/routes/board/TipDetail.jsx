@@ -30,12 +30,12 @@ export default function TipDetail() {
             </div>
             <div className="flex_box">
               <div className="input_ty02 flex_left w100">
-                <span className="label">내용</span>
+                <label htmlFor="">내용</label>
                 <textarea className="textarea" defaultValue={"탄소발자국 계산기 사용법 탄소발자국 계산기 사용법탄소발자국 계산기 사용법 탄소발자국 계산기 사용법 탄소발자국 계산기 사용법 탄소발자국 계산기 사용법"} readOnly></textarea>
               </div>      
             </div>
             <div className="flex_box img_area">
-              <span className="label">상단 이미지</span>
+              <label htmlFor="">상단 이미지</label>
               <img src={banner} alt="" />
             </div>
             <div className="flex_box">

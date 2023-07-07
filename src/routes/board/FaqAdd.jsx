@@ -1,7 +1,23 @@
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
+import { useSelectBox } from "../../hooks/bundle_hooks";
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
 import plus from "../../assets/img/icon/border_plus.svg";
 
 export default function NewsAdd() {
+  const { selectList, handleSelectBox } = useSelectBox({
+    faq_sort : false,
+  });
+  const [searchOption, setSearchOption] = useState({
+    faq_sort : '구분',
+  });
+  const searchOptionSel = e => {
+    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+  };
+
+  const history = useNavigate();
+
   return (
     <>
       <Lnb lnbType="board" />
@@ -87,16 +103,17 @@ export default function NewsAdd() {
             <div className="flex_box">
               <div className="input_ty02 flex_left">
                 <label htmlFor="">구분</label>
-                <div className="select_input input_ty02">
+                <div className="select_input input_ty02" onClick={() => {handleSelectBox('faq_sort')}}>
                   <input type="text" defaultValue="구분" readOnly />
-                  <ul className="select_box">
-                    <li>구분</li>
-                    <li>탄소발자국</li>
-                    <li>챌린지</li>         
-                    <li>랭킹</li>         
-                    <li>회원</li>         
-                    <li>기타</li>         
-                  </ul>
+                  {selectList.faq_sort && (
+                    <ul className="select_box">
+                      {['구분', '탄소발자국', '챌린지', '랭킹', '회원', '기타'].map((faqSort, index) => {
+                        return (
+                          <li key={faqSort} data-value={faqSort} data-type="faq_sort" onClick={searchOptionSel}>{faqSort}</li>
+                        )
+                      })}
+                    </ul>  
+                  )}
                 </div>
               </div>
               <div className="flex_right">
@@ -118,18 +135,23 @@ export default function NewsAdd() {
               </div>
             </div>
             <div className="flex_box">
-              <div className="input_ty02 flex_left w100">
+              <div className="input_ty02 flex_left w100 flex_box_mr">
                 <span className="label">내용</span>
-                <textarea className="textarea" placeholder="직접입력" defaultValue={"탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요"}></textarea>
+                <textarea className="textarea faq_content" placeholder="직접입력" defaultValue={"탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요 탄소발자국에 대해서 알려주세요"}></textarea>
               </div>      
             </div>
-            <div className="flex_box">
-              <div className="flex_left w100">
+            <div className="flex_box find_file">
+              <div className="flex_left w100 flex_box_mr">
                 <label htmlFor="">첨부파일</label>
-                <button type="button" className="btn_plus"><span>&times;</span> 파일첨부</button>
+                {/* <button type="button" className="btn_plus"><span>&times;</span> 파일첨부</button> */}
+                <div className="find_file_wrap">
+                  {/* <input className="upload-name" defaultValue={"파일첨부"} placeholder="파일첨부"/> */}
+                  <label htmlFor="file" className="file_label"><span></span>파일첨부</label>
+                  <input type="file" className="file"/>
+                </div>
               </div>
             </div>
-            <div className="file_box input_ty02">
+            <div className="file_box input_ty02 find_file">
               <div className="row">
                 <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly/>
                 <button type="button" className="btn_close">&times;</button>
@@ -140,20 +162,20 @@ export default function NewsAdd() {
               </div>
             </div>       
             <div className="flex_box">
-              <div className="input_ty02 flex_left w100">
+              <div className="input_ty02 flex_left w100 flex_box_mr">
                 <label htmlFor="">비고</label>
-                <textarea className="textarea" placeholder="직접입력"></textarea>
+                <textarea className="textarea faq_note" placeholder="직접입력"></textarea>
               </div>
             </div>
           </div>
-          <div className="bottom_btn_wrap">
-            <button type="button" className="btn_ty01 cancel">
-              취소
-            </button>
-            <button type="button" className="btn_ty01">
-              등록
-            </button>
-          </div>         
+        </div>
+        <div className="bottom_btn_wrap">
+          <button type="button" className="btn_ty01 cancel" onClick={() => history(-1)}>
+            취소
+          </button>
+          <button type="button" className="btn_ty01">
+            등록
+          </button>
         </div>
       </div>
     </>
