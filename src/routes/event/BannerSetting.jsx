@@ -61,7 +61,7 @@ export default function BannerSetting() {
     <>
       <Lnb lnbType="event" />
       <CurrentBox add={true} mod={true} del={true} down={true} tit="배너 리스트"/>
-      <div className="banner_setting box_ty01 table_type">
+      <div className="banner_setting box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02" onClick={() => {handleSelectBox("upload_state")}}>

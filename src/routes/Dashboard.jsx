@@ -93,9 +93,9 @@ export default function Dashboard() {
             <table className="table">
               <thead>
                 <tr>
-                  <th>아이디</th>
-                  <th>이름</th>
-                  <th>성별</th>
+                  <th className="id">아이디</th>
+                  <th className="name">이름</th>
+                  <th className="gender">성별</th>
                   <th>생년월일</th>
                   <th>거주인원 수</th>
                   <th>이메일</th>
@@ -106,9 +106,9 @@ export default function Dashboard() {
               </thead>
               <tbody>
                 <tr>
-                  <td>wizzzzzzzzzzz</td>
-                  <td>김위즈</td>
-                  <td>남</td>
+                  <td className="id">wizzzzzzzzzzz</td>
+                  <td className="name">김위즈</td>
+                  <td className="gender">남</td>
                   <td>1990.10.01</td>
                   <td>3</td>
                   <td>kimwewew<br />@naver.com</td>

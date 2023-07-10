@@ -62,7 +62,7 @@ export default function Faq() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox add={true} mod={true} del={true} down={true} tit="FAQ 리스트" />
-      <div className="faq box_ty01 table_type">
+      <div className="faq box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02" onClick={() => {handleSelectBox('signUp_state')}}>
@@ -179,7 +179,7 @@ export default function Faq() {
             검색
           </button>
         </div>
-        <div className="table_wrap line">
+        <div className="table_wrap line part">
           <table className="table">   
             <colgroup>
               <col width={"auto"} />

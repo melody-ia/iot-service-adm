@@ -12,7 +12,7 @@ export default function BannerRanking() {
     <>
       <Lnb lnbType="event" />
       <CurrentBox mod={true} del={true} down={true} tit="공개 배너 순위 설정"/>
-      <div className="banner_ranking box_ty01 table_type">
+      <div className="banner_ranking box_ty01 table_type table_comm">
         <div className="table_wrap line">
           <h4 className="table_tit">메인 상단 <button className="btn_plus" onClick={setModalOpen}><img src={plus} alt=""/></button></h4>
           <table className="table"> 

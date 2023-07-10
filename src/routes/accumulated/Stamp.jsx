@@ -58,7 +58,7 @@ export default function Stamp() {
     <>
       <Lnb lnbType="accumulated" />
       <CurrentBox add={true} del={true} down={true} tit="도장 관리" />
-      <div className="stamp box_ty01 table_type accumulated">
+      <div className="stamp box_ty01 table_type table_comm accumulated">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02" onClick={() => {handleSelectBox('pay_state')}}>

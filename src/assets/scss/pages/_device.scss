@@ -1,34 +1,13 @@
 // GL 추천제품 관리
-.product {
-  .pd_img {
-    position: relative;
-
-    .img {
-      width: 60px;
-      height: 100px;
-      object-fit: cover;
+.product{
+    .pd_img{position:relative;
+        .img{@include conSize(60px, 100px, null); object-fit:cover;}
+        .btn_edit{@include conSize(25px, 25px, null); @include position(absolute, null, 15px, -5px, null); background:url(../img/icon/edit.svg) no-repeat center / 16px, var(--color-green); border-radius:5px;}
     }
-
-    .btn_edit {
-      position: absolute;
-      right: 15px;
-      bottom: -5px;
-      width: 25px;
-      height: 25px;
-      background: url(../img/icon/edit.svg) no-repeat center / 16px, var(--color-green);
-      border-radius: 5px;
-    }
-  }
-  .radio_wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    row-gap:5px;
-    margin-left: 10px;
-    @include mobile{row-gap:0;}
-
-    .check_type {
-      margin-bottom: 5px;
-    }
-  } 
+    .radio_wrap{display:flex; flex-direction:column; align-items:flex-start; row-gap:5px; margin-left:10px;
+        @include mobile{row-gap:0;}
+        .check_type{margin-bottom:5px;
+            &:last-child{margin-bottom:0;}
+        }
+    } 
 }

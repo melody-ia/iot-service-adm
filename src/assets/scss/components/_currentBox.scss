@@ -1,48 +1,20 @@
-.current_box {
-  margin-bottom: 14px;
-  padding: 14px 18px;
-
-  @include mobile { 
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .current_tit {
-    font-weight: 500;
-    font-size: 18px;
-    // padding-left: 16px;
-    padding-left:21px;
-    position: relative;
-    color: #1C2434;
-
-    @include mobile {
-      font-size: 14px;
+.current_box{margin-bottom:14px; padding:14px 18px;
+    .current_tit{flex:1; position:relative; padding-left:16px; @include font(18px, 500, #1C2434);
+        &::before{content:''; @include conSize(6px, 6px, null); @include position(absolute, 50%, null, null, 0); transform: translateY(-50%); background:#1C2434; border-radius:50%;
+            @include mobile{width:5px; height:5px;}
+        }
+        @include tablet{font-size:16px;}
+        @include mobile{font-size:14px;}
     }
-
-    &::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: #1C2434;
-      border-radius: 50%;
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
+    .setting_btn_wrap{flex:1; justify-content:flex-end;
+        .btn_ty01{
+            @include mobile{margin-top:15px; background-position:center;}
+        }
+        @media(max-width:1085px){flex:2;}
     }
-  }
-
-  @include mobile {
-    .setting_btn_wrap {
-      .btn_ty01 {
-        margin-top: 15px; background-position:center;
-      }
+    @include mobile{flex-direction:column; align-items:flex-start;
+        .setting_btn_wrap{
+            .btn_ty01{margin-top:15px; background-position:center;}
+        }
     }
-  }
-}
-
-// 230705
-.current_box{
-    .current_tit{flex:1; padding-left:16px}
-    .setting_btn_wrap{flex:1; justify-content:flex-end;}
 }

@@ -59,7 +59,7 @@ export default function RankingSetting() {
     <>
       <Lnb lnbType="event" />
       <CurrentBox mod={true} del={true} down={true} tit="탄소 중립 랭킹 관리" />
-      <div className="ranking_setting box_ty01 table_type">
+      <div className="ranking_setting box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02" onClick={() => {handleSelectBox("gender_sort")}}>

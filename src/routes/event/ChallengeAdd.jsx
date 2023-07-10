@@ -31,7 +31,7 @@ export default function UserAdd() {
       <div className="ch_add">
         <div className="box_ty01">
           <div className="write_type">
-            <div className="wirte_area">
+            <div className="wirte_area stamp_policy">
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">프로모션 명</label>
@@ -89,9 +89,9 @@ export default function UserAdd() {
             </div>            
           </div>
         </div>
-        <div className="box_ty01 stamp_policy">
+        <div className="box_ty01 ">
           <div className="write_type">
-            <div className="plus_area">
+            <div className="plus_area stamp_policy">
               <div className="flex_box plus_tit">
                 <div className="flex_left">
                   {/* btn_plus 클릭시 numBox 추가  */}
@@ -133,9 +133,9 @@ export default function UserAdd() {
             </div>
           </div>
         </div>
-        <div className="box_ty01 point_pay">
+        <div className="box_ty01 ">
           <div className="write_type">
-            <div className="plus_area">
+            <div className="plus_area point_pay">
               <div className="flex_box plus_tit">
                 <div className="flex_left">
                   {/* btn_plus 클릭시 numBox 추가  */}

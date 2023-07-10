@@ -64,7 +64,7 @@ export default function CalculatorList() {
     <>
       <Lnb lnbType="calcHistory" />
       <CurrentBox down={true} tit="탄소발자국 계산 내역 리스트" />
-      <div className="calc_list box_ty01 table_type">
+      <div className="calc_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02" onClick={() => {handleSelectBox('co2_state')}}>

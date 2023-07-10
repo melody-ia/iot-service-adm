@@ -1,437 +1,197 @@
 // 데일리 챌린지 상세보기
-.ch_list_detail {
-  .arrow_right {
-    width: 18px;
-    vertical-align: sub;
-    margin-left: 8px;
-  }
-  .banner_table {
-    th {
-      border-top: none;
+.ch_list_detail{
+    .arrow_right{width:18px; margin-left:8px; vertical-align:sub;}
+    .banner_table {
+        th{border-top:none;}
+        img{@include conSize(50%, 100%, null); object-fit: contain;}
     }
-
-    img {
-      width: 50%;
-      height: 100%;
-      object-fit: contain;
+    .table{
+        th.member{cursor:pointer;}
     }
-  }
-  .table {
-    th.member {
-      cursor: pointer;
-    }
-  }
 }
 
 // 데일리 챌린지 상세보기 모달
-.ch_list_modal {
-  padding: 35px 20px;
-
-  .filter_wrap {
-    padding: 0;
-  }
-
-  .table_wrap {
-    max-height: 400px;
-    overflow: auto;
-    margin: 20px 0;
-
-    .table {
-      border: 1px solid #EBEFF2;
-      min-width: 500px;
-
-      tr {
-        height: 55px;
-      }
-
-      .main_tit {
-        border-bottom: 1px solid #EBEFF2;
-      }
+.ch_list_modal{padding:35px 20px;
+    .filter_wrap{padding:0;}
+    .table_wrap{max-height:400px; margin:20px 0; overflow:auto;
+        .table{min-width:500px; border:1px solid #EBEFF2;
+        tr{height:55px;}
+        .main_tit{border-bottom:1px solid #EBEFF2;}
+        }
     }
-  }
 
-  #pagination {
-    bottom: 80px;
-    left: 0;
-  }
-  .foot_btn_wrap {
-    padding-top: 60px;
-    justify-content: flex-end;
-  }
+    #pagination{bottom:80px;left:0;}
+    .foot_btn_wrap{justify-content:flex-end; padding-top:60px;}
 }
 
 // 데일리 챌린지 등록/수정
-.ch_add {
-  .table_wrap.line {
-    border-bottom: none;
-  }
-  .write_type {
-    padding: 0;
-    max-width: none;;
-  }
-  .wirte_area {
-    padding: 28px;
-  }
-  .box_ty01 {
-    margin-bottom: 14px;
-  }
-  input:disabled {
-    background: #F4F4F4;
-  }
-  .radio_wrap {
-    label {
-      margin: 0;
-    }
-  }
-  .radio_group .check_type.radio {
-    margin-right: 8%;
-
-    span::before {
-      vertical-align: bottom;
-    }
-  }
-
-  .icon {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-    margin-left: 10px;
-    object-fit: contain;
-  }
-
-  .plus_area {
-    counter-reset: number;
-
-    .flex_left,
-    .flex_right {
-      max-width: 596px;
-
-      @include desktop-sm {
-        max-width: 100%;
-      }
-    }
-    .flex_box label {
-      max-width: 194px;
-    }
-
-    .plus_tit {
-      padding: 28px;
-      border-bottom: 1px solid #EBEFF2;
-      margin-bottom: 0;
-
-      .flex_left {
-        max-width: 650px;
-
-        @include desktop-sm {
-          max-width: 100%;
-        }
-      }
-    }
-  }
-  .numBox {
-    padding: 28px 150px 28px 82px;
-    position: relative;
-
-    @include desktop-sm {
-      padding-right: 100px;
-    }
-    @include mobile {
-      padding-right: 28px;
-      padding-left: 65px;
-    }
-
-    &:nth-child(odd) {
-      background: #FBFCFC;
-    }
-
-    &::before {
-      content: counter(number);
-      counter-increment: number;
-      position: absolute;
-      left: 28px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--color-lightGray);
-      width: 24px;
-      height: 24px;
-      border: 1px solid #E0E2E7;
-      border-radius: 5px;
-      text-align: center;
-
-      @include mobile {
-        left: 20px;
-      }
-    }    
-  }
-  .btn_del {
-    background: url(../img/icon/trash_gray.svg) no-repeat center, #fff;
-    border: 1px solid var(--color-lightGray);
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
-    position: absolute;
-    right: 4%;
-    top: 50%;
-    transform: translateY(-50%);
-
-    @include mobile {
-      left: 20px;
-      right: auto;
-      top: 20px;
-      transform: translateY(0);
-      width: 26px;
-      height: 26px;
-      background-size: 15px;
-    }
-  }
-  .banner_table {    
-    img {
-      width: 50%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .select_input {
-      input {
-        border: none;
-      }
-    }
-
-    tr {
-      height: 90px;
-    }
-
-    td {
-      position: relative;
-    }
-    .icon {
-      width: 28px;
-      height: 28px;
-    }
-    .btn_del {
-      position: static;
-      display: block;
-      transform: translate(0);
-      width: 25px;
-      height: 25px;
-      margin: 5px auto 0;
-      background-size: 15px;
-    }
-  }
-}
-
-// 공개 배너 순위 설정
-.banner_ranking {
-  .table_tit {
-    font-weight: 500;
-    padding: 20px;
-
-    .btn_plus {
-      padding-left: 10px;
-    }
-  }
-  .banner_img {
-    img {
-      width: 50%;
-    }
-  }
-  .btn_arrow {
-    margin: 0 2px;
-    width: 28px;
-    height: 28px;
-
-    img {
-      object-fit: contain;
-    }
-
-    &.btn_down {
-      transform: rotate(180deg);
-    }
-  }
-  
-
-  tr {
-    &:last-child {
-      .btn_down {
-        display: none;
-      }
-    }
-    &:first-child {
-      .btn_up {
-        display: none;
-      }
-    }
-  }
-}
-
-// 공개 배너 순위 설정 모달
-.banner_ranking_modal {
-  padding: 35px 20px;
-  max-width: 1580px;
-
-  .table_wrap {
-    max-height: 500px;
-    overflow-y: auto;
-  }
-
-  .modal_tit {
-    font-weight: 500;
-    padding-bottom: 20px;
-  }
-
-  .table {
-    border: 1px solid #EBEFF2;
-    min-width: 500px;
-  }
-  .button_wrap {
-    text-align: center;
-    margin-top: 20px;
-    
-    .btn_ty01 {
-      padding-left: 50px;
-      padding-right: 50px;
-      margin: 0 5px;
-    }
-  }
-}
-
-// 배너 관리
-.banner_setting {
-  .basic {
-    .check_type.radio span::before {
-      margin-right: 0;
-    }
-  }
-  @include tablet {
-    .select_input_wrap {
-      flex-direction: column;
-    }
-  }
-}
-
-// (공통) 배너/팝업 등록
-.add_type {
-  padding: 20px;
-
-  .table {
-    border: 1px solid #EBEFF2;
-  }
-
-  .date_input {
-    width: 150px;
-
-    input {
-      font-size: 16px;
-    }
-  }
-  .select_input {
-    text-align: left;
-  }
-
-  .input_ty02 {
-    input {
-      text-align: left;
-    }
-  }
-
-  .btn_wrap {
-    margin-top: 8px;
-    
-    .btn_view {
-      margin-left: 5px;
-    }
-  }
-
-  .foot_btn_wrap {
-    padding: 20px 0;
-  }
-} 
-
-// (공통) 사이즈 안내창
-.size_info {
-  background: #f8f8f8;
-  margin: 0 0 50px;
-  padding: 20px;
-  border-radius: 5px;
-
-  @include mobile {
-    margin: 0 0 25px;
-    padding-left: 32px;
-  }
-
-  .size_tit {
-    font-size: 16px;
-    padding-left: 25px;
-    position: relative;
-    margin-bottom: 30px;
-    font-weight: 500;
-
-    @include mobile {
-      margin-bottom: 15px;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 3px;
-      background: url(../img/icon/notice.svg) no-repeat;
-      width: 18px;
-      height: 18px;        
-    }
-  }
-
-  ul {
-    li {
-      display: inline-block;
-      width: 49%;
-      font-size: 15px;
-      margin: 0 10px 5px 0;
-
-      @include desktop-sm {
-        width: 100%;
-      }
-      @include mobile {
-        font-size: 13px;
-        text-indent: -14px;
-      }
-    }
-  }
-}
-
-// 230705
 .ch_add{
-    .input_ty02{
-        input{height:48px; line-height:48px; border-radius:8px;}
-        &::before{top:15px;}
-    }
-    .flex_left{margin-right:11%;
-        &.mr12{margin-right:11.5%;}
-    }
-    .btn_del{right:6%;}
-    .radio_group{
-        .radio_wrap{display:flex;
-            .check_type.radio{flex:1; margin-right:0;
-                &:last-child{flex:initial;}
+    .table_wrap.line{border-bottom:none;}
+    .box_ty01{margin-bottom:14px;
+        .write_type{max-width:none; padding:0;
+            .wirte_area{padding:28px;
+                @include desktop-sb{padding:18px}
+            }
+            .plus_area{counter-reset:number;
+                .flex_left, .flex_right{max-width:596px;
+                    @include desktop-sm{max-width:100%;}
+                }
+                .flex_box label{max-width:194px;}
+                .plus_tit{padding:28px; margin-bottom:0; border-bottom:1px solid #EBEFF2;
+                    .flex_left{max-width:650px;
+                        @include desktop-sm{max-width:100%;}
+                    }
+                    @include desktop-sb{padding:18px;}
+                }
+            }
+            .stamp_policy, .point_pay{
+                .flex_right{max-width:650px;
+                    label, .label{max-width:248px;
+                        @include desktop{max-width:200px;}
+                    }
+                    @include desktop-sm{max-width:100%;}
+                }
             }
         }
     }
-    .numBox{padding:28px 28px 28px 82px;
-        @include desktop-b{padding:28px 150px 28px 82px}
-    }
-    .stamp_policy{
-        .plus_area{
-            .flex_right{max-width:650px;}
-            .stamp_signup{max-width:248px;}
+    .flex_left{margin-right:11%;
+        @include desktop{margin-right:5%;}
+        &.mr12{margin-right:11.5%;
+            @include desktop{margin-right:5%;}
         }
     }
-    .point_pay{
-        .plus_area{
-            .flex_right{max-width:650px;}
-            .point_signup{max-width:248px;}
+    .input_ty02{
+        input{height:48px; line-height:48px; border-radius:8px;
+            &:disabled{background:#F4F4F4;}
+        }
+        &::before{top:15px;}
+    }
+    .radio_group{
+        .radio_wrap{display:flex;
+            .check_type.radio{flex:1; margin:0;
+                label{display:block; margin:0;
+                    span::before{vertical-align:bottom;}
+                }
+                &:last-child{flex:initial;}
+                @include desktop-sm{flex:.2;}
+                @include mobile{flex:1;}
+            }
         }
     }
+    .icon{@include conSize(24px, 24px, null); display:inline-block; vertical-align:middle; margin-left:10px; object-fit:contain;}
+
+    .numBox{position:relative; padding:28px 28px 28px 82px;
+        &:nth-child(odd){background:#FBFCFC;}
+        &::before{content:counter(number); @include conSize(24px, 24px, null); counter-increment:number; @include position(absolute, 50%, null, null, 28px); transform:translateY(-50%); color:var(--color-lightGray); border:1px solid #E0E2E7; border-radius:5px; text-align: center;
+            @include mobile{left:20px;}
+        }
+        @include desktop-b{padding:28px 150px 28px 82px;}
+        @include desktop-sb{padding:18px 150px 18px 82px;}
+        @include desktop-sm{padding-right:100px;}
+        @include mobile{padding-right:28px; padding-left:65px;}
+    }
+    .btn_del{@include conSize(40px, 40px, null); @include position(absolute, 50%, 6%, null, null); transform:translateY(-50%); background: url(../img/icon/trash_gray.svg) no-repeat center, $f; border:1px solid var(--color-lightGray); border-radius:5px;
+        @include mobile{@include conSize(26px, 26px, null); top:20px; right:auto; left:20px; transform:translateY(0); background-size: 15px;}
+    }
+
+    .banner_table{    
+        img{@include conSize(50%, 100%, null); object-fit: contain;}
+        .select_input{
+            input{border:none;}
+        }
+        tr{height:90px;}
+        td{position:relative;}
+        .icon{@include conSize(28px, 28px, null);}
+        .btn_del{@include conSize(25px, 25px, null); display:block; position:static; transform:translate(0); margin:5px auto 0; background-size:15px;}
+    }
+}
+
+// 공개 배너 순위 설정
+.banner_ranking{
+    .table_tit{padding:20px; font-weight:500;
+        .btn_plus{padding-left:10px;}
+    }
+    .banner_img{
+        img{width:50%;}
+    }
+    .btn_arrow{@include conSize(28px, 28px, null); margin:0 2px;
+        img{object-fit:contain;}
+        &.btn_down{transform:rotate(180deg);}
+    }
+    tr{
+        &:last-child{
+            .btn_down{display:none;}
+        }
+        &:first-child{
+            .btn_up{display:none;}
+        }
+    }
+}
+
+// 공개 배너 순위 설정 모달
+.banner_ranking_modal{max-width:1580px; padding:35px 20px;
+    .table_wrap{max-height:500px; overflow-y:auto;
+        th{line-height:1.1; @include font(16px, 400, $b)}
+        td{line-height:1.2; @include font(14px, 400, var(--color-lightGray))}
+    }
+    .modal_tit{padding-bottom:20px; font-weight:500;}
+    .table{min-width:500px; border:1px solid #EBEFF2;}
+    .button_wrap{margin-top:20px; text-align:center; 
+        .btn_ty01{padding-left:50px; padding-right:50px; margin: 0 5px;}
+    }
+}
+
+// 배너 관리
+.banner_setting{
+    .basic{
+        .check_type.radio{
+            label{@include displayFlex(null, center, null);
+                span{width:24px; height:24px; @include displayFlex(null, center, null); padding:0;
+                    &::before{@include center(absolute); margin-right:0;}
+                    &::after{@include center(absolute);}
+                }
+            }
+        }
+        .check_type.radio span::before{margin-right:0;}
+    }
+    @include tablet{
+        .select_input_wrap{flex-direction:column;}
+    }
+}
+
+// (공통) 배너/팝업 등록
+.add_type{padding:20px;
+    .table{border:1px solid #EBEFF2;}
+
+    .date_input{width:150px;
+        input{font-size:16px;}
+    }
+    .select_input{text-align:left;}
+    .input_ty02{
+        input{text-align:left;}
+    }
+
+    .btn_wrap{margin-top:8px;
+        .btn_view{margin-left:5px;}
+    }
+
+    .foot_btn_wrap{padding:20px 0;}
+} 
+
+// (공통) 사이즈 안내창
+.size_info{padding:20px; margin:0 0 50px; background:#f8f8f8; border-radius:5px;
+    .size_tit{position: relative; @include font(16px, 500, null); padding-left:25px; margin-bottom:30px;
+        &::before{content:''; @include conSize(18px, 18px, null); position:absolute; left:0; top:3px; background:url(../img/icon/notice.svg) no-repeat;}
+        @include mobile{margin-bottom:15px;}
+    }
+
+    ul{
+        li{width:49%; display:inline-block; margin:0 10px 5px 0; font-size:15px;
+            @include desktop-sm{width:100%;}
+            @include mobile{font-size:13px; text-indent:-14px;}
+        }
+    }
+    @include mobile{margin:0 0 25px; padding-left:32px;}
 }
 
 // 230707

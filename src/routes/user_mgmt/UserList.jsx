@@ -57,7 +57,7 @@ export default function UserList() {
   
   const userList_form = [
     { no:100, 
-        id:'wizzzzzzzzzzz1', 
+        id:'wizzzzzzzzzzz', 
         name:'김위즈', 
         gender:'남', 
         birth:'1999.10.01', 
@@ -70,7 +70,7 @@ export default function UserList() {
         etc:'직접입력' 
     },
     { no:100, 
-        id:'wizzzzzzzzzzz1', 
+        id:'wizzzzzzzzzzz', 
         name:'김위즈', 
         gender:'남', 
         birth:'1999.10.01', 
@@ -89,7 +89,7 @@ export default function UserList() {
     <>
       <Lnb lnbType="user" />
       <CurrentBox add={true} mod={true} del={true} down={true} tit="회원리스트" />
-      <div className="user_list box_ty01 table_type">
+      <div className="user_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02" onClick={() => {handleSelectBox("sort_join")}}>
@@ -194,8 +194,8 @@ export default function UserList() {
             검색
           </button>
         </div>
-        <div className="table_wrap">
-          <table className="table reTable">
+        <div className="table_wrap part">
+          <table className="table reTable ">
             <thead>
               <tr>
                 <th className="check">

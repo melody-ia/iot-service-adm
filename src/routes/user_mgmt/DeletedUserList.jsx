@@ -58,7 +58,7 @@ export default function DeletedUserList() {
     <>
       <Lnb lnbType="user" />
       <CurrentBox res={true} del={true} down={true} tit="탈퇴/삭제 회원 리스트" />
-      <div className="deleted_user_list box_ty01 table_type">
+      <div className="deleted_user_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02" onClick={() => {handleSelectBox("join_date")}}>
@@ -163,7 +163,7 @@ export default function DeletedUserList() {
             검색
           </button>
         </div>
-        <div className="table_wrap">
+        <div className="table_wrap part">
           <table className="table">
             <thead>
               <tr>

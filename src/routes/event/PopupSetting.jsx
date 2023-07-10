@@ -59,7 +59,7 @@ export default function PopupSetting() {
     <>
       <Lnb lnbType="event" />
       <CurrentBox add={true} mod={true} del={true} down={true} tit="팝업 리스트" />
-      <div className="popup_setting box_ty01 table_type">
+      <div className="popup_setting box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">    
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02" onClick={() => {handleSelectBox("signUp_date")}}>
@@ -164,7 +164,7 @@ export default function PopupSetting() {
             검색
           </button>
         </div>
-        <div className="table_wrap line">
+        <div className="table_wrap line part">
           <table className="table">   
             <colgroup>
               <col width={"auto"} />

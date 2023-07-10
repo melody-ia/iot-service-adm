@@ -73,7 +73,7 @@ export default function ChallengeList() {
     <>
       <Lnb lnbType="event" />
       <CurrentBox add={true} mod={true} del={true} down={true} tit="데일리 챌린지 리스트" />
-      <div className="ch_list box_ty01 table_type">
+      <div className="ch_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
             <div

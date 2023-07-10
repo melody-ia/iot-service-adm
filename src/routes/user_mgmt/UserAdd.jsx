@@ -125,7 +125,7 @@ export default function UserAdd() {
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">휴대폰 번호</label>
-                  <div className="d-flex ip_box">
+                  <div className="d-flex ip_box ">
                     <input type="text" placeholder="직접입력" data-type="ph" value={form.ph.val} onChange={valid} />
                     {errorCheck("ph")?.alert}
                   </div>
@@ -360,7 +360,7 @@ export default function UserAdd() {
                 </div>
               </div>
               <div className="flex_box">
-                <div className="radio_group flex_left">
+                <div className="radio_group flex_left account">
                   <span className="label">계정활성화 여부</span>
                   <div className="radio_wrap account">
                     {[
