@@ -3,8 +3,8 @@ import ChartAreaStacked from "../components/ChartAreaStacked";
 import ChartCircle from "../components/ChartCircle";
 import ChartColumn from "../components/ChartColumn";
 
-export default function Dashboard() {  
-  return(
+export default function Dashboard() {
+  return (
     <div className="dashboard">
       <div className="row row1">
         <div className="box_ty01">
@@ -111,7 +111,11 @@ export default function Dashboard() {
                   <td className="gender">남</td>
                   <td>1990.10.01</td>
                   <td>3</td>
-                  <td>kimwewew<br />@naver.com</td>
+                  <td>
+                    kimwewew
+                    <br />
+                    @naver.com
+                  </td>
                   <td>010-1111-1111</td>
                   <td>2023.05.08</td>
                   <td>X</td>
@@ -122,7 +126,11 @@ export default function Dashboard() {
                   <td>남</td>
                   <td>1990.10.01</td>
                   <td>3</td>
-                  <td>kimwewew<br />@naver.com</td>
+                  <td>
+                    kimwewew
+                    <br />
+                    @naver.com
+                  </td>
                   <td>010-1111-1111</td>
                   <td>2023.05.08</td>
                   <td>X</td>
@@ -133,7 +141,11 @@ export default function Dashboard() {
                   <td>남</td>
                   <td>1990.10.01</td>
                   <td>3</td>
-                  <td>kimwewew<br />@naver.com</td>
+                  <td>
+                    kimwewew
+                    <br />
+                    @naver.com
+                  </td>
                   <td>010-1111-1111</td>
                   <td>2023.05.08</td>
                   <td>X</td>
@@ -144,7 +156,11 @@ export default function Dashboard() {
                   <td>남</td>
                   <td>1990.10.01</td>
                   <td>3</td>
-                  <td>kimwewew<br />@naver.com</td>
+                  <td>
+                    kimwewew
+                    <br />
+                    @naver.com
+                  </td>
                   <td>010-1111-1111</td>
                   <td>2023.05.08</td>
                   <td>X</td>
@@ -154,10 +170,12 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="bar_graph box_ty01">
-          <h4 className="tit">주간 방문자 수<button className="dot_menu"></button></h4>
-        <ChartColumn />
+          <h4 className="tit">
+            주간 방문자 수<button className="dot_menu"></button>
+          </h4>
+          <ChartColumn />
         </div>
       </div>
     </div>
-  )
+  );
 }

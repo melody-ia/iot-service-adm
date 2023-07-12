@@ -13,9 +13,9 @@ export default function Templeate() {
   return (
     <>
       <SideMenu sideState={showSide} sideOpen={() => setShowSide(true)} sideClose={() => setShowSide(false)} />
-      <div className={pathname === "/"? "container home" : "container"} >
+      <div className={pathname === "/" ? "container home" : "container"}>
         <Header sideOpen={() => setShowSide(true)} />
-        {pathname === "/"? <Dashboard /> : ""} 
+        {pathname === "/" && <Dashboard />}
         <div className="content_container">
           <Outlet />
         </div>
