@@ -1,24 +1,28 @@
-import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
-import { useState } from "react";
-import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 import { useNavigate } from "react-router-dom";
+import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
+import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 import banner from "../../assets/img/banner.png";
 import plus from "../../assets/img/icon/border_plus.svg";
 
 export default function PopupAdd() {
-  const { date, startDate, endDate } = useDatePicker();
-
-  const { selectList, handleSelectBox } = useSelectBox({
-    popup_loaction: false,
-  });
-  const [searchOption, setSearchOption] = useState({
-    popup_loaction: "메인",
-  });
-  const searchOptionSel = e => {
-    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
-  };
-
   const history = useNavigate();
+  const { date, startDate, endDate } = useDatePicker();
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    popup_loaction: [
+      "메인",
+      "데일리 챌린지 리스트",
+      "탄소중립실천랭킹",
+      "탄소발자국계산기",
+      "이벤트/뉴스 리스트",
+      "GL 추천제품",
+      "마이페이지 개인정보수정",
+      "MY 챌린지 현황",
+      "MY 챌린지 적립 내역",
+      "MY 발자국 계산 내역",
+      "MY 랭킹 현황",
+      "MY ECO Point",
+    ],
+  });
 
   return (
     <>
@@ -59,40 +63,7 @@ export default function PopupAdd() {
               </tr>
               <tr>
                 <th>팝업 위치</th>
-                <td>
-                  <div
-                    className="select_input input_ty02"
-                    onClick={() => {
-                      handleSelectBox("popup_loaction");
-                    }}
-                  >
-                    <input type="text" defaultValue="메인" readOnly />
-                    {selectList.popup_loaction && (
-                      <ul className="select_box">
-                        {[
-                          "메인",
-                          "데일리 챌린지 리스트",
-                          "탄소중립실천랭킹",
-                          "탄소발자국계산기",
-                          "이벤트/뉴스 리스트",
-                          "GL 추천제품",
-                          "마이페이지 개인정보수정",
-                          "MY 챌린지 현황",
-                          "MY 챌린지 적립 내역",
-                          "MY 발자국 계산 내역",
-                          "MY 랭킹 현황",
-                          "MY ECO Point",
-                        ].map((popupLoaction, index) => {
-                          return (
-                            <li key={popupLoaction} data-value={popupLoaction} datat-type="popupLoaction" onClick={searchOptionSel}>
-                              {popupLoaction}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    )}
-                  </div>
-                </td>
+                <td>{selecBoxHtml}</td>
               </tr>
               <tr>
                 <th>공개 기한</th>

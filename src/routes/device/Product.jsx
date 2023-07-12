@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Lnb, CurrentBox, CheckBox, RadioBtn } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 import pdImg from "../../assets/img/GL-011_detail.png";
@@ -6,19 +5,11 @@ import plus from "../../assets/img/icon/border_plus.svg";
 
 export default function Product() {
   const { date, startDate, endDate } = useDatePicker();
-  const { selectList, handleSelectBox } = useSelectBox({
-    signUp_date: false,
-    open_state: false,
-    icon_sort: false,
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    signUp_date: ["최근 등록일 순", "오래된 등록일 순"],
+    open_state: ["전체(공개여부)", "공개", "비공개"],
+    icon_sort: ["전체(아이콘)", "BEST", "NEW", "등록안함"],
   });
-  const [searchOption, setSearchOption] = useState({
-    signUp_date: "최근 등록일 순",
-    open_state: "전체(공개여부)",
-    icon_sort: "전체(아이콘)",
-  });
-  const searchOptionSel = e => {
-    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
-  };
 
   return (
     <>
@@ -26,65 +17,7 @@ export default function Product() {
       <CurrentBox mod={true} del={true} down={true} tit="GL 추천제품 리스트" />
       <div className="product box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
-          <div className="select_input_wrap d-flex">
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("signUp_date");
-              }}
-            >
-              <input type="text" defaultValue="최근 등록일 순" readOnly />
-              {selectList.signUp_date && (
-                <ul className="select_box">
-                  {["최근 등록일 순", "오래된 등록일 순"].map((signUpDate, index) => {
-                    return (
-                      <li key={signUpDate} data-value={signUpDate} data-type="signUp_date" onClick={searchOptionSel}>
-                        {signUpDate}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("open_state");
-              }}
-            >
-              <input type="text" defaultValue="전체(공개여부)" readOnly />
-              {selectList.open_state && (
-                <ul className="select_box">
-                  {["전체(공개여부)", "공개", "비공개"].map((openState, index) => {
-                    return (
-                      <li key={openState} data-value={openState} data-type="open_state" onClick={searchOptionSel}>
-                        {openState}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("icon_sort");
-              }}
-            >
-              <input type="text" defaultValue="전체(아이콘)" readOnly />
-              {selectList.icon_sort && (
-                <ul className="select_box">
-                  {["전체(아이콘)", "BEST", "NEW", "등록안함"].map((iconSort, index) => {
-                    return (
-                      <li key={iconSort} data-value={iconSort} data-type="icon_sort" onClick={searchOptionSel}>
-                        {iconSort}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-          </div>
+          <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>

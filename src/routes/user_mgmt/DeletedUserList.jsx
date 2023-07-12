@@ -1,22 +1,13 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 
 export default function DeletedUserList() {
   const { date, startDate, endDate } = useDatePicker();
-
-  const { selectList, handleSelectBox } = useSelectBox({
-    join_date: false,
-    account_date: false,
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    join_date: ["최근 가입일 순", "오래된 가입일 순"],
+    account_date: ["가입일", "탈퇴/삭제일"],
   });
-  const [searchOption, setSearchOption] = useState({
-    join_date: "최근 가입일 순",
-    account_date: "전체",
-  });
-  const searchOptionSel = e => {
-    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
-  };
 
   return (
     <>
@@ -24,46 +15,7 @@ export default function DeletedUserList() {
       <CurrentBox res={true} del={true} down={true} tit="탈퇴/삭제 회원 리스트" />
       <div className="deleted_user_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
-          <div className="select_input_wrap d-flex">
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("join_date");
-              }}
-            >
-              <input type="text" defaultValue="최근 가입일 순" readOnly />
-              {selectList.join_date && (
-                <ul className="select_box">
-                  {["최근 가입일 순", "오래된 가입일 순"].map((joinDate, index) => {
-                    return (
-                      <li key={joinDate} data-type="join_date" data-value={joinDate} onClick={searchOptionSel}>
-                        {joinDate}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("account_date");
-              }}
-            >
-              <input type="text" defaultValue="가입일" readOnly />
-              {selectList.account_date && (
-                <ul className="select_box">
-                  {["가입일", "탈퇴/삭제일"].map((accountDate, index) => {
-                    return (
-                      <li key={accountDate} data-type="account_date" data-value={accountDate} onClick={searchOptionSel}>
-                        {accountDate}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-          </div>
+          <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>

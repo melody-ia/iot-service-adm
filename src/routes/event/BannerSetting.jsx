@@ -1,24 +1,25 @@
-import { useState } from "react";
 import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 import banner from "../../assets/img/banner.png";
 
 export default function BannerSetting() {
   const { date, startDate, endDate } = useDatePicker();
-
-  const { selectList, handleSelectBox } = useSelectBox({
-    upload_state: false,
-    upload_date: false,
-    banner_location: false,
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    upload_state: ["전체", "최근 업로드 순", "오래된 업로드 순", "공개", "비공개"],
+    upload_date: ["업로드일", "공개 기한"],
+    banner_location: [
+      "전체",
+      "메인 상단",
+      "메인 중간",
+      "카테고리",
+      "데일리 발자국 챌린지 리스트 상단",
+      "데일리 발자국 챌린지 글쓰기 상단",
+      "탄소중립랭킹 중간",
+      "탄소중립랭킹 하단",
+      "이벤트/뉴스 상단",
+      "GL 추천 제품",
+    ],
   });
-  const [searchOption, setSearchOption] = useState({
-    upload_state: "전체",
-    upload_date: "업로드일",
-    banner_location: "전체",
-  });
-  const searchOptionSel = e => {
-    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
-  };
 
   return (
     <>
@@ -26,76 +27,7 @@ export default function BannerSetting() {
       <CurrentBox add={true} mod={true} del={true} down={true} tit="배너 리스트" />
       <div className="banner_setting box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
-          <div className="select_input_wrap d-flex">
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("upload_state");
-              }}
-            >
-              <input type="text" defaultValue="전체" readOnly />
-              {selectList.upload_state && (
-                <ul className="select_box">
-                  {["전체", "최근 업로드 순", "오래된 업로드 순", "공개", "비공개"].map((uploadState, index) => {
-                    return (
-                      <li key={uploadState} data-value={uploadState} data-type="upload_state" onClick={searchOptionSel}>
-                        {uploadState}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("upload_data");
-              }}
-            >
-              <input type="text" defaultValue="업로드일" readOnly />
-              {selectList.upload_data && (
-                <ul className="select_box">
-                  {["업로드일", "공개 기한"].map((uploadDate, index) => {
-                    return (
-                      <li key={uploadDate} data-value={uploadDate} data-type="upload_date" onClick={searchOptionSel}>
-                        {uploadDate}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-            <div
-              className="select_input input_ty02 wide"
-              onClick={() => {
-                handleSelectBox("banner_location");
-              }}
-            >
-              <input type="text" defaultValue="전체" readOnly />
-              {selectList.banner_location && (
-                <ul className="select_box">
-                  {[
-                    "전체",
-                    "메인 상단",
-                    "메인 중간",
-                    "카테고리",
-                    "데일리 발자국 챌린지 리스트 상단",
-                    "데일리 발자국 챌린지 글쓰기 상단",
-                    "탄소중립랭킹 중간",
-                    "탄소중립랭킹 하단",
-                    "이벤트/뉴스 상단",
-                    "GL 추천 제품",
-                  ].map((bannerLocation, index) => {
-                    return (
-                      <li key={bannerLocation} data-value={bannerLocation} data-type="banner_location" onClick={searchOptionSel}>
-                        {bannerLocation}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-          </div>
+          <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>

@@ -1,22 +1,13 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 
 export default function UserList() {
   const { date, startDate, endDate } = useDatePicker();
-
-  const { selectList, handleSelectBox } = useSelectBox({
-    sort_join: false,
-    account_type: false,
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    sort_join: ["최근 가입일 순", "오래된 가입일 순"],
+    account_type: ["전체", "계정 활성화", "계정 비활성화"],
   });
-  const [searchOption, setSearchOption] = useState({
-    sort_join: "최근 가입일 순",
-    account_type: "전체",
-  });
-  const searchOptionSel = e => {
-    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
-  };
 
   const userList_form = [
     {
@@ -57,46 +48,7 @@ export default function UserList() {
       <CurrentBox add={true} mod={true} del={true} down={true} tit="회원리스트" />
       <div className="user_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
-          <div className="select_input_wrap d-flex">
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("sort_join");
-              }}
-            >
-              <input type="text" defaultValue="최근 가입일 순" readOnly />
-              {selectList.sort_join && (
-                <ul className="select_box">
-                  {["최근 가입일 순", "오래된 가입일 순"].map((join, index) => {
-                    return (
-                      <li key={join} data-type="sort_join" data-value={join} onClick={searchOptionSel}>
-                        {join}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("account_type");
-              }}
-            >
-              <input type="text" defaultValue="전체" readOnly />
-              {selectList.account_type && (
-                <ul className="select_box">
-                  {["전체", "계정 활성화", "계정 비활성화"].map((account, index) => {
-                    return (
-                      <li key={account} data-type="account_type" data-value={account} onClick={searchOptionSel}>
-                        {account}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-          </div>
+          <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>

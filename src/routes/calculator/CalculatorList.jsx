@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Lnb, CurrentBox, Pagination } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
@@ -6,22 +5,12 @@ import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 export default function CalculatorList() {
   const { date, startDate, endDate } = useDatePicker();
 
-  const { selectList, handleSelectBox } = useSelectBox({
-    co2_state: false,
-    cal_standard: false,
-    gender: false,
-    region: false,
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    co2_state: ["전체", "CO2 발생량 높은 순", "CO2 발생량 낮은 순"],
+    cal_standard: ["계산일", "생년월일"],
+    gender: ["전체(성별)", "남성", "여성"],
+    region: ["전체(지역)", "서울시", "경기도", "강원도", "경상도", "전라도", "충청도", "제주도", "인천", "대전", "대구", "광주", "부산", "울산"],
   });
-  const [searchOption, setSearchOption] = useState({
-    co2_state: "전체",
-    cal_standard: "계산일",
-    banner_location: "메인 상단",
-    gender: "전체(성별)",
-    region: "전체(지역)",
-  });
-  const searchOptionSel = e => {
-    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
-  };
 
   return (
     <>
@@ -29,99 +18,7 @@ export default function CalculatorList() {
       <CurrentBox down={true} tit="탄소발자국 계산 내역 리스트" />
       <div className="calc_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
-          <div className="select_input_wrap d-flex">
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("co2_state");
-              }}
-            >
-              <input type="text" defaultValue="전체" readOnly />
-              {selectList.co2_state && (
-                <ul className="select_box">
-                  {["전체", "CO2 발생량 높은 순", "CO2 발생량 낮은 순"].map((co2State, index) => {
-                    return (
-                      <li key={co2State} data-value={co2State} data-type="co2_state" onClick={searchOptionSel}>
-                        {co2State}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("cal_standard");
-              }}
-            >
-              <input type="text" defaultValue="계산일" readOnly />
-              {selectList.cal_standard && (
-                <ul className="select_box">
-                  {["계산일", "생년월일"].map((calStandard, index) => {
-                    return (
-                      <li key={calStandard} data-value={calStandard} data-type="cal_standard" onClick={searchOptionSel}>
-                        {calStandard}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("gender");
-              }}
-            >
-              <input type="text" defaultValue="전체(성별)" readOnly />
-              {selectList.gender && (
-                <ul className="select_box">
-                  {["전체(성별)", "남성", "여성"].map((gender, index) => {
-                    return (
-                      <li key={gender} data-value={gender} data-type="gender" onClick={searchOptionSel}>
-                        {gender}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("region");
-              }}
-            >
-              <input type="text" defaultValue="전체(지역)" readOnly />
-              {selectList.region && (
-                <ul className="select_box">
-                  {[
-                    "전체(지역)",
-                    "서울시",
-                    "경기도",
-                    "강원도",
-                    "경상도",
-                    "전라도",
-                    "충청도",
-                    "제주도",
-                    "인천",
-                    "대전",
-                    "대구",
-                    "광주",
-                    "부산",
-                    "울산",
-                  ].map((region, index) => {
-                    return (
-                      <li key={region} data-value={region} data-type="region" onClick={searchOptionSel}>
-                        {region}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-          </div>
+          <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>

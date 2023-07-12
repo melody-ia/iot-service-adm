@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
@@ -7,19 +6,22 @@ import plus from "../../assets/img/icon/border_plus.svg";
 import zoom from "../../assets/img/icon/zoomIn.svg";
 
 export default function BannerAdd() {
-  const { date, startDate, endDate } = useDatePicker();
-
-  const { selectList, handleSelectBox } = useSelectBox({
-    banner_location: false,
-  });
-  const [searchOption, setSearchOption] = useState({
-    banner_location: "전체",
-  });
-  const searchOptionSel = e => {
-    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
-  };
-
   const history = useNavigate();
+  const { date, startDate, endDate } = useDatePicker();
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    banner_location: [
+      "메인 상단",
+      "메인 중간",
+      "카테고리",
+      "데일리 발자국 챌린지 리스트 상단",
+      "데일리 발자국 챌린지 글쓰기 상단",
+      "데일리 발자국 챌린지 리스트 상단",
+      "탄소중립랭킹 중간",
+      "탄소중립랭킹 하단",
+      "이벤트/뉴스 상단",
+      "GL 추천 제품",
+    ],
+  });
 
   return (
     <>
@@ -67,7 +69,8 @@ export default function BannerAdd() {
                 </td>
                 <th>배너 위치</th>
                 <td>
-                  <div
+                  {selecBoxHtml}
+                  {/* <div
                     className="select_input input_ty02"
                     onClick={() => {
                       handleSelectBox("banner_location");
@@ -96,7 +99,7 @@ export default function BannerAdd() {
                         })}
                       </ul>
                     )}
-                  </div>
+                  </div> */}
                 </td>
               </tr>
               <tr>

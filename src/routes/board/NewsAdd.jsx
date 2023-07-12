@@ -1,22 +1,12 @@
-import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
-import { useState } from "react";
-import { useSelectBox } from "../../hooks/bundle_hooks";
 import { useNavigate } from "react-router-dom";
-
-import banner from "../../assets/img/banner.png";
+import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
+import { useSelectBox } from "../../hooks/bundle_hooks";
 
 export default function NewsAdd() {
-  const { selectList, handleSelectBox } = useSelectBox({
-    post_sort : false,
-  });
-  const [searchOption, setSearchOption] = useState({
-    post_sort : '이벤트',
-  });
-  const searchOptionSel = e => {
-    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
-  };
-
   const history = useNavigate();
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    post_sort: ["이벤트", "뉴스"],
+  });
 
   return (
     <>
@@ -28,18 +18,7 @@ export default function NewsAdd() {
             <div className="flex_box">
               <div className="input_ty02 flex_left">
                 <label htmlFor="">구분</label>
-                <div className="select_input input_ty02" onClick={() => {handleSelectBox('post_sort')}}>
-                  <input type="text" defaultValue="이벤트" />
-                  {selectList.post_sort && (
-                    <ul className="select_box">
-                      {['이벤트', '뉴스'].map((postSort, index) => {
-                        return ( 
-                          <li key={postSort} data-value={postSort} data-type="post_sort" onClick={searchOptionSel}>{postSort}</li>
-                        )
-                      })}
-                    </ul>  
-                  )}
-                </div>
+                {selecBoxHtml}
               </div>
               <div className="flex_right">
                 <label htmlFor="">공개여부</label>
@@ -47,38 +26,46 @@ export default function NewsAdd() {
                   <RadioBtn for="show" id="show" name="show" text="공개" />
                   <RadioBtn for="noshow" id="noshow" name="show" text="비공개" />
                 </div>
-              </div>             
+              </div>
             </div>
             <div className="flex_box">
               <div className="input_ty02 flex_left">
                 <label htmlFor="">제목</label>
-                <input type="text" defaultValue={"신규 가입 이벤트 진행"}/>
+                <input type="text" defaultValue={"신규 가입 이벤트 진행"} />
               </div>
               <div className="input_ty02 flex_right">
                 <label htmlFor="">등록일</label>
-                <input type="text" placeholder="직접입력" defaultValue={"2023.05.08"}/>
+                <input type="text" placeholder="직접입력" defaultValue={"2023.05.08"} />
               </div>
             </div>
             <div className="flex_box">
               <div className="input_ty02 flex_left w100">
                 <label htmlFor="">내용</label>
-                <textarea className="textarea" placeholder="직접입력" defaultValue={"신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다."} ></textarea>
-              </div>      
+                <textarea
+                  className="textarea"
+                  placeholder="직접입력"
+                  defaultValue={
+                    "신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다.  신규 가입 이벤트 진행합니다."
+                  }
+                ></textarea>
+              </div>
             </div>
             {/* <div className="flex_box img_area">
               <div className="flex_left w100">
                 <span className="label">상단 이미지</span>
                 <button type="button" className="btn_plus"><span>&times;</span> 파일첨부</button>
                 {/************** 이미지 첨부시 **************/}
-                {/* <img src={banner} alt="" />}
+            {/* <img src={banner} alt="" />}
               </div>
             </div> */}
             <div className="flex_box find_file">
               <div className="flex_left w100 flex_box_mr">
                 <label htmlFor="">상단 이미지</label>
                 <div className="find_file_wrap">
-                  <label htmlFor="file" className="file_label"><span></span>파일첨부</label>
-                  <input type="file" className="file"/>
+                  <label htmlFor="file" className="file_label">
+                    <span></span>파일첨부
+                  </label>
+                  <input type="file" className="file" />
                 </div>
               </div>
             </div>
@@ -92,12 +79,14 @@ export default function NewsAdd() {
               <div className="flex_left w100 flex_box_mr">
                 <label htmlFor="">첨부파일</label>
                 <div className="find_file_wrap">
-                  <label htmlFor="file" className="file_label"><span></span>파일첨부</label>
-                  <input type="file" className="file"/>
+                  <label htmlFor="file" className="file_label">
+                    <span></span>파일첨부
+                  </label>
+                  <input type="file" className="file" />
                 </div>
               </div>
             </div>
-           {/************* 파일 첨부시 *************/}
+            {/************* 파일 첨부시 *************/}
             {/* <div className="file_box input_ty02">
               <div className="row">
                 <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly/>
@@ -107,14 +96,14 @@ export default function NewsAdd() {
                 <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly/>
                 <button type="button" className="btn_close">&times;</button>
               </div>
-            </div>             */}            
+            </div>             */}
             <div className="flex_box">
               <div className="input_ty02 flex_left w100">
                 <label htmlFor="">비고</label>
                 <textarea className="textarea" placeholder="직접입력"></textarea>
               </div>
             </div>
-          </div> 
+          </div>
         </div>
         <div className="bottom_btn_wrap">
           <button type="button" className="btn_ty01 cancel" onClick={() => history(-1)}>
@@ -123,7 +112,7 @@ export default function NewsAdd() {
           <button type="button" className="btn_ty01">
             등록
           </button>
-        </div>         
+        </div>
       </div>
     </>
   );

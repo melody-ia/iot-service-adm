@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
-import { useDatePicker } from "../../hooks/bundle_hooks";
+import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 import arrowRightGreen from "../../assets/img/icon/angle_right_green.svg";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
@@ -8,6 +8,10 @@ import Pagination from "../../components/Pagination";
 export default function UserPromoHis() {
   const { id } = useParams();
   const { date, startDate, endDate } = useDatePicker();
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    duration: ["진행 기간", "참여 기간"],
+  });
+  console.log(selectedValues);
 
   return (
     <>
@@ -15,15 +19,7 @@ export default function UserPromoHis() {
       <CurrentBox mod={true} del={true} down={true} tit="프로모션 참여 내역" />
       <div className="user_history_pro box_ty01 table_type">
         <div className="filter_wrap d-flex">
-          <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
-              <input type="text" defaultValue="진행 기간" readOnly />
-              <ul className="select_box">
-                <li>진행 기간</li>
-                <li>참여 기간</li>
-              </ul>
-            </div>
-          </div>
+          <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
