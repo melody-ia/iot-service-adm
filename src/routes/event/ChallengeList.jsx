@@ -9,8 +9,6 @@ export default function ChallengeList() {
     sort_date: ["최근 등록일 순", "오래된 등록일 순"],
     search_type: ["등록일", "진행기간"],
     search_state: ["전체", "진행중", "진행중지", "진행완료"],
-    progress_state: false,
-    progress_state2: false,
   });
 
   const dataSubmit = async () => {
