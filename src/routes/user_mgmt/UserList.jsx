@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
-import { ko } from "date-fns/esm/locale";
-import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
-import { useSelectBox } from "../../hooks/bundle_hooks";
-import { useDatePicker } from "../../hooks/useDatePicker";
+import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 
 export default function UserList() {
   const { date, startDate, endDate } = useDatePicker();
@@ -21,36 +18,38 @@ export default function UserList() {
     setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
   };
 
-  
   const userList_form = [
-    { no:100, 
-        id:'wizzzzzzzzzzz', 
-        name:'김위즈', 
-        gender:'남', 
-        birth:'1999.10.01', 
-        reside:'3', 
-        email:'kimwewewa\
-        @naver.com', 
-        num:'010-1111-1111', 
-        join:'2023.05.08', 
-        accountAc:'x', 
-        etc:'직접입력' 
+    {
+      no: 100,
+      id: "wizzzzzzzzzzz",
+      name: "김위즈",
+      gender: "남",
+      birth: "1999.10.01",
+      reside: "3",
+      email:
+        "kimwewewa\
+        @naver.com",
+      num: "010-1111-1111",
+      join: "2023.05.08",
+      accountAc: "x",
+      etc: "직접입력",
     },
-    { no:100, 
-        id:'wizzzzzzzzzzz', 
-        name:'김위즈', 
-        gender:'남', 
-        birth:'1999.10.01', 
-        reside:'3', 
-        email:'kimwewewa\
-        @naver.com', 
-        num:'010-1111-1111', 
-        join:'2023.05.08', 
-        accountAc:'x', 
-        etc:'직접입력' 
+    {
+      no: 100,
+      id: "wizzzzzzzzzzz",
+      name: "김위즈",
+      gender: "남",
+      birth: "1999.10.01",
+      reside: "3",
+      email:
+        "kimwewewa\
+        @naver.com",
+      num: "010-1111-1111",
+      join: "2023.05.08",
+      accountAc: "x",
+      etc: "직접입력",
     },
-  ]
-  
+  ];
 
   return (
     <>
@@ -59,26 +58,40 @@ export default function UserList() {
       <div className="user_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02" onClick={() => {handleSelectBox("sort_join")}}>
+            <div
+              className="select_input input_ty02"
+              onClick={() => {
+                handleSelectBox("sort_join");
+              }}
+            >
               <input type="text" defaultValue="최근 가입일 순" readOnly />
               {selectList.sort_join && (
                 <ul className="select_box">
                   {["최근 가입일 순", "오래된 가입일 순"].map((join, index) => {
                     return (
-                      <li key={join} data-type="sort_join" data-value={join} onClick={searchOptionSel}>{join}</li>
-                    )
+                      <li key={join} data-type="sort_join" data-value={join} onClick={searchOptionSel}>
+                        {join}
+                      </li>
+                    );
                   })}
                 </ul>
               )}
             </div>
-            <div className="select_input input_ty02" onClick={() => {handleSelectBox("account_type")}}>
+            <div
+              className="select_input input_ty02"
+              onClick={() => {
+                handleSelectBox("account_type");
+              }}
+            >
               <input type="text" defaultValue="전체" readOnly />
               {selectList.account_type && (
                 <ul className="select_box">
                   {["전체", "계정 활성화", "계정 비활성화"].map((account, index) => {
                     return (
-                      <li key={account} data-type="account_type" data-value={account} onClick={searchOptionSel}>{account}</li>
-                    )
+                      <li key={account} data-type="account_type" data-value={account} onClick={searchOptionSel}>
+                        {account}
+                      </li>
+                    );
                   })}
                 </ul>
               )}
@@ -113,29 +126,29 @@ export default function UserList() {
               </tr>
             </thead>
             <tbody>
-              {userList_form.map((item) => {
+              {userList_form.map(item => {
                 return (
-                    <tr>
-                        <td className="check">
-                        <CheckBox for="wr_2" id="wr_2" name="wr_userList" />
-                        </td>
-                        <td className="num">{item.no}</td>
-                        <td className="id disabled">
-                        <Link to="/UserBasicInfo/wizzzzzzzzzzz2">{item.id}</Link>
-                        </td>
-                        <td className="name">{item.name}</td>
-                        <td className="gender">{item.gender}</td>
-                        <td className="birth">{item.birth}</td>
-                        <td className="people">{item.reside}</td>
-                        <td className="email">{item.email}</td>
-                        <td className="phone">{item.num}</td>
-                        <td className="joinDate">{item.join}</td>
-                        <td className="active">{item.accountAc}</td>
-                        <td className="etc input_ty02 userlist">
-                        <input type="text" placeholder={item.etc} />
-                        </td>
-                    </tr>
-                )
+                  <tr>
+                    <td className="check">
+                      <CheckBox for="wr_2" id="wr_2" name="wr_userList" />
+                    </td>
+                    <td className="num">{item.no}</td>
+                    <td className="id disabled">
+                      <Link to="/UserBasicInfo/wizzzzzzzzzzz2">{item.id}</Link>
+                    </td>
+                    <td className="name">{item.name}</td>
+                    <td className="gender">{item.gender}</td>
+                    <td className="birth">{item.birth}</td>
+                    <td className="people">{item.reside}</td>
+                    <td className="email">{item.email}</td>
+                    <td className="phone">{item.num}</td>
+                    <td className="joinDate">{item.join}</td>
+                    <td className="active">{item.accountAc}</td>
+                    <td className="etc input_ty02 userlist">
+                      <input type="text" placeholder={item.etc} />
+                    </td>
+                  </tr>
+                );
               })}
             </tbody>
           </table>

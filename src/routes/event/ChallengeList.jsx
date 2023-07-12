@@ -1,14 +1,11 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
-import DatePicker from "react-datepicker";
 import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
-import { useSelectBox } from "../../hooks/bundle_hooks";
-import { ko } from "date-fns/esm/locale";
-import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
+import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 
 export default function ChallengeList() {
   const { id } = useParams();
+  const { date, startDate, endDate } = useDatePicker();
   const { selectList, handleSelectBox } = useSelectBox({
     sort_date: false,
     search_type: false,
@@ -16,41 +13,7 @@ export default function ChallengeList() {
     progress_state: false,
     progress_state2: false,
   });
-  const [fixedDate] = useState(new Date());
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [currentDate, setCurrentDate] = useState();
-  const calendarStart = useRef(null);
-  const calendarEnd = useRef(null);
-  const sCancelDatePicker = () => {
-    currentDate === undefined ? setStartDate(fixedDate) : setStartDate(currentDate);
-    calendarStart.current.setOpen(false);
-  };
-  const sOpenDatePicker = () => {
-    calendarStart.current.setOpen(true);
-  };
-  const sCloseDatePicker = () => {
-    setCurrentDate(startDate);
-    if (startDate > endDate) setEndDate(startDate);
-    calendarStart.current.setOpen(false);
-  };
-  const eCancelDatePicker = () => {
-    currentDate === undefined ? setStartDate(fixedDate) : setEndDate(currentDate);
-    calendarEnd.current.setOpen(false);
-  };
-  const eOpenDatePicker = () => {
-    calendarEnd.current.setOpen(true);
-  };
-  const eCloseDatePicker = () => {
-    setCurrentDate(endDate);
-    calendarEnd.current.setOpen(false);
-  };
-  const formatDate = d => {
-    const date = new Date(d);
-    const monthIndex = date.getMonth() + 1;
-    const year = date.getFullYear();
-    return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
-  };
+
   const [searchOption, setSearchOption] = useState({
     sort_date: "최근 등록일 순",
     search_type: "등록일",
@@ -135,77 +98,8 @@ export default function ChallengeList() {
             </div>
           </div>
           <div className="date_input_wrap d-flex">
-            <div className="date_input input_ty02">
-              <DatePicker
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-                selectsStart
-                startDate={startDate}
-                endDate={endDate}
-                locale={ko}
-                dateFormat="yyyy.MM.dd"
-                shouldCloseOnSelect={false}
-                disabledKeyboardNavigation
-                renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
-                  <div className="react-datepicker__customHeader d-flex flex-ac flex-js">
-                    <button onClick={decreaseMonth} className="arrow_left">
-                      <img src={arrowRight} alt="" />
-                    </button>
-                    <h5 className="year_month">{formatDate(date)}</h5>
-                    <button onClick={increaseMonth} className="arrow_right">
-                      <img src={arrowRight} alt="" />
-                    </button>
-                  </div>
-                )}
-                ref={calendarStart}
-                onInputClick={() => sOpenDatePicker()}
-              >
-                <div className="button-container">
-                  <button className="btn_ctrl btn_ctrl-cancel btn_ty01 gray" onClick={sCancelDatePicker}>
-                    취소
-                  </button>
-                  <button className="btn_ctrl btn_ctrl-confirm btn_ty01" onClick={sCloseDatePicker}>
-                    설정
-                  </button>
-                </div>
-              </DatePicker>
-            </div>
-            <div className="date_input input_ty02">
-              <DatePicker
-                selected={endDate}
-                onChange={date => setEndDate(date)}
-                selectsEnd
-                startDate={startDate}
-                endDate={endDate}
-                minDate={startDate}
-                locale={ko}
-                dateFormat="yyyy.MM.dd"
-                shouldCloseOnSelect={false}
-                disabledKeyboardNavigation
-                renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
-                  <div className="react-datepicker__customHeader d-flex flex-ac flex-js">
-                    <button onClick={decreaseMonth} className="arrow_left">
-                      <img src={arrowRight} alt="" />
-                    </button>
-                    <h5 className="year_month">{formatDate(date)}</h5>
-                    <button onClick={increaseMonth} className="arrow_right">
-                      <img src={arrowRight} alt="" />
-                    </button>
-                  </div>
-                )}
-                ref={calendarEnd}
-                onInputClick={() => eOpenDatePicker()}
-              >
-                <div className="button-container">
-                  <button className="btn_ctrl btn_ctrl-cancel btn_ty01 gray" onClick={eCancelDatePicker}>
-                    취소
-                  </button>
-                  <button className="btn_ctrl btn_ctrl-confirm btn_ty01" onClick={eCloseDatePicker}>
-                    설정
-                  </button>
-                </div>
-              </DatePicker>
-            </div>
+            <div className="date_input input_ty02">{date.start}</div>
+            <div className="date_input input_ty02">{date.end}</div>
           </div>
           <button type="button" className="btn_ty01 btn_search" onClick={dataSubmit}>
             검색
@@ -277,7 +171,11 @@ export default function ChallengeList() {
                 <td>200,000</td>
                 <td>1,000,000</td>
                 <td>1,000,000</td>
-                <td onClick={() => {handleSelectBox("progress_state")}}>
+                <td
+                  onClick={() => {
+                    handleSelectBox("progress_state");
+                  }}
+                >
                   <div className="select_input input_ty02">
                     <input type="text" defaultValue="진행중" readOnly />
                     {selectList.progress_state && (
@@ -311,7 +209,11 @@ export default function ChallengeList() {
                 <td>200,000</td>
                 <td>1,000,000</td>
                 <td>1,000,000</td>
-                <td onClick={() => {handleSelectBox("progress_state2")}}>
+                <td
+                  onClick={() => {
+                    handleSelectBox("progress_state2");
+                  }}
+                >
                   <div className="select_input input_ty02">
                     <input type="text" defaultValue="진행중지" readOnly />
                     {selectList.progress_state2 && (

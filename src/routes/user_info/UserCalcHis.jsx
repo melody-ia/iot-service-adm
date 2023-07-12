@@ -1,46 +1,10 @@
-import { useRef, useState } from "react";
-import DatePicker from "react-datepicker";
+import { useDatePicker } from "../../hooks/bundle_hooks";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
-import { ko } from "date-fns/esm/locale";
-import arrowRight from "../../assets/img/icon/angle_thin_right_g.svg";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserCalcHis() {
-  const [fixedDate] = useState(new Date());
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [currentDate, setCurrentDate] = useState();
-  const calendarStart = useRef(null);
-  const calendarEnd = useRef(null);
-  const sCancelDatePicker = () => {
-    currentDate === undefined ? setStartDate(fixedDate) : setStartDate(currentDate);
-    calendarStart.current.setOpen(false);
-  };
-  const sOpenDatePicker = () => {
-    calendarStart.current.setOpen(true);
-  };
-  const sCloseDatePicker = () => {
-    setCurrentDate(startDate);
-    calendarStart.current.setOpen(false);
-  };
-  const eCancelDatePicker = () => {
-    currentDate === undefined ? setStartDate(fixedDate) : setEndDate(currentDate);
-    calendarEnd.current.setOpen(false);
-  };
-  const eOpenDatePicker = () => {
-    calendarEnd.current.setOpen(true);
-  };
-  const eCloseDatePicker = () => {
-    setCurrentDate(endDate);
-    calendarEnd.current.setOpen(false);
-  };
-  const formatDate = d => {
-    const date = new Date(d);
-    const monthIndex = date.getMonth() + 1;
-    const year = date.getFullYear();
-    return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
-  };
+  const { date, startDate, endDate } = useDatePicker();
 
   return (
     <>
@@ -55,95 +19,26 @@ export default function UserCalcHis() {
                 <li>최신 순</li>
                 <li>오래된 순</li>
               </ul>
-            </div>           
+            </div>
           </div>
           <div className="date_input_wrap d-flex">
-            <div className="date_input input_ty02">
-              <DatePicker
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-                selectsStart
-                startDate={startDate}
-                endDate={endDate}
-                locale={ko}
-                dateFormat="yyyy.MM.dd"
-                shouldCloseOnSelect={false}
-                disabledKeyboardNavigation
-                renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
-                  <div className="react-datepicker__customHeader d-flex flex-ac flex-js">
-                    <button onClick={decreaseMonth} className="arrow_left">
-                      <img src={arrowRight} alt="" />
-                    </button>
-                    <h5 className="year_month">{formatDate(date)}</h5>
-                    <button onClick={increaseMonth} className="arrow_right">
-                      <img src={arrowRight} alt="" />
-                    </button>
-                  </div>
-                )}
-                ref={calendarStart}
-                onInputClick={() => sOpenDatePicker()}
-              >
-                <div className="button-container">
-                  <button className="btn_ctrl btn_ctrl-cancel btn_ty01 gray" onClick={sCancelDatePicker}>
-                    취소
-                  </button>
-                  <button className="btn_ctrl btn_ctrl-confirm btn_ty01" onClick={sCloseDatePicker}>
-                    설정
-                  </button>
-                </div>
-              </DatePicker>
-            </div>
-            <div className="date_input input_ty02">
-              <DatePicker
-                selected={endDate}
-                onChange={date => setEndDate(date)}
-                selectsEnd
-                startDate={startDate}
-                endDate={endDate}
-                minDate={startDate}
-                locale={ko}
-                dateFormat="yyyy.MM.dd"
-                shouldCloseOnSelect={false}
-                disabledKeyboardNavigation
-                renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
-                  <div className="react-datepicker__customHeader d-flex flex-ac flex-js">
-                    <button onClick={decreaseMonth} className="arrow_left">
-                      <img src={arrowRight} alt="" />
-                    </button>
-                    <h5 className="year_month">{formatDate(date)}</h5>
-                    <button onClick={increaseMonth} className="arrow_right">
-                      <img src={arrowRight} alt="" />
-                    </button>
-                  </div>
-                )}
-                ref={calendarEnd}
-                onInputClick={() => eOpenDatePicker()}
-              >
-                <div className="button-container">
-                  <button className="btn_ctrl btn_ctrl-cancel btn_ty01 gray" onClick={eCancelDatePicker}>
-                    취소
-                  </button>
-                  <button className="btn_ctrl btn_ctrl-confirm btn_ty01" onClick={eCloseDatePicker}>
-                    설정
-                  </button>
-                </div>
-              </DatePicker>
-            </div>
+            <div className="date_input input_ty02">{date.start}</div>
+            <div className="date_input input_ty02">{date.end}</div>
           </div>
           <button type="button" className="btn_ty01 btn_search">
             검색
           </button>
         </div>
         <div className="table_wrap line">
-          <table className="table">  
+          <table className="table">
             <colgroup>
-              <col width={"70px"}/>
-              <col width={"auto"}/>
-              <col width={"auto"}/>
-              <col width={"auto"}/>
-              <col width={"auto"}/>
-              <col width={"350px"}/>
-            </colgroup>     
+              <col width={"70px"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"350px"} />
+            </colgroup>
             <thead>
               <tr>
                 <th className="check">
@@ -155,13 +50,15 @@ export default function UserCalcHis() {
                 <th>총 CO2 발생량 (kg)</th>
                 <th>소나무 (그루)</th>
               </tr>
-            </thead>    
-            <tbody>            
+            </thead>
+            <tbody>
               <tr>
                 <td rowSpan={9} className="check">
                   <CheckBox for="check" id="check" />
                 </td>
-                <td rowSpan={9} className="num">2</td>
+                <td rowSpan={9} className="num">
+                  2
+                </td>
                 <td rowSpan={9}>2023.05.08</td>
                 <td rowSpan={2}>교통</td>
                 <td rowSpan={2}>15.6</td>
@@ -218,21 +115,23 @@ export default function UserCalcHis() {
           </table>
         </div>
         <div className="table_wrap line">
-          <table className="table">  
+          <table className="table">
             <colgroup>
-              <col width={"70px"}/>
-              <col width={"auto"}/>
-              <col width={"auto"}/>
-              <col width={"auto"}/>
-              <col width={"auto"}/>
-              <col width={"350px"}/>
-            </colgroup>      
-            <tbody>            
+              <col width={"70px"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"350px"} />
+            </colgroup>
+            <tbody>
               <tr>
                 <td rowSpan={9} className="check">
                   <CheckBox for="check" id="check" />
                 </td>
-                <td rowSpan={9} className="num">1</td>
+                <td rowSpan={9} className="num">
+                  1
+                </td>
                 <td rowSpan={9}>2023.05.08</td>
                 <td rowSpan={2}>교통</td>
                 <td rowSpan={2}>15.6</td>
