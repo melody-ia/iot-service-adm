@@ -48,7 +48,7 @@ export default function News() {
               <div className="date_input input_ty02">{date.start}</div>
               <div className="date_input input_ty02">{date.end}</div>
             </div>
-            <button type="button" className="btn_ty01 btn_search">
+            <button type="button" className="btn_ty01 btn_search" onClick={loadPostData}>
               검색
             </button>
           </div>

@@ -4,19 +4,14 @@ import { useSelectBox, useCheckToken, useUploadFile } from "../../hooks/bundle_h
 import { useState } from "react";
 import { useEffect } from "react";
 
-export default function NewsAdd() {
+export default function NewsEdit() {
   const history = useNavigate();
   const { state } = useLocation();
   const { mb_no, postData } = useCheckToken();
-  const { selectedValues, selecBoxHtml } = useSelectBox({
+  const { selectedValues, setSelectedValue, selecBoxHtml } = useSelectBox({
     subject: ["이벤트", "뉴스"],
   });
-  const [postContents, setPostContents] = useState({
-    wr_status: 0,
-    wr_seo_title: "",
-    wr_content: "",
-    wr_memo: "",
-  });
+  const [postContents, setPostContents] = useState();
   const [topImage, setTopImage] = useState([]);
   const [communityfile, setCommunityfile] = useState([]);
 
@@ -28,12 +23,12 @@ export default function NewsAdd() {
     setPostContents(copy);
   };
 
-  // const loadPostData = async () => {
-  //   const res = await postData("community/show", { wr_id: state.wr_id });
-  //   setPostContents(res.data.boardInfo[0]);
-  // };
-
-  console.log(postContents);
+  const loadPostData = async () => {
+    const res = await postData("community/show", { wr_id: state.wr_id });
+    const getSelectedValue = { event: "이벤트", news: "뉴스" }[res.data.boardInfo[0].wr_subject];
+    setPostContents(res.data.boardInfo[0]);
+    setSelectedValue({ ...selectedValues, subject: getSelectedValue });
+  };
 
   const dataSubmit = async () => {
     if (!postContents.wr_seo_title || !postContents.wr_content) return alert("제목과 내용을 입력하세요.");
@@ -56,14 +51,14 @@ export default function NewsAdd() {
     }
     const res = await postData("community/create", formData);
     if (res.code === 200) {
-      alert("등록되었습니다.");
+      alert("수정되었습니다.");
       history("/News");
     }
   };
 
-  // useEffect(() => {
-  //   if (state?.wr_id) loadPostData();
-  // }, []);
+  useEffect(() => {
+    if (state.wr_id) loadPostData();
+  }, []);
 
   return (
     <>

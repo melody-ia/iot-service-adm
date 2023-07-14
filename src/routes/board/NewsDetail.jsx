@@ -36,6 +36,13 @@ export default function NewsDetail() {
       <>
         <Lnb lnbType="board" />
         <CurrentBox mod={true} del={true} down={true} tit="이벤트/뉴스 상세보기" />
+        <button
+          onClick={() => {
+            history("/News/edit", { state: { wr_id: postContents.wr_id } });
+          }}
+        >
+          수정하기
+        </button>
         <div className="news_detail box_ty01 view_form">
           <div className="write_type">
             <div className="wirte_area">

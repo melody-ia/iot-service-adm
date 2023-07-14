@@ -32,6 +32,7 @@ import Point from "./routes/accumulated/Point";
 import News from "./routes/board/News";
 import NewsDetail from "./routes/board/NewsDetail";
 import NewsAdd from "./routes/board/NewsAdd";
+import NewsEdit from "./routes/board/NewsEdit";
 import Tip from "./routes/board/Tip";
 import TipDetail from "./routes/board/TipDetail";
 import TipAdd from "./routes/board/TipAdd";
@@ -75,6 +76,7 @@ function App() {
         <Route path="News" element={<News />} />
         <Route path="News/:id" element={<NewsDetail />} />
         <Route path="News/add" element={<NewsAdd />} />
+        <Route path="News/edit" element={<NewsEdit />} />
         <Route path="Tip" element={<Tip />} />
         <Route path="Tip/:id/:id" element={<TipDetail />} />
         <Route path="Tip/add" element={<TipAdd />} />

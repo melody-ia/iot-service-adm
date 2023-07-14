@@ -4,8 +4,10 @@ import { ko } from "date-fns/esm/locale";
 import arrowRight from "../assets/img/icon/angle_thin_right_g.svg";
 
 export function useDatePicker() {
+  const defaultDataS = new Date();
+  defaultDataS.setDate(1);
   const [fixedDate] = useState(new Date());
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(defaultDataS);
   const [endDate, setEndDate] = useState(new Date());
   const [currentDate, setCurrentDate] = useState();
   const calendarStart = useRef(null);
