@@ -1580,6 +1580,7 @@ body::-webkit-scrollbar-track, body textarea::-webkit-scrollbar-track {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  max-width: 1173px !important;
   -webkit-column-gap: 4px;
      -moz-column-gap: 4px;
           column-gap: 4px;
@@ -1592,8 +1593,15 @@ body::-webkit-scrollbar-track, body textarea::-webkit-scrollbar-track {
   background: url(../img/icon-plus.png) center no-repeat;
   background-size: cover;
 }
+.find_file_wrap .file_label p {
+  padding-left: 20px;
+  max-width: 28%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .find_file_wrap .file {
-  width: 100%;
+  width: 120px;
   height: 100%;
   position: absolute;
   top: 0;

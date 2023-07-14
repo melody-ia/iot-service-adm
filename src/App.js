@@ -73,7 +73,7 @@ function App() {
         <Route path="Stamp" element={<Stamp />} />
         <Route path="Point" element={<Point />} />
         <Route path="News" element={<News />} />
-        <Route path="News/:id/:id" element={<NewsDetail />} />
+        <Route path="News/:id" element={<NewsDetail />} />
         <Route path="News/add" element={<NewsAdd />} />
         <Route path="Tip" element={<Tip />} />
         <Route path="Tip/:id/:id" element={<TipDetail />} />

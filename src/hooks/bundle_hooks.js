@@ -4,5 +4,6 @@ import { useSelectInfo } from "./useSelectInfo";
 import { useSelectBox } from "./useSelectBox";
 import { useUploadFile } from "./useUploadFile";
 import { useDatePicker } from "./useDatePicker";
+import { useCheckToken } from "./useCheckToken";
 
-export { useBtnEvent, useEssentialInfo, useSelectInfo, useSelectBox, useUploadFile, useDatePicker };
+export { useBtnEvent, useEssentialInfo, useSelectInfo, useSelectBox, useUploadFile, useDatePicker, useCheckToken };

@@ -318,10 +318,11 @@
 }
 .find_file{
 	&_wrap{width:100%; height:55px; line-height:55px; position:relative; padding:0 17px; border:1px solid #E0E2E7; border-radius:8px;
-		.file_label{@include displayFlex(center, null, null); column-gap:4px; color:#637381;
+		.file_label{@include displayFlex(center, null, null);max-width:1173px !important; column-gap:4px; color:#637381;
 			span{width:19px; height:19px; display:block; background:url(../img/icon-plus.png) center no-repeat; background-size:cover;}
+			p{padding-left: 20px;max-width: 28%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 		}
-		.file{width:100%; height:100%; position:absolute; top:0; left:0; opacity:0; cursor:pointer;}
+		.file{width: 120px;height:100%; position:absolute; top:0; left:0; opacity:0; cursor:pointer;}
 	}
 	&.input_ty02{
 		input{height:55px; line-height:55px;}
