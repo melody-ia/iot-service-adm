@@ -9,7 +9,8 @@ export default function UserStempHis() {
   return (
     <>
       <Lnb lnbType="userInfo" />
-      <CurrentBox mod={true} del={true} down={true} tit="도장 적립 내역" />
+      {/* <CurrentBox mod={true} del={true} down={true} tit="도장 적립 내역" /> */}
+      <CurrentBox btns={["mod", "del", "down"]} tit="도장 적립 내역" />
       <div className="user_history_stemp box_ty01 table_type">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">

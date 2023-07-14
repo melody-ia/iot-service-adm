@@ -45,7 +45,8 @@ export default function UserList() {
   return (
     <>
       <Lnb lnbType="user" />
-      <CurrentBox add={true} mod={true} del={true} down={true} tit="회원리스트" />
+      {/* <CurrentBox add={true} mod={true} del={true} down={true} tit="회원리스트" /> */}
+      <CurrentBox btns={["add", "mod", "del", "down"]} tit="회원리스트" />
       <div className="user_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -105,7 +106,8 @@ export default function UserList() {
             </tbody>
           </table>
         </div>
-        <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} />
+        {/* <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} /> */}
+        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} />
         <Pagination />
       </div>
     </>

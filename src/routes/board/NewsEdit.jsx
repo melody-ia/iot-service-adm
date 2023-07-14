@@ -3,6 +3,7 @@ import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 import { useSelectBox, useCheckToken, useUploadFile } from "../../hooks/bundle_hooks";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useRef } from "react";
 
 export default function NewsEdit() {
   const history = useNavigate();
@@ -24,7 +25,7 @@ export default function NewsEdit() {
   };
 
   const loadPostData = async () => {
-    const res = await postData("community/show", { wr_id: state.wr_id });
+    const res = await postData("community/show", { mb_no, wr_id: state.wr_id, wr_subject: state.wr_subject });
     const getSelectedValue = { event: "이벤트", news: "뉴스" }[res.data.boardInfo[0].wr_subject];
     setPostContents(res.data.boardInfo[0]);
     setSelectedValue({ ...selectedValues, subject: getSelectedValue });
@@ -60,132 +61,171 @@ export default function NewsEdit() {
     if (state.wr_id) loadPostData();
   }, []);
 
-  return (
-    <>
-      <Lnb lnbType="board" />
-      <CurrentBox add={true} del={true} down={true} tit="이벤트/뉴스 등록/수정" />
-      <div className="news_add box_ty01 view_form add">
-        <div className="write_type">
-          <div className="wirte_area">
-            <div className="flex_box">
-              <div className="input_ty02 flex_left">
-                <label htmlFor="">구분</label>
-                {selecBoxHtml}
-              </div>
-              {selectedValues.post_sort === "이벤트" ? (
-                <div className="flex_right">
-                  <label htmlFor="">진행여부</label>
-                  <div className="radio_group d-flex w100">
-                    {[
-                      ["진행중", "show", 0],
-                      ["종료", "hide", 3],
-                    ].map((el, idx) => {
-                      return (
-                        <RadioBtn
-                          key={idx}
-                          for={el[1]}
-                          id={el[1]}
-                          name="isShow"
-                          text={el[0]}
-                          checked={postContents.status === el[2]}
-                          dataType="wr_status"
-                          dataValue={el[2]}
-                          onClick={handlePostContents}
-                        />
-                      );
-                    })}
-                  </div>
+  console.log(postContents);
+  if (postContents)
+    return (
+      <>
+        <Lnb lnbType="board" />
+        {/* <CurrentBox add={true} del={true} down={true} tit="이벤트/뉴스 등록/수정" /> */}
+        <CurrentBox btns={["add", "del", "down"]} tit="이벤트/뉴스 등록/수정" />
+        <div className="news_add box_ty01 view_form add">
+          <div className="write_type">
+            <div className="wirte_area">
+              <div className="flex_box">
+                <div className="input_ty02 flex_left">
+                  <label htmlFor="">구분</label>
+                  {selecBoxHtml}
                 </div>
-              ) : (
-                <div className="flex_right">
-                  <label htmlFor="">공개여부</label>
-                  <div className="radio_group d-flex w100">
-                    {[
-                      ["공개", "show", 0],
-                      ["비공개", "hide", 1],
-                    ].map((el, idx) => {
-                      return (
-                        <RadioBtn
-                          key={idx}
-                          for={el[1]}
-                          id={el[1]}
-                          name="isShow"
-                          text={el[0]}
-                          checked={postContents.status === el[2]}
-                          dataType="wr_status"
-                          dataValue={el[2]}
-                          onClick={handlePostContents}
-                        />
-                      );
-                    })}
+                {selectedValues.post_sort === "이벤트" ? (
+                  <div className="flex_right">
+                    <label htmlFor="">진행여부</label>
+                    <div className="radio_group d-flex w100">
+                      {[
+                        ["진행중", "show", 0],
+                        ["종료", "hide", 3],
+                      ].map((el, idx) => {
+                        return (
+                          <RadioBtn
+                            key={idx}
+                            for={el[1]}
+                            id={el[1]}
+                            name="isShow"
+                            text={el[0]}
+                            checked={postContents.status === el[2]}
+                            dataType="wr_status"
+                            dataValue={el[2]}
+                            onClick={handlePostContents}
+                          />
+                        );
+                      })}
+                    </div>
                   </div>
+                ) : (
+                  <div className="flex_right">
+                    <label htmlFor="">공개여부</label>
+                    <div className="radio_group d-flex w100">
+                      {[
+                        ["공개", "show", 0],
+                        ["비공개", "hide", 1],
+                      ].map((el, idx) => {
+                        return (
+                          <RadioBtn
+                            key={idx}
+                            for={el[1]}
+                            id={el[1]}
+                            name="isShow"
+                            text={el[0]}
+                            checked={postContents.wr_status === el[2]}
+                            dataType="wr_status"
+                            dataValue={el[2]}
+                            onClick={handlePostContents}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="flex_box">
+                <div className="input_ty02 flex_left">
+                  <label htmlFor="">제목</label>
+                  <input
+                    type="text"
+                    placeholder="직접입력"
+                    value={postContents.wr_seo_title}
+                    data-type="wr_seo_title"
+                    onChange={handlePostContents}
+                  />
                 </div>
-              )}
-            </div>
-            <div className="flex_box">
-              <div className="input_ty02 flex_left">
-                <label htmlFor="">제목</label>
-                <input type="text" placeholder="직접입력" value={postContents.wr_seo_title} data-type="wr_seo_title" onChange={handlePostContents} />
+                <div className="input_ty02 flex_right">
+                  <label htmlFor="">등록일</label>
+                  <input type="text" placeholder="직접입력" defaultValue={new Date().toLocaleDateString()} readOnly />
+                </div>
               </div>
-              <div className="input_ty02 flex_right">
-                <label htmlFor="">등록일</label>
-                <input type="text" placeholder="직접입력" defaultValue={new Date().toLocaleDateString()} readOnly />
+              <div className="flex_box">
+                <div className="input_ty02 flex_left w100">
+                  <label htmlFor="">내용</label>
+                  <textarea
+                    className="textarea"
+                    placeholder="직접입력"
+                    value={postContents.wr_content}
+                    data-type="wr_content"
+                    onChange={handlePostContents}
+                  ></textarea>
+                </div>
               </div>
-            </div>
-            <div className="flex_box">
-              <div className="input_ty02 flex_left w100">
-                <label htmlFor="">내용</label>
-                <textarea
-                  className="textarea"
-                  placeholder="직접입력"
-                  value={postContents.content}
-                  data-type="wr_content"
-                  onChange={handlePostContents}
-                ></textarea>
+              <div className="flex_box find_file">
+                <div className="flex_left w100 flex_box_mr">
+                  <label htmlFor="">상단 이미지</label>
+                  <FileItemTop setTopImage={setTopImage} postContents={postContents} />
+                </div>
               </div>
-            </div>
-            <div className="flex_box find_file">
-              <div className="flex_left w100 flex_box_mr">
-                <label htmlFor="">상단 이미지</label>
-                <FileItemTop setTopImage={setTopImage} />
+              <div className="flex_box find_file">
+                <div className="flex_left w100 flex_box_mr">
+                  <label htmlFor="">첨부파일</label>
+                  <FileItemEtc setCommunityfile={setCommunityfile} postContents={postContents} />
+                </div>
               </div>
-            </div>
-            <div className="flex_box find_file">
-              <div className="flex_left w100 flex_box_mr">
-                <label htmlFor="">첨부파일</label>
-                <FileItemEtc setCommunityfile={setCommunityfile} />
-              </div>
-            </div>
-            <div className="flex_box">
-              <div className="input_ty02 flex_left w100">
-                <label htmlFor="">비고</label>
-                <textarea
-                  className="textarea"
-                  placeholder="직접입력"
-                  value={postContents.memo}
-                  data-type="wr_memo"
-                  onChange={handlePostContents}
-                ></textarea>
+              <div className="flex_box">
+                <div className="input_ty02 flex_left w100">
+                  <label htmlFor="">비고</label>
+                  <textarea
+                    className="textarea"
+                    placeholder="직접입력"
+                    value={postContents.memo}
+                    data-type="wr_memo"
+                    onChange={handlePostContents}
+                  ></textarea>
+                </div>
               </div>
             </div>
           </div>
+          <div className="bottom_btn_wrap">
+            <button type="button" className="btn_ty01 cancel" onClick={() => history(-1)}>
+              취소
+            </button>
+            <button type="button" className="btn_ty01" onClick={dataSubmit}>
+              등록
+            </button>
+          </div>
         </div>
-        <div className="bottom_btn_wrap">
-          <button type="button" className="btn_ty01 cancel" onClick={() => history(-1)}>
-            취소
-          </button>
-          <button type="button" className="btn_ty01" onClick={dataSubmit}>
-            등록
-          </button>
-        </div>
-      </div>
-    </>
-  );
+      </>
+    );
 }
 
-function FileItemTop({ setTopImage }) {
+function FileItemTop({ setTopImage, postContents }) {
   const allowType = ["jpg", "jpeg", "png", "gif"];
-  const { fileData, uploadFile, deleteFile } = useUploadFile(allowType, 8, 1);
+  const { fileData, setFileData, uploadFile, deleteFile } = useUploadFile(allowType, 8, 1);
+  const fileRef = useRef(null);
+
+  const convertURLtoFile = async url => {
+    url = process.env.REACT_APP_SERVER_URL + "images" + url;
+    const response = await fetch(url);
+    const data = await response.blob();
+    const ext = url.split(".").pop();
+    const filename = url.split("/").pop();
+    const metadata = { type: `image/${ext}` };
+    return new File([data], filename, metadata);
+  };
+
+  const loadFileData = async () => {
+    const dataTranster = new DataTransfer();
+    const urlArr = postContents.top_image;
+    for (let el of urlArr) {
+      const convData = await convertURLtoFile(el);
+      dataTranster.items.add(convData);
+    }
+    fileRef.current.files = dataTranster.files;
+    const fileArr = Array.from(dataTranster.files);
+    const newFileData = fileArr.map(el => {
+      return { file: el, url: URL.createObjectURL(el) };
+    });
+    setFileData(newFileData);
+  };
+
+  useEffect(() => {
+    if (postContents.top_image) loadFileData();
+  }, []);
 
   useEffect(() => {
     setTopImage(fileData);
@@ -209,13 +249,43 @@ function FileItemTop({ setTopImage }) {
             );
           })}
       </label>
-      <input type="file" className="file" onChange={uploadFile} />
+      <input ref={fileRef} type="file" className="file" onChange={uploadFile} />
     </div>
   );
 }
 
-function FileItemEtc({ setCommunityfile }) {
-  const { fileData, uploadFile, deleteFile } = useUploadFile(null, 8, 3);
+function FileItemEtc({ setCommunityfile, postContents }) {
+  const { fileData, setFileData, uploadFile, deleteFile } = useUploadFile(null, 8, 3);
+  const fileRef = useRef(null);
+
+  const convertURLtoFile = async url => {
+    url = process.env.REACT_APP_SERVER_URL + "images" + url;
+    const response = await fetch(url);
+    const data = await response.blob();
+    const ext = url.split(".").pop();
+    const filename = url.split("/").pop();
+    const metadata = { type: `image/${ext}` };
+    return new File([data], filename, metadata);
+  };
+
+  const loadFileData = async () => {
+    const dataTranster = new DataTransfer();
+    const urlArr = postContents.community_file;
+    for (let el of urlArr) {
+      const convData = await convertURLtoFile(el);
+      dataTranster.items.add(convData);
+    }
+    fileRef.current.files = dataTranster.files;
+    const fileArr = Array.from(dataTranster.files);
+    const newFileData = fileArr.map(el => {
+      return { file: el, url: URL.createObjectURL(el) };
+    });
+    setFileData(newFileData);
+  };
+
+  useEffect(() => {
+    if (postContents.community_file) loadFileData();
+  }, []);
 
   useEffect(() => {
     setCommunityfile(fileData);
@@ -237,7 +307,7 @@ function FileItemEtc({ setCommunityfile }) {
             );
           })}
       </label>
-      <input type="file" className="file" onChange={uploadFile} multiple />
+      <input ref={fileRef} type="file" className="file" onChange={uploadFile} multiple />
     </div>
   );
 }

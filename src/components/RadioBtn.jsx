@@ -10,6 +10,7 @@ export default function RadioBtn(props) {
           data-value={props.dataValue}
           onClick={props.onClick}
           defaultChecked={props.checked}
+          disabled={props.disabled}
         />
         <span>{props.text}</span>
       </label>

@@ -14,7 +14,8 @@ export default function Product() {
   return (
     <>
       <Lnb lnbType="device" />
-      <CurrentBox mod={true} del={true} down={true} tit="GL 추천제품 리스트" />
+      {/* <CurrentBox mod={true} del={true} down={true} tit="GL 추천제품 리스트" /> */}
+      <CurrentBox btns={["mod", "del", "down"]} tit="GL 추천제품 리스트" />
       <div className="product box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>

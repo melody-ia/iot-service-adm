@@ -9,7 +9,8 @@ export default function UserCalcHis() {
   return (
     <>
       <Lnb lnbType="userInfo" />
-      <CurrentBox del={true} down={true} tit="탄소발자국 계산 내역" />
+      {/* <CurrentBox del={true} down={true} tit="탄소발자국 계산 내역" /> */}
+      <CurrentBox btns={["del", "down"]} tit="탄소발자국 계산 내역" />
       <div className="user_history_calc box_ty01 table_type">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">

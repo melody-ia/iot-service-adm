@@ -20,7 +20,8 @@ export default function Stamp() {
   return (
     <>
       <Lnb lnbType="accumulated" />
-      <CurrentBox add={true} del={true} down={true} tit="도장 관리" />
+      {/* <CurrentBox add={true} del={true} down={true} tit="도장 관리" /> */}
+      <CurrentBox btns={["add", "del", "down"]} tit="도장 관리" />
       <div className="stamp box_ty01 table_type table_comm accumulated">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">

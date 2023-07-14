@@ -9,7 +9,8 @@ export default function UserRankHis() {
   return (
     <>
       <Lnb lnbType="userInfo" />
-      <CurrentBox mod={true} del={true} down={true} tit="탄소 중립 랭킹 변동 내역" />
+      {/* <CurrentBox mod={true} del={true} down={true} tit="탄소 중립 랭킹 변동 내역" /> */}
+      <CurrentBox btns={["mod", "del", "down"]} tit="탄소 중립 랭킹 변동 내역" />
       <div className="user_history_rank box_ty01 table_type">
         <div className="filter_wrap d-flex">
           <div className="date_input_wrap d-flex">

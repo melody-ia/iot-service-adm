@@ -35,10 +35,11 @@ export default function NewsDetail() {
     return (
       <>
         <Lnb lnbType="board" />
-        <CurrentBox mod={true} del={true} down={true} tit="이벤트/뉴스 상세보기" />
+        {/* <CurrentBox mod={true} del={true} down={true} tit="이벤트/뉴스 상세보기" /> */}
+        <CurrentBox btns={["mod", "del", "down"]} tit="이벤트/뉴스 상세보기" />
         <button
           onClick={() => {
-            history("/News/edit", { state: { wr_id: postContents.wr_id } });
+            history("/News/edit", { state: { wr_id: postContents.wr_id, wr_subject: postContents.wr_subject } });
           }}
         >
           수정하기
@@ -66,10 +67,11 @@ export default function NewsDetail() {
                             id={el[1]}
                             name="isShow"
                             text={el[0]}
-                            checked={postContents.status === el[2]}
+                            checked={postContents.wr_status === el[2]}
                             dataType="wr_status"
                             dataValue={el[2]}
                             onClick={handlePostContents}
+                            disabled={true}
                           />
                         );
                       })}
@@ -90,10 +92,11 @@ export default function NewsDetail() {
                             id={el[1]}
                             name="isShow"
                             text={el[0]}
-                            checked={postContents.status === el[2]}
+                            checked={postContents.wr_status === el[2]}
                             dataType="wr_status"
                             dataValue={el[2]}
                             onClick={handlePostContents}
+                            disabled={true}
                           />
                         );
                       })}
@@ -119,25 +122,33 @@ export default function NewsDetail() {
               </div>
               <div className="flex_box img_area">
                 <label htmlFor="">상단 이미지</label>
-                <img src={banner} alt="" />
+                {postContents.top_image && <img src={process.env.REACT_APP_SERVER_URL + "images" + postContents.top_image} alt="" />}
+                {/* <img alt="" /> */}
               </div>
               <div className="flex_box">
                 <div className="input_ty02 flex_left w100">
                   <label htmlFor="">첨부파일</label>
                   <div className="file_box input_ty02">
-                    <div className="row">
-                      <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly />
-                    </div>
-                    <div className="row">
-                      <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly />
-                    </div>
+                    {postContents.community_file ? (
+                      postContents.community_file.map((el, idx) => {
+                        return (
+                          <div className="row">
+                            <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly />
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className="row">
+                        <input type="text" defaultValue={"첨부파일 없음"} readOnly />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
               <div className="flex_box">
                 <div className="input_ty02 flex_left w100">
                   <label htmlFor="">비고</label>
-                  <textarea className="textarea" readOnly></textarea>
+                  <textarea className="textarea" value={postContents.wr_1} readOnly></textarea>
                 </div>
               </div>
             </div>

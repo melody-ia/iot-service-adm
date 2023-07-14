@@ -5,40 +5,41 @@ import banner from "../../assets/img/banner.png";
 import arrowRightGreen from "../../assets/img/icon/angle_right_green.svg";
 import ChallengeListDetailModal from "./ChallengeListDetailModal";
 
-export default function ChallengeListDetail() {  
+export default function ChallengeListDetail() {
   const [modalOpen, setModalOpen] = useState(false);
 
-  return(
+  return (
     <>
       <Lnb lnbType="event" />
-      <CurrentBox mod={true} del={true} down={true} tit="데일리 챌린지 상세보기"/>
+      {/* <CurrentBox mod={true} del={true} down={true} tit="데일리 챌린지 상세보기"/> */}
+      <CurrentBox btns={["mod", "del", "down"]} tit="데일리 챌린지 상세보기" />
       <div className="ch_list_detail detail_form box_ty01 table_type">
         <div className="table_wrap line">
-          <table className="table"> 
+          <table className="table">
             <colgroup>
-              <col width={"50px"}/>
-              <col width={"180px"}/>
-              <col width={"180px"}/>
-              <col width={"180px"}/>
-              <col width={"180px"}/>
-              <col width={"50px"}/>
-              <col width={"180px"}/>
-              <col width={"180px"}/>
-              <col width={"180px"}/>
-              <col width={"180px"}/>
+              <col width={"50px"} />
+              <col width={"180px"} />
+              <col width={"180px"} />
+              <col width={"180px"} />
+              <col width={"180px"} />
+              <col width={"50px"} />
+              <col width={"180px"} />
+              <col width={"180px"} />
+              <col width={"180px"} />
+              <col width={"180px"} />
             </colgroup>
             <tbody>
               <tr>
                 <th colSpan={3}>프로모션명</th>
                 <td colSpan={2}>대중교통 이용하기 프로젝트</td>
                 <th colSpan={3}>진행 여부</th>
-                <td colSpan={2}> 
+                <td colSpan={2}>
                   <div className="radio_box d-flex flex-ac flex-jc">
                     <RadioBtn for="ing" id="ing" name="active" text="진행중" />
                     <RadioBtn for="stop" id="stop" name="active" text="진행중지" />
                     <RadioBtn for="end" id="end" name="active" text="진행완료" />
                   </div>
-                </td>                
+                </td>
               </tr>
               <tr>
                 <th colSpan={3}>프로모션 서브명</th>
@@ -53,7 +54,9 @@ export default function ChallengeListDetail() {
                 <td colSpan={2}>2023.05.08 – 2023.07.08</td>
               </tr>
               <tr>
-                <th colSpan={3} className="member" onClick={()=>setModalOpen(true)}>총 참여 회원 수 <img src={arrowRightGreen} alt="오른쪽 화살표 아이콘" className="arrow_right" /></th>
+                <th colSpan={3} className="member" onClick={() => setModalOpen(true)}>
+                  총 참여 회원 수 <img src={arrowRightGreen} alt="오른쪽 화살표 아이콘" className="arrow_right" />
+                </th>
                 <td colSpan={2}>123,456</td>
                 <th colSpan={3}>총 등록된 글 개수</th>
                 <td colSpan={2}>200,000</td>
@@ -84,10 +87,16 @@ export default function ChallengeListDetail() {
               <tr>
                 <th>적립 기한</th>
                 <td colSpan={3}>2023.05.10 – 2050.12.31</td>
-                <th>포인트 <br />지급 시점</th>
+                <th>
+                  포인트 <br />
+                  지급 시점
+                </th>
                 <td>도장 3개 적립 시</td>
                 <th>지급 기한</th>
-                <td>2023.05.10 – <br />2050.12.31</td>
+                <td>
+                  2023.05.10 – <br />
+                  2050.12.31
+                </td>
               </tr>
               <tr>
                 <th colSpan={5} rowSpan={2}></th>
@@ -98,18 +107,24 @@ export default function ChallengeListDetail() {
                 <td>2,000</td>
               </tr>
               <tr>
-                <th>포인트 <br />지급 시점</th>
+                <th>
+                  포인트 <br />
+                  지급 시점
+                </th>
                 <td>도장 10개 적립 시</td>
                 <th>지급 기한</th>
-                <td>2023.05.10 – <br />2050.12.31</td>
+                <td>
+                  2023.05.10 – <br />
+                  2050.12.31
+                </td>
               </tr>
             </tbody>
           </table>
-          <table className="table banner_table">  
+          <table className="table banner_table">
             <colgroup>
-              <col width={"80px"}/>
-              <col width={"700px"}/>
-              <col width={"700px"}/>
+              <col width={"80px"} />
+              <col width={"700px"} />
+              <col width={"700px"} />
             </colgroup>
             <tbody>
               <tr>
@@ -134,12 +149,16 @@ export default function ChallengeListDetail() {
               <tr>
                 <td>3</td>
                 <td>데일리 발자국 챌린지 글쓰기 상단</td>
-                <td><img src={banner} alt="" /></td>
+                <td>
+                  <img src={banner} alt="" />
+                </td>
               </tr>
               <tr>
                 <td>4</td>
                 <td>탄소중립랭킹 하단</td>
-                <td><img src={banner} alt="" /></td>
+                <td>
+                  <img src={banner} alt="" />
+                </td>
               </tr>
               <tr>
                 <th colSpan={2}>비고</th>
@@ -160,7 +179,14 @@ export default function ChallengeListDetail() {
           </button>
         </div>
       </div>
-      {modalOpen?<><ChallengeListDetailModal modalClose={()=>setModalOpen(false)} /><div className="dim" onClick={() => setModalOpen(false)}></div></> : <></>}
+      {modalOpen ? (
+        <>
+          <ChallengeListDetailModal modalClose={() => setModalOpen(false)} />
+          <div className="dim" onClick={() => setModalOpen(false)}></div>
+        </>
+      ) : (
+        <></>
+      )}
     </>
-  )
+  );
 }

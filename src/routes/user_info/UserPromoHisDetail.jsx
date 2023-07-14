@@ -6,16 +6,17 @@ export default function UserPromoHisDetail() {
   return (
     <>
       <Lnb lnbType="userInfo" />
-      <CurrentBox mod={true} del={true} down={true} tit="프로모션 참여 상세 내역" />
+      {/* <CurrentBox mod={true} del={true} down={true} tit="프로모션 참여 상세 내역" /> */}
+      <CurrentBox btns={["mod", "del", "down"]} tit="프로모션 참여 상세 내역" />
       <div className="user_history_pro_detail detail_form box_ty01 table_type">
         <div className="table_wrap line">
-          <table className="table">  
+          <table className="table">
             <colgroup>
-              <col width={"80px"}/>
-              <col width={"150px"}/>
-              <col width={"auto"}/>
-              <col width={"500px"}/>
-            </colgroup>       
+              <col width={"80px"} />
+              <col width={"150px"} />
+              <col width={"auto"} />
+              <col width={"500px"} />
+            </colgroup>
             <tbody>
               <tr>
                 <th colSpan={3}>프로모션 명</th>
@@ -40,10 +41,25 @@ export default function UserPromoHisDetail() {
                 <th>NO</th>
                 <th>등록일</th>
                 <th>본문</th>
-                <th>도장 적립<br />15</th>
-                <th colSpan={2}>포인트 지급/차감<br />15,000p</th>
-                <th>좋아요<br />299</th>
-                <th>신고<br />1</th>
+                <th>
+                  도장 적립
+                  <br />
+                  15
+                </th>
+                <th colSpan={2}>
+                  포인트 지급/차감
+                  <br />
+                  15,000p
+                </th>
+                <th>
+                  좋아요
+                  <br />
+                  299
+                </th>
+                <th>
+                  신고
+                  <br />1
+                </th>
               </tr>
               <tr>
                 <td>

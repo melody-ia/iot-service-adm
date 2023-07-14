@@ -26,7 +26,8 @@ export default function BannerAdd() {
   return (
     <>
       <Lnb lnbType="event" />
-      <CurrentBox mod={true} del={true} tit="배너 등록/수정" />
+      {/* <CurrentBox mod={true} del={true} tit="배너 등록/수정" /> */}
+      <CurrentBox btns={["mod", "del"]} tit="배너 등록/수정" />
       <div className="banner_add box_ty01 table_type add_type">
         <div className="size_info">
           <h5 className="size_tit">배너 위치별 사이즈 안내</h5>

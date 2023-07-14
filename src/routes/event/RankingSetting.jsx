@@ -13,7 +13,8 @@ export default function RankingSetting() {
   return (
     <>
       <Lnb lnbType="event" />
-      <CurrentBox mod={true} del={true} down={true} tit="탄소 중립 랭킹 관리" />
+      {/* <CurrentBox mod={true} del={true} down={true} tit="탄소 중립 랭킹 관리" /> */}
+      <CurrentBox btns={["mod", "del", "down"]} tit="탄소 중립 랭킹 관리" />
       <div className="ranking_setting box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -91,7 +92,8 @@ export default function RankingSetting() {
             </tbody>
           </table>
         </div>
-        <CurrentBox add={false} mod={true} del={true} down={true} hideTit={true} />
+        {/* <CurrentBox add={false} mod={true} del={true} down={true} hideTit={true} /> */}
+        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} />
         <Pagination />
       </div>
     </>

@@ -11,7 +11,8 @@ export default function Point() {
   return (
     <>
       <Lnb lnbType="accumulated" />
-      <CurrentBox add={true} del={true} down={true} tit="포인트 관리" />
+      {/* <CurrentBox add={true} del={true} down={true} tit="포인트 관리" /> */}
+      <CurrentBox btns={["add", "del", "down"]} tit="포인트 관리" />
       <div className="point box_ty01 table_type table_comm accumulated">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>

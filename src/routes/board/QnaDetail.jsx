@@ -8,7 +8,8 @@ export default function QnaDetail() {
   return (
     <>
       <Lnb lnbType="board" />
-      <CurrentBox mod={true} del={true} down={true} tit="1:1문의 상세보기" />
+      {/* <CurrentBox mod={true} del={true} down={true} tit="1:1문의 상세보기" /> */}
+      <CurrentBox btns={["mod", "del", "down"]} tit="1:1문의 상세보기" />
       <div className="qna_detail box_ty01 view_form">
         <div className="write_type">
           <div className="wirte_area">

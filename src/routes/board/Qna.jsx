@@ -15,7 +15,8 @@ export default function Qna() {
   return (
     <>
       <Lnb lnbType="board" />
-      <CurrentBox mod={true} del={true} down={true} tit="1:1문의 리스트" />
+      {/* <CurrentBox mod={true} del={true} down={true} tit="1:1문의 리스트" /> */}
+      <CurrentBox btns={["mod", "del", "down"]} tit="1:1문의 리스트" />
       <div className="qna box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -81,7 +82,8 @@ export default function Qna() {
             </tbody>
           </table>
         </div>
-        <CurrentBox mod={true} del={true} down={true} hideTit={true} />
+        {/* <CurrentBox mod={true} del={true} down={true} hideTit={true} /> */}
+        <CurrentBox btns={["mod", "del", "down"]} hideTit={true} />
         <Pagination />
       </div>
     </>

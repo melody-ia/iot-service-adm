@@ -47,7 +47,8 @@ export default function ChallengeAdd() {
   return (
     <>
       <Lnb lnbType="event" />
-      <CurrentBox mod={true} del={true} down={true} tit="데일리 챌린지 등록/수정" />
+      {/* <CurrentBox mod={true} del={true} down={true} tit="데일리 챌린지 등록/수정" /> */}
+      <CurrentBox btns={["mod", "del", "down"]} tit="데일리 챌린지 등록/수정" />
       <div className="ch_add">
         <div className="box_ty01">
           <div className="write_type">

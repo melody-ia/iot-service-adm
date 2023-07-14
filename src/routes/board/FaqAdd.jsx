@@ -11,7 +11,8 @@ export default function NewsAdd() {
   return (
     <>
       <Lnb lnbType="board" />
-      <CurrentBox add={true} del={true} down={true} tit="FAQ 등록/수정" />
+      {/* <CurrentBox add={true} del={true} down={true} tit="FAQ 등록/수정" /> */}
+      <CurrentBox btns={["add", "del", "down"]} tit="FAQ 등록/수정" />
 
       <div className="faq_add box_ty01 view_form add">
         <div className="write_type">

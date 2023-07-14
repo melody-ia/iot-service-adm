@@ -68,7 +68,8 @@ export default function NewsAdd() {
   return (
     <>
       <Lnb lnbType="board" />
-      <CurrentBox add={true} del={true} down={true} tit="이벤트/뉴스 등록/수정" />
+      {/* <CurrentBox add={true} del={true} down={true} tit="이벤트/뉴스 등록/수정" /> */}
+      <CurrentBox btns={["add", "del", "down"]} tit="이벤트/뉴스 등록/수정" />
       <div className="news_add box_ty01 view_form add">
         <div className="write_type">
           <div className="wirte_area">
@@ -143,7 +144,7 @@ export default function NewsAdd() {
                 <textarea
                   className="textarea"
                   placeholder="직접입력"
-                  value={postContents.content}
+                  value={postContents.wr_content}
                   data-type="wr_content"
                   onChange={handlePostContents}
                 ></textarea>

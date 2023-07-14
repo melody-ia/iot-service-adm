@@ -14,7 +14,8 @@ export default function Tip() {
   return (
     <>
       <Lnb lnbType="board" />
-      <CurrentBox add={true} mod={true} del={true} down={true} tit="탄소중립 TIP 자료실 리스트" />
+      {/* <CurrentBox add={true} mod={true} del={true} down={true} tit="탄소중립 TIP 자료실 리스트" /> */}
+      <CurrentBox btns={["add", "mod", "del"]} tit="탄소중립 TIP 자료실 리스트" />
       <div className="tip box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -98,7 +99,8 @@ export default function Tip() {
             </tbody>
           </table>
         </div>
-        <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} />
+        {/* <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} /> */}
+        <CurrentBox btns={["add", "mod", "del"]} hideTit={true} />
         <Pagination />
       </div>
     </>

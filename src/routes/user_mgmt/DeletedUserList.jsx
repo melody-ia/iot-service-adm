@@ -12,7 +12,8 @@ export default function DeletedUserList() {
   return (
     <>
       <Lnb lnbType="user" />
-      <CurrentBox res={true} del={true} down={true} tit="탈퇴/삭제 회원 리스트" />
+      {/* <CurrentBox res={true} del={true} down={true} tit="탈퇴/삭제 회원 리스트" /> */}
+      <CurrentBox btns={["res", "del", "down"]} tit="탈퇴/삭제 회원 리스트" />
       <div className="deleted_user_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -96,7 +97,8 @@ export default function DeletedUserList() {
             </tbody>
           </table>
         </div>
-        <CurrentBox res={true} del={true} down={true} hideTit={true} />
+        {/* <CurrentBox res={true} del={true} down={true} hideTit={true} /> */}
+        <CurrentBox btns={["res", "del", "down"]} hideTit={true} />
         <Pagination />
       </div>
     </>

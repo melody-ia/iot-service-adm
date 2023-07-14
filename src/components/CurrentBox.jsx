@@ -1,6 +1,6 @@
 import { useBtnEvent } from "../hooks/useBtnEvent";
 export default function CurrentBox(props) {
-  // const btnEvent = useBtnEvent();
+  console.log(props);
   const btnList = [
     ["복원", "res"],
     ["취소", "can"],
@@ -14,14 +14,14 @@ export default function CurrentBox(props) {
       {!props.hideTit && <h3 className="current_tit">{props.tit}</h3>}
       <div className="setting_btn_wrap d-flex flex-ac">
         {btnList.map((el, idx) => {
-          if (props[el[1]])
+          if (props.btns.includes(el[1]))
             return (
-              // <button type="button" key={idx} className={"btn_ty01 btn_bg " + el[1]} data-btn={el[1]} onClick={btnEvent}>
-              <button type="button" key={idx} className={"btn_ty01 btn_bg " + el[1]} data-btn={el[1]}>
+              <button type="button" key={idx} className={"btn_ty01 btn_bg " + el[1]} data-btn={el[1]} onClick={props[el[1]]}>
                 {el[0]}
               </button>
             );
         })}
+        {}
       </div>
     </div>
   );

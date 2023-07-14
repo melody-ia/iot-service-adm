@@ -36,5 +36,5 @@ export function useUploadFile(type, size, length) {
   const writing = e => {
     setLetter(e.target.value);
   };
-  return { fileData, letter, uploadFile, deleteFile, writing };
+  return { fileData, setFileData, letter, uploadFile, deleteFile, writing };
 }
