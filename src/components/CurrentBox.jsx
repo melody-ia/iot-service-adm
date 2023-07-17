@@ -1,6 +1,5 @@
 import { useBtnEvent } from "../hooks/useBtnEvent";
 export default function CurrentBox(props) {
-  console.log(props);
   const btnList = [
     ["복원", "res"],
     ["취소", "can"],

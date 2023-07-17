@@ -1,7 +1,7 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
-import { useState, useEffect } from "react";
 
 export default function News() {
   const navigate = useNavigate();
@@ -15,16 +15,11 @@ export default function News() {
   const [pageData, setPageData] = useState();
   const [checkedList, setCheckedList] = useState([]);
   const [curPage, setCurPage] = useState(1);
+  const [modList, setModeList] = useState({ wr_id: [], wr_status: [], wr_memo: [] });
 
   const checkAll = e => {
     if (e.target.checked) setCheckedList(resData.boardInfo.map(el => el.wr_id));
     else setCheckedList([]);
-  };
-
-  const btnEvent = {
-    add() {
-      navigate("/News/add");
-    },
   };
 
   const loadPostData = async () => {
@@ -45,13 +40,29 @@ export default function News() {
     setPageData(res.page);
   };
 
+  const modPostData = async type => {
+    await postData("community/edit", { mb_no, type, wr_subject: "event/news", ...modList });
+    loadPostData();
+    setCheckedList([]);
+  };
+
+  const btnEvent = {
+    add() {
+      navigate("/News/add");
+    },
+    mod() {
+      modPostData("edit");
+    },
+    del() {
+      modPostData("delete");
+    },
+  };
+
   useEffect(() => {
     loadPostData();
   }, [curPage]);
 
-  console.log(1);
-
-  if (pageData)
+  if (resData && pageData)
     return (
       <>
         <Lnb lnbType="board" />
@@ -95,34 +106,81 @@ export default function News() {
               </thead>
               <tbody>
                 {resData.boardInfo.map((el, idx) => {
-                  return <PostItem key={idx} data={el} checkedList={checkedList} setCheckedList={setCheckedList} />;
+                  return (
+                    <PostItem
+                      key={idx}
+                      data={el}
+                      checkedList={checkedList}
+                      setCheckedList={setCheckedList}
+                      modList={modList}
+                      setModeList={setModeList}
+                    />
+                  );
                 })}
               </tbody>
             </table>
           </div>
-          <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} />
+          <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} {...btnEvent} />
           <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} />
         </div>
       </>
     );
 }
 
-function PostItem({ data, checkedList, setCheckedList }) {
+function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
   const navigate = useNavigate();
   const division = { event: "이벤트", news: "뉴스" }[data.wr_subject];
-  const [memo, setMemo] = useState(data.wr_1);
+  const [postContents, setPostContents] = useState({ wr_id: data.wr_id, wr_status: data.wr_status, wr_memo: data.wr_1 });
 
   const checkItem = e => {
     if (e.target.checked) setCheckedList([...checkedList, data.wr_id]);
     else setCheckedList([...checkedList].filter(el => el !== data.wr_id));
   };
 
+  const handlePostContents = e => {
+    const type = e.target.dataset.type;
+    const value = e.target.dataset.value || e.target.value;
+    let copy = { ...postContents };
+    copy[type] = value;
+    setPostContents(copy);
+  };
+
+  const modData = () => {
+    let copy = { ...modList };
+    if (!checkedList.includes(data.wr_id)) {
+      if (copy.wr_id.includes(data.wr_id)) {
+        const idx = copy.wr_id.indexOf(data.wr_id);
+        ["wr_id", "wr_status", "wr_memo"].forEach(el => {
+          copy[el].splice(idx, 1);
+        });
+        return setModeList(copy);
+      }
+      return;
+    }
+    if (copy.wr_id.includes(data.wr_id)) {
+      const idx = copy.wr_id.indexOf(data.wr_id);
+      ["wr_id", "wr_status", "wr_memo"].forEach(el => {
+        copy[el].splice(idx, 1);
+        copy[el].push(postContents[el]);
+      });
+    } else {
+      ["wr_id", "wr_status", "wr_memo"].forEach(el => {
+        copy[el].push(postContents[el]);
+      });
+    }
+    setModeList(copy);
+  };
+
+  useEffect(() => {
+    modData();
+  }, [checkedList, postContents]);
+
   return (
     <tr>
       <td className="check">
         <CheckBox for={data.wr_id} id={data.wr_id} name={data.wr_id} checked={checkedList.includes(data.wr_id)} onClick={checkItem} />
       </td>
-      <td className="num">2</td>
+      <td className="num">{data.wr_id}</td>
       <td>{division}</td>
       <td
         style={{ cursor: "pointer" }}
@@ -150,6 +208,10 @@ function PostItem({ data, checkedList, setCheckedList }) {
                       name={"isShow" + data.wr_id}
                       checked={data.wr_status === el[2]}
                       text={el[0]}
+                      dataType={"wr_status"}
+                      dataValue={el[2]}
+                      onClick={handlePostContents}
+                      // disabled={!checkedList.includes(data.wr_id)}
                     />
                   );
                 })
@@ -165,6 +227,10 @@ function PostItem({ data, checkedList, setCheckedList }) {
                       name={"isShow" + data.wr_id}
                       checked={data.wr_status === el[2]}
                       text={el[0]}
+                      dataType={"wr_status"}
+                      dataValue={el[2]}
+                      onClick={handlePostContents}
+                      // disabled={!checkedList.includes(data.wr_id)}
                     />
                   );
                 })}
@@ -176,10 +242,10 @@ function PostItem({ data, checkedList, setCheckedList }) {
           <input
             type="text"
             placeholder={"직접 입력"}
-            value={memo}
-            onChange={e => {
-              setMemo(e.target.value);
-            }}
+            value={postContents.wr_memo}
+            data-type="wr_memo"
+            onChange={handlePostContents}
+            // readOnly={!checkedList.includes(data.wr_id)}
           />
         </div>
       </td>

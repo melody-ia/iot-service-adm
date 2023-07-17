@@ -20,6 +20,7 @@ export default function Pagination({ pageData, curPage, setCurPage }) {
         const pageNum = pageData.start_block + idx;
         return (
           <button
+            key={idx}
             type="button"
             className={"btn num " + (pageNum === curPage ? "active" : "")}
             onClick={() => {

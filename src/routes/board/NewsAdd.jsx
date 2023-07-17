@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 import { useSelectBox, useCheckToken, useUploadFile } from "../../hooks/bundle_hooks";
 import { useState } from "react";
@@ -6,7 +6,6 @@ import { useEffect } from "react";
 
 export default function NewsAdd() {
   const history = useNavigate();
-  const { state } = useLocation();
   const { mb_no, postData } = useCheckToken();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     subject: ["이벤트", "뉴스"],
@@ -27,13 +26,6 @@ export default function NewsAdd() {
     copy[type] = value;
     setPostContents(copy);
   };
-
-  // const loadPostData = async () => {
-  //   const res = await postData("community/show", { wr_id: state.wr_id });
-  //   setPostContents(res.data.boardInfo[0]);
-  // };
-
-  console.log(postContents);
 
   const dataSubmit = async () => {
     if (!postContents.wr_seo_title || !postContents.wr_content) return alert("제목과 내용을 입력하세요.");
@@ -60,10 +52,6 @@ export default function NewsAdd() {
       history("/News");
     }
   };
-
-  // useEffect(() => {
-  //   if (state?.wr_id) loadPostData();
-  // }, []);
 
   return (
     <>

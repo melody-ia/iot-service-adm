@@ -25,7 +25,7 @@ export default function NewsEdit() {
   };
 
   const loadPostData = async () => {
-    const res = await postData("community/show", { mb_no, wr_id: state.wr_id, wr_subject: state.wr_subject });
+    const res = await postData("community/show", { mb_no, wr_id: state.wr_id, category: state.wr_subject });
     const getSelectedValue = { event: "이벤트", news: "뉴스" }[res.data.boardInfo[0].wr_subject];
     setPostContents(res.data.boardInfo[0]);
     setSelectedValue({ ...selectedValues, subject: getSelectedValue });
