@@ -3,13 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 import { useSelectBox, useCheckToken, useUploadFile } from "../../hooks/bundle_hooks";
 
-export default function NewsEdit() {
-  const history = useNavigate();
+export default function TipEdit() {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const { mb_no, postData } = useCheckToken();
-  const { selectedValues, setSelectedValue, selecBoxHtml } = useSelectBox({
-    subject: ["이벤트", "뉴스"],
-  });
   const [postContents, setPostContents] = useState();
   const [topImage, setTopImage] = useState([]);
   const [communityfile, setCommunityfile] = useState([]);
@@ -24,9 +21,7 @@ export default function NewsEdit() {
 
   const loadPostData = async () => {
     const res = await postData("community/show", { mb_no, wr_id: state.wr_id, category: state.wr_subject });
-    const getSelectedValue = { event: "이벤트", news: "뉴스" }[res.data.boardInfo[0].wr_subject];
     setPostContents(res.data.boardInfo[0]);
-    setSelectedValue({ ...selectedValues, subject: getSelectedValue });
   };
 
   const dataSubmit = async () => {
@@ -34,7 +29,7 @@ export default function NewsEdit() {
     const formData = new FormData();
     formData.append("mb_no", mb_no);
     formData.append("wr_id", state.wr_id);
-    formData.append("wr_subject", { 이벤트: "event", 뉴스: "news" }[selectedValues.subject]);
+    formData.append("wr_subject", "tip");
     formData.append("wr_seo_title", postContents.wr_seo_title);
     formData.append("wr_content", postContents.wr_content);
     formData.append("wr_status", postContents.wr_status);
@@ -52,7 +47,7 @@ export default function NewsEdit() {
     const res = await postData("community/update", formData);
     if (res.code === 200) {
       alert("수정되었습니다.");
-      history("/News");
+      navigate("/Tip");
     }
   };
 
@@ -70,42 +65,18 @@ export default function NewsEdit() {
     return (
       <>
         <Lnb lnbType="board" />
-        <CurrentBox btns={["add", "del", "down"]} tit="이벤트/뉴스 등록/수정" {...btnEvent} />
-        <div className="news_add box_ty01 view_form add">
+        <CurrentBox btns={["add", "del", "down"]} tit="탄소중립 TIP 자료실 등록/수정" {...btnEvent} />
+        <div className="tip_add box_ty01 view_form add">
           <div className="write_type">
             <div className="wirte_area">
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
-                  <label htmlFor="">구분</label>
-                  {selecBoxHtml}
+                  <label htmlFor="">등록일</label>
+                  <input type="text" placeholder="직접입력" defaultValue={new Date().toLocaleDateString()} readOnly />
                 </div>
-                {selectedValues.post_sort === "이벤트" ? (
-                  <div className="flex_right">
-                    <label htmlFor="">진행여부</label>
-                    <div className="radio_group d-flex w100">
-                      {[
-                        ["진행중", "show", 0],
-                        ["종료", "hide", 3],
-                      ].map((el, idx) => {
-                        return (
-                          <RadioBtn
-                            key={idx}
-                            for={el[1]}
-                            id={el[1]}
-                            name="isShow"
-                            text={el[0]}
-                            checked={postContents.status === el[2]}
-                            dataType="wr_status"
-                            dataValue={el[2]}
-                            onClick={handlePostContents}
-                          />
-                        );
-                      })}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex_right">
-                    <label htmlFor="">공개여부</label>
+                <div className="flex_right">
+                  <label htmlFor="">공개여부</label>
+                  <div className="radio_group d-flex w100">
                     <div className="radio_group d-flex w100">
                       {[
                         ["공개", "show", 0],
@@ -127,10 +98,10 @@ export default function NewsEdit() {
                       })}
                     </div>
                   </div>
-                )}
+                </div>
               </div>
               <div className="flex_box">
-                <div className="input_ty02 flex_left">
+                <div className="input_ty02 flex_left w100">
                   <label htmlFor="">제목</label>
                   <input
                     type="text"
@@ -139,10 +110,6 @@ export default function NewsEdit() {
                     data-type="wr_seo_title"
                     onChange={handlePostContents}
                   />
-                </div>
-                <div className="input_ty02 flex_right">
-                  <label htmlFor="">등록일</label>
-                  <input type="text" placeholder="직접입력" defaultValue={new Date().toLocaleDateString()} readOnly />
                 </div>
               </div>
               <div className="flex_box">
@@ -184,7 +151,7 @@ export default function NewsEdit() {
             </div>
           </div>
           <div className="bottom_btn_wrap">
-            <button type="button" className="btn_ty01 cancel" onClick={() => history(-1)}>
+            <button type="button" className="btn_ty01 cancel" onClick={() => navigate(-1)}>
               취소
             </button>
             <button type="button" className="btn_ty01" onClick={dataSubmit}>

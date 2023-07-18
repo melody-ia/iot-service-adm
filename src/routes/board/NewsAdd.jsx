@@ -1,8 +1,7 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 import { useSelectBox, useCheckToken, useUploadFile } from "../../hooks/bundle_hooks";
-import { useState } from "react";
-import { useEffect } from "react";
 
 export default function NewsAdd() {
   const history = useNavigate();
@@ -53,11 +52,16 @@ export default function NewsAdd() {
     }
   };
 
+  const btnEvent = {
+    add() {
+      dataSubmit();
+    },
+  };
+
   return (
     <>
       <Lnb lnbType="board" />
-      {/* <CurrentBox add={true} del={true} down={true} tit="이벤트/뉴스 등록/수정" /> */}
-      <CurrentBox btns={["add", "del", "down"]} tit="이벤트/뉴스 등록/수정" />
+      <CurrentBox btns={["add", "del", "down"]} tit="이벤트/뉴스 등록/수정" {...btnEvent} />
       <div className="news_add box_ty01 view_form add">
         <div className="write_type">
           <div className="wirte_area">
@@ -81,7 +85,7 @@ export default function NewsAdd() {
                           id={el[1]}
                           name="isShow"
                           text={el[0]}
-                          checked={postContents.status === el[2]}
+                          checked={postContents.wr_status === el[2]}
                           dataType="wr_status"
                           dataValue={el[2]}
                           onClick={handlePostContents}
@@ -105,7 +109,7 @@ export default function NewsAdd() {
                           id={el[1]}
                           name="isShow"
                           text={el[0]}
-                          checked={postContents.status === el[2]}
+                          checked={postContents.wr_status === el[2]}
                           dataType="wr_status"
                           dataValue={el[2]}
                           onClick={handlePostContents}

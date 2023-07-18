@@ -1,30 +1,23 @@
-import { useEffect } from "react";
-import { useSelectBox, useCheckToken, useUploadFile } from "../../hooks/bundle_hooks";
+import { useState, useEffect } from "react";
+import { useCheckToken } from "../../hooks/bundle_hooks";
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
-import banner from "../../assets/img/banner.png";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function NewsDetail() {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const { state } = useLocation();
-  const { id } = useParams();
   const { mb_no, postData } = useCheckToken();
   const [postContents, setPostContents] = useState();
-  const [topImage, setTopImage] = useState([]);
-  const [communityfile, setCommunityfile] = useState([]);
 
   const loadPostData = async () => {
     const res = await postData("community/show", { mb_no, wr_id: state.wr_id, category: state.wr_subject });
     setPostContents(res.data.boardInfo[0]);
   };
 
-  const handlePostContents = e => {
-    const type = e.target.dataset.type;
-    const value = e.target.dataset.value || e.target.value;
-    let copy = { ...postContents };
-    copy[type] = value;
-    setPostContents(copy);
+  const btnEvent = {
+    mod() {
+      navigate("/News/edit", { state: { wr_id: postContents.wr_id, wr_subject: postContents.wr_subject } });
+    },
   };
 
   useEffect(() => {
@@ -35,15 +28,7 @@ export default function NewsDetail() {
     return (
       <>
         <Lnb lnbType="board" />
-        {/* <CurrentBox mod={true} del={true} down={true} tit="이벤트/뉴스 상세보기" /> */}
-        <CurrentBox btns={["mod", "del", "down"]} tit="이벤트/뉴스 상세보기" />
-        <button
-          onClick={() => {
-            history("/News/edit", { state: { wr_id: postContents.wr_id, wr_subject: postContents.wr_subject } });
-          }}
-        >
-          수정하기
-        </button>
+        <CurrentBox btns={["mod", "del", "down"]} tit="이벤트/뉴스 상세보기" {...btnEvent} />
         <div className="news_detail box_ty01 view_form">
           <div className="write_type">
             <div className="wirte_area">
@@ -70,7 +55,6 @@ export default function NewsDetail() {
                             checked={postContents.wr_status === el[2]}
                             dataType="wr_status"
                             dataValue={el[2]}
-                            onClick={handlePostContents}
                             disabled={true}
                           />
                         );
@@ -95,7 +79,6 @@ export default function NewsDetail() {
                             checked={postContents.wr_status === el[2]}
                             dataType="wr_status"
                             dataValue={el[2]}
-                            onClick={handlePostContents}
                             disabled={true}
                           />
                         );
@@ -123,17 +106,16 @@ export default function NewsDetail() {
               <div className="flex_box img_area">
                 <label htmlFor="">상단 이미지</label>
                 {postContents.top_image && <img src={process.env.REACT_APP_SERVER_URL + "images" + postContents.top_image} alt="" />}
-                {/* <img alt="" /> */}
               </div>
               <div className="flex_box">
                 <div className="input_ty02 flex_left w100">
                   <label htmlFor="">첨부파일</label>
                   <div className="file_box input_ty02">
-                    {postContents.community_file ? (
-                      postContents.community_file.map((el, idx) => {
+                    {postContents.community_origin ? (
+                      postContents.community_origin.map((el, idx) => {
                         return (
-                          <div className="row">
-                            <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly />
+                          <div key={idx} className="row">
+                            <input type="text" defaultValue={el} readOnly />
                           </div>
                         );
                       })

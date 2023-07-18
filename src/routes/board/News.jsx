@@ -16,11 +16,14 @@ export default function News() {
   const [checkedList, setCheckedList] = useState([]);
   const [curPage, setCurPage] = useState(1);
   const [modList, setModeList] = useState({ wr_id: [], wr_status: [], wr_memo: [] });
+  const [render, setRender] = useState(true);
 
   const checkAll = e => {
     if (e.target.checked) setCheckedList(resData.boardInfo.map(el => el.wr_id));
     else setCheckedList([]);
   };
+
+  // console.log(resData);
 
   const loadPostData = async () => {
     const start_at = startDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1);
@@ -61,6 +64,12 @@ export default function News() {
   useEffect(() => {
     loadPostData();
   }, [curPage]);
+
+  // useEffect(() => {
+  //   setRender(!render);
+  // }, [resData]);
+
+  // if (resData) console.log(resData.boardInfo);
 
   if (resData && pageData)
     return (
@@ -106,6 +115,7 @@ export default function News() {
               </thead>
               <tbody>
                 {resData.boardInfo.map((el, idx) => {
+                  console.log(el);
                   return (
                     <PostItem
                       key={idx}
@@ -130,7 +140,7 @@ export default function News() {
 function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
   const navigate = useNavigate();
   const division = { event: "이벤트", news: "뉴스" }[data.wr_subject];
-  const [postContents, setPostContents] = useState({ wr_id: data.wr_id, wr_status: data.wr_status, wr_memo: data.wr_1 });
+  const [postContents, setPostContents] = useState({ wr_id: data.wr_id, wr_status: data.wr_status, wr_memo: data.wr_memo });
 
   const checkItem = e => {
     if (e.target.checked) setCheckedList([...checkedList, data.wr_id]);
@@ -175,6 +185,10 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
     modData();
   }, [checkedList, postContents]);
 
+  useEffect(() => {
+    setPostContents({ ...data });
+  }, [data]);
+
   return (
     <tr>
       <td className="check">
@@ -198,7 +212,7 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
             {data.wr_subject === "event"
               ? [
                   ["진행중", "show", 0],
-                  ["종료", "hide", 3],
+                  ["종료", "hide", 1],
                 ].map((el, idx) => {
                   return (
                     <RadioBtn
@@ -206,12 +220,11 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
                       for={el[1] + data.wr_id}
                       id={el[1] + data.wr_id}
                       name={"isShow" + data.wr_id}
-                      checked={data.wr_status === el[2]}
+                      checked={postContents.wr_status == el[2]}
                       text={el[0]}
                       dataType={"wr_status"}
                       dataValue={el[2]}
                       onClick={handlePostContents}
-                      // disabled={!checkedList.includes(data.wr_id)}
                     />
                   );
                 })
@@ -225,12 +238,11 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
                       for={el[1] + data.wr_id}
                       id={el[1] + data.wr_id}
                       name={"isShow" + data.wr_id}
-                      checked={data.wr_status === el[2]}
+                      checked={postContents.wr_status == el[2]}
                       text={el[0]}
                       dataType={"wr_status"}
                       dataValue={el[2]}
                       onClick={handlePostContents}
-                      // disabled={!checkedList.includes(data.wr_id)}
                     />
                   );
                 })}
@@ -239,14 +251,7 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
       </td>
       <td>
         <div className="input_ty02">
-          <input
-            type="text"
-            placeholder={"직접 입력"}
-            value={postContents.wr_memo}
-            data-type="wr_memo"
-            onChange={handlePostContents}
-            // readOnly={!checkedList.includes(data.wr_id)}
-          />
+          <input type="text" placeholder={"직접 입력"} value={postContents.wr_memo} data-type="wr_memo" onChange={handlePostContents} />
         </div>
       </td>
     </tr>

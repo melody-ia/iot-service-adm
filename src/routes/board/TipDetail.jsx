@@ -1,72 +1,111 @@
+import { useEffect, useState } from "react";
+import { useCheckToken } from "../../hooks/bundle_hooks";
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
-import banner from "../../assets/img/banner.png";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function TipDetail() {
-  return (
-    <>
-      <Lnb lnbType="board" />
-      {/* <CurrentBox mod={true} del={true} down={true} tit="탄소중립 TIP 자료실 상세보기" /> */}
-      <CurrentBox btns={["mod", "del", "down"]} tit="탄소중립 TIP 자료실 상세보기" />
-      <div className="tip_detail box_ty01 view_form">
-        <div className="write_type">
-          <div className="wirte_area">
-            <div className="flex_box">
-              <div className="input_ty02 flex_left">
-                <label htmlFor="">등록일</label>
-                <input type="text" placeholder="직접입력" defaultValue={"2023.05.08"} readOnly />
-              </div>
-              <div className="flex_right">
-                <label htmlFor="">공개여부</label>
-                <div className="radio_group d-flex w100">
-                  <RadioBtn for="show" id="show" name="show" text="공개" />
-                  <RadioBtn for="noshow" id="noshow" name="show" text="비공개" />
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const { mb_no, postData } = useCheckToken();
+  const [postContents, setPostContents] = useState();
+
+  const loadPostData = async () => {
+    const res = await postData("community/show", { mb_no, wr_id: state.wr_id, category: state.wr_subject });
+    setPostContents(res.data.boardInfo[0]);
+  };
+
+  const btnEvent = {
+    mod() {
+      navigate("/Tip/edit", { state: { wr_id: postContents.wr_id, wr_subject: postContents.wr_subject } });
+    },
+  };
+
+  useEffect(() => {
+    loadPostData();
+  }, []);
+
+  if (postContents)
+    return (
+      <>
+        <Lnb lnbType="board" />
+        <CurrentBox btns={["mod", "del", "down"]} tit="탄소중립 TIP 자료실 상세보기" {...btnEvent} />
+        <div className="tip_detail box_ty01 view_form">
+          <div className="write_type">
+            <div className="wirte_area">
+              <div className="flex_box">
+                <div className="input_ty02 flex_left">
+                  <label htmlFor="">등록일</label>
+                  <input type="text" placeholder="직접입력" value={postContents.wr_datetime.replace(/-/g, " .") + "."} readOnly />
+                </div>
+                <div className="flex_right">
+                  <label htmlFor="">공개여부</label>
+                  <div className="radio_group d-flex w100">
+                    {[
+                      ["공개", "show", 0],
+                      ["비공개", "hide", 1],
+                    ].map((el, idx) => {
+                      return (
+                        <RadioBtn
+                          key={idx}
+                          for={el[1]}
+                          id={el[1]}
+                          name="isShow"
+                          text={el[0]}
+                          checked={postContents.wr_status === el[2]}
+                          dataType="wr_status"
+                          dataValue={el[2]}
+                          disabled={true}
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex_box">
-              <div className="input_ty02 flex_left w100">
-                <label htmlFor="">제목</label>
-                <input type="text" defaultValue={"탄소발자국 계산기 사용법"} readOnly />
+              <div className="flex_box">
+                <div className="input_ty02 flex_left w100">
+                  <label htmlFor="">제목</label>
+                  <input type="text" value={postContents.wr_seo_title} readOnly />
+                </div>
               </div>
-            </div>
-            <div className="flex_box">
-              <div className="input_ty02 flex_left w100">
-                <label htmlFor="">내용</label>
-                <textarea
-                  className="textarea"
-                  defaultValue={
-                    "탄소발자국 계산기 사용법 탄소발자국 계산기 사용법탄소발자국 계산기 사용법 탄소발자국 계산기 사용법 탄소발자국 계산기 사용법 탄소발자국 계산기 사용법"
-                  }
-                  readOnly
-                ></textarea>
+              <div className="flex_box">
+                <div className="input_ty02 flex_left w100">
+                  <label htmlFor="">내용</label>
+                  <textarea className="textarea" value={postContents.wr_content} readOnly></textarea>
+                </div>
               </div>
-            </div>
-            <div className="flex_box img_area">
-              <label htmlFor="">상단 이미지</label>
-              <img src={banner} alt="" />
-            </div>
-            <div className="flex_box">
-              <div className="flex_left w100">
-                <label htmlFor="">첨부파일</label>
-                <div className="file_box input_ty02">
-                  <div className="row">
-                    <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly />
-                  </div>
-                  <div className="row">
-                    <input type="text" defaultValue={"신규 가입 안내1.jpg"} readOnly />
+              <div className="flex_box img_area">
+                <label htmlFor="">상단 이미지</label>
+                {postContents.top_image && <img src={process.env.REACT_APP_SERVER_URL + "images" + postContents.top_image} alt="" />}
+              </div>
+              <div className="flex_box">
+                <div className="flex_left w100">
+                  <label htmlFor="">첨부파일</label>
+                  <div className="file_box input_ty02">
+                    {postContents.community_origin ? (
+                      postContents.community_origin.map((el, idx) => {
+                        return (
+                          <div key={idx} className="row">
+                            <input type="text" defaultValue={el} readOnly />
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className="row">
+                        <input type="text" defaultValue={"첨부파일 없음"} readOnly />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="flex_box">
-              <div className="input_ty02 flex_left w100">
-                <label htmlFor="">비고</label>
-                <textarea className="textarea" readOnly></textarea>
+              <div className="flex_box">
+                <div className="input_ty02 flex_left w100">
+                  <label htmlFor="">비고</label>
+                  <textarea className="textarea" value={postContents.wr_1} readOnly></textarea>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
 }

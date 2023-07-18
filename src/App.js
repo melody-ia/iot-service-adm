@@ -36,9 +36,11 @@ import NewsEdit from "./routes/board/NewsEdit";
 import Tip from "./routes/board/Tip";
 import TipDetail from "./routes/board/TipDetail";
 import TipAdd from "./routes/board/TipAdd";
+import TipEdit from "./routes/board/TipEdit";
 import Faq from "./routes/board/Faq";
 import FaqDetail from "./routes/board/FaqDetail";
 import FaqAdd from "./routes/board/FaqAdd";
+import FaqEdit from "./routes/board/FaqEdit";
 import Qna from "./routes/board/Qna";
 import QnaDetail from "./routes/board/QnaDetail";
 import Product from "./routes/device/Product";
@@ -74,15 +76,17 @@ function App() {
         <Route path="Stamp" element={<Stamp />} />
         <Route path="Point" element={<Point />} />
         <Route path="News" element={<News />} />
-        <Route path="News/:id" element={<NewsDetail />} />
+        <Route path="News/NewsDetail" element={<NewsDetail />} />
         <Route path="News/add" element={<NewsAdd />} />
         <Route path="News/edit" element={<NewsEdit />} />
         <Route path="Tip" element={<Tip />} />
-        <Route path="Tip/:id/:id" element={<TipDetail />} />
+        <Route path="Tip/TipDetail" element={<TipDetail />} />
         <Route path="Tip/add" element={<TipAdd />} />
+        <Route path="Tip/edit" element={<TipEdit />} />
         <Route path="Faq" element={<Faq />} />
-        <Route path="Faq/:id/:id" element={<FaqDetail />} />
+        <Route path="Faq/FaqDetail" element={<FaqDetail />} />
         <Route path="Faq/add" element={<FaqAdd />} />
+        <Route path="Faq/edit" element={<FaqEdit />} />
         <Route path="Qna" element={<Qna />} />
         <Route path="Qna/:id/:id" element={<QnaDetail />} />
         <Route path="Product" element={<Product />} />
