@@ -25,10 +25,10 @@ export function useCheckToken() {
       expires.setFullYear(expires.getFullYear() + 1);
       setCookie("accessToken", data.token, { path: "/", expires });
       setIsLogin(true);
-      if (data.data && !notChange) setResData(res.data.data);
     } else {
       setIsLogin(false);
     }
+    if (data.data && !notChange) setResData(res.data.data);
     return res.data;
   };
 
