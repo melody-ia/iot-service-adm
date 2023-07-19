@@ -19,7 +19,7 @@
     .c_gray{color:#8B909A;}
 
     .row1{
-        .box_ty01{width:calc(100% / 5 - 21px); @include displayFlex(center, null, null); padding:20px 18px; border-radius:0;
+        .box_ty01{width:calc(100% / 5 - 21px); @include displayFlex(center, null, null); padding:20px 18px; border-radius:5px;
             @include desktop{width:calc(100% / 3 - 15px); margin-right:20px; margin-bottom:20px;
                 &:nth-child(1),
                 &:nth-child(2){width:calc(100% / 2 - 13px);}
@@ -34,12 +34,12 @@
             @include mobile-sm{margin-bottom:0;}
         }
 
-        strong{line-height:1; font-size:24px;
+        strong{line-height:1; font-size:24px; letter-spacing:-.5px;
             @include tablet{font-size:18px;}
         }
     }
     .row2{
-        .box_ty01{width:calc(100% / 4 - 18px); border-radius:0;
+        .box_ty01{width:calc(100% / 4 - 18px); border-radius:5px;
             &.graph_ty01,
             &.graph_ty02{@include desktop{width:calc((100% / 2) - 13px);}
                 @include mobile{width:100%; margin-right:0;}
@@ -50,7 +50,7 @@
                 @include desktop{margin-right:0;}
             }
             &.graph_ty03{width:calc(100% / 2 - 16px); position:relative;
-                .box_head{width:calc(100% - 36px); justify-content:space-between; position:absolute; top:18px; left:50%; z-index:55; transform:translateX(-50%);}
+                .box_head{width:calc(100% - 36px); justify-content:space-between; position:absolute; top:24px; left:50%; z-index:55; transform:translateX(-50%);}
                 @include desktop{width:100%;}
             }
         }
@@ -69,12 +69,12 @@
     }
 
     .row3{
-        .table_wrap{padding:24px 18px 40px 18px; margin-bottom:0;
+        .table_wrap{padding:22px 18px 40px 18px; margin-bottom:0;
+            .table{overflow:hidden; border-radius:10px;}
             .id{width:160px;}
             .name, .gender{width:120px}
             @include desktop{margin-bottom:26px;}
             @include tablet{margin-right:0; margin-bottom:20px;}
-            
         }
     }
 
@@ -93,7 +93,7 @@
 
     .bar_graph{width:20%; @include displayFlex(null, space-between, column); /*justify-content:initial;*/ margin-bottom:0;
         h4{@include displayFlex(center, space-between, null);}
-        .tit{/*margin-bottom:0;*/ margin-bottom:50px;}
+        .tit{margin-bottom:0;}
         @include desktop{width:100%;}
     }
 }

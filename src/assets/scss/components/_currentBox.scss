@@ -1,5 +1,5 @@
 .current_box{margin-bottom:14px; padding:14px 18px;
-    .current_tit{flex:1; position:relative; padding-left:16px; @include font(18px, 500, #1C2434);
+    .current_tit{flex:1; position:relative; padding-left:21px; @include font(18px, 500, #1C2434);
         &::before{content:''; @include conSize(6px, 6px, null); @include position(absolute, 50%, null, null, 0); transform: translateY(-50%); background:#1C2434; border-radius:50%;
             @include mobile{width:5px; height:5px;}
         }

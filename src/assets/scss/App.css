@@ -1083,7 +1083,8 @@ body::-webkit-scrollbar-track, body textarea::-webkit-scrollbar-track {
   width: 50px;
 }
 .table_comm.table_type .table_wrap .table tr .num {
-  width: 100px;
+  width: 120px;
+  padding-left: 5px;
 }
 .table_comm.table_type .table_wrap .table tr .id, .table_comm.table_type .table_wrap .table tr .email {
   width: 180px;
@@ -2131,7 +2132,7 @@ input, textarea {
       -ms-flex: 1;
           flex: 1;
   position: relative;
-  padding-left: 16px;
+  padding-left: 21px;
   font-size: 18px;
   font-weight: 500;
   color: #1C2434;
@@ -2642,7 +2643,7 @@ input, textarea {
       -ms-flex-align: center;
           align-items: center;
   padding: 20px 18px;
-  border-radius: 0;
+  border-radius: 5px;
 }
 @media all and (max-width: 1440px) {
   .dashboard .row1 .box_ty01 {
@@ -2684,6 +2685,7 @@ input, textarea {
 .dashboard .row1 strong {
   line-height: 1;
   font-size: 24px;
+  letter-spacing: -0.5px;
 }
 @media all and (max-width: 991px) {
   .dashboard .row1 strong {
@@ -2692,7 +2694,7 @@ input, textarea {
 }
 .dashboard .row2 .box_ty01 {
   width: calc(25% - 18px);
-  border-radius: 0;
+  border-radius: 5px;
 }
 @media all and (max-width: 1440px) {
   .dashboard .row2 .box_ty01.graph_ty01, .dashboard .row2 .box_ty01.graph_ty02 {
@@ -2730,7 +2732,7 @@ input, textarea {
       -ms-flex-pack: justify;
           justify-content: space-between;
   position: absolute;
-  top: 18px;
+  top: 24px;
   left: 50%;
   z-index: 55;
   -webkit-transform: translateX(-50%);
@@ -2777,8 +2779,12 @@ input, textarea {
   background: url(../img/icon/arrow_up_blue.svg) no-repeat left center;
 }
 .dashboard .row3 .table_wrap {
-  padding: 24px 18px 40px 18px;
+  padding: 22px 18px 40px 18px;
   margin-bottom: 0;
+}
+.dashboard .row3 .table_wrap .table {
+  overflow: hidden;
+  border-radius: 10px;
 }
 .dashboard .row3 .table_wrap .id {
   width: 160px;
@@ -2853,8 +2859,8 @@ input, textarea {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.dashboard .bar_graph .tit { /*margin-bottom:0;*/
-  margin-bottom: 50px;
+.dashboard .bar_graph .tit {
+  margin-bottom: 0;
 }
 @media all and (max-width: 1440px) {
   .dashboard .bar_graph {
