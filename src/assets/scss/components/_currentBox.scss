@@ -5,6 +5,7 @@
         }
         @include tablet{font-size:16px;}
         @include mobile{font-size:14px;}
+        @include mobile-sm{padding-left:16px;}
     }
     .setting_btn_wrap{flex:1; justify-content:flex-end;
         .btn_ty01{
@@ -17,4 +18,5 @@
             .btn_ty01{margin-top:15px; background-position:center;}
         }
     }
+    @include mobile-sm{padding:15px;}
 }

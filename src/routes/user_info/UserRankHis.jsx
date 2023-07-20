@@ -11,7 +11,7 @@ export default function UserRankHis() {
       <Lnb lnbType="userInfo" />
       {/* <CurrentBox mod={true} del={true} down={true} tit="탄소 중립 랭킹 변동 내역" /> */}
       <CurrentBox btns={["mod", "del", "down"]} tit="탄소 중립 랭킹 변동 내역" />
-      <div className="user_history_rank box_ty01 table_type">
+      <div className="user_history_rank box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>
@@ -23,10 +23,19 @@ export default function UserRankHis() {
         </div>
         <div className="table_wrap line">
           <table className="table">
+            <colgroup>
+                <col width={"100px"}/>
+                <col width={"100px"}/>
+                <col width={"150px"}/>
+                <col width={"150px"}/>
+                <col width={"150px"}/>
+                <col width={"250px"}/>
+                <col width={"250px"}/>
+            </colgroup>
             <thead>
               <tr>
                 <th rowSpan={2} className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th rowSpan={2} className="num">
                   NO
@@ -50,7 +59,7 @@ export default function UserRankHis() {
             <tbody>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td className="num">2</td>
                 <td>2023.05.08</td>
@@ -61,7 +70,7 @@ export default function UserRankHis() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td className="num">1</td>
                 <td>2023.05.08</td>

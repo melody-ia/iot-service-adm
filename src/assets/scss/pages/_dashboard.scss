@@ -15,7 +15,9 @@
     .tit{margin-bottom:24px; @include font(null, 500, #1C2434);}
     strong{color:#23272E;}
     .row{display:flex; flex-wrap:wrap;}
-    .dot_menu{@include conSize(20px, 20px, null); display:inline-block; background:url(../img/icon/dots.svg) no-repeat center;}
+    .dot_menu{@include conSize(20px, 20px, null); display:inline-block; background:url(../img/icon/dots.svg) no-repeat center;
+        &:active{outline:none;}
+    }
     .c_gray{color:#8B909A;}
 
     .row1{
@@ -60,7 +62,9 @@
             .box_body_left{flex:0 0 auto;
                 .text{@include font(18px, null, #23272E); letter-spacing: -0.02em;}
                 .date{display:block; @include font(14px, 500, null); margin:20px 0; letter-spacing:-.5px;}
-                strong{font-size:32px; letter-spacing:-1px;}
+                strong{font-size:32px; letter-spacing:-1px;
+                    @include mobile-sm{font-size:29px;}
+                }
                 .figure_wrap{margin-top:5px; font-size:14px; letter-spacing:-0.02em;
                     .up{padding:0 8px 0 20px; @include font(null, 500, #42A0F0);background:url(../img/icon/arrow_up_blue.svg) no-repeat left center;}
                 }

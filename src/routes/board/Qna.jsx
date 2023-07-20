@@ -31,14 +31,14 @@ export default function Qna() {
         <div className="table_wrap line">
           <table className="table">
             <colgroup>
-              <col width={"auto"} />
+              <col width={"80px"} />
+              <col width={"120px"} />
               <col width={"120px"} />
               <col width={"120px"} />
               <col width={"120px"} />
               <col width={"150px"} />
-              <col width={"160px"} />
-              <col width={"400px"} />
-              <col width={"200px"} />
+              <col width={"300px"} />
+              <col width={"300px"} />
             </colgroup>
             <thead>
               <tr>

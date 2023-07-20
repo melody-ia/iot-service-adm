@@ -31,14 +31,14 @@ export default function CalculatorList() {
         <div className="table_wrap">
           <table className="table">
             <colgroup>
-              <col width={"auto"} />
-              <col width={"150px"} />
-              <col width={"200px"} />
-              <col width={"200px"} />
+              <col width={"80px"} />
               <col width={"100px"} />
               <col width={"150px"} />
-              <col width={"120px"} />
-              <col width={"200px"} />
+              <col width={"150px"} />
+              <col width={"100px"} />
+              <col width={"100px"} />
+              <col width={"100px"} />
+              <col width={"150px"} />
               <col width={"150px"} />
             </colgroup>
             <thead>

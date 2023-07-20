@@ -10,11 +10,11 @@ export default function BannerRankingModal(props) {
         <div className="table_wrap line">
           <table className="table"> 
             <colgroup>
-              <col width={"30px"}/>
-              <col width={"30px"}/>
-              <col width={"120px"}/>
               <col width={"80px"}/>
               <col width={"80px"}/>
+              <col width={"300px"}/>
+              <col width={"150px"}/>
+              <col width={"150px"}/>
             </colgroup>
             <thead>
               <tr>

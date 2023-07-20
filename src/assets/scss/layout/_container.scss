@@ -1,251 +1,71 @@
-.container {
-	width: calc(100% - 76px);
-	margin-left: auto;
-  min-height: 100vh;
-  height: 100%;
-  padding-left: 45px;
-  padding-right: 45px;
-  padding-top: 154px;
-  transition: all .3s;
-
-  &.home {
-    padding-top: 106px;
-  }
-
-	@include tablet {
-    width: 100%;
-    padding-top: 134px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  &_item {
-    width: calc(100% - 76px);
-  }
+.container{@include conSize(calc(100% - 76px), 100%); min-height:100vh; padding:154px 45px 0 45px; margin-left:auto; transition:all .3s;
+    &.home{padding-top:106px;}
+    &_item{width:calc(100% - 76px);}
+    @include tablet{width:100%; padding:134px 20px 0 20px;}
 }
 
-.container_item {
-  background-color: #fff;
-  position: fixed;
-  left: 76px;
-  top: 0;
-  padding: 0 45px; 
-  z-index: 5;
-  transition: all .2s ease-in;
-
-  @include tablet {
-    width: 100%;
-    padding: 0 20px;
-    left: 0;
-  }
+.container_item{@include position(fixed, 0, null, null, 76px, 5); padding:0 45px; background-color:#fff; transition:all .2s ease-in;
+    @include tablet{width:100%; left:0; padding:0 20px;}
+    @include mobile-sm{padding:0 15px;}
 }
 
-.content_container {
-  padding-bottom: 60px;
-}
+.content_container{padding-bottom:60px;}
 
-.header {
-  height: 80px;
-  box-shadow: 0px 1px 0px #E2E8F0;
-  z-index: 6;
-
-  @include tablet {
-    height: 60px;
-  }
-
-  .ham_btn {
-    display: none;
-    width: 24px;
-    height: 24px;
-    position: relative;
-
-    span {
-      border-top: 2px solid #1C2434;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 4px;
-      width: 20px;
-      border-radius: 50px;
-
-      &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 5px;
-        border-top: 2px solid #1C2434;
-        width: 100%;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 12px;
-        border-top: 2px solid #1C2434;
-        width: 100%;
-      }
-    }
-
-    @include tablet {
-      display: block;
-    }
-  }
-
-  .search_wrap {
-    width: 100%;
-    max-width: 816px;
-    // max-width:532px;
-    margin-right: 50px;
-
-    @include tablet {
-      position: absolute;
-      left: 0;
-      top: 60px;
-      max-width: 100%;
-      background-color: #fff;
-      padding: 10px 20px;
-      border-top: 1px solid #E2E8F0;
-      display: none;
-
-      &.show {
-        display: block;
-      }
-    }
-
-    input {
-      width: 100%;
-      height: 40px;
-      background: url(../img/icon/search.svg) no-repeat left 20px center;
-      padding-right: 10px;
-      padding-left: 42px;
-      border: 1px solid #E2E8F0;
-      border-radius: 50px;
-
-      @include tablet {
-        background: none;
-        padding: 0 20px;
-      }
-
-      &::placeholder {
-        color: var(	--color-lightGray);
-      }
-    }
-  }
-  .menu_wrap {
-    flex: 0 0 auto;
-
-    & > * {
-      margin-left: 30px;
-
-      @include tablet {
-        margin-left: 20px;
-      }
-
-    }
-
-    .menu_btn {
-      width: 24px;
-      height: 24px;
-      background-repeat: no-repeat;
-
-      &_search {
-        background-image: url(../img/icon/search_black.svg);
-        background-size: 24px;
-        display: none;
-
-        @include tablet {
-          display: block;
+.header{height:80px; z-index:6; box-shadow:0px 1px 0px #E2E8F0;
+    .ham_btn{@include conSize(24px, 24px); display:none; position:relative;
+        span{width:20px; @include position(absolute, 4px, null, null, 50%, null); transform: translateX(-50%); border-top:2px solid #1C2434; border-radius:50px;
+            &::before{width:100%; content:""; @include position(absolute, 5px, null, null, 0, null); border-top:2px solid #1C2434;}
+            &::after{content:""; width:100%; @include position(absolute, 12px, null, null, 0, null); border-top:2px solid #1C2434;}
         }
-      }
-      &_logout {
-        background-image: url(../img/icon/logout.svg);
-      }
-      &_alarm {
-        background-image: url(../img/icon/alarm.svg);
-
-        &.active {
-          position: relative;
-
-          &::before {
-            content: "";
-            width: 8px;
-            height: 8px;
-            border: 1px solid #fff;
-            background: #FF5789;
-            border-radius: 50%;
-            position: absolute;
-            right: 1px;
-            top: 0;
-          }
+        @include tablet{display:block;}
+    }
+    .search_wrap{width:100%; max-width:816px; /*max-width:532px;*/ margin-right: 50px;
+        @include tablet{max-width:100%; display:none; @include position(absolute, 60px, null, null, 0, null); padding:10px 20px; background-color:#fff; border-top:1px solid #E2E8F0;
+            &.show{display:block;}
         }
-      }
+        input{@include conSize(100%, 40px); padding-right:10px; padding-left:42px; background: url(../img/icon/search.svg) no-repeat left 20px center; border:1px solid #E2E8F0; border-radius:50px;
+            &::placeholder{color:var(	--color-lightGray);}
+            @include tablet{padding:0 20px; background:none;}
+        }
     }
-    .info_text {
-      text-align: right;
-      font-weight: 500;
-      font-size: 14px;
-
-      span {
-        font-size: 12px;
-        color: var(--color-lightGray);
-      }
-    }
-  }
-}
-
-.lnb {
-  height: 60px;
-  top: 80px;
-  line-height: 60px;
-  border-top: 1px solid #EBEFF2;
-  // padding-left: 0;
-  padding-right: 0;
-  box-shadow: 0 0 6px 0 rgba(0,0,0,0.08);
-  padding-left:25px;
-
-  @include tablet {
-    top: 60px;
-    padding-left:0;
-  }
-
-  &_tab_slide {
-    .swiper-slide {
-      width: auto;
-      height: auto;
-
-      &.active {
-        .lnb_btn {
-          font-weight: 500;
-          color: #1C2434;
-          position: relative;
-  
-          &::after {
-            content: '';
-            border-top: 1px solid #1C2434;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-
-            @include tablet {
-              bottom: 2px;
+    .menu_wrap{flex:0 0 auto;
+        & > *{margin-left:30px;
+            @include tablet{margin-left:20px;}
+        }
+        .menu_btn{@include conSize(24px, 24px); background-repeat:no-repeat;
+            &_search{display:none; background-image:url(../img/icon/search_black.svg); background-size:24px;
+                @include tablet{display:block;}
             }
-          }
+            &_logout{background-image:url(../img/icon/logout.svg);}
+            &_alarm{background-image:url(../img/icon/alarm.svg);
+                &.active{position:relative;
+                    &::before{content:""; @include conSize(8px, 8px); @include position(absolute, 0, null, null, 1px, null); background:#FF5789; border:1px solid #fff; border-radius:50%;}
+                }
+            }
         }
-      }
+        .info_text{@include font(14px, 500, null); text-align:right;
+            span{font-size:12px; color:var(--color-lightGray);}
+            @include mobile-sm{font-size:13px;}
+        }
     }
-    .lnb_btn {
-      display: inline-block;
-      font-weight: 400;
-      color: var(--color-lightGray);
-      width: 100%;
-      height: 100%;
-      padding: 0 28px;
-      
-      @include tablet {
-        font-size: 14px;
-        padding: 0 15px;
-      }
+    @include tablet{height:60px;}
+}
+
+.lnb{@include conSize(null, 60px, 60px); top:80px; padding-right:0; padding-left:25px; border-top:1px solid #EBEFF2; box-shadow:0 0 6px 0 rgba(0,0,0,0.08);
+    @include tablet{top:60px; padding-left:0;}
+    &_tab_slide{
+        .swiper-slide{@include conSize(auto, auto);
+            &.active{
+                .lnb_btn{position:relative; @include font(null, 500, #1C2434);
+                    &::after{content:''; width:100%; @include position(absolute, null, null, 0, 0, null); border-top:1px solid #1C2434;
+                        @include tablet{bottom:2px;}
+                    }
+                }
+            }
+        }
+        .lnb_btn{@include conSize(100%, 100%); display:inline-block; padding:0 28px; @include font(null, 400, var(--color-lightGray));
+            @include tablet{padding:0 15px; font-size:14px;}
+        }
     }
-  }
+    @include mobile-sm{@include conSize(null, 50px, 50px);}
 }

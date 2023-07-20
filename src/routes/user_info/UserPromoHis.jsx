@@ -18,7 +18,7 @@ export default function UserPromoHis() {
       <Lnb lnbType="userInfo" />
       {/* <CurrentBox mod={true} del={true} down={true} tit="프로모션 참여 내역" /> */}
       <CurrentBox btns={["mod", "del", "down"]} tit="프로모션 참여 내역" />
-      <div className="user_history_pro box_ty01 table_type">
+      <div className="user_history_pro box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
           <div className="date_input_wrap d-flex">
@@ -33,12 +33,12 @@ export default function UserPromoHis() {
           <table className="table">
             <colgroup>
               <col width={"80px"} />
-              <col width={"150px"} />
+              <col width={"80px"} />
             </colgroup>
             <tbody>
               <tr>
                 <td rowSpan={5} className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td rowSpan={5} className="num">
                   3
@@ -81,12 +81,12 @@ export default function UserPromoHis() {
           <table className="table">
             <colgroup>
               <col width={"80px"} />
-              <col width={"150px"} />
+              <col width={"80px"} />
             </colgroup>
             <tbody>
               <tr>
                 <td rowSpan={5} className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td rowSpan={5} className="num">
                   2
@@ -129,12 +129,12 @@ export default function UserPromoHis() {
           <table className="table">
             <colgroup>
               <col width={"80px"} />
-              <col width={"150px"} />
+              <col width={"80px"} />
             </colgroup>
             <tbody>
               <tr>
                 <td rowSpan={5} className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_3" id="wr_3" name="wr_3" />
                 </td>
                 <td rowSpan={5} className="num">
                   1

@@ -29,7 +29,7 @@ export default function PopupAdd() {
       <Lnb lnbType="event" />
       {/* <CurrentBox mod={true} del={true} tit="팝업 등록/수정" /> */}
       <CurrentBox btns={["mod", "del"]} tit="팝업 등록/수정" />
-      <div className="popup_add box_ty01 table_type add_type">
+      <div className="popup_add box_ty01 table_type add_type table_comm">
         <div className="size_info">
           <h5 className="size_tit">팝업 사이즈 안내</h5>
           <ul>

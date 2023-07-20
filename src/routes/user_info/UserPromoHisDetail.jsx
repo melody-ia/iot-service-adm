@@ -36,7 +36,7 @@ export default function UserPromoHisDetail() {
               </tr>
               <tr>
                 <th>
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th>NO</th>
                 <th>등록일</th>
@@ -63,7 +63,7 @@ export default function UserPromoHisDetail() {
               </tr>
               <tr>
                 <td>
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td>2</td>
                 <td>2023-05-01</td>
@@ -76,7 +76,7 @@ export default function UserPromoHisDetail() {
               </tr>
               <tr>
                 <td>
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td>1</td>
                 <td>2023-05-01</td>

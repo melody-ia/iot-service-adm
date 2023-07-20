@@ -1,27 +1,35 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 
 export default function ChallengeList() {
-  const { id } = useParams();
-  const { date, startDate, endDate } = useDatePicker();
-  const { selectedValues, selecBoxHtml } = useSelectBox({
-    sort_date: ["최근 등록일 순", "오래된 등록일 순"],
-    search_type: ["등록일", "진행기간"],
-    search_state: ["전체", "진행중", "진행중지", "진행완료"],
-  });
+    const navigate = useNavigate();
 
-  const dataSubmit = async () => {
-    // const res = await axios.post("api", {
-    //   data: { ...searchOption },
-    // });
-  };
+    const { id } = useParams();
+    const { date, startDate, endDate } = useDatePicker();
+    const { selectedValues, selecBoxHtml } = useSelectBox({
+        sort_date: ["최근 등록일 순", "오래된 등록일 순"],
+        search_type: ["등록일", "진행기간"],
+        search_state: ["전체", "진행중", "진행중지", "진행완료"],
+    });
+
+    const dataSubmit = async () => {
+        // const res = await axios.post("api", {
+        //   data: { ...searchOption },
+        // });
+    };
+
+    const btnEvent = {
+        add(){
+            navigate('/ChallengeList/add');
+        }
+    }
 
   return (
     <>
       <Lnb lnbType="event" />
       {/* <CurrentBox add={true} mod={true} del={true} down={true} tit="데일리 챌린지 리스트" /> */}
-      <CurrentBox btns={["add", "mod", "del", "down"]} tit="데일리 챌린지 리스트" />
+      <CurrentBox btns={["add", "mod", "del", "down"]} tit="데일리 챌린지 리스트" {...btnEvent}/>
       <div className="ch_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -36,16 +44,16 @@ export default function ChallengeList() {
         <div className="table_wrap">
           <table className="table">
             <colgroup>
-              <col width={"auto"} />
-              <col width={"auto"} />
-              <col width={"300px"} />
-              <col width={"180px"} />
-              <col width={"180px"} />
-              <col width={"180px"} />
-              <col width={"180px"} />
-              <col width={"180px"} />
-              <col width={"180px"} />
-              <col width={"150px"} />
+                <col width={"80px"}/>
+                <col width={"80px"}/>
+                <col width={"200px"}/>
+                <col width={"100px"}/>
+                <col width={"150px"}/>
+                <col width={"150px"}/>
+                <col width={"150px"}/>
+                <col width={"150px"}/>
+                <col width={"130px"}/>
+                <col width={"130px"}/>
             </colgroup>
             <thead>
               <tr>
@@ -88,7 +96,7 @@ export default function ChallengeList() {
           </table>
         </div>
         {/* <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} /> */}
-        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} />
+        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} {...btnEvent}/>
         <Pagination />
       </div>
     </>

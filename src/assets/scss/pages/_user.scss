@@ -10,7 +10,7 @@
 }
 
 // 프로모션 참여 내역
-.user_history_pro {
+.user_history_pro{
     .table{
         tr{   
             td, th{
@@ -111,6 +111,39 @@
     .account{
         & > .label{max-width:248px;
             @include desktop{max-width:200px;}
+        }
+    }
+}
+
+// 포인트 지급/사용 내역
+.user_history_point{
+    .filter_wrap{flex-flow:wrap;
+        .user_point_total{width:100%; margin-bottom:10px;
+            span{font-weight:500; color:var(--color-darkGreen);}
+            @include mobile-sm{font-size:14px;}
+        }
+        .select_input_wrap{
+            .select_input{
+                @include tablet-m{margin-right:0;}
+            }
+            .date_input_wrap{
+                @include tablet-m{width:calc(100% - 66px)}
+            }
+            @include tablet-m{width:100%; margin-right:0;}
+        }
+    }
+    .table_wrap{
+        .write_row{
+            .current_box{margin:0; padding:0;
+                .current_tit{display:none;}
+                .setting_btn_wrap{
+                    button{width:100%; margin:0; padding:0; background-image:initial;
+                        @include mobile{font-size:inherit;}
+                    }
+                    @include mobile{width:100%}
+                    @include mobile-sm{margin:0 auto;}
+                }
+            }
         }
     }
 }

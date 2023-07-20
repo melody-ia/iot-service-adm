@@ -1,11 +1,14 @@
 // 등록 페이지 테이블 공통 적용
-.write_type{max-width:1541px;
+.write_type{max-width:1541px; width:100%; padding:28px;
     .input_ty02{
-        input{@include conSize(null, 48px, 48px); @include font(16px, 400, #637381); border-radius:8px;
+        input{@include conSize(null, 48px, 48px); @include font(14px, 400, #637381); border-radius:8px;
             &::placeholder{color:#BEC8D0}
             @include mobile{font-size:14px;}
+            @include mobile-sm{@include conSize(null, 45px, 45px); border-radius:5px;}
         }
-        .btn_search{height:48px; line-height:48px; margin-left:8px; border-radius:8px;}
+        .btn_search{height:48px; line-height:48px; margin-left:8px; border-radius:8px;
+            @include mobile-sm{@include conSize(null, 45px, 45px); border-radius:5px;}
+        }
     }
     .check_type.radio{
         label{
@@ -14,15 +17,22 @@
             }
         }
     }
+    .essential_area{margin-bottom:50px;
+        @include mobile-sm{margin-bottom:25px;}
+    }
+    @include mobile-sm{padding:15px;}
 }
-
 .write{
-	&_type{max-width:1485px; width:100%; padding:28px;
+    &_tit{@include conSize(84px, 30px, 30px); display:inline-block; padding-left:25px; margin-bottom:28px; @include font(14px, null, #1C2434); background:url(../img/icon/pencil.svg) no-repeat left 6px center, #F1F4F5; border-radius:5px;}
+}
+/*
+.write{
+	&_type{max-width:1485px;   
 		.essential_area{margin-bottom:50px;}
 	}
 	&_tit{@include conSize(84px, 30px, 30px); display:inline-block; padding-left:25px; margin-bottom:28px; @include font(14px, null, #1C2434); background:url(../img/icon/pencil.svg) no-repeat left 6px center, #F1F4F5; border-radius:5px;}
 }
-
+*/
 .filter_wrap{padding:16px 18px;
 	.input_ty02{max-width:240px; height:40px; display:inline-block; margin-right:10px;
 		&.wide{max-width:275px; flex:0 0 auto;
@@ -33,9 +43,10 @@
 		.select_box{color:var(--color-lightGray);}
         @include desktop{
 			&, &.year{max-width:100%; width:100%; margin-bottom:10px;
-				&:last-child{margin-right:0;}
+				//&:last-child{margin-right:0;}
 			}
 		}
+        @include mobile-sm{margin-right:0;}
 	}
 	.date_input_wrap{
 		.date_input{max-width:200px;
@@ -59,6 +70,7 @@
 		}
 	}
     @include desktop{flex-direction:column;}
+    @include mobile-sm{padding:15px;}
 }
 
 .table{width:100%; table-layout:fixed; background-color:#fff;	
@@ -69,6 +81,7 @@
 			}
             @include mobile{justify-content:flex-start;}
 		}
+        @include mobile-sm{padding-bottom:50px;}
 	}
 
 	&_wrap{overflow-x:auto;
@@ -84,6 +97,8 @@
 						&:first-child{border-left:0;}
 						&:last-child{border-right:0;}	
 					}
+                    th{color:#000;}
+                    td{font-size:14px;}
 				}				
 			}
 		}
@@ -120,14 +135,17 @@
         .table{
             tr{@include conSize(null, 68px, 68px);
                 .check{width:50px;}
-                .num{width:120px; padding-left:5px;}
+                .num{width:100px;}
                 .id, .email{width:180px;}
                 .name, .gender, .birth, .people{width:120px;}
                 .phone, .joinDate, .active{width:150px;}
                 .etc{width:200px;}
+                @include mobile-sm{@include conSize(null, 63px, 63px);}
             }
             thead{border-top:1px solid #EBEFF2; border-bottom:1px solid #EBEFF2; background:#FBFCFC;
-                th{line-height:1.1; @include font(16px, 400, $b);}
+                th{line-height:1.1; @include font(16px, 400, $b);
+                    @include mobile-sm{font-size:15px;}
+                }
             }
             tbody{
                 td{line-height:1.2; @include font(14px, 400, var(--color-lightGray));
@@ -135,11 +153,13 @@
                     &.input_ty02, .input_ty02{
                         input{@include conSize(null, 40px, 40px); @include font(14px, 400, $b);
                             &::placeholder{color:#637381}
+                            @include mobile-sm{font-size:13px;}
                         }
                     }
-                    &.id.disabled{height:68px; @include displayFlex(center, center, null); padding:0; margin:0; 
+                    &.id.disabled{height:68px; @include displayFlex(center, center, null); padding:0; margin:0 auto; 
                         &::after{content:""; @include conSize(18px, 18px, null); display:block; position:static; transform:translateY(0); margin-left:8px; background:url(../img/icon/stop.svg) no-repeat center;}
                     }
+                    @include mobile-sm{font-size:13px;}
                 }
             }
         }
@@ -158,7 +178,9 @@
             tbody{
                 td{
                     &.input_ty02, .input_ty02{
-                        input{@include conSize(null, 52px, 52px);}
+                        input{@include conSize(null, 52px, 52px);
+                            @include mobile-sm{@include conSize(null, 47px, 47px);}
+                        }
                     }
                 }
             }

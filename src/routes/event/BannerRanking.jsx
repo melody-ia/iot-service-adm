@@ -23,17 +23,17 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-              <col width={"500px"} />
-              <col width={"250px"} />
-              <col width={"250px"} />
-              <col width={"100px"} />
+                <col width={"80px"} />
+                <col width={"80px"} />
+                <col width={"500px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
+                  <CheckBox for="wr_1_all" id="wr_1_all" name="wr_1_all" />
                 </th>
                 <th>순서</th>
                 <th>배너 이미지</th>
@@ -45,7 +45,7 @@ export default function BannerRanking() {
             <tbody>
               <tr>
                 <td className="check">
-                  <CheckBox for="wr_1_1" id="wr_1_1" name="wr_1_1" />
+                  <CheckBox for="wr_1_1" id="wr_1_1" name="wr_1_all" />
                 </td>
                 <td>1</td>
                 <td className="banner_img">
@@ -64,7 +64,7 @@ export default function BannerRanking() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="wr_1_2" id="wr_1_2" name="wr_1_2" />
+                  <CheckBox for="wr_1_2" id="wr_1_2" name="wr_1_all" />
                 </td>
                 <td>2</td>
                 <td className="banner_img">
@@ -83,7 +83,7 @@ export default function BannerRanking() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="wr_1_3" id="wr_1_3" name="wr_1_3" />
+                  <CheckBox for="wr_1_3" id="wr_1_3" name="wr_1_all" />
                 </td>
                 <td>3</td>
                 <td className="banner_img">
@@ -112,12 +112,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-              <col width={"500px"} />
-              <col width={"250px"} />
-              <col width={"250px"} />
-              <col width={"100px"} />
+                <col width={"80px"} />
+                <col width={"80px"} />
+                <col width={"500px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -163,12 +163,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-              <col width={"500px"} />
-              <col width={"250px"} />
-              <col width={"250px"} />
-              <col width={"100px"} />
+                <col width={"80px"} />
+                <col width={"80px"} />
+                <col width={"500px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -214,12 +214,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-              <col width={"500px"} />
-              <col width={"250px"} />
-              <col width={"250px"} />
-              <col width={"100px"} />
+                <col width={"80px"} />
+                <col width={"80px"} />
+                <col width={"500px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -265,12 +265,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-              <col width={"500px"} />
-              <col width={"250px"} />
-              <col width={"250px"} />
-              <col width={"100px"} />
+                <col width={"80px"} />
+                <col width={"80px"} />
+                <col width={"500px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -316,12 +316,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-              <col width={"500px"} />
-              <col width={"250px"} />
-              <col width={"250px"} />
-              <col width={"100px"} />
+                <col width={"80px"} />
+                <col width={"80px"} />
+                <col width={"500px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -367,12 +367,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-              <col width={"500px"} />
-              <col width={"250px"} />
-              <col width={"250px"} />
-              <col width={"100px"} />
+                <col width={"80px"} />
+                <col width={"80px"} />
+                <col width={"500px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -418,12 +418,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-              <col width={"500px"} />
-              <col width={"250px"} />
-              <col width={"250px"} />
-              <col width={"100px"} />
+                <col width={"80px"} />
+                <col width={"80px"} />
+                <col width={"500px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -469,12 +469,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-              <col width={"500px"} />
-              <col width={"250px"} />
-              <col width={"250px"} />
-              <col width={"100px"} />
+                <col width={"80px"} />
+                <col width={"80px"} />
+                <col width={"500px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
+                <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>

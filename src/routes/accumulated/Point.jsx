@@ -27,13 +27,13 @@ export default function Point() {
         <div className="table_wrap line">
           <table className="table">
             <colgroup>
-              <col width={"auto"} />
               <col width={"80px"} />
-              <col width={"130px"} />
+              <col width={"80px"} />
+              <col width={"150px"} />
               <col width={"230px"} />
-              <col width={"250px"} />
+              <col width={"230px"} />
               <col width={"180px"} />
-              <col width={"320px"} />
+              <col width={"300px"} />
               <col width={"150px"} />
               <col width={"200px"} />
             </colgroup>

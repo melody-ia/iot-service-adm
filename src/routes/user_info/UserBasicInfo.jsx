@@ -132,7 +132,6 @@ export default function UserInfo() {
               </div>
             </div>
           </div>
-
           <div className="select_area">
             <h4 className="write_tit">선택정보</h4>
             <div className="wirte_area">

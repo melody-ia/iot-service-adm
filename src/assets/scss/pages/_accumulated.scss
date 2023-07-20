@@ -1,33 +1,19 @@
 // (공통) 도장 관리/포인트 관리
 .accumulated {
-  .table {
-    min-height: 450px;
-    
-    .date_input {
-      input {
-        border: none;
-        padding: 0 30px 0 10px;
-        background-position: right 4px center;
-      }
+    .table{min-height:450px;
+        .date_input{
+            input{padding:0 30px 0 10px; background-position: right 4px center; border:none;}
+        }
+        .wave{margin:0 10px;}
     }
-    .wave {
-      margin: 0 10px;
-    }
-  }
 }
 
 // 포인트 관리
-.point {  
-  .point_input {
-    input {
-      margin-right: 10px;
+.point{  
+    .point_input{
+        input{margin-right:10px;}
     }
-  }
-  .number {
-    input {
-      width: 80px;
-      padding: 10px;
-      margin: 0 10px;
+    .number{
+        input{width:80px; padding:10px; margin:0 10px;}
     }
-  }
 }

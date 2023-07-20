@@ -30,18 +30,18 @@ export default function Product() {
         <div className="table_wrap line">
           <table className="table">
             <colgroup>
-              <col width={"auto"} />
+              <col width={"80px"} />
               <col width={"80px"} />
               <col width={"120px"} />
               <col width={"150px"} />
-              <col width={"130px"} />
-              <col width={"130px"} />
+              <col width={"150px"} />
+              <col width={"150px"} />
               <col width={"200px"} />
               <col width={"150px"} />
               <col width={"150px"} />
+              <col width={"130px"} />
               <col width={"150px"} />
-              <col width={"170px"} />
-              <col width={"200px"} />
+              <col width={"230px"} />
             </colgroup>
             <thead>
               <tr>

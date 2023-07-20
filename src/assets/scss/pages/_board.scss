@@ -1,9 +1,7 @@
-@include mobile {
-  .qna {
-    .filter_wrap {
-      .select_input_wrap {
-        flex-direction: column;
-      }
+@include mobile{
+    .qna{
+        .filter_wrap {
+            .select_input_wrap{flex-direction:column;}
+        }
     }
-  }
 }

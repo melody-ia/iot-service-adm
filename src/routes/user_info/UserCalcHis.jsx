@@ -11,7 +11,7 @@ export default function UserCalcHis() {
       <Lnb lnbType="userInfo" />
       {/* <CurrentBox del={true} down={true} tit="탄소발자국 계산 내역" /> */}
       <CurrentBox btns={["del", "down"]} tit="탄소발자국 계산 내역" />
-      <div className="user_history_calc box_ty01 table_type">
+      <div className="user_history_calc box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
@@ -33,8 +33,8 @@ export default function UserCalcHis() {
         <div className="table_wrap line">
           <table className="table">
             <colgroup>
-              <col width={"70px"} />
-              <col width={"auto"} />
+              <col width={"80px"} />
+              <col width={"80px"} />
               <col width={"auto"} />
               <col width={"auto"} />
               <col width={"auto"} />
@@ -43,7 +43,7 @@ export default function UserCalcHis() {
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th className="num">NO</th>
                 <th>계산일</th>
@@ -55,7 +55,7 @@ export default function UserCalcHis() {
             <tbody>
               <tr>
                 <td rowSpan={9} className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td rowSpan={9} className="num">
                   2
@@ -118,17 +118,17 @@ export default function UserCalcHis() {
         <div className="table_wrap line">
           <table className="table">
             <colgroup>
-              <col width={"70px"} />
-              <col width={"auto"} />
-              <col width={"auto"} />
-              <col width={"auto"} />
-              <col width={"auto"} />
-              <col width={"350px"} />
+                <col width={"80px"} />
+                <col width={"80px"} />
+                <col width={"auto"} />
+                <col width={"auto"} />
+                <col width={"auto"} />
+                <col width={"350px"} />
             </colgroup>
             <tbody>
               <tr>
                 <td rowSpan={9} className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td rowSpan={9} className="num">
                   1

@@ -27,10 +27,24 @@ export default function DeletedUserList() {
         </div>
         <div className="table_wrap part">
           <table className="table">
+            <colgroup>
+                <col width={"42px"} />
+                <col width={"50px"} />
+                <col width={"150px"} />
+                <col width={"60px"} />
+                <col width={"80px"} />
+                <col width={"100px"} />
+                <col width={"100px"} />
+                <col width={"110px"} />
+                <col width={"100px"} />
+                <col width={"100px"} />
+                <col width={"108px"} />
+                <col width={"170px"} />
+            </colgroup>
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="user_all" id="user_all" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th className="num">NO</th>
                 <th className="id">아이디</th>
@@ -48,7 +62,7 @@ export default function DeletedUserList() {
             <tbody>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td className="num">2</td>
                 <td className="id disabled">
@@ -72,7 +86,7 @@ export default function DeletedUserList() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td className="num">1</td>
                 <td className="id disabled">

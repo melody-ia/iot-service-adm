@@ -11,41 +11,40 @@ export default function UserPointHis() {
       <Lnb lnbType="userInfo" />
       {/* <CurrentBox mod={true} del={true} down={true} tit="포인트 지급/사용 내역" /> */}
       <CurrentBox btns={["mod", "del", "down"]} tit="포인트 지급/사용 내역" />
-      <div className="user_history_point box_ty01 table_type">
+      <div className="user_history_point box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
-          <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02 year">
-              <input type="text" defaultValue="전체" readOnly />
-              <ul className="select_box">
-                <li>전체</li>
-                <li>지급 내역</li>
-                <li>사용 내역</li>
-              </ul>
+            <p className="user_point_total">총 보유 포인트 : <span>2,500</span></p>
+            <div className="select_input_wrap d-flex">
+                <div className="select_input input_ty02 year">
+                <input type="text" defaultValue="전체" readOnly />
+                <ul className="select_box">
+                    <li>전체</li>
+                    <li>지급 내역</li>
+                    <li>사용 내역</li>
+                </ul>
+                </div>
             </div>
-          </div>
-          <div className="date_input_wrap d-flex">
-            <div className="date_input input_ty02">{date.start}</div>
-            <div className="date_input input_ty02">{date.end}</div>
-          </div>
-          <button type="button" className="btn_ty01 btn_search">
-            검색
-          </button>
+            <div className="date_input_wrap d-flex">
+                <div className="date_input input_ty02">{date.start}</div>
+                <div className="date_input input_ty02">{date.end}</div>
+            </div>
+            <button type="button" className="btn_ty01 btn_search">검색</button>
         </div>
-        <div className="table_wrap line">
+        <div className="table_wrap line part">
           <table className="table">
             <colgroup>
+              <col width={"100px"} />
+              <col width={"100px"} />
+              <col width={"200px"} />
               <col width={"auto"} />
               <col width={"auto"} />
-              <col width={"150px"} />
-              <col width={"150px"} />
-              <col width={"auto"} />
-              <col width={"150px"} />
+              <col width={"200px"} />
               <col width={"300px"} />
             </colgroup>
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th className="num">NO</th>
                 <th>날짜</th>
@@ -58,7 +57,7 @@ export default function UserPointHis() {
             <tbody>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td className="num">1</td>
                 <td className="date">2023.04.20</td>
@@ -69,7 +68,7 @@ export default function UserPointHis() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td className="num">2</td>
                 <td className="date">2023.04.20</td>
@@ -80,7 +79,7 @@ export default function UserPointHis() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_3" id="wr_3" name="wr_3" />
                 </td>
                 <td className="num">3</td>
                 <td className="date">2023.04.20</td>
@@ -91,7 +90,8 @@ export default function UserPointHis() {
               </tr>
               <tr className="write_row">
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CurrentBox btns={["add"]}/>
+                  {/* <button type="button" className="btn_ty01 btn_bg add" data-btn="add">등록</button> */}
                 </td>
                 <td className="num"></td>
                 <td className="date"></td>

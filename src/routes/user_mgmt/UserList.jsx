@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+ import { Link } from "react-router-dom";
 import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
+import { useNavigate } from "react-router-dom";
 
 export default function UserList() {
   const { date, startDate, endDate } = useDatePicker();
@@ -42,11 +43,18 @@ export default function UserList() {
     },
   ];
 
+    const navigate = useNavigate();
+    const btnEvent = {
+        add(){
+            navigate('/UserList/add');
+        }
+    }
+
   return (
     <>
       <Lnb lnbType="user" />
       {/* <CurrentBox add={true} mod={true} del={true} down={true} tit="회원리스트" /> */}
-      <CurrentBox btns={["add", "mod", "del", "down"]} tit="회원리스트" />
+      <CurrentBox btns={["add", "mod", "del", "down"]} tit="회원리스트" {...btnEvent}/>
       <div className="user_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -63,7 +71,7 @@ export default function UserList() {
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="wr_all" id="wr_all" name="wr_userList" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th className="num">NO</th>
                 <th className="id">아이디</th>
@@ -79,11 +87,11 @@ export default function UserList() {
               </tr>
             </thead>
             <tbody>
-              {userList_form.map(item => {
+              {userList_form.map((item, index) => {
                 return (
                   <tr>
                     <td className="check">
-                      <CheckBox for="wr_2" id="wr_2" name="wr_userList" />
+                      <CheckBox for={item.index} id={item.index} name="wr_userList" />
                     </td>
                     <td className="num">{item.no}</td>
                     <td className="id disabled">
@@ -107,7 +115,7 @@ export default function UserList() {
           </table>
         </div>
         {/* <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} /> */}
-        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} />
+        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} {...btnEvent}/>
         <Pagination />
       </div>
     </>

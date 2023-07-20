@@ -2,13 +2,15 @@ import { Lnb, CurrentBox } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
+import { useNavigate } from "react-router-dom";
 
 export default function RankingSetting() {
-  const { date, startDate, endDate } = useDatePicker();
-  const { selectedValues, selecBoxHtml } = useSelectBox({
-    gender_sort: ["전체", "남성", "여성"],
-    region_sort: ["전체(지역)", "서울시", "경기도", "강원도", "경상도", "전라도", "충청도", "제주도", "인천", "대전", "대구", "광주", "부산", "울산"],
-  });
+
+    const { date, startDate, endDate } = useDatePicker();
+    const { selectedValues, selecBoxHtml } = useSelectBox({
+        gender_sort: ["전체", "남성", "여성"],
+        region_sort: ["전체(지역)", "서울시", "경기도", "강원도", "경상도", "전라도", "충청도", "제주도", "인천", "대전", "대구", "광주", "부산", "울산"],
+    });
 
   return (
     <>
@@ -28,10 +30,23 @@ export default function RankingSetting() {
         </div>
         <div className="table_wrap line">
           <table className="table">
+            <colgroup>
+              <col width={"80px"}/>
+              <col width={"80px"}/>
+              <col width={"150px"}/>
+              <col width={"150px"}/>
+              <col width={"100px"}/>
+              <col width={"150px"}/>
+              <col width={"150px"}/>
+              <col width={"200px"}/>
+              <col width={"130px"}/>
+              <col width={"250px"}/>
+              <col width={"250px"}/>
+            </colgroup>
             <thead>
               <tr>
                 <th rowSpan={2} className="check">
-                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th rowSpan={2} className="num">
                   NO
@@ -61,7 +76,7 @@ export default function RankingSetting() {
             <tbody>
               <tr>
                 <td className="check">
-                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td className="num">1</td>
                 <td>2023.05.08</td>
@@ -76,7 +91,7 @@ export default function RankingSetting() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td className="num">2</td>
                 <td>2023.05.08</td>
@@ -93,7 +108,7 @@ export default function RankingSetting() {
           </table>
         </div>
         {/* <CurrentBox add={false} mod={true} del={true} down={true} hideTit={true} /> */}
-        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} />
+        <CurrentBox btns={["mod", "del", "down"]} hideTit={true} />
         <Pagination />
       </div>
     </>

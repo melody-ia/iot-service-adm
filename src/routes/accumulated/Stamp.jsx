@@ -1,27 +1,30 @@
 import { useState } from "react";
 import { Lnb, CurrentBox, CheckBox } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
+import { useNavigate } from "react-router-dom";
 
 export default function Stamp() {
-  const { date, startDate, endDate } = useDatePicker();
+    const { date, startDate, endDate } = useDatePicker();
 
-  const { selectList, handleSelectBox } = useSelectBox({
-    pay_state: false,
-    pay_opt_state: false,
-  });
-  const [searchOption, setSearchOption] = useState({
-    pay_state: "전체",
-    pay_opt_state: "전체",
-  });
-  const searchOptionSel = e => {
-    setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
-  };
+    const { selectList, handleSelectBox } = useSelectBox({
+        pay_state: false,
+        pay_opt_state: false,
+    });
+    const [searchOption, setSearchOption] = useState({
+        pay_state: "전체",
+        pay_opt_state: "전체",
+    });
+    const searchOptionSel = e => {
+        setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
+    };
+
+
 
   return (
     <>
       <Lnb lnbType="accumulated" />
       {/* <CurrentBox add={true} del={true} down={true} tit="도장 관리" /> */}
-      <CurrentBox btns={["add", "del", "down"]} tit="도장 관리" />
+      <CurrentBox btns={["add", "del", "down"]} tit="도장 관리"/>
       <div className="stamp box_ty01 table_type table_comm accumulated">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
@@ -56,15 +59,15 @@ export default function Stamp() {
         <div className="table_wrap line">
           <table className="table">
             <colgroup>
-              <col width={"auto"} />
-              <col width={"80px"} />
-              <col width={"130px"} />
-              <col width={"120px"} />
-              <col width={"130px"} />
-              <col width={"120px"} />
-              <col width={"300px"} />
-              <col width={"150px"} />
-              <col width={"200px"} />
+                <col width={"80px"} />
+                <col width={"80px"} />
+                <col width={"130px"} />
+                <col width={"120px"} />
+                <col width={"130px"} />
+                <col width={"120px"} />
+                <col width={"300px"} />
+                <col width={"150px"} />
+                <col width={"200px"} />
             </colgroup>
             <thead>
               <tr>

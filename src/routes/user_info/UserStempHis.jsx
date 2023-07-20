@@ -11,7 +11,7 @@ export default function UserStempHis() {
       <Lnb lnbType="userInfo" />
       {/* <CurrentBox mod={true} del={true} down={true} tit="도장 적립 내역" /> */}
       <CurrentBox btns={["mod", "del", "down"]} tit="도장 적립 내역" />
-      <div className="user_history_stemp box_ty01 table_type">
+      <div className="user_history_stemp box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">
@@ -37,21 +37,21 @@ export default function UserStempHis() {
             검색
           </button>
         </div>
-        <div className="table_wrap line">
+        <div className="table_wrap line part">
           <table className="table">
             <colgroup>
+              <col width={"100px"} />
+              <col width={"100px"} />
               <col width={"auto"} />
               <col width={"auto"} />
-              <col width={"300px"} />
-              <col width={"620px"} />
-              <col width={"160px"} />
-              <col width={"160px"} />
+              <col width={"200px"} />
+              <col width={"200px"} />
               <col width={"300px"} />
             </colgroup>
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
                 </th>
                 <th className="num">NO</th>
                 <th>프로모션 명</th>
@@ -64,7 +64,7 @@ export default function UserStempHis() {
             <tbody>
               <tr className="write_row">
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
                 </td>
                 <td className="num"></td>
                 <td>
@@ -102,7 +102,7 @@ export default function UserStempHis() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
                 </td>
                 <td className="num">2</td>
                 <td>데일리 챌린지_데일리 탄소 줄이기</td>
@@ -113,7 +113,7 @@ export default function UserStempHis() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="check" id="check" />
+                  <CheckBox for="wr_3" id="wr_3" name="wr_3" />
                 </td>
                 <td className="num">1</td>
                 <td>데일리 챌린지_데일리 탄소 줄이기</td>
