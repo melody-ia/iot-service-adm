@@ -1,10 +1,14 @@
 import { Lnb, CurrentBox } from "../../components/bundle_components";
-import { useDatePicker } from "../../hooks/bundle_hooks";
+import { useDatePicker, useSelectBox } from "../../hooks/bundle_hooks";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserPointHis() {
   const { date, startDate, endDate } = useDatePicker();
+
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    point_history: ["전체", "지급 내역", "사용 내역"],
+  });
 
   return (
     <>
@@ -15,14 +19,7 @@ export default function UserPointHis() {
         <div className="filter_wrap d-flex">
             <p className="user_point_total">총 보유 포인트 : <span>2,500</span></p>
             <div className="select_input_wrap d-flex">
-                <div className="select_input input_ty02 year">
-                <input type="text" defaultValue="전체" readOnly />
-                <ul className="select_box">
-                    <li>전체</li>
-                    <li>지급 내역</li>
-                    <li>사용 내역</li>
-                </ul>
-                </div>
+                <div className="select_input input_ty02 year">{selecBoxHtml}</div>
             </div>
             <div className="date_input_wrap d-flex">
                 <div className="date_input input_ty02">{date.start}</div>

@@ -1,10 +1,14 @@
-import { useDatePicker } from "../../hooks/bundle_hooks";
+import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserCalcHis() {
   const { date, startDate, endDate } = useDatePicker();
+  
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    sort_join: ["최신 순", "오래된 순"],
+  });
 
   return (
     <>
@@ -14,13 +18,7 @@ export default function UserCalcHis() {
       <div className="user_history_calc box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
-              <input type="text" defaultValue="최신 순" readOnly />
-              <ul className="select_box">
-                <li>최신 순</li>
-                <li>오래된 순</li>
-              </ul>
-            </div>
+            <div className="select_input input_ty02">{selecBoxHtml}</div>
           </div>
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>

@@ -1276,6 +1276,9 @@ body::-webkit-scrollbar-track, body textarea::-webkit-scrollbar-track {
     line-height: 47px;
   }
 }
+.table_comm.table_type .table_wrap.part tbody td.input_ty02::before, .table_comm.table_type .table_wrap.part tbody td .input_ty02::before {
+  top: 16px;
+}
 
 .detail_form {
   padding-top: 30px;

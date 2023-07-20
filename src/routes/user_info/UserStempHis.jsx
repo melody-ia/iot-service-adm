@@ -1,10 +1,16 @@
 import { Lnb, CurrentBox } from "../../components/bundle_components";
-import { useDatePicker } from "../../hooks/bundle_hooks";
+import { useDatePicker, useSelectBox } from "../../hooks/bundle_hooks";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserStempHis() {
   const { date, startDate, endDate } = useDatePicker();
+
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    sort_join: ["최신 순", "오래된 순"],
+    year_type: ["2022", "2023"],
+    promotion_sort:["데일리 챌린지", "데일리 챌린지2", "데일리 챌린지_데일리 탄소 줄이기"]
+  });
 
   return (
     <>
@@ -14,20 +20,8 @@ export default function UserStempHis() {
       <div className="user_history_stemp box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
-              <input type="text" defaultValue="최신 순" readOnly />
-              <ul className="select_box">
-                <li>최신 순</li>
-                <li>오래된 순</li>
-              </ul>
-            </div>
-            <div className="select_input input_ty02 year">
-              <input type="text" defaultValue="2023" readOnly />
-              <ul className="select_box">
-                <li>2023</li>
-                <li>2022</li>
-              </ul>
-            </div>
+            <div className="select_input input_ty02">{selecBoxHtml[0]}</div>
+            <div className="select_input input_ty02 year">{selecBoxHtml[1]}</div>
           </div>
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>
@@ -69,14 +63,7 @@ export default function UserStempHis() {
                 <td className="num"></td>
                 <td>
                   <div className="select_input_wrap d-flex">
-                    <div className="select_input input_ty02">
-                      <input type="text" defaultValue="데일리 챌린지" readOnly />
-                      <ul className="select_box">
-                        <li>데일리 챌린지</li>
-                        <li>데일리 챌린지2</li>
-                        <li>데일리 챌린지_데일리 탄소 줄이기</li>
-                      </ul>
-                    </div>
+                    <div className="select_input input_ty02">{selecBoxHtml[2]}</div>
                   </div>
                 </td>
                 <td>

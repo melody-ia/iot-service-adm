@@ -1,12 +1,19 @@
 import { Link, useParams } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
-import { useDatePicker } from "../../hooks/bundle_hooks";
+import { useDatePicker, useSelectBox } from "../../hooks/bundle_hooks";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserQnaHis() {
   const { id } = useParams();
   const { date, startDate, endDate } = useDatePicker();
+
+  const { selectedValues, selecBoxHtml } = useSelectBox({
+    inquiry_date_history: ["최근 문의일 순", "오래된 문의일 순"],
+    inquiry_date: ["문의일", "답변일"], 
+    inquiry_state: ["전체", "답변완료", "답변대기"],
+    inquiry_sort: ["전체", "데일리 챌린지", "프로모션/이벤트", "탄소발자국 계산기", "기기관리", "랭킹", "포인트", "회원", "기타"]
+  });
 
   return (
     <>
@@ -16,42 +23,10 @@ export default function UserQnaHis() {
       <div className="user_history_qna box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
-            <div className="select_input input_ty02">
-              <input type="text" defaultValue="최근 문의일 순" readOnly />
-              <ul className="select_box">
-                <li>최근 문의일 순</li>
-                <li>오래된 문의일 순</li>
-              </ul>
-            </div>
-            <div className="select_input input_ty02">
-              <input type="text" defaultValue="문의일" readOnly />
-              <ul className="select_box">
-                <li>문의일</li>
-                <li>답변일</li>
-              </ul>
-            </div>
-            <div className="select_input input_ty02">
-              <input type="text" defaultValue="전체" readOnly />
-              <ul className="select_box">
-                <li>전체</li>
-                <li>답변완료</li>
-                <li>답변대기</li>
-              </ul>
-            </div>
-            <div className="select_input input_ty02">
-              <input type="text" defaultValue="전체" readOnly />
-              <ul className="select_box">
-                <li>전체</li>
-                <li>데일리 챌린지</li>
-                <li>프로모션/이벤트</li>
-                <li>탄소발자국 계산기</li>
-                <li>기기관리</li>
-                <li>랭킹</li>
-                <li>포인트</li>
-                <li>회원</li>
-                <li>기타</li>
-              </ul>
-            </div>
+            <div className="select_input input_ty02">{selecBoxHtml[0]}</div>
+            <div className="select_input input_ty02">{selecBoxHtml[1]} </div>
+            <div className="select_input input_ty02">{selecBoxHtml[2]}</div>
+            <div className="select_input input_ty02">{selecBoxHtml[3]}</div>
           </div>
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>

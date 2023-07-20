@@ -86,7 +86,7 @@ export default function DeletedUserList() {
               </tr>
               <tr>
                 <td className="check">
-                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
+                  <CheckBox for="wr_2" id="wr_2" name="wr_1" />
                 </td>
                 <td className="num">1</td>
                 <td className="id disabled">

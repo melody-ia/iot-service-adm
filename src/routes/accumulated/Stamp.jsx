@@ -6,19 +6,10 @@ import { useNavigate } from "react-router-dom";
 export default function Stamp() {
     const { date, startDate, endDate } = useDatePicker();
 
-    const { selectList, handleSelectBox } = useSelectBox({
-        pay_state: false,
-        pay_opt_state: false,
+    const { selectedValues, selecBoxHtml } = useSelectBox({
+        pay_state1: ["전체", "적립중", "적립중지", "적립종료"],
+        pay_state2: ["전체", "적립중", "적립중지", "적립종료"],
     });
-    const [searchOption, setSearchOption] = useState({
-        pay_state: "전체",
-        pay_opt_state: "전체",
-    });
-    const searchOptionSel = e => {
-        setSearchOption({ ...searchOption, [e.target.dataset.type]: e.target.dataset.value });
-    };
-
-
 
   return (
     <>
@@ -28,25 +19,7 @@ export default function Stamp() {
       <div className="stamp box_ty01 table_type table_comm accumulated">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
-            <div
-              className="select_input input_ty02"
-              onClick={() => {
-                handleSelectBox("pay_state");
-              }}
-            >
-              <input type="text" defaultValue="전체" readOnly />
-              {selectList.pay_state && (
-                <ul className="select_box">
-                  {["전체", "적립중", "적립중지", "적립종료"].map((payState, index) => {
-                    return (
-                      <li key={payState} data-value={payState} data-type="pay_state" onClick={searchOptionSel}>
-                        {payState}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
+            <div className="select_input input_ty02">{selecBoxHtml[0]}</div>
           </div>
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>
@@ -104,25 +77,7 @@ export default function Stamp() {
                 </td>
                 <td>
                   <div className="select_input_wrap d-flex">
-                    <div
-                      className="select_input input_ty02"
-                      onClick={() => {
-                        handleSelectBox("pay_opt_state");
-                      }}
-                    >
-                      <input type="text" defaultValue="전체" readOnly />
-                      {selectList.pay_opt_state && (
-                        <ul className="select_box">
-                          {["전체", "적립중", "적립중지", "적립종료"].map((payOptState, index) => {
-                            return (
-                              <li key={payOptState} data-value={payOptState} data-type="pay_opt_state" onClick={searchOptionSel}>
-                                {payOptState}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      )}
-                    </div>
+                    <div className="select_input input_ty02">{selecBoxHtml[1]}</div>
                   </div>
                 </td>
                 <td className="etc input_ty02">

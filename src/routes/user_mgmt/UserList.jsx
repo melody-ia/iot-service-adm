@@ -2,6 +2,7 @@
 import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function UserList() {
   const { date, startDate, endDate } = useDatePicker();
@@ -10,45 +11,38 @@ export default function UserList() {
     account_type: ["전체", "계정 활성화", "계정 비활성화"],
   });
 
-  const userList_form = [
-    {
-      no: 100,
-      id: "wizzzzzzzzzzz",
-      name: "김위즈",
-      gender: "남",
-      birth: "1999.10.01",
-      reside: "3",
-      email:
-        "kimwewewa\
-        @naver.com",
-      num: "010-1111-1111",
-      join: "2023.05.08",
-      accountAc: "x",
-      etc: "직접입력",
-    },
-    {
-      no: 100,
-      id: "wizzzzzzzzzzz",
-      name: "김위즈",
-      gender: "남",
-      birth: "1999.10.01",
-      reside: "3",
-      email:
-        "kimwewewa\
-        @naver.com",
-      num: "010-1111-1111",
-      join: "2023.05.08",
-      accountAc: "x",
-      etc: "직접입력",
-    },
-  ];
-
     const navigate = useNavigate();
     const btnEvent = {
         add(){
             navigate('/UserList/add');
         }
     }
+
+    const [ allCheck, setAllCheck ] = useState(false);
+    const [ firstCheck, setFirstCheck ] = useState(false);
+    const [ secondCheck, setSecondCheck ] = useState(false);
+
+    const handleAllCheck = () => {
+        setAllCheck(!allCheck);
+        setFirstCheck(!firstCheck);
+        setSecondCheck(!secondCheck);
+    }
+    
+    const handleFirstCheck = () => {
+        setFirstCheck(!firstCheck);
+    }
+    
+    const handleSecondCheck = () => {
+        setSecondCheck(!secondCheck);
+    }
+    
+    useEffect(() => {
+        if(firstCheck === true && secondCheck === true){
+            setAllCheck(true);
+        }else{
+            setAllCheck(false);
+        }
+    }, [firstCheck, secondCheck]);
 
   return (
     <>
@@ -62,55 +56,55 @@ export default function UserList() {
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <button type="button" className="m-txt-4 btn_ty01 btn_search">
-            검색
-          </button>
+          <button type="button" className="m-txt-4 btn_ty01 btn_search">검색</button>
         </div>
         <div className="table_wrap part">
           <table className="table reTable ">
             <thead>
-              <tr>
-                <th className="check">
-                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
-                </th>
-                <th className="num">NO</th>
-                <th className="id">아이디</th>
-                <th className="name">이름</th>
-                <th className="gender">성별</th>
-                <th className="birth">생년월일</th>
-                <th className="people">거주인원 수</th>
-                <th className="email">이메일</th>
-                <th className="phone">휴대폰 번호</th>
-                <th className="joinDate">가입일</th>
-                <th className="active">계정활성화여부</th>
-                <th className="etc">비고</th>
-              </tr>
+                <tr>
+                    <th className="check"><CheckBox for="wr_all" id="wr_all" name="wr_all" onClick={handleAllCheck} checked={allCheck ? "checked" : ""}/></th>
+                    <th className="num">NO</th>
+                    <th className="id">아이디</th>
+                    <th className="name">이름</th>
+                    <th className="gender">성별</th>
+                    <th className="birth">생년월일</th>
+                    <th className="people">거주인원 수</th>
+                    <th className="email">이메일</th>
+                    <th className="phone">휴대폰 번호</th>
+                    <th className="joinDate">가입일</th>
+                    <th className="active">계정활성화여부</th>
+                    <th className="etc">비고</th>
+                </tr>
             </thead>
             <tbody>
-              {userList_form.map((item, index) => {
-                return (
-                  <tr>
-                    <td className="check">
-                      <CheckBox for={item.index} id={item.index} name="wr_userList" />
-                    </td>
-                    <td className="num">{item.no}</td>
-                    <td className="id disabled">
-                      <Link to="/UserBasicInfo/wizzzzzzzzzzz2">{item.id}</Link>
-                    </td>
-                    <td className="name">{item.name}</td>
-                    <td className="gender">{item.gender}</td>
-                    <td className="birth">{item.birth}</td>
-                    <td className="people">{item.reside}</td>
-                    <td className="email">{item.email}</td>
-                    <td className="phone">{item.num}</td>
-                    <td className="joinDate">{item.join}</td>
-                    <td className="active">{item.accountAc}</td>
-                    <td className="etc input_ty02 userlist">
-                      <input type="text" placeholder={item.etc} />
-                    </td>
-                  </tr>
-                );
-              })}
+                <tr>
+                    <td className="check"><CheckBox for="wr_1" id="wr_1" name="wr_1" onClick={handleFirstCheck}  checked={firstCheck ? "checked" : ""}/></td>
+                    <td className="num">100</td>
+                    <td className="id disabled"><Link to="/UserBasicInfo/wizzzzzzzzzzz2">wizzzzzzzzzzz</Link></td>
+                    <td className="name">김위즈</td>
+                    <td className="gender">남</td>
+                    <td className="birth">1999.10.01</td>
+                    <td className="people">3</td>
+                    <td className="email">kimwewewa<br/>@naver.com</td>
+                    <td className="phone">010-1111-1111</td>
+                    <td className="joinDate">2023.05.08</td>
+                    <td className="active">X</td>
+                    <td className="etc input_ty02 userlist"><input type="text" placeholder='직접입력' /></td>
+                </tr>
+                <tr>
+                    <td className="check"><CheckBox for="wr_2" id="wr_2" name="wr_2" onClick={handleSecondCheck} checked={secondCheck ? "checked" : ""}/></td>
+                    <td className="num">100</td>
+                    <td className="id disabled"><Link to="/UserBasicInfo/wizzzzzzzzzzz2">wizzzzzzzzzzz</Link></td>
+                    <td className="name">김위즈</td>
+                    <td className="gender">남</td>
+                    <td className="birth">1999.10.01</td>
+                    <td className="people">3</td>
+                    <td className="email">kimwewewa<br/>@naver.com</td>
+                    <td className="phone">010-1111-1111</td>
+                    <td className="joinDate">2023.05.08</td>
+                    <td className="active">X</td>
+                    <td className="etc input_ty02 userlist"><input type="text" placeholder='직접입력' /></td>
+                </tr>
             </tbody>
           </table>
         </div>

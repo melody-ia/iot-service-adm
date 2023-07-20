@@ -181,6 +181,7 @@
                         input{@include conSize(null, 52px, 52px);
                             @include mobile-sm{@include conSize(null, 47px, 47px);}
                         }
+                        &::before{top:16px;}
                     }
                 }
             }
