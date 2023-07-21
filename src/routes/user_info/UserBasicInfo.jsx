@@ -284,7 +284,8 @@ export default function UserInfo() {
               </div>
             </div>
           </div>
-          <div className="bottom_btn_wrap">
+        </div>
+        <div className="bottom_btn_wrap">
             <button type="button" className="btn_ty01 cancel">
               취소
             </button>
@@ -299,7 +300,6 @@ export default function UserInfo() {
               등록
             </button>
           </div>
-        </div>
       </div>
     </>
   );
