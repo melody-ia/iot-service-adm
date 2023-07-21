@@ -71,70 +71,70 @@ export default function News() {
 
   // if (resData) console.log(resData.boardInfo);
 
-  if (resData && pageData)
-    return (
-      <>
-        <Lnb lnbType="board" />
-        <CurrentBox btns={["add", "mod", "del", "down"]} tit="이벤트/뉴스 리스트" {...btnEvent} />
-        <div className="news box_ty01 table_type table_comm">
-          <div className="filter_wrap d-flex">
-            <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
-            <div className="date_input_wrap d-flex">
-              <div className="date_input input_ty02">{date.start}</div>
-              <div className="date_input input_ty02">{date.end}</div>
-            </div>
-            <button type="button" className="btn_ty01 btn_search" onClick={loadPostData}>
-              검색
-            </button>
+  // if (resData && pageData)
+  return (
+    <>
+      <Lnb lnbType="board" />
+      <CurrentBox btns={["add", "mod", "del", "down"]} tit="이벤트/뉴스 리스트" {...btnEvent} />
+      <div className="news box_ty01 table_type table_comm">
+        <div className="filter_wrap d-flex">
+          <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
+          <div className="date_input_wrap d-flex">
+            <div className="date_input input_ty02">{date.start}</div>
+            <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <div className="table_wrap line part">
-            <table className="table">
-              <colgroup>
-                <col width={"auto"} />
-                <col width={"80px"} />
-                <col width={"120px"} />
-                <col width={"400px"} />
-                <col width={"150px"} />
-                <col width={"100px"} />
-                <col width={"240px"} />
-                <col width={"250px"} />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th className="check">
-                    <CheckBox for="wr_all" id="wr_all" name="wr_all" checked={resData.boardInfo.length === checkedList.length} onClick={checkAll} />
-                  </th>
-                  <th className="num">NO</th>
-                  <th>구분</th>
-                  <th>제목</th>
-                  <th>등록일</th>
-                  <th>상태</th>
-                  <th>상태설정</th>
-                  <th>비고</th>
-                </tr>
-              </thead>
-              <tbody>
-                {resData.boardInfo.map((el, idx) => {
-                  console.log(el);
-                  return (
-                    <PostItem
-                      key={idx}
-                      data={el}
-                      checkedList={checkedList}
-                      setCheckedList={setCheckedList}
-                      modList={modList}
-                      setModeList={setModeList}
-                    />
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} {...btnEvent} />
-          <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} />
+          <button type="button" className="btn_ty01 btn_search" onClick={loadPostData}>
+            검색
+          </button>
         </div>
-      </>
-    );
+        <div className="table_wrap line part">
+          <table className="table">
+            <colgroup>
+              <col width={"auto"} />
+              <col width={"80px"} />
+              <col width={"120px"} />
+              <col width={"400px"} />
+              <col width={"150px"} />
+              <col width={"100px"} />
+              <col width={"240px"} />
+              <col width={"250px"} />
+            </colgroup>
+            <thead>
+              <tr>
+                <th className="check">
+                  <CheckBox for="wr_all" id="wr_all" name="wr_all" checked={resData?.boardInfo.length === checkedList.length} onClick={checkAll} />
+                </th>
+                <th className="num">NO</th>
+                <th>구분</th>
+                <th>제목</th>
+                <th>등록일</th>
+                <th>상태</th>
+                <th>상태설정</th>
+                <th>비고</th>
+              </tr>
+            </thead>
+            <tbody>
+              {resData?.boardInfo.map((el, idx) => {
+                console.log(el);
+                return (
+                  <PostItem
+                    key={idx}
+                    data={el}
+                    checkedList={checkedList}
+                    setCheckedList={setCheckedList}
+                    modList={modList}
+                    setModeList={setModeList}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} {...btnEvent} />
+        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} />}
+      </div>
+    </>
+  );
 }
 
 function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
