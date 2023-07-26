@@ -142,7 +142,7 @@ export default function NewsEdit() {
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">등록일</label>
-                  <input type="text" placeholder="직접입력" defaultValue={new Date().toLocaleDateString()} readOnly />
+                  <input type="text" placeholder="직접입력" defaultValue={postContents.wr_datetime.replace(/-/g, ".")} readOnly />
                 </div>
               </div>
               <div className="flex_box">

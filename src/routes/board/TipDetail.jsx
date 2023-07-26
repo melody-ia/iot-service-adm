@@ -35,7 +35,7 @@ export default function TipDetail() {
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">등록일</label>
-                  <input type="text" placeholder="직접입력" value={postContents.wr_datetime.replace(/-/g, " .") + "."} readOnly />
+                  <input type="text" placeholder="직접입력" value={postContents.wr_datetime.replace(/-/g, ".")} readOnly />
                 </div>
                 <div className="flex_right">
                   <label htmlFor="">공개여부</label>

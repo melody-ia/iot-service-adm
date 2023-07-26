@@ -15,6 +15,9 @@ export default function TipAdd() {
   });
   const [topImage, setTopImage] = useState([]);
   const [communityfile, setCommunityfile] = useState([]);
+  const [todayY, setTodayY] = useState(new Date().getFullYear());
+  const [todayM, setTodayM] = useState(new Date().getMonth() > 9 ? new Date().getMonth() + 1 : "0" + (new Date().getMonth() + 1));
+  const [todayD, setTodayD] = useState(new Date().getDate() > 10 ? new Date().getDate() : "0" + new Date().getDate());
 
   const handlePostContents = e => {
     const type = e.target.dataset.type;
@@ -66,7 +69,7 @@ export default function TipAdd() {
             <div className="flex_box">
               <div className="input_ty02 flex_left">
                 <label htmlFor="">등록일</label>
-                <input type="text" placeholder="직접입력" defaultValue={new Date().toLocaleDateString()} readOnly />
+                <input type="text" placeholder="직접입력" defaultValue={`${todayY}.${todayM}.${todayD}`} readOnly />
               </div>
               <div className="flex_right">
                 <label htmlFor="">공개여부</label>

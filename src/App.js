@@ -1,4 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { useCookies } from "react-cookie";
 // css
 import "react-datepicker/dist/react-datepicker.css";
 import "./assets/scss/App.css";
@@ -47,6 +49,16 @@ import Product from "./routes/device/Product";
 import SearchPage from "./routes/SearchPage";
 
 function App() {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [cookies, setCookie, removeCookie] = useCookies();
+
+  useEffect(() => {
+    if (!cookies.mb_no || !cookies.accessToken) {
+      navigate("/Login");
+    }
+  }, [pathname]);
+
   return (
     <Routes>
       <Route path="/" element={<Templeate />}>

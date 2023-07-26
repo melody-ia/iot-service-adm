@@ -188,7 +188,7 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
       >
         {data.wr_seo_title}
       </td>
-      <td>{data.wr_datetime.replace(/-/g, " .") + "."}</td>
+      <td>{data.wr_datetime.replace(/-/g, ".")}</td>
       <td>{data.wr_status === 0 ? "공개" : "비공개"}</td>
       <td>
         <div className="radio_group">
