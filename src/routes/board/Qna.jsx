@@ -1,22 +1,43 @@
 import { Lnb, CurrentBox, Pagination } from "../../components/bundle_components";
-import { Link, useParams } from "react-router-dom";
-import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
+import { useEffect, useState } from "react";
 
 export default function Qna() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { date, startDate, endDate } = useDatePicker();
-  const { selectedValues, selecBoxHtml } = useSelectBox({
-    inquiry_order: ["전체", "최근 문의일 순", "오래된 문의일 순"],
-    inquiry_date: ["전체", "최근 문의일 순", "오래된 문의일 순"],
-    answer_state: ["답변여부", "답변완료", "답변대기"],
-    inquiry_sort: ["구분", "데일리 챌린지", "프로모션/이벤트", "탄소발자국 계산기", "기기관리", "랭킹", "포인트", "회원", "기타"],
+  const { mb_no, resData, postData } = useCheckToken();
+  const [pageData, setPageData] = useState();
+  const [curPage, setCurPage] = useState(1);
+  const [categoryList, setCategoryList] = useState();
+  const { selectedValues, setSelectedValue, selecBoxHtml } = useSelectBox({
+    inquiry_date: ["최근 문의일 순", "오래된 문의일 순"],
+    answer_state: ["전체", "답변완료", "답변대기"],
+    inquiry_sort: categoryList || ["전체"],
   });
+
+  const loadPostData = async () => {
+    const start_at = startDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1);
+    const end_at = endDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1);
+    const order = selectedValues.inquiry_date === "최근 문의일 순" ? "desc" : "asc";
+    const qa_status = { 전체: "all", 답변완료: 0, 답변대기: 1 }[selectedValues.answer_state];
+    const qa_category = selectedValues.inquiry_sort === "전체" ? "all" : categoryList.indexOf(selectedValues.inquiry_sort);
+    const res = await postData("inquire/index", { mb_no, start_at, end_at, qa_status, qa_category, order, cur_page: curPage });
+    console.log(res);
+    setPageData(res.page);
+    if (!categoryList) setCategoryList(res.data.category);
+  };
+
+  useEffect(() => {
+    loadPostData();
+  }, []);
 
   return (
     <>
       <Lnb lnbType="board" />
       {/* <CurrentBox mod={true} del={true} down={true} tit="1:1문의 리스트" /> */}
-      <CurrentBox btns={["mod", "del", "down"]} tit="1:1문의 리스트" />
+      <CurrentBox btns={["down"]} tit="1:1문의 리스트" />
       <div className="qna box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -24,7 +45,7 @@ export default function Qna() {
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <button type="button" className="btn_ty01 btn_search">
+          <button type="button" className="btn_ty01 btn_search" onClick={loadPostData}>
             검색
           </button>
         </div>
@@ -53,7 +74,29 @@ export default function Qna() {
               </tr>
             </thead>
             <tbody>
-              <tr>
+              {resData?.inquireInfo.map((el, idx) => {
+                return (
+                  <tr key={idx}>
+                    <td className="num">{idx + 1}</td>
+                    <td>{el.mb_id}</td>
+                    <td>{el.inquire_date}</td>
+                    <td>{el.answer_date}</td>
+                    <td>{["답변완료", "답변대기"][el.qa_status]}</td>
+                    <td>{el.qa_category}</td>
+                    <td
+                      style={{ cursor: "pointer" }}
+                      className="overflow"
+                      onClick={() => {
+                        navigate("/Qna/QnaDetail", { state: { qa_id: el.qa_id } });
+                      }}
+                    >
+                      {el.qa_content}
+                    </td>
+                    <td>{el.qa_1}</td>
+                  </tr>
+                );
+              })}
+              {/* <tr>
                 <td className="num">2</td>
                 <td>wwwizz</td>
                 <td>2023.05.01</td>
@@ -78,13 +121,12 @@ export default function Qna() {
                   <Link to={"/Qna/QnaDetail/" + id}>안녕하세요 문의 드립니다.</Link>
                 </td>
                 <td>내부 담당자 확인 후 처리</td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>
-        {/* <CurrentBox mod={true} del={true} down={true} hideTit={true} /> */}
-        <CurrentBox btns={["mod", "del", "down"]} hideTit={true} />
-        <Pagination />
+        <CurrentBox btns={["down"]} hideTit={true} />
+        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} />}
       </div>
     </>
   );

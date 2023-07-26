@@ -440,6 +440,7 @@ body::-webkit-scrollbar-track, body textarea::-webkit-scrollbar-track {
   border-color: #B7B7B7;
 }
 
+.input_ty02 a,
 .input_ty02 input,
 .input_ty02 textarea {
   width: 100%;
@@ -450,29 +451,32 @@ body::-webkit-scrollbar-track, body textarea::-webkit-scrollbar-track {
   border: 1px solid #E0E2E7;
   border-radius: 5px;
 }
-.input_ty02 input::-webkit-input-placeholder, .input_ty02 textarea::-webkit-input-placeholder {
+.input_ty02 a::-webkit-input-placeholder, .input_ty02 input::-webkit-input-placeholder, .input_ty02 textarea::-webkit-input-placeholder {
   color: #BEC8D0;
 }
-.input_ty02 input::-moz-placeholder, .input_ty02 textarea::-moz-placeholder {
+.input_ty02 a::-moz-placeholder, .input_ty02 input::-moz-placeholder, .input_ty02 textarea::-moz-placeholder {
   color: #BEC8D0;
 }
-.input_ty02 input:-ms-input-placeholder, .input_ty02 textarea:-ms-input-placeholder {
+.input_ty02 a:-ms-input-placeholder, .input_ty02 input:-ms-input-placeholder, .input_ty02 textarea:-ms-input-placeholder {
   color: #BEC8D0;
 }
-.input_ty02 input::-ms-input-placeholder, .input_ty02 textarea::-ms-input-placeholder {
+.input_ty02 a::-ms-input-placeholder, .input_ty02 input::-ms-input-placeholder, .input_ty02 textarea::-ms-input-placeholder {
   color: #BEC8D0;
 }
+.input_ty02 a::placeholder,
 .input_ty02 input::placeholder,
 .input_ty02 textarea::placeholder {
   color: #BEC8D0;
 }
 @media all and (max-width: 991px) {
+  .input_ty02 a,
   .input_ty02 input,
   .input_ty02 textarea {
     font-size: 14px;
   }
 }
 @media all and (max-width: 768px) {
+  .input_ty02 a,
   .input_ty02 input,
   .input_ty02 textarea {
     padding: 8px 12px;
@@ -809,6 +813,7 @@ body::-webkit-scrollbar-track, body textarea::-webkit-scrollbar-track {
   width: 100%;
   padding: 28px;
 }
+.write_type .input_ty02 a,
 .write_type .input_ty02 input {
   height: 48px;
   line-height: 48px;
@@ -817,27 +822,30 @@ body::-webkit-scrollbar-track, body textarea::-webkit-scrollbar-track {
   color: #637381;
   border-radius: 8px;
 }
-.write_type .input_ty02 input::-webkit-input-placeholder {
+.write_type .input_ty02 a::-webkit-input-placeholder, .write_type .input_ty02 input::-webkit-input-placeholder {
   color: #BEC8D0;
 }
-.write_type .input_ty02 input::-moz-placeholder {
+.write_type .input_ty02 a::-moz-placeholder, .write_type .input_ty02 input::-moz-placeholder {
   color: #BEC8D0;
 }
-.write_type .input_ty02 input:-ms-input-placeholder {
+.write_type .input_ty02 a:-ms-input-placeholder, .write_type .input_ty02 input:-ms-input-placeholder {
   color: #BEC8D0;
 }
-.write_type .input_ty02 input::-ms-input-placeholder {
+.write_type .input_ty02 a::-ms-input-placeholder, .write_type .input_ty02 input::-ms-input-placeholder {
   color: #BEC8D0;
 }
+.write_type .input_ty02 a::placeholder,
 .write_type .input_ty02 input::placeholder {
   color: #BEC8D0;
 }
 @media all and (max-width: 768px) {
+  .write_type .input_ty02 a,
   .write_type .input_ty02 input {
     font-size: 14px;
   }
 }
 @media all and (max-width: 480px) {
+  .write_type .input_ty02 a,
   .write_type .input_ty02 input {
     height: 45px;
     line-height: 45px;
@@ -856,6 +864,14 @@ body::-webkit-scrollbar-track, body textarea::-webkit-scrollbar-track {
     line-height: 45px;
     border-radius: 5px;
   }
+}
+.write_type .input_ty02 a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .write_type .check_type.radio label span {
   font-size: 16px;

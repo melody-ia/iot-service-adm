@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useCheckToken } from "../../hooks/bundle_hooks";
-import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useCheckToken } from "../../hooks/bundle_hooks";
+import { serverUrl } from "../../variables/bundle_variables";
+import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 
 export default function TipDetail() {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ export default function TipDetail() {
               </div>
               <div className="flex_box img_area">
                 <label htmlFor="">상단 이미지</label>
-                {postContents.top_image && <img src={process.env.REACT_APP_SERVER_URL + "images" + postContents.top_image} alt="" />}
+                {postContents.top_image && <img src={serverUrl + "images" + postContents.top_image} alt="" />}
               </div>
               <div className="flex_box">
                 <div className="flex_left w100">

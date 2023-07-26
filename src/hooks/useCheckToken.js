@@ -3,6 +3,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { isLoginAtom } from "../recoil/atoms";
+import { apiUrl, serverUrl } from "../variables/bundle_variables";
 import axios from "axios";
 
 export function useCheckToken() {
@@ -12,7 +13,7 @@ export function useCheckToken() {
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
 
   const postData = async (apiName, body, notChange) => {
-    let apiURL = process.env.REACT_APP_API_URL + apiName;
+    let apiURL = apiUrl + apiName;
     const res = await axios.post(apiURL, body, { headers: { loginsession: cookies.accessToken } });
     const data = res.data;
     console.log({
@@ -33,7 +34,7 @@ export function useCheckToken() {
   };
 
   const login = async account => {
-    const url = process.env.REACT_APP_API_URL + "auth/login";
+    const url = apiUrl + "auth/login";
     const res = await axios.post(url, { ...account });
     const data = res.data;
     console.log(data.token);

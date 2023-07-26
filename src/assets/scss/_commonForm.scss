@@ -1,6 +1,7 @@
 // 등록 페이지 테이블 공통 적용
 .write_type{max-width:1541px; width:100%; padding:28px;
     .input_ty02{
+			a,
         input{@include conSize(null, 48px, 48px); @include font(14px, 400, #637381); border-radius:8px;
             &::placeholder{color:#BEC8D0}
             @include mobile{font-size:14px;}
@@ -9,6 +10,10 @@
         .btn_search{height:48px; line-height:48px; margin-left:8px; border-radius:8px;
             @include mobile-sm{@include conSize(null, 45px, 45px); border-radius:5px;}
         }
+				a{
+					display: flex;
+					align-items: center;
+				}
     }
     .check_type.radio{
         label{

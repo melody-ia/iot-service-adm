@@ -100,7 +100,7 @@ function App() {
         <Route path="Faq/add" element={<FaqAdd />} />
         <Route path="Faq/edit" element={<FaqEdit />} />
         <Route path="Qna" element={<Qna />} />
-        <Route path="Qna/:id/:id" element={<QnaDetail />} />
+        <Route path="Qna/QnaDetail" element={<QnaDetail />} />
         <Route path="Product" element={<Product />} />
         <Route path="SearchPage" element={<SearchPage />} />
       </Route>

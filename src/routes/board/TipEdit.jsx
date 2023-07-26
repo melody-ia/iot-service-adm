@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 import { useSelectBox, useCheckToken, useUploadFile } from "../../hooks/bundle_hooks";
+import { serverUrl } from "../../variables/bundle_variables";
 
 export default function TipEdit() {
   const navigate = useNavigate();
@@ -89,7 +90,7 @@ export default function TipEdit() {
                             id={el[1]}
                             name="isShow"
                             text={el[0]}
-                            checked={postContents.wr_status === el[2]}
+                            checked={postContents.wr_status == el[2]}
                             dataType="wr_status"
                             dataValue={el[2]}
                             onClick={handlePostContents}
@@ -169,7 +170,7 @@ function FileItemTop({ setTopImage, postContents }) {
   const fileRef = useRef(null);
 
   const convertURLtoFile = async url => {
-    url = process.env.REACT_APP_SERVER_URL + "images" + url;
+    url = serverUrl + "images" + url;
     const response = await fetch(url);
     const data = await response.blob();
     const ext = url.split(".").pop();
@@ -229,7 +230,7 @@ function FileItemEtc({ setCommunityfile, postContents }) {
   const fileRef = useRef(null);
 
   const convertURLtoFile = async (url, filename) => {
-    url = process.env.REACT_APP_SERVER_URL + "images" + url;
+    url = serverUrl + "images" + url;
     const response = await fetch(url);
     const data = await response.blob();
     const ext = url.split(".").pop();
