@@ -6,7 +6,7 @@ import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_h
 export default function Faq() {
   const navigate = useNavigate();
   const { mb_no, postData, resData } = useCheckToken();
-  const { date, startDate, endDate } = useDatePicker();
+  const { date, start_at, end_at } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     signUp_date: ["최근 등록일 순", "오래된 등록일 순", "지급중지", "지급종료"],
     faq_sort: ["전체", "탄소발자국", "챌린지", "랭킹", "회원", "기타"],
@@ -23,8 +23,6 @@ export default function Faq() {
   };
 
   const loadPostData = async () => {
-    const start_at = startDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1);
-    const end_at = endDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1);
     const category = "faq";
     const faq_subject = selectedValues.faq_sort === "전체" ? "all" : selectedValues.faq_sort;
     const wr_status = { 공개: 0, 비공개: 1 }[selectedValues.open_state];

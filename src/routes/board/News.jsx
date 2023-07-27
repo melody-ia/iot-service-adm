@@ -6,7 +6,7 @@ import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_h
 export default function News() {
   const navigate = useNavigate();
   const { mb_no, postData, resData } = useCheckToken();
-  const { date, startDate, endDate } = useDatePicker();
+  const { date, start_at, end_at } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     signUp_date: ["최근 등록일 순", "오래된 등록일 순"],
     division_sort: ["전체", "이벤트", "뉴스"],
@@ -26,8 +26,6 @@ export default function News() {
   // console.log(resData);
 
   const loadPostData = async () => {
-    const start_at = startDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1);
-    const end_at = endDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1);
     const category = { 전체: "all", 이벤트: "event", 뉴스: "news" }[selectedValues.division_sort];
     const wr_status = { 공개: 0, 비공개: 1 }[selectedValues.open_state];
     const order = selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";

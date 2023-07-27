@@ -1,23 +1,39 @@
 import { Link, useParams } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
-import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
+import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
 import arrowRightGreen from "../../assets/img/icon/angle_right_green.svg";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
+import { useEffect } from "react";
 
 export default function UserPromoHis() {
   const { id } = useParams();
-  const { date, startDate, endDate } = useDatePicker();
+  const { date, start_at, end_at } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
-    duration: ["진행 기간", "참여 기간"],
+    duration: ["진행기간", "참여기간"],
   });
-  console.log(selectedValues);
+  const { mb_no, resData, postData } = useCheckToken();
+
+  const loadUserPromoData = async () => {
+    const filter = { 진행기간: "in_date", 참여기간: "ch_date" }[selectedValues.duration];
+    const res = await postData("member/show/challenge", {
+      mb_no,
+      mb_id: "admin",
+      filter,
+      start_at,
+      end_at,
+    });
+    console.log(res);
+  };
+
+  useEffect(() => {
+    loadUserPromoData();
+  }, []);
 
   return (
     <>
       <Lnb lnbType="userInfo" />
-      {/* <CurrentBox mod={true} del={true} down={true} tit="프로모션 참여 내역" /> */}
-      <CurrentBox btns={["mod", "del", "down"]} tit="프로모션 참여 내역" />
+      <CurrentBox btns={["down"]} tit="프로모션 참여 내역" />
       <div className="user_history_pro box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -29,161 +45,58 @@ export default function UserPromoHis() {
             검색
           </button>
         </div>
-        <div className="table_wrap line">
-          <table className="table">
-            <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-            </colgroup>
-            <tbody>
-              <tr>
-                <td rowSpan={5} className="check">
-                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
-                </td>
-                <td rowSpan={5} className="num">
-                  3
-                </td>
-                <th className="tit">프로모션 명</th>
-                <td className="promotion" colSpan={3}>
-                  <Link to={"/UserPromoHis/UserPromoHisDetail/" + id}>
-                    데일리 챌린지_데일리 탄소 줄이기 <img src={arrowRightGreen} alt="오른쪽 화살표 아이콘" className="arrow_right" />
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <th className="tit">프로모션 진행 기간</th>
-                <td className="date">2023.03.01 – 2023.12.31</td>
-                <th className="tit">프로모션 참여 기간</th>
-                <td className="date">2023.05.10 - 오늘날짜</td>
-              </tr>
-              <tr>
-                <th className="tit">등록한 글 개수</th>
-                <td className="date">15</td>
-                <th className="tit">도장 적립 개수</th>
-                <td className="date">15</td>
-              </tr>
-              <tr>
-                <th className="tit">좋아요 개수</th>
-                <td className="date">200</td>
-                <th className="tit">신고 당한 이력</th>
-                <td className="date">1</td>
-              </tr>
-              <tr>
-                <th className="tit">적립 포인트</th>
-                <td colSpan={3} className="date">
-                  15,000
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="table_wrap line">
-          <table className="table">
-            <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-            </colgroup>
-            <tbody>
-              <tr>
-                <td rowSpan={5} className="check">
-                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
-                </td>
-                <td rowSpan={5} className="num">
-                  2
-                </td>
-                <th className="tit">프로모션 명</th>
-                <td className="promotion" colSpan={3}>
-                  <Link to={"/UserPromoHis/UserPromoHisDetail/" + id}>
-                    데일리 챌린지_데일리 탄소 줄이기 <img src={arrowRightGreen} alt="오른쪽 화살표 아이콘" className="arrow_right" />
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <th className="tit">프로모션 진행 기간</th>
-                <td className="date">2023.03.01 – 2023.12.31</td>
-                <th className="tit">프로모션 참여 기간</th>
-                <td className="date">2023.05.10 - 오늘날짜</td>
-              </tr>
-              <tr>
-                <th className="tit">등록한 글 개수</th>
-                <td className="date">15</td>
-                <th className="tit">도장 적립 개수</th>
-                <td className="date">15</td>
-              </tr>
-              <tr>
-                <th className="tit">좋아요 개수</th>
-                <td className="date">200</td>
-                <th className="tit">신고 당한 이력</th>
-                <td className="date">1</td>
-              </tr>
-              <tr>
-                <th className="tit">적립 포인트</th>
-                <td colSpan={3} className="date">
-                  15,000
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="table_wrap line">
-          <table className="table">
-            <colgroup>
-              <col width={"80px"} />
-              <col width={"80px"} />
-            </colgroup>
-            <tbody>
-              <tr>
-                <td rowSpan={5} className="check">
-                  <CheckBox for="wr_3" id="wr_3" name="wr_3" />
-                </td>
-                <td rowSpan={5} className="num">
-                  1
-                </td>
-                <th className="tit">프로모션 명</th>
-                <td className="promotion" colSpan={3}>
-                  <Link to={"/UserPromoHis/UserPromoHisDetail/" + id}>
-                    데일리 챌린지_데일리 탄소 줄이기 <img src={arrowRightGreen} alt="오른쪽 화살표 아이콘" className="arrow_right" />
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <th className="tit">프로모션 진행 기간</th>
-                <td className="date">2023.03.01 – 2023.12.31</td>
-                <th className="tit">프로모션 참여 기간</th>
-                <td className="date">2023.05.10 - 오늘날짜</td>
-              </tr>
-              <tr>
-                <th className="tit">등록한 글 개수</th>
-                <td className="date">15</td>
-                <th className="tit">도장 적립 개수</th>
-                <td className="date">15</td>
-              </tr>
-              <tr>
-                <th className="tit">좋아요 개수</th>
-                <td className="date">200</td>
-                <th className="tit">신고 당한 이력</th>
-                <td className="date">1</td>
-              </tr>
-              <tr>
-                <th className="tit">적립 포인트</th>
-                <td colSpan={3} className="date">
-                  15,000
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+        {resData?.challengeResult.map((el, idx) => {
+          return (
+            <div className="table_wrap line">
+              <table className="table">
+                <colgroup>
+                  <col width={"80px"} />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td rowSpan={5} className="num">
+                      3
+                    </td>
+                    <th className="tit">프로모션 명</th>
+                    <td className="promotion" colSpan={3}>
+                      <Link to={"/UserPromoHis/UserPromoHisDetail/" + id}>
+                        {el.ch_title} <img src={arrowRightGreen} alt="오른쪽 화살표 아이콘" className="arrow_right" />
+                      </Link>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="tit">프로모션 진행 기간</th>
+                    <td className="date">
+                      {el.in_start.replace(/-/g, ".")} – {el.in_end.replace(/-/g, ".")}
+                    </td>
+                    <th className="tit">프로모션 참여 기간</th>
+                    <td className="date">
+                      {el.ch_start.replace(/-/g, ".")} - {el.ch_end.replace(/-/g, ".")}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="tit">등록한 글 개수</th>
+                    <td className="date">{el.board_count}</td>
+                    <th className="tit">도장 적립 개수</th>
+                    <td className="date">{el.sum_stamp}</td>
+                  </tr>
+                  <tr>
+                    <th className="tit">좋아요 개수</th>
+                    <td className="date">{el.like_count}</td>
+                    <th className="tit">신고 당한 이력</th>
+                    <td className="date">{el.report_count}</td>
+                  </tr>
+                  <tr>
+                    <th className="tit">적립 포인트</th>
+                    <td colSpan={3} className="date">
+                      {Number(el.sum_point).toLocaleString("ko-KR")}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          );
+        })}
         <Pagination />
       </div>
     </>

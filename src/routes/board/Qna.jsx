@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function Qna() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { date, startDate, endDate } = useDatePicker();
+  const { date, start_at, end_at } = useDatePicker();
   const { mb_no, resData, postData } = useCheckToken();
   const [pageData, setPageData] = useState();
   const [curPage, setCurPage] = useState(1);
@@ -18,8 +18,6 @@ export default function Qna() {
   });
 
   const loadPostData = async () => {
-    const start_at = startDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1);
-    const end_at = endDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1);
     const order = selectedValues.inquiry_date === "최근 문의일 순" ? "desc" : "asc";
     const qa_status = { 전체: "all", 답변완료: 0, 답변대기: 1 }[selectedValues.answer_state];
     const qa_category = selectedValues.inquiry_sort === "전체" ? "all" : categoryList.indexOf(selectedValues.inquiry_sort);

@@ -115,5 +115,11 @@ export function useDatePicker() {
     ),
   };
 
-  return { date, startDate, endDate };
+  return {
+    date,
+    startDate,
+    endDate,
+    start_at: startDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1),
+    end_at: endDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1),
+  };
 }

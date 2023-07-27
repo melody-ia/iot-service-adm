@@ -1,70 +1,45 @@
 import { Lnb, CurrentBox } from "../../components/bundle_components";
-import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserPromoHisDetail() {
   return (
     <>
       <Lnb lnbType="userInfo" />
-      {/* <CurrentBox mod={true} del={true} down={true} tit="프로모션 참여 상세 내역" /> */}
-      <CurrentBox btns={["mod", "del", "down"]} tit="프로모션 참여 상세 내역" />
+      <CurrentBox btns={["down"]} tit="프로모션 참여 상세 내역" />
       <div className="user_history_pro_detail detail_form box_ty01 table_type">
         <div className="table_wrap line">
           <table className="table">
             <colgroup>
               <col width={"80px"} />
-              <col width={"150px"} />
               <col width={"auto"} />
               <col width={"500px"} />
             </colgroup>
             <tbody>
               <tr>
-                <th colSpan={3}>프로모션 명</th>
-                <td colSpan={6}>데일리 챌린지_데일리 탄소 줄이기</td>
-              </tr>
-              <tr>
-                <th colSpan={3}>프로모션 진행 기간</th>
-                <td>2023.03.01 – 2023.12.31</td>
-                <th colSpan={2}>프로모션 참여 기간</th>
-                <td colSpan={3}>2023.05.10 - 오늘날짜</td>
-              </tr>
-              <tr>
-                <th colSpan={3}>등록한 글 총 개수</th>
-                <td>15</td>
-                <th colSpan={2}>삭제한 글 총 개수</th>
-                <td colSpan={3}>1</td>
-              </tr>
-              <tr>
-                <th>
-                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
-                </th>
                 <th>NO</th>
                 <th>등록일</th>
                 <th>본문</th>
                 <th>
                   도장 적립
-                  <br />
-                  15
+                  {/* <br /> */}
+                  {/* 15 */}
                 </th>
                 <th colSpan={2}>
                   포인트 지급/차감
-                  <br />
-                  15,000p
+                  {/* <br /> */}
+                  {/* 15,000p */}
                 </th>
                 <th>
                   좋아요
-                  <br />
-                  299
+                  {/* <br /> */}
+                  {/* 299 */}
                 </th>
                 <th>
                   신고
-                  <br />1
+                  {/* <br />1 */}
                 </th>
               </tr>
               <tr>
-                <td>
-                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
-                </td>
                 <td>2</td>
                 <td>2023-05-01</td>
                 <td className="overflow">탄소를 줄이기 위해 오늘도 열심히 대중교통을 이용하고</td>
@@ -75,9 +50,6 @@ export default function UserPromoHisDetail() {
                 <td>0</td>
               </tr>
               <tr>
-                <td>
-                  <CheckBox for="wr_2" id="wr_2" name="wr_2" />
-                </td>
                 <td>1</td>
                 <td>2023-05-01</td>
                 <td className="overflow">탄소를 줄이기 위해 오늘도 열심히 대중교통을 이용하고 대중교통을 이용하고</td>
@@ -90,17 +62,8 @@ export default function UserPromoHisDetail() {
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
+
+        <CurrentBox btns={["down"]} hideTit={true} />
         <Pagination />
       </div>
     </>

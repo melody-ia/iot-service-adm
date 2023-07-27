@@ -6,7 +6,8 @@ export default function DeletedUserList() {
   const { date, startDate, endDate } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     join_date: ["최근 가입일 순", "오래된 가입일 순"],
-    account_date: ["가입일", "탈퇴/삭제일"],
+    account_date: ["가입일", "탈퇴/비활성일"],
+    account_type: ["전체", "탈퇴", "계정 비활성화"],
   });
 
   return (
@@ -28,24 +29,24 @@ export default function DeletedUserList() {
         <div className="table_wrap part">
           <table className="table">
             <colgroup>
-                <col width={"42px"} />
-                <col width={"50px"} />
-                <col width={"150px"} />
-                <col width={"60px"} />
-                <col width={"80px"} />
-                <col width={"100px"} />
-                <col width={"100px"} />
-                <col width={"110px"} />
-                <col width={"100px"} />
-                <col width={"100px"} />
-                <col width={"108px"} />
-                <col width={"170px"} />
+              {/* <col width={"42px"} /> */}
+              <col width={"50px"} />
+              <col width={"192px"} />
+              <col width={"60px"} />
+              <col width={"80px"} />
+              <col width={"100px"} />
+              <col width={"100px"} />
+              <col width={"110px"} />
+              <col width={"100px"} />
+              <col width={"100px"} />
+              <col width={"108px"} />
+              <col width={"170px"} />
             </colgroup>
             <thead>
               <tr>
-                <th className="check">
+                {/* <th className="check">
                   <CheckBox for="wr_all" id="wr_all" name="wr_all" />
-                </th>
+                </th> */}
                 <th className="num">NO</th>
                 <th className="id">아이디</th>
                 <th className="name">이름</th>
@@ -61,9 +62,9 @@ export default function DeletedUserList() {
             </thead>
             <tbody>
               <tr>
-                <td className="check">
+                {/* <td className="check">
                   <CheckBox for="wr_1" id="wr_1" name="wr_1" />
-                </td>
+                </td> */}
                 <td className="num">2</td>
                 <td className="id disabled">
                   <Link to="/UserBasicInfo/wizzzzzzzzzzz1">wizzzzzzzzzzz1</Link>
@@ -85,9 +86,9 @@ export default function DeletedUserList() {
                 </td>
               </tr>
               <tr>
-                <td className="check">
+                {/* <td className="check">
                   <CheckBox for="wr_2" id="wr_2" name="wr_1" />
-                </td>
+                </td> */}
                 <td className="num">1</td>
                 <td className="id disabled">
                   <Link to="/UserBasicInfo/wizzzzzzzzzzz1">wizzzzzzzzzzz1</Link>

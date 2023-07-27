@@ -6,7 +6,7 @@ import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_h
 export default function Tip() {
   const navigate = useNavigate();
   const { mb_no, postData, resData } = useCheckToken();
-  const { date, startDate, endDate } = useDatePicker();
+  const { date, start_at, end_at } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     signUp_date: ["최근 등록일 순", "오래된 등록일 순"],
     open_state: ["공개", "비공개"],
@@ -22,8 +22,6 @@ export default function Tip() {
   };
 
   const loadPostData = async () => {
-    const start_at = startDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1);
-    const end_at = endDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1);
     const category = "tip";
     const wr_status = { 공개: 0, 비공개: 1 }[selectedValues.open_state];
     const order = selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";
