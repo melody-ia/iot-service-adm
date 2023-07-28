@@ -85,6 +85,7 @@ export function useCheckToken() {
     logout,
     isLogin,
     resData,
+    setResData,
     mb_no: Number(cookies.mb_no),
     postData,
     updateUserInfo,
