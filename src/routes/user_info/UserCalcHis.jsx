@@ -1,18 +1,20 @@
 import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
+import { useLocation, useParams } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserCalcHis() {
+  const { pathname } = useLocation();
   const { date, startDate, endDate } = useDatePicker();
-  
+
   const { selectedValues, selecBoxHtml } = useSelectBox({
     sort_join: ["최신 순", "오래된 순"],
   });
 
   return (
     <>
-      <Lnb lnbType="userInfo" />
+      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       {/* <CurrentBox del={true} down={true} tit="탄소발자국 계산 내역" /> */}
       <CurrentBox btns={["del", "down"]} tit="탄소발자국 계산 내역" />
       <div className="user_history_calc box_ty01 table_type table_comm">
@@ -116,12 +118,12 @@ export default function UserCalcHis() {
         <div className="table_wrap line">
           <table className="table">
             <colgroup>
-                <col width={"80px"} />
-                <col width={"80px"} />
-                <col width={"auto"} />
-                <col width={"auto"} />
-                <col width={"auto"} />
-                <col width={"350px"} />
+              <col width={"80px"} />
+              <col width={"80px"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"350px"} />
             </colgroup>
             <tbody>
               <tr>

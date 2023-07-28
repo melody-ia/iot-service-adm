@@ -8,7 +8,7 @@ export function useEssentialInfo(option) {
   const [form, setForm] = useState({
     mb_id: { val: "", isValid: false },
     mb_id_dup: { isValid: false },
-    mb_pw: { val: "", isValid: false },
+    mb_password: { val: "", isValid: false },
     // pw_cfm: { val: "", isValid: false },
     mb_name: {
       val: "",
@@ -34,12 +34,16 @@ export function useEssentialInfo(option) {
       val: "",
       isValid: false,
     },
+    mb_datetime: {
+      val: "",
+      isValid: true,
+    },
   });
 
   const errorText = {
     mb_id: "아이디 입력 형식이 잘못되었습니다.",
     mb_id_dup: "아이디 중복확인이 되지 않았습니다.",
-    mb_pw: "비밀번호 입력 형식이 잘못되었습니다.",
+    mb_password: "비밀번호 입력 형식이 잘못되었습니다.",
     // pw_cfm: "입력하신 비밀번호와 일치하지 않습니다.",
     mb_name: "이름 입력 형식이 잘못되었습니다.",
     mb_birth: "생년월일 입력 형식이 잘못되었습니다",
@@ -56,7 +60,7 @@ export function useEssentialInfo(option) {
       // 한글 2~4자 또는 영문 성 2~10자, 띄어쓰기, 영문 이름 2~10자(한글, 영문 혼용X)
       mb_id: /^[a-z]+[a-z0-9]{5,29}$/,
       //영문으로 시작하는 영문, 숫자 조합 6자 이상 30자 이하
-      mb_pw: /^[a-zA-Z0-9!@#$%^&*]{4,30}$/,
+      mb_password: /^[a-zA-Z0-9!@#$%^&*]{4,30}$/,
       //영문, 숫자, 특수문자를 최소 한가지씩 조합 4자 이상 30자 이하
       mb_certify: /^[0-9]+$/,
       //숫자만 입력

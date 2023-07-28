@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 export default function UserList() {
   const navigate = useNavigate();
@@ -15,16 +14,14 @@ export default function UserList() {
   const [curPage, setCurPage] = useState(1);
 
   const loadUserData = async () => {
-    // const mb_open = { 전체: "", 계정_활성화: 0, 계정_비활성화: 1 }[selectedValues.account_type.replace(" ", "_")];
     const order = selectedValues.signUp_date === "최근 가입일 순" ? "desc" : "asc";
-    // console.log(mb_open);
     const res = await postData("member/index", {
       mb_no,
       start_at: "2021-03-01",
       end_at,
-      // mb_open,
       cur_page: curPage,
       order,
+      type: "all",
     });
     setPageData(res.page);
   };
@@ -42,7 +39,6 @@ export default function UserList() {
   return (
     <>
       <Lnb lnbType="user" />
-      {/* <CurrentBox add={true} mod={true} del={true} down={true} tit="회원리스트" /> */}
       <CurrentBox btns={["add", "down"]} tit="회원리스트" {...btnEvent} />
       <div className="user_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
@@ -58,7 +54,6 @@ export default function UserList() {
         <div className="table_wrap part">
           <table className="table reTable ">
             <colgroup>
-              {/* <col width={"42px"} /> */}
               <col width={"50px"} />
               <col width={"192px"} />
               <col width={"60px"} />
@@ -73,9 +68,6 @@ export default function UserList() {
             </colgroup>
             <thead>
               <tr>
-                {/* <th className="check">
-                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
-                </th> */}
                 <th className="num">NO</th>
                 <th className="id">아이디</th>
                 <th className="name">이름</th>
@@ -93,58 +85,9 @@ export default function UserList() {
               {resData?.memberResult.map((el, idx) => {
                 return <UserItem key={idx} data={el} />;
               })}
-              {/* <tr>
-                <td className="check">
-                  <CheckBox for="wr_1" id="wr_1" name="wr_1" onClick={handleFirstCheck} checked={firstCheck ? "checked" : ""} />
-                </td>
-                <td className="num">100</td>
-                <td className="id disabled">
-                  <Link to="/UserBasicInfo/wizzzzzzzzzzz2">wizzzzzzzzzzz</Link>
-                </td>
-                <td className="name">김위즈</td>
-                <td className="gender">남</td>
-                <td className="birth">1999.10.01</td>
-                <td className="people">3</td>
-                <td className="email">
-                  kimwewewa
-                  <br />
-                  @naver.com
-                </td>
-                <td className="phone">010-1111-1111</td>
-                <td className="joinDate">2023.05.08</td>
-                <td className="active">X</td>
-                <td className="etc input_ty02 userlist">
-                  <input type="text" placeholder="직접입력" />
-                </td>
-              </tr>
-              <tr>
-                <td className="check">
-                  <CheckBox for="wr_2" id="wr_2" name="wr_2" onClick={handleSecondCheck} checked={secondCheck ? "checked" : ""} />
-                </td>
-                <td className="num">100</td>
-                <td className="id disabled">
-                  <Link to="/UserBasicInfo/wizzzzzzzzzzz2">wizzzzzzzzzzz</Link>
-                </td>
-                <td className="name">김위즈</td>
-                <td className="gender">남</td>
-                <td className="birth">1999.10.01</td>
-                <td className="people">3</td>
-                <td className="email">
-                  kimwewewa
-                  <br />
-                  @naver.com
-                </td>
-                <td className="phone">010-1111-1111</td>
-                <td className="joinDate">2023.05.08</td>
-                <td className="active">X</td>
-                <td className="etc input_ty02 userlist">
-                  <input type="text" placeholder="직접입력" />
-                </td>
-              </tr> */}
             </tbody>
           </table>
         </div>
-        {/* <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} /> */}
         <CurrentBox btns={["add", "down"]} hideTit={true} {...btnEvent} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} />}
       </div>

@@ -1,23 +1,23 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import { useDatePicker, useSelectBox } from "../../hooks/bundle_hooks";
-import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserQnaHis() {
   const { id } = useParams();
-  const { date, startDate, endDate } = useDatePicker();
+  const { pathname } = useLocation();
+  const { date, start_at, end_at } = useDatePicker();
 
   const { selectedValues, selecBoxHtml } = useSelectBox({
     inquiry_date_history: ["최근 문의일 순", "오래된 문의일 순"],
-    inquiry_date: ["문의일", "답변일"], 
+    inquiry_date: ["문의일", "답변일"],
     inquiry_state: ["전체", "답변완료", "답변대기"],
-    inquiry_sort: ["전체", "데일리 챌린지", "프로모션/이벤트", "탄소발자국 계산기", "기기관리", "랭킹", "포인트", "회원", "기타"]
+    inquiry_sort: ["전체", "데일리 챌린지", "프로모션/이벤트", "탄소발자국 계산기", "기기관리", "랭킹", "포인트", "회원", "기타"],
   });
 
   return (
     <>
-      <Lnb lnbType="userInfo" />
+      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       {/* <CurrentBox mod={true} del={true} down={true} tit="1:1문의 내역" /> */}
       <CurrentBox btns={["mod", "del", "down"]} tit="1:1문의 내역" />
       <div className="user_history_qna box_ty01 table_type table_comm">
@@ -40,7 +40,6 @@ export default function UserQnaHis() {
           <table className="table">
             <colgroup>
               <col width={"80px"} />
-              <col width={"80px"} />
               <col width={"150px"} />
               <col width={"150px"} />
               <col width={"150px"} />
@@ -50,9 +49,6 @@ export default function UserQnaHis() {
             </colgroup>
             <thead>
               <tr>
-                <th className="check">
-                  <CheckBox for="wr_all" id="wr_all" name="wr_all" />
-                </th>
                 <th className="num">NO</th>
                 <th>문의일</th>
                 <th>답변일</th>
@@ -64,9 +60,6 @@ export default function UserQnaHis() {
             </thead>
             <tbody>
               <tr>
-                <td className="check">
-                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
-                </td>
                 <td className="num">2</td>
                 <td>2023.04.20</td>
                 <td>2023.05.08</td>
@@ -78,9 +71,9 @@ export default function UserQnaHis() {
                 <td>블랙리스트</td>
               </tr>
               <tr>
-                <td className="check">
+                {/* <td className="check">
                   <CheckBox for="wr_2" id="wr_2" name="wr_2" />
-                </td>
+                </td> */}
                 <td className="num">1</td>
                 <td>2023.04.20</td>
                 <td>-</td>

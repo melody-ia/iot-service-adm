@@ -1,9 +1,11 @@
+import { useParams, useLocation } from "react-router-dom";
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
 
 export default function UserQnaHisDetail() {
+  const { pathname } = useLocation();
   return (
     <>
-      <Lnb lnbType="userInfo" />
+      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       {/* <CurrentBox mod={true} del={true} down={true} tit="1:1문의 내역 상세보기" /> */}
       <CurrentBox btns={["mod", "del", "down"]} tit="1:1문의 내역 상세보기" />
       <div className="user_history_qna_detail detail_form box_ty01 table_type table_comm">

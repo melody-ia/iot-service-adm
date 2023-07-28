@@ -1,14 +1,16 @@
+import { useParams, useLocation } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import { useDatePicker } from "../../hooks/bundle_hooks";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserRankHis() {
+  const { pathname } = useLocation();
   const { date, startDate, endDate } = useDatePicker();
 
   return (
     <>
-      <Lnb lnbType="userInfo" />
+      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       {/* <CurrentBox mod={true} del={true} down={true} tit="탄소 중립 랭킹 변동 내역" /> */}
       <CurrentBox btns={["mod", "del", "down"]} tit="탄소 중립 랭킹 변동 내역" />
       <div className="user_history_rank box_ty01 table_type table_comm">
@@ -24,13 +26,13 @@ export default function UserRankHis() {
         <div className="table_wrap line">
           <table className="table">
             <colgroup>
-                <col width={"100px"}/>
-                <col width={"100px"}/>
-                <col width={"150px"}/>
-                <col width={"150px"}/>
-                <col width={"150px"}/>
-                <col width={"250px"}/>
-                <col width={"250px"}/>
+              <col width={"100px"} />
+              <col width={"100px"} />
+              <col width={"150px"} />
+              <col width={"150px"} />
+              <col width={"150px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>

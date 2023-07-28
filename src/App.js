@@ -66,6 +66,7 @@ function App() {
         <Route path="UserList/add" element={<UserAdd />} />
         <Route path="DeletedUserList" element={<DeletedUserList />} />
         <Route path="UserBasicInfo/:id" element={<UserBasicInfo />} />
+        <Route path="DeleteUserBasicInfo/:id" element={<UserBasicInfo />} />
         <Route path="UserPromoHis/:id" element={<UserPromoHis />} />
         <Route path="UserPromoHis/:id/:id" element={<UserPromoHisDetail />} />
         {/* <Route path="UserPromoHisDetail" element={<UserPromoHisDetail />} /> */}

@@ -12,6 +12,16 @@ export default function Lnb(props) {
       ["회원리스트", "/UserList"],
       ["탈퇴/삭제회원", "/DeletedUserList"],
     ],
+    deleteUserInfo: [
+      ["회원 정보", "/DeleteUserBasicInfo/" + id],
+      ["프로모션 참여 내역", "/DeleteUserPromoHis/" + id],
+      ["탄소발자국 계산 내역", "/DeleteUserCalcHis/" + id],
+      ["탄소 중립 랭킹 변동 내역", "/DeleteUserRankHis/" + id],
+      ["도장 적립 내역", "/DeleteUserStempHis/" + id],
+      ["포인트 지급/사용 내역", "/DeleteUserPointHis/" + id],
+      ["1:1문의 내역", "/DeleteUserQnaHis/" + id],
+      ["등록 기기 내역", "/DeleteUserDeviceHis/" + id],
+    ],
     userInfo: [
       ["회원 정보", "/UserBasicInfo/" + id],
       ["프로모션 참여 내역", "/UserPromoHis/" + id],

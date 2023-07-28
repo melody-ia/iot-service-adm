@@ -1,20 +1,22 @@
+import { useParams, useLocation } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import { useDatePicker, useSelectBox } from "../../hooks/bundle_hooks";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserStempHis() {
+  const { pathname } = useLocation();
   const { date, startDate, endDate } = useDatePicker();
 
   const { selectedValues, selecBoxHtml } = useSelectBox({
     sort_join: ["최신 순", "오래된 순"],
     year_type: ["2022", "2023"],
-    promotion_sort:["데일리 챌린지", "데일리 챌린지2", "데일리 챌린지_데일리 탄소 줄이기"]
+    promotion_sort: ["데일리 챌린지", "데일리 챌린지2", "데일리 챌린지_데일리 탄소 줄이기"],
   });
 
   return (
     <>
-      <Lnb lnbType="userInfo" />
+      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       {/* <CurrentBox mod={true} del={true} down={true} tit="도장 적립 내역" /> */}
       <CurrentBox btns={["mod", "del", "down"]} tit="도장 적립 내역" />
       <div className="user_history_stemp box_ty01 table_type table_comm">

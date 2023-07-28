@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
 import arrowRightGreen from "../../assets/img/icon/angle_right_green.svg";
@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 export default function UserPromoHis() {
   const { id } = useParams();
+  const { pathname } = useLocation();
   const { date, start_at, end_at } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     duration: ["진행기간", "참여기간"],
@@ -18,7 +19,7 @@ export default function UserPromoHis() {
     const filter = { 진행기간: "in_date", 참여기간: "ch_date" }[selectedValues.duration];
     const res = await postData("member/show/challenge", {
       mb_no,
-      mb_id: "admin",
+      target_id: "admin",
       filter,
       start_at,
       end_at,
@@ -32,7 +33,7 @@ export default function UserPromoHis() {
 
   return (
     <>
-      <Lnb lnbType="userInfo" />
+      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       <CurrentBox btns={["down"]} tit="프로모션 참여 내역" />
       <div className="user_history_pro box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">

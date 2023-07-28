@@ -1,10 +1,12 @@
+import { useParams, useLocation } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import Pagination from "../../components/Pagination";
 
 export default function UserPromoHisDetail() {
+  const { pathname } = useLocation();
   return (
     <>
-      <Lnb lnbType="userInfo" />
+      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       <CurrentBox btns={["down"]} tit="프로모션 참여 상세 내역" />
       <div className="user_history_pro_detail detail_form box_ty01 table_type">
         <div className="table_wrap line">

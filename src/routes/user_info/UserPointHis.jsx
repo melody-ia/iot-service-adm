@@ -1,9 +1,11 @@
 import { Lnb, CurrentBox } from "../../components/bundle_components";
+import { useLocation, useParams } from "react-router-dom";
 import { useDatePicker, useSelectBox } from "../../hooks/bundle_hooks";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserPointHis() {
+  const { pathname } = useLocation();
   const { date, startDate, endDate } = useDatePicker();
 
   const { selectedValues, selecBoxHtml } = useSelectBox({
@@ -12,20 +14,24 @@ export default function UserPointHis() {
 
   return (
     <>
-      <Lnb lnbType="userInfo" />
+      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       {/* <CurrentBox mod={true} del={true} down={true} tit="포인트 지급/사용 내역" /> */}
       <CurrentBox btns={["mod", "del", "down"]} tit="포인트 지급/사용 내역" />
       <div className="user_history_point box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
-            <p className="user_point_total">총 보유 포인트 : <span>2,500</span></p>
-            <div className="select_input_wrap d-flex">
-                <div className="select_input input_ty02 year">{selecBoxHtml}</div>
-            </div>
-            <div className="date_input_wrap d-flex">
-                <div className="date_input input_ty02">{date.start}</div>
-                <div className="date_input input_ty02">{date.end}</div>
-            </div>
-            <button type="button" className="btn_ty01 btn_search">검색</button>
+          <p className="user_point_total">
+            총 보유 포인트 : <span>2,500</span>
+          </p>
+          <div className="select_input_wrap d-flex">
+            <div className="select_input input_ty02 year">{selecBoxHtml}</div>
+          </div>
+          <div className="date_input_wrap d-flex">
+            <div className="date_input input_ty02">{date.start}</div>
+            <div className="date_input input_ty02">{date.end}</div>
+          </div>
+          <button type="button" className="btn_ty01 btn_search">
+            검색
+          </button>
         </div>
         <div className="table_wrap line part">
           <table className="table">
@@ -87,7 +93,7 @@ export default function UserPointHis() {
               </tr>
               <tr className="write_row">
                 <td className="check">
-                  <CurrentBox btns={["add"]}/>
+                  <CurrentBox btns={["add"]} />
                   {/* <button type="button" className="btn_ty01 btn_bg add" data-btn="add">등록</button> */}
                 </td>
                 <td className="num"></td>

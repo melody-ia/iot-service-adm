@@ -1,6 +1,5 @@
-import { Children, useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import axios from "axios";
 import Radio from "../../components/RadioBtn";
 import img from "../../assets/img/img.png";
 import { Lnb, CurrentBox, FindAddr } from "../../components/bundle_components";
@@ -30,13 +29,12 @@ export default function UserInfo() {
     graduation: ["대학원", "대학", "전문대", "고등학교", "중학교", "초등학교", "해당사항 없음"],
   });
   const [addrBox, setAddrBox] = useState("");
-  const [profileImage, setProfileImage] = useState();
 
   const loadUserData = async () => {
-    const res = await postData("member/show", { mb_no, mb_id: id });
-    console.log(res.data.memberInfo[0]);
+    const type = pathname.includes("Delete") ? "leave" : "all";
+    const res = await postData("member/show", { mb_no, target_id: id, type });
     const essentialInfo = {};
-    const selectInfo = {};
+    const choiceInfo = {};
     const selectBoxData = {};
     Object.keys(form)
       .filter(el => el !== "mb_id_dup")
@@ -47,14 +45,45 @@ export default function UserInfo() {
         };
       });
     Object.keys(choiceForm).forEach(el => {
-      selectInfo[el] = res.data.memberInfo[0][el];
+      choiceInfo[el] = res.data.memberInfo[0][el];
       if (Object.keys(selectedValues).includes(el)) selectBoxData[el] = res.data.memberInfo[0][el];
     });
-
-    // "mb_profile": "",
     setForm({ ...form, ...essentialInfo });
-    setChoiceForm({ ...selectInfo });
+    setChoiceForm({ ...choiceInfo });
     setSelectedValue({ ...selectBoxData });
+  };
+
+  console.log(resData);
+
+  const editUserData = async () => {
+    const type = pathname.includes("Delete") ? "leave" : "all";
+    const formCopy = { ...form };
+    const chioceFormCopy = { ...choiceForm };
+    const totalInfo = {};
+    for (let prop in formCopy) {
+      if (["mb_id", "mb_id_dup", "mb_name", "mb_birth", "mb_hp", "mb_email", "mb_sex", "mb_datetime"].includes(prop)) continue;
+      totalInfo[prop] = formCopy[prop]["val"];
+    }
+    for (let prop in chioceFormCopy) {
+      totalInfo[prop] = chioceFormCopy[prop];
+    }
+    if (!totalInfo.mb_password) delete totalInfo.mb_password;
+    if (!totalInfo.mb_profile) delete totalInfo.mb_profile;
+    const formData = new FormData();
+    formData.append("mb_no", mb_no);
+    formData.append("target_id", formCopy.mb_id.val);
+    formData.append("type", type);
+    for (let prop in totalInfo) {
+      formData.append(prop, totalInfo[prop]);
+    }
+    await postData("member/update", formData);
+    alert("수정되었습니다.");
+  };
+
+  const btnEvent = {
+    mod() {
+      editUserData();
+    },
   };
 
   useEffect(() => {
@@ -65,13 +94,13 @@ export default function UserInfo() {
     if (Object.values(choiceForm).some(el => el)) setChoiceForm({ ...choiceForm, ...selectedValues });
   }, [selectedValues]);
 
-  console.log(choiceForm);
+  // console.log(choiceForm);
 
   return (
     <>
-      <Lnb lnbType="userInfo" />
+      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       {/* <CurrentBox mod={true} del={true} down={true} tit="회원 정보" /> */}
-      <CurrentBox btns={["mod", "down"]} tit="회원 정보" />
+      <CurrentBox btns={["mod", "down"]} tit="회원 정보" {...btnEvent} />
       {/* 계정이 비활성화계정일 시 noactive 클래스 추가 */}
       <div className="user_info box_ty01 noActive">
         <div className="write_type">
@@ -93,8 +122,8 @@ export default function UserInfo() {
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">비밀번호</label>
                   <div className="d-flex ip_box">
-                    <input type="password" placeholder="직접입력" value={form.mb_pw.val} data-type="mb_pw" onChange={valid} />
-                    {errorCheck("mb_pw")?.alert}
+                    <input type="password" placeholder="직접입력" value={form.mb_password.val} data-type="mb_password" onChange={valid} />
+                    {errorCheck("mb_password")?.alert}
                   </div>
                 </div>
               </div>
@@ -171,7 +200,7 @@ export default function UserInfo() {
               <div className="flex_box">
                 <div className="flex_left">
                   <span className="label">프로필 사진</span>
-                  <FileItemProfile imgaeUrl={resData?.memberInfo[0].mb_profile} setProfileImage={setProfileImage} />
+                  <FileItemProfile imgaeUrl={resData?.memberInfo[0].mb_profile} choiceForm={choiceForm} setChoiceForm={setChoiceForm} />
                 </div>
                 <div className="row">
                   <div className="flex_right">
@@ -218,7 +247,13 @@ export default function UserInfo() {
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">주택형태</label>
-                  <input type="text" placeholder="아파트, 다세대, 단독" data-type="residence_type" onChange={dataSel} />
+                  <input
+                    type="text"
+                    placeholder="아파트, 다세대, 단독"
+                    data-type="residence_type"
+                    value={choiceForm.residence_type}
+                    onChange={dataSel}
+                  />
                 </div>
                 <div className="radio_group flex_right">
                   <span className="label">음식물 처리기 소유 여부</span>
@@ -269,8 +304,8 @@ export default function UserInfo() {
                   <span className="label">계정활성화 여부</span>
                   <div className="radio_wrap">
                     {[
-                      ["계정활성화", 1],
-                      ["계정비활성화", 0],
+                      ["계정활성화", 0],
+                      ["계정비활성화", 1],
                     ].map((el, idx) => {
                       return (
                         <Radio
@@ -314,7 +349,7 @@ export default function UserInfo() {
               </div>
               <div className="input_ty02 flex_box">
                 <label htmlFor="">비고</label>
-                <textarea placeholder="직접입력" data-type="comment" onChange={dataSel}></textarea>
+                <textarea placeholder="직접입력" data-type="mb_memo" value={choiceForm.mb_memo} onChange={dataSel}></textarea>
               </div>
             </div>
           </div>
@@ -341,7 +376,7 @@ export default function UserInfo() {
   );
 }
 
-function FileItemProfile({ imageUrl, setProfileImage }) {
+function FileItemProfile({ imageUrl, choiceForm, setChoiceForm }) {
   const allowType = ["jpg", "jpeg", "png", "gif"];
   const { fileData, setFileData, deleteFile, uploadFile } = useUploadFile(allowType, 1, 1);
   const fileRef = useRef(null);
@@ -376,7 +411,7 @@ function FileItemProfile({ imageUrl, setProfileImage }) {
   }, []);
 
   useEffect(() => {
-    setProfileImage(fileData);
+    setChoiceForm({ ...choiceForm, mb_profile: fileData[0]?.file });
   }, [fileData]);
 
   return (

@@ -63,8 +63,8 @@ export default function UserAdd() {
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">비밀번호</label>
                   <div className="d-flex ip_box">
-                    <input type="password" placeholder="직접입력" value={form.mb_pw.val} data-type="mb_pw" onChange={valid} />
-                    {errorCheck("mb_pw")?.alert}
+                    <input type="password" placeholder="직접입력" value={form.mb_password.val} data-type="mb_password" onChange={valid} />
+                    {errorCheck("mb_password")?.alert}
                   </div>
                 </div>
               </div>
@@ -264,8 +264,8 @@ export default function UserAdd() {
                   <span className="label">계정활성화 여부</span>
                   <div className="radio_wrap account">
                     {[
-                      ["계정활성화", 1],
-                      ["계정비활성화", 0],
+                      ["계정활성화", 0],
+                      ["계정비활성화", 1],
                     ].map((el, idx) => {
                       return (
                         <Radio
@@ -300,7 +300,7 @@ export default function UserAdd() {
               </div>
               <div className="input_ty02 flex_box">
                 <label htmlFor="">비고</label>
-                <textarea placeholder="직접입력" data-type="comment" value={choiceForm["comment"]} onChange={dataSel}></textarea>
+                <textarea placeholder="직접입력" data-type="mb_memo" value={choiceForm["mb_memo"]} onChange={dataSel}></textarea>
               </div>
             </div>
           </div>

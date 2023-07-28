@@ -17,8 +17,9 @@ export function useSelectInfo() {
     job: "",
     graduation: "",
     marriage: "",
-    mb_open: "1",
-    comment: "",
+    mb_open: "0",
+    mb_memo: "",
+    mb_profile: "",
   });
 
   const dataSel = e => {
