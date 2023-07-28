@@ -4,6 +4,8 @@ export default function CurrentBox(props) {
     ["복원", "res"],
     ["취소", "can"],
     ["등록", "add"],
+    ["지급", "give"],
+    ["적립", "accu"],
     ["수정", "mod"],
     ["삭제", "del"],
     ["엑셀 다운로드", "down"],

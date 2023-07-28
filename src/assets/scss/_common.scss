@@ -52,6 +52,8 @@ body{background:#F1F4F5;
 		@include tablet{padding-left:35px;}
 	}
 	&.add{background-image: url(../img/icon/add.svg);}
+	&.give{background-image: url(../img/icon/add.svg);}
+	&.accu{background-image: url(../img/icon/add.svg);}
 	&.mod{background-image: url(../img/icon/edit.svg); background-color:#41A4FF;
 		&:hover{background-color: #2795fc;}
 	}

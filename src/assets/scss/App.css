@@ -168,6 +168,12 @@ body::-webkit-scrollbar-track, body textarea::-webkit-scrollbar-track {
 .btn_ty01.add {
   background-image: url(../img/icon/add.svg);
 }
+.btn_ty01.give {
+  background-image: url(../img/icon/add.svg);
+}
+.btn_ty01.accu {
+  background-image: url(../img/icon/add.svg);
+}
 .btn_ty01.mod {
   background-image: url(../img/icon/edit.svg);
   background-color: #41A4FF;
@@ -2747,6 +2753,35 @@ input, textarea {
 }
 @media all and (max-width: 480px) {
   .user_history_point .table_wrap .write_row .current_box .setting_btn_wrap {
+    margin: 0 auto;
+  }
+}
+
+.user_history_stemp .table_wrap .write_row .current_box {
+  margin: 0;
+  padding: 0;
+}
+.user_history_stemp .table_wrap .write_row .current_box .current_tit {
+  display: none;
+}
+.user_history_stemp .table_wrap .write_row .current_box .setting_btn_wrap button {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: initial;
+}
+@media all and (max-width: 768px) {
+  .user_history_stemp .table_wrap .write_row .current_box .setting_btn_wrap button {
+    font-size: inherit;
+  }
+}
+@media all and (max-width: 768px) {
+  .user_history_stemp .table_wrap .write_row .current_box .setting_btn_wrap {
+    width: 100%;
+  }
+}
+@media all and (max-width: 480px) {
+  .user_history_stemp .table_wrap .write_row .current_box .setting_btn_wrap {
     margin: 0 auto;
   }
 }

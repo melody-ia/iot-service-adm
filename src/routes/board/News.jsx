@@ -15,6 +15,7 @@ export default function News() {
   const [pageData, setPageData] = useState();
   const [checkedList, setCheckedList] = useState([]);
   const [curPage, setCurPage] = useState(1);
+  const [beforeFilter, setBeforeFilter] = useState();
   const [modList, setModeList] = useState({ wr_id: [], wr_status: [], wr_memo: [] });
   const [render, setRender] = useState(true);
 
@@ -29,15 +30,24 @@ export default function News() {
     const category = { 전체: "all", 이벤트: "event", 뉴스: "news" }[selectedValues.division_sort];
     const wr_status = { 공개: 0, 비공개: 1 }[selectedValues.open_state];
     const order = selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";
-    const res = await postData("community/index", {
+    const data = {
       mb_no,
       start_at,
       end_at,
       category,
       wr_status,
       order,
-      cur_page: curPage,
-    });
+      // cur_page: curPage,
+      // list_items: 1,
+    };
+    const res = await postData("community/index", { ...data });
+    setPageData(res.page);
+    setBeforeFilter({ ...data });
+    setCurPage(1);
+  };
+
+  const loadPageData = async page => {
+    const res = await postData("community/index", { ...beforeFilter, cur_page: page });
     setPageData(res.page);
   };
 
@@ -61,15 +71,8 @@ export default function News() {
 
   useEffect(() => {
     loadPostData();
-  }, [curPage]);
+  }, []);
 
-  // useEffect(() => {
-  //   setRender(!render);
-  // }, [resData]);
-
-  // if (resData) console.log(resData.boardInfo);
-
-  // if (resData && pageData)
   return (
     <>
       <Lnb lnbType="board" />
@@ -129,7 +132,7 @@ export default function News() {
           </table>
         </div>
         <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} {...btnEvent} />
-        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} />}
+        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
       </div>
     </>
   );

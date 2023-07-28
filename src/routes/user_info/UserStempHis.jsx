@@ -1,35 +1,59 @@
+import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
-import { useDatePicker, useSelectBox } from "../../hooks/bundle_hooks";
+import { useDatePicker, useSelectBox, useCheckToken } from "../../hooks/bundle_hooks";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 
 export default function UserStempHis() {
   const { pathname } = useLocation();
-  const { date, startDate, endDate } = useDatePicker();
-
+  const { mb_no, postData, setResData } = useCheckToken();
+  const { date, before3m, start_at, end_at } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     sort_join: ["최신 순", "오래된 순"],
-    year_type: ["2022", "2023"],
     promotion_sort: ["데일리 챌린지", "데일리 챌린지2", "데일리 챌린지_데일리 탄소 줄이기"],
   });
+  const [pageData, setPageData] = useState();
+  const [curPage, setCurPage] = useState(1);
+  const [beforeFilter, setBeforeFilter] = useState();
+
+  const loadHisData = async () => {
+    const data = {
+      mb_no,
+      start_at,
+      end_at,
+    };
+    const res = await postData("api", data);
+    setBeforeFilter({ ...data });
+    setPageData(res.page);
+    setCurPage(1);
+    if (!res.data) setResData([]);
+  };
+
+  const loadPageData = async page => {
+    const res = await postData("api", { ...beforeFilter, cur_page: page });
+    setPageData(res.page);
+  };
+
+  useEffect(() => {
+    // loadHisData();
+  }, []);
 
   return (
     <>
       <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       {/* <CurrentBox mod={true} del={true} down={true} tit="도장 적립 내역" /> */}
-      <CurrentBox btns={["mod", "del", "down"]} tit="도장 적립 내역" />
+      <CurrentBox btns={["del", "down"]} tit="도장 적립 내역" />
       <div className="user_history_stemp box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
             <div className="select_input input_ty02">{selecBoxHtml[0]}</div>
-            <div className="select_input input_ty02 year">{selecBoxHtml[1]}</div>
           </div>
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <button type="button" className="btn_ty01 btn_search">
+          <button type="button" className="btn_ty01 btn_search" onClick={loadHisData}>
             검색
           </button>
         </div>
@@ -60,12 +84,12 @@ export default function UserStempHis() {
             <tbody>
               <tr className="write_row">
                 <td className="check">
-                  <CheckBox for="wr_1" id="wr_1" name="wr_1" />
+                  <CurrentBox btns={["accu"]} hideTit={true} />
                 </td>
-                <td className="num"></td>
+                <td className="num">0</td>
                 <td>
                   <div className="select_input_wrap d-flex">
-                    <div className="select_input input_ty02">{selecBoxHtml[2]}</div>
+                    <div className="select_input input_ty02">{selecBoxHtml[1]}</div>
                   </div>
                 </td>
                 <td>
@@ -75,7 +99,7 @@ export default function UserStempHis() {
                 </td>
                 <td className="date">
                   <div className="input_ty02">
-                    <input type="text" placeholder="직접입력" defaultValue={"2023.06.15"} />
+                    <input type="text" placeholder="YYYY-MM-DD" defaultValue={""} />
                   </div>
                 </td>
                 <td>
@@ -114,18 +138,9 @@ export default function UserStempHis() {
             </tbody>
           </table>
         </div>
-        <div className="foot_btn_wrap d-flex flex-ac">
-          <button type="button" className="btn_ty01 btn_bg mod">
-            수정
-          </button>
-          <button type="button" className="btn_ty01 btn_bg del">
-            삭제
-          </button>
-          <button type="button" className="btn_ty01 btn_bg down">
-            엑셀 다운로드
-          </button>
-        </div>
-        <Pagination />
+
+        <CurrentBox btns={["del", "down"]} tit="도장 적립 내역" hideTit={true} />
+        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
       </div>
     </>
   );

@@ -1,17 +1,17 @@
 import { Lnb, CurrentBox, Pagination } from "../../components/bundle_components";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
 import { useEffect, useState } from "react";
 
 export default function Qna() {
   const navigate = useNavigate();
-  const { id } = useParams();
   const { date, start_at, end_at } = useDatePicker();
-  const { mb_no, resData, postData } = useCheckToken();
+  const { mb_no, resData, postData, setResData } = useCheckToken();
   const [pageData, setPageData] = useState();
   const [curPage, setCurPage] = useState(1);
+  const [beforeFilter, setBeforeFilter] = useState();
   const [categoryList, setCategoryList] = useState();
-  const { selectedValues, setSelectedValue, selecBoxHtml } = useSelectBox({
+  const { selectedValues, selecBoxHtml } = useSelectBox({
     inquiry_date: ["최근 문의일 순", "오래된 문의일 순"],
     answer_state: ["전체", "답변완료", "답변대기"],
     inquiry_sort: categoryList || ["전체"],
@@ -19,12 +19,20 @@ export default function Qna() {
 
   const loadPostData = async () => {
     const order = selectedValues.inquiry_date === "최근 문의일 순" ? "desc" : "asc";
-    const qa_status = { 전체: "all", 답변완료: 0, 답변대기: 1 }[selectedValues.answer_state];
+    const qa_status = { 전체: "all", 답변완료: 1, 답변대기: 0 }[selectedValues.answer_state];
     const qa_category = selectedValues.inquiry_sort === "전체" ? "all" : categoryList.indexOf(selectedValues.inquiry_sort);
-    const res = await postData("inquire/index", { mb_no, start_at, end_at, qa_status, qa_category, order, cur_page: curPage });
-    console.log(res);
+    const data = { mb_no, start_at, end_at, qa_status, qa_category, order };
+    const res = await postData("inquire/index", { ...data });
+    setBeforeFilter({ ...data });
     setPageData(res.page);
+    setCurPage(1);
+    if (!res.data) setResData([]);
     if (!categoryList) setCategoryList(res.data.category);
+  };
+
+  const loadPageData = async page => {
+    const res = await postData("community/index", { ...beforeFilter, cur_page: page });
+    setPageData(res.page);
   };
 
   useEffect(() => {
@@ -79,7 +87,7 @@ export default function Qna() {
                     <td>{el.mb_id}</td>
                     <td>{el.inquire_date}</td>
                     <td>{el.answer_date}</td>
-                    <td>{["답변완료", "답변대기"][el.qa_status]}</td>
+                    <td>{["답변대기", "답변완료"][el.qa_status]}</td>
                     <td>{el.qa_category}</td>
                     <td
                       style={{ cursor: "pointer" }}
@@ -124,7 +132,7 @@ export default function Qna() {
           </table>
         </div>
         <CurrentBox btns={["down"]} hideTit={true} />
-        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} />}
+        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
       </div>
     </>
   );

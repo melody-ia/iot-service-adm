@@ -1,10 +1,7 @@
 import arrowLeft from "../assets/img/icon/angle_down.svg";
 import arrowRight from "../assets/img/icon/angle_down.svg";
 
-export default function Pagination({ pageData, curPage, setCurPage,onClick }) {
-
-  
-  
+export default function Pagination({ pageData, curPage, setCurPage, onClick }) {
   if (!pageData) return;
   return (
     <div id="pagination" className="d-flex flex-jc">
@@ -12,10 +9,9 @@ export default function Pagination({ pageData, curPage, setCurPage,onClick }) {
         <button
           type="button"
           className="btn arrow_left"
-          onClick={(e) => {
+          onClick={() => {
             setCurPage(curPage - 1);
-            // setIsSearch(false)
-            onClick && onClick(curPage - 1)
+            onClick && onClick(curPage - 1);
           }}
         >
           <img src={arrowLeft} alt="왼쪽 화살표 아이콘" />
@@ -28,10 +24,9 @@ export default function Pagination({ pageData, curPage, setCurPage,onClick }) {
             key={idx}
             type="button"
             className={"btn num " + (pageNum === curPage ? "active" : "")}
-            onClick={(e) => {
+            onClick={() => {
               setCurPage(pageNum);
-              // setIsSearch(false)
-              onClick && onClick(pageNum)
+              onClick && onClick(pageNum);
             }}
           >
             {pageNum}
@@ -42,10 +37,9 @@ export default function Pagination({ pageData, curPage, setCurPage,onClick }) {
         <button
           type="button"
           className="btn arrow_right"
-          onClick={(e) => {
+          onClick={() => {
             setCurPage(curPage + 1);
-            // setIsSearch(false)
-            onClick && onClick(curPage + 1)
+            onClick && onClick(curPage + 1);
           }}
         >
           <img src={arrowRight} alt="오른쪽 화살표 아이콘" />

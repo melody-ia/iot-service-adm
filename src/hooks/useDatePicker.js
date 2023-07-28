@@ -1,11 +1,13 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
 import arrowRight from "../assets/img/icon/angle_thin_right_g.svg";
+import { useLocation } from "react-router-dom";
 
 export function useDatePicker() {
   const defaultDataS = new Date();
   defaultDataS.setDate(1);
+  const { pathname } = useLocation();
   const [fixedDate] = useState(new Date());
   const [startDate, setStartDate] = useState(defaultDataS);
   const [endDate, setEndDate] = useState(new Date());
@@ -41,6 +43,9 @@ export function useDatePicker() {
     const year = date.getFullYear();
     return `${year}년 ${`${monthIndex}`.slice(-2)}월`;
   };
+  const before3m = new Date();
+  before3m.setMonth(before3m.getMonth() - 3);
+
   const date = {
     start: (
       <DatePicker
@@ -115,11 +120,17 @@ export function useDatePicker() {
     ),
   };
 
+  useEffect(() => {
+    const before3mPage = ["UserQnaHis", "UserPointHis", "UserStempHis"];
+    if (before3mPage.some(el => pathname.includes(el))) {
+      setStartDate(before3m);
+    }
+  }, []);
+
   return {
     date,
-    startDate,
-    endDate,
     start_at: startDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1),
     end_at: endDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1),
+    before3m: before3m.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1),
   };
 }

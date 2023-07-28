@@ -19,11 +19,11 @@ export default function QnaDetail() {
   };
 
   const dataSubmit = async () => {
-    const qa_status = answerData.qa_answer_content ? 0 : 1;
+    const qa_status = answerData.qa_answer_content ? 1 : 0;
     const res = await postData("inquire/answer", { mb_no, qa_id: state.qa_id, ...answerData, qa_status });
     if (res.code !== 200) return alert("잘못된 요청입니다.");
     alert("수정되었습니다.");
-    navigate("/Qna");
+    navigate(-1);
   };
 
   useEffect(() => {
@@ -53,8 +53,8 @@ export default function QnaDetail() {
                 <label htmlFor="">답변여부</label>
                 <div className="radio_group d-flex w100">
                   {[
-                    ["답변완료", "yes", 0],
-                    ["답변대기", "no", 1],
+                    ["답변완료", "yes", 1],
+                    ["답변대기", "no", 0],
                   ].map((el, idx) => {
                     return (
                       <RadioBtn key={idx} for={el[1]} id={el[1]} name="state" text={el[0]} checked={resData?.inquireInfo[0].qa_status == el[2]} />

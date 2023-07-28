@@ -1,9 +1,39 @@
+import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import Pagination from "../../components/Pagination";
+import { useCheckToken } from "../../hooks/useCheckToken";
 
 export default function UserPromoHisDetail() {
-  const { pathname } = useLocation();
+  const { id } = useParams();
+  const { state, pathname } = useLocation();
+  const { mb_no, postData, resData, setResData } = useCheckToken();
+  const [pageData, setPageData] = useState();
+  const [curPage, setCurPage] = useState(1);
+  const [beforeFilter, setBeforeFilter] = useState();
+
+  const loadChallengeData = async () => {
+    const data = {
+      mb_no,
+      target_id: id,
+      challenge_no: state.challenge_no,
+    };
+    const res = await postData("member/show/challenge/detail", { ...data });
+    setBeforeFilter({ ...data });
+    setPageData(res.page);
+    setCurPage(1);
+    if (!res.data) setResData([]);
+  };
+
+  const loadPageData = async page => {
+    const res = await postData("member/show/challenge/detail", { ...beforeFilter, cur_page: page });
+    setPageData(res.page);
+  };
+
+  useEffect(() => {
+    loadChallengeData();
+  }, []);
+
   return (
     <>
       <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
@@ -41,7 +71,22 @@ export default function UserPromoHisDetail() {
                   {/* <br />1 */}
                 </th>
               </tr>
-              <tr>
+
+              {resData?.history.map((el, idx) => {
+                return (
+                  <tr key={idx}>
+                    <td>{idx + 1}</td>
+                    <td>{el.date}</td>
+                    <td className="overflow">{el.wr_content}</td>
+                    <td>+ {resData.challengeInfo[0].ch_stamp_count}</td>
+                    <td>+ {el.po_point}</td>
+                    <td>{el.po_content}</td>
+                    <td>{el.likes}</td>
+                    <td>{el.reports}</td>
+                  </tr>
+                );
+              })}
+              {/* <tr>
                 <td>2</td>
                 <td>2023-05-01</td>
                 <td className="overflow">탄소를 줄이기 위해 오늘도 열심히 대중교통을 이용하고</td>
@@ -60,13 +105,13 @@ export default function UserPromoHisDetail() {
                 <td>프로모션 참여</td>
                 <td>200</td>
                 <td>0</td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>
 
         <CurrentBox btns={["down"]} hideTit={true} />
-        <Pagination />
+        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
       </div>
     </>
   );

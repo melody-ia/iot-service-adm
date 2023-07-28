@@ -1,12 +1,12 @@
-import { Link, useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
 import arrowRightGreen from "../../assets/img/icon/angle_right_green.svg";
-import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
 import { useEffect } from "react";
 
 export default function UserPromoHis() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { pathname } = useLocation();
   const { date, start_at, end_at } = useDatePicker();
@@ -19,7 +19,7 @@ export default function UserPromoHis() {
     const filter = { 진행기간: "in_date", 참여기간: "ch_date" }[selectedValues.duration];
     const res = await postData("member/show/challenge", {
       mb_no,
-      target_id: "admin",
+      target_id: id,
       filter,
       start_at,
       end_at,
@@ -59,10 +59,14 @@ export default function UserPromoHis() {
                       3
                     </td>
                     <th className="tit">프로모션 명</th>
-                    <td className="promotion" colSpan={3}>
-                      <Link to={"/UserPromoHis/UserPromoHisDetail/" + id}>
-                        {el.ch_title} <img src={arrowRightGreen} alt="오른쪽 화살표 아이콘" className="arrow_right" />
-                      </Link>
+                    <td
+                      className="promotion"
+                      colSpan={3}
+                      onClick={() => {
+                        navigate("/UserPromoHis/UserPromoHisDetail/" + id, { state: { challenge_no: el.challenge_no } });
+                      }}
+                    >
+                      {el.ch_title} <img src={arrowRightGreen} alt="오른쪽 화살표 아이콘" className="arrow_right" />
                     </td>
                   </tr>
                   <tr>

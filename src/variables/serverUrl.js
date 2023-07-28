@@ -1,5 +1,7 @@
 let apiUrl = "http://localhost:5050/adm/";
 let serverUrl = "http://localhost:5050/";
+// let apiUrl = "https://gl-iot-api.wizclass.kr/adm/";
+// let serverUrl = "https://gl-iot-api.wizclass.kr/";
 if (window.location.href.includes("greentalk")) {
   apiUrl = "https://api.greentalk.kr/adm/";
   serverUrl = "https://api.greentalk.kr/";

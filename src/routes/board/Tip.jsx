@@ -5,7 +5,7 @@ import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_h
 
 export default function Tip() {
   const navigate = useNavigate();
-  const { mb_no, postData, resData } = useCheckToken();
+  const { mb_no, postData, resData, setResData } = useCheckToken();
   const { date, start_at, end_at } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     signUp_date: ["최근 등록일 순", "오래된 등록일 순"],
@@ -14,6 +14,7 @@ export default function Tip() {
   const [pageData, setPageData] = useState();
   const [checkedList, setCheckedList] = useState([]);
   const [curPage, setCurPage] = useState(1);
+  const [beforeFilter, setBeforeFilter] = useState();
   const [modList, setModeList] = useState({ wr_id: [], wr_status: [], wr_memo: [] });
 
   const checkAll = e => {
@@ -25,15 +26,23 @@ export default function Tip() {
     const category = "tip";
     const wr_status = { 공개: 0, 비공개: 1 }[selectedValues.open_state];
     const order = selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";
-    const res = await postData("community/index", {
+    const data = {
       mb_no,
       start_at,
       end_at,
       category,
       wr_status,
       order,
-      cur_page: curPage,
-    });
+    };
+    const res = await postData("community/index", { ...data });
+    setBeforeFilter({ ...data });
+    setPageData(res.page);
+    setCurPage(1);
+    if (!res.data) setResData([]);
+  };
+
+  const loadPageData = async page => {
+    const res = await postData("community/index", { ...beforeFilter, cur_page: page });
     setPageData(res.page);
   };
 
@@ -57,7 +66,7 @@ export default function Tip() {
 
   useEffect(() => {
     loadPostData();
-  }, [curPage]);
+  }, []);
 
   return (
     <>
@@ -115,7 +124,7 @@ export default function Tip() {
           </table>
         </div>
         <CurrentBox btns={["add", "mod", "del"]} hideTit={true} setCurPage={setCurPage} />
-        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} />}
+        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
       </div>
     </>
   );
