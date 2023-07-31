@@ -20,6 +20,7 @@ export default function UserPromoHis() {
     const res = await postData("member/show/challenge", {
       mb_no,
       target_id: id,
+      target_id: "admin",
       filter,
       start_at,
       end_at,
@@ -42,13 +43,13 @@ export default function UserPromoHis() {
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <button type="button" className="btn_ty01 btn_search">
+          <button type="button" className="btn_ty01 btn_search" onClick={loadUserPromoData}>
             검색
           </button>
         </div>
         {resData?.challengeResult.map((el, idx) => {
           return (
-            <div className="table_wrap line">
+            <div key={idx} className="table_wrap line">
               <table className="table">
                 <colgroup>
                   <col width={"80px"} />

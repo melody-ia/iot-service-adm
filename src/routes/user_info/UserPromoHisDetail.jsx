@@ -16,6 +16,7 @@ export default function UserPromoHisDetail() {
     const data = {
       mb_no,
       target_id: id,
+      target_id: "admin",
       challenge_no: state.challenge_no,
     };
     const res = await postData("member/show/challenge/detail", { ...data });
@@ -68,7 +69,8 @@ export default function UserPromoHisDetail() {
                 </th>
                 <th>
                   신고
-                  {/* <br />1 */}
+                  {/* <br /> */}
+                  {/* 1 */}
                 </th>
               </tr>
 

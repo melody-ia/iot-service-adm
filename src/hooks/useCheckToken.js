@@ -8,7 +8,7 @@ import axios from "axios";
 
 export function useCheckToken() {
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies();
+  const [cookies, setCookie, removeCookie] = useCookies();
   const [resData, setResData] = useState();
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
 
@@ -51,11 +51,12 @@ export function useCheckToken() {
   };
 
   const logout = () => {
-    setCookie("accessToken", "");
-    setCookie("mb_no", "");
+    removeCookie("accessToken");
+    removeCookie("mb_no");
     setResData(null);
     setIsLogin(false);
     alert("로그아웃 되었습니다.");
+    navigate("/Login");
   };
 
   const updateUserInfo = (form, setForm, type) => {

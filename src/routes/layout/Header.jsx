@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useCheckToken } from "../../hooks/bundle_hooks";
 
 export default function Header(props) {
   const { sideOpen } = props;
   const [showSearch, setShowSearch] = useState(false);
+  const { logout } = useCheckToken();
 
   return (
     <header className="header container_item d-flex flex-ac flex-js">
@@ -14,7 +16,7 @@ export default function Header(props) {
       </div>
       <div className="menu_wrap d-flex flex-ac">
         <button type="button" className="menu_btn menu_btn_search" onClick={() => setShowSearch(!showSearch)} title="검색"></button>
-        <button type="button" className="menu_btn menu_btn_logout" title="로그아웃"></button>
+        <button type="button" className="menu_btn menu_btn_logout" title="로그아웃" onClick={logout}></button>
         {/* 알림 있을시 active 클래스 추가 */}
         <button type="button" className="menu_btn menu_btn_alarm" title="알림"></button>
         <p className="info_text">
