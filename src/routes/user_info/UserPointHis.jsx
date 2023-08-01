@@ -63,8 +63,8 @@ export default function UserPointHis() {
     var exp = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
     if (!exp.test(addPointData.po_datetime)) return alert("날짜는 YYYY-MM-DD 형식으로 입력해 주세요.");
     if (!addPointData.po_content) return alert("지급/사용내역란을 입력해 주세요.");
-    if (addPointData.po_point && addPointData.po_minus_point) return alert("포인트는 지급란과 차감란 중 한곳만 입력해 주세요.");
     if (!addPointData.po_point && !addPointData.po_minus_point) return alert("적립할 포인트를 입력해 주세요.");
+    if (addPointData.po_point && addPointData.po_minus_point) return alert("포인트는 지급란과 차감란 중 한곳만 입력해 주세요.");
     const po_point = addPointData.po_point || -addPointData.po_minus_point;
     await postData("member/show/point/add", {
       mb_no,

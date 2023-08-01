@@ -3464,6 +3464,9 @@ input, textarea {
   margin: 0 5px;
 }
 
+.banner_setting .select_input.input_ty02:nth-of-type(2) .select_box {
+  min-width: 270px;
+}
 .banner_setting .basic .check_type.radio label {
   display: -webkit-box;
   display: -ms-flexbox;

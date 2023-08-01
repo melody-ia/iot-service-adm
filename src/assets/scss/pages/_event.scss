@@ -143,6 +143,11 @@
 
 // 배너 관리
 .banner_setting{
+    .select_input.input_ty02:nth-of-type(2){
+        .select_box {
+            min-width: 270px;
+        }
+    }
     .basic{
         .check_type.radio{
             label{@include displayFlex(null, center, null);

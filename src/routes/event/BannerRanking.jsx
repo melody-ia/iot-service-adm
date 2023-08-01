@@ -23,12 +23,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-                <col width={"80px"} />
-                <col width={"80px"} />
-                <col width={"500px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
+              <col width={"80px"} />
+              <col width={"80px"} />
+              <col width={"500px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -112,12 +112,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-                <col width={"80px"} />
-                <col width={"80px"} />
-                <col width={"500px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
+              <col width={"80px"} />
+              <col width={"80px"} />
+              <col width={"500px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -163,12 +163,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-                <col width={"80px"} />
-                <col width={"80px"} />
-                <col width={"500px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
+              <col width={"80px"} />
+              <col width={"80px"} />
+              <col width={"500px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -214,12 +214,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-                <col width={"80px"} />
-                <col width={"80px"} />
-                <col width={"500px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
+              <col width={"80px"} />
+              <col width={"80px"} />
+              <col width={"500px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -265,12 +265,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-                <col width={"80px"} />
-                <col width={"80px"} />
-                <col width={"500px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
+              <col width={"80px"} />
+              <col width={"80px"} />
+              <col width={"500px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -316,12 +316,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-                <col width={"80px"} />
-                <col width={"80px"} />
-                <col width={"500px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
+              <col width={"80px"} />
+              <col width={"80px"} />
+              <col width={"500px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -367,12 +367,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-                <col width={"80px"} />
-                <col width={"80px"} />
-                <col width={"500px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
+              <col width={"80px"} />
+              <col width={"80px"} />
+              <col width={"500px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -418,12 +418,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-                <col width={"80px"} />
-                <col width={"80px"} />
-                <col width={"500px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
+              <col width={"80px"} />
+              <col width={"80px"} />
+              <col width={"500px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -469,12 +469,12 @@ export default function BannerRanking() {
           </h4>
           <table className="table">
             <colgroup>
-                <col width={"80px"} />
-                <col width={"80px"} />
-                <col width={"500px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
-                <col width={"250px"} />
+              <col width={"80px"} />
+              <col width={"80px"} />
+              <col width={"500px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
+              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
