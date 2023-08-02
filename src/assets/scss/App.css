@@ -3296,30 +3296,10 @@ input, textarea {
 }
 .ch_add .numBox {
   position: relative;
-  padding: 28px 28px 28px 82px;
+  padding: 28px;
 }
 .ch_add .numBox:nth-child(odd) {
   background: #FBFCFC;
-}
-.ch_add .numBox::before {
-  content: counter(number);
-  width: 24px;
-  height: 24px;
-  counter-increment: number;
-  position: absolute;
-  top: 50%;
-  left: 28px;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  color: var(--color-lightGray);
-  border: 1px solid #E0E2E7;
-  border-radius: 5px;
-  text-align: center;
-}
-@media all and (max-width: 768px) {
-  .ch_add .numBox::before {
-    left: 20px;
-  }
 }
 @media all and (max-width: 1850px) {
   .ch_add .numBox {
@@ -3539,6 +3519,9 @@ input, textarea {
 }
 .add_type .foot_btn_wrap {
   padding: 20px 0;
+}
+.add_type input[type=file] {
+  display: none;
 }
 
 .size_info {

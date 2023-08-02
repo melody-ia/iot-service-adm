@@ -1,33 +1,65 @@
-import { useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
-import { useSelectBox, useDatePicker } from "../../hooks/bundle_hooks";
+import { useSelectBox, useDatePicker, useUploadFile, useCheckToken } from "../../hooks/bundle_hooks";
 import banner from "../../assets/img/banner.png";
 import plus from "../../assets/img/icon/border_plus.svg";
 import zoom from "../../assets/img/icon/zoomIn.svg";
 
 export default function BannerAdd() {
-  const history = useNavigate();
-  const { date, startDate, endDate } = useDatePicker();
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const allowType = ["jpg", "jpeg", "png", "gif"];
+  const { fileData, setFileData, letter, uploadFile, deleteFile, writing } = useUploadFile(allowType, 8, 1);
+  const { date, start_at, end_at } = useDatePicker();
+  const { mb_no, postData } = useCheckToken();
   const { selectedValues, selecBoxHtml } = useSelectBox({
-    banner_location: [
-      "메인 상단",
-      "메인 중간",
-      "카테고리",
-      "데일리 발자국 챌린지 리스트 상단",
-      "데일리 발자국 챌린지 글쓰기 상단",
-      "데일리 발자국 챌린지 리스트 상단",
-      "탄소중립랭킹 중간",
-      "탄소중립랭킹 하단",
-      "이벤트/뉴스 상단",
-      "GL 추천 제품",
-    ],
+    banner_location: state.categoryList.filter(el => el !== "전체"),
   });
+  const [postContents, setPostContents] = useState({
+    bn_url: "",
+    bn_memo: "",
+    bn_priority: 0,
+  });
+  const fileRef = useRef(null);
+
+  const handlePostContents = e => {
+    const type = e.target.dataset.type;
+    const value = e.target.dataset.value || e.target.value;
+    let copy = { ...postContents };
+    copy[type] = value;
+    setPostContents(copy);
+  };
+
+  const dataSubmit = async () => {
+    if (!fileData[0]) return alert("이미지를 등록해주세요.");
+    const formData = new FormData();
+    formData.append("mb_no", mb_no);
+    formData.append("bn_alt", state.categoryList.indexOf(selectedValues.banner_location));
+    formData.append("bn_url", postContents.bn_url);
+    formData.append("bn_begin_time", start_at);
+    formData.append("bn_end_time", end_at);
+    formData.append("bn_memo", postContents.bn_memo);
+    formData.append("bn_priority", postContents.bn_priority);
+    formData.append("bannerimage", fileData[0].file);
+    const res = await postData("banner/create", formData);
+    if (res.code === 200) {
+      alert("등록되었습니다.");
+      navigate("/BannerSetting");
+    }
+  };
+
+  const btnEvent = {
+    add() {
+      dataSubmit();
+    },
+  };
 
   return (
     <>
       <Lnb lnbType="event" />
       {/* <CurrentBox mod={true} del={true} tit="배너 등록/수정" /> */}
-      <CurrentBox btns={["mod", "del"]} tit="배너 등록/수정" />
+      <CurrentBox btns={["add"]} tit="배너 등록" {...btnEvent} />
       <div className="banner_add box_ty01 table_type add_type">
         <div className="size_info">
           <h5 className="size_tit">배너 위치별 사이즈 안내</h5>
@@ -57,7 +89,10 @@ export default function BannerAdd() {
                   배너이미지
                   <div className="btn_wrap">
                     <button type="button">
-                      <img src={plus} alt="" />
+                      <label htmlFor="file">
+                        <img src={plus} alt="" />
+                        <input ref={fileRef} type="file" id="file" onChange={uploadFile}></input>
+                      </label>
                     </button>
                     {/* 새창으로 미리보기 */}
                     <button type="button" className="btn_view">
@@ -66,42 +101,10 @@ export default function BannerAdd() {
                   </div>
                 </th>
                 <td rowSpan={3}>
-                  <img src={banner} alt="" />
+                  <img src={fileData[0]?.url} alt="" />
                 </td>
                 <th>배너 위치</th>
-                <td>
-                  {selecBoxHtml}
-                  {/* <div
-                    className="select_input input_ty02"
-                    onClick={() => {
-                      handleSelectBox("banner_location");
-                    }}
-                  >
-                    <input type="text" defaultValue="메인 상단" readOnly />
-                    {selectList.banner_location && (
-                      <ul className="select_box">
-                        {[
-                          "메인 상단",
-                          "메인 중간",
-                          "카테고리",
-                          "데일리 발자국 챌린지 리스트 상단",
-                          "데일리 발자국 챌린지 글쓰기 상단",
-                          "데일리 발자국 챌린지 리스트 상단",
-                          "탄소중립랭킹 중간",
-                          "탄소중립랭킹 하단",
-                          "이벤트/뉴스 상단",
-                          "GL 추천 제품",
-                        ].map((bannerLocation, index) => {
-                          return (
-                            <li key={bannerLocation} data-value={bannerLocation} data-type="banner_location" onClick={searchOptionSel}>
-                              {bannerLocation}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    )}
-                  </div> */}
-                </td>
+                <td>{selecBoxHtml}</td>
               </tr>
               <tr>
                 <th>공개 기한</th>
@@ -118,8 +121,24 @@ export default function BannerAdd() {
                 <td>
                   <div className="radio_group flex_right">
                     <div className="radio_wrap">
-                      <RadioBtn for="show" id="show" name="show" text="공개" />
-                      <RadioBtn for="noshow" id="noshow" name="show" text="비공개" />
+                      {[
+                        ["공개", "show", 0],
+                        ["비공개", "hide", 1],
+                      ].map((el, idx) => {
+                        return (
+                          <RadioBtn
+                            key={idx}
+                            for={el[1]}
+                            id={el[1]}
+                            name={"isShow"}
+                            checked={postContents.bn_priority == el[2]}
+                            text={el[0]}
+                            dataType={"bn_priority"}
+                            dataValue={el[2]}
+                            onClick={handlePostContents}
+                          />
+                        );
+                      })}
                     </div>
                   </div>
                 </td>
@@ -128,7 +147,7 @@ export default function BannerAdd() {
                 <th>링크연결</th>
                 <td colSpan={3}>
                   <div className="input_ty02">
-                    <input type="text" placeholder="직접입력" />
+                    <input type="text" placeholder="직접입력" value={postContents.bn_url} data-type="bn_url" onChange={handlePostContents} />
                   </div>
                 </td>
               </tr>
@@ -136,7 +155,7 @@ export default function BannerAdd() {
                 <th>비고</th>
                 <td colSpan={3}>
                   <div className="input_ty02">
-                    <input type="text" placeholder="직접입력" />
+                    <input type="text" placeholder="직접입력" value={postContents.bn_memo} data-type="bn_memo" onChange={handlePostContents} />
                   </div>
                 </td>
               </tr>
@@ -144,7 +163,7 @@ export default function BannerAdd() {
           </table>
         </div>
         <div className="bottom_btn_wrap">
-          <button type="button" className="btn_ty01 cancel" onClick={() => history(-1)}>
+          <button type="button" className="btn_ty01 cancel" onClick={() => navigate(-1)}>
             취소
           </button>
           <button type="button" className="btn_ty01">

@@ -35,7 +35,7 @@ export default function Lnb(props) {
     event: [
       ["데일리 챌린지 관리", "/ChallengeList"],
       ["탄소 중립 랭킹 관리", "/RankingSetting"],
-      ["공개 배너 순위 관리", "/BannerRanking"],
+      // ["공개 배너 순위 관리", "/BannerRanking"],
       ["배너 관리", "/BannerSetting"],
       ["팝업 관리", "/PopupSetting"],
     ],

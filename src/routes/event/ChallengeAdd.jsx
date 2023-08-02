@@ -1,11 +1,13 @@
+import { useState } from "react";
+import { useDatePicker, useSelectBox } from "../../hooks/bundle_hooks";
 import Radio from "../../components/RadioBtn";
 import banner from "../../assets/img/banner.png";
 import arrowRight from "../../assets/img/icon/angle_right_green.svg";
 import plus from "../../assets/img/icon/border_plus.svg";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
-import { useSelectBox } from "../../hooks/bundle_hooks";
 
 export default function ChallengeAdd() {
+  const { date } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     stamp_point: ["글 1개 / 도장 1개"],
     point_pay: ["데일리 챌린지 참여 / 1,000"],
@@ -43,6 +45,15 @@ export default function ChallengeAdd() {
       "GL 추천 제품",
     ],
   });
+  const [chellangeContents, setChellangeContents] = useState({
+    default: {
+      title: "",
+      title_sub: "",
+      open_date: "",
+    },
+    stemp: {},
+    point: {},
+  });
 
   return (
     <>
@@ -60,21 +71,10 @@ export default function ChallengeAdd() {
                 </div>
                 <div className="radio_group flex_right">
                   <span className="label">진행 여부</span>
-                  <div className="radio_wrap">
+                  <div className="radio_group d-flex w100">
                     <Radio for="ing" id="ing" name="promotion" text="진행중" />
-                    <Radio for="end" id="end" name="promotion" text="진행중지" />
-                    <Radio for="fin" id="fin" name="promotion" text="진행완료" />
+                    <Radio for="end" id="end" name="promotion" text="종료" />
                   </div>
-                </div>
-              </div>
-              <div className="flex_box">
-                <div className="input_ty02 flex_left">
-                  <label htmlFor="">프로모션 서브명</label>
-                  <input type="text" />
-                </div>
-                <div className="input_ty02 flex_right">
-                  <label htmlFor="">프로모션 설명</label>
-                  <input type="text" />
                 </div>
               </div>
               <div className="flex_box">
@@ -84,7 +84,8 @@ export default function ChallengeAdd() {
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">프로모션 진행 기간</label>
-                  <input type="text" defaultValue={"2023.05.30 - 2023.07.08"} />
+                  <div className="date_input input_ty02">{date.start}</div>&nbsp;~&nbsp;<div className="date_input input_ty02">{date.end}</div>
+                  {/* <input type="text" defaultValue={"2023.05.30 - 2023.07.08"} /> */}
                 </div>
               </div>
               <div className="flex_box">
@@ -120,18 +121,18 @@ export default function ChallengeAdd() {
                   {/* btn_plus 클릭시 numBox 추가  */}
                   <span className="label">
                     도장 적립 정책{" "}
-                    <button type="button" className="btn_plus">
+                    {/* <button type="button" className="btn_plus">
                       <img src={plus} alt="" className="icon" />
-                    </button>
+                    </button> */}
                   </span>
-                  {selecBoxHtml[0]}
+                  {/* {selecBoxHtml[0]} */}
                 </div>
               </div>
               <div className="numBox">
                 <div className="flex_box">
                   <div className="input_ty02 flex_left mr12">
-                    <label htmlFor="">글 등록 개수</label>
-                    <input type="text" defaultValue={"데일리 챌린지 참여"} />
+                    <label htmlFor="">글 등록 개수(1일)</label>
+                    <input type="text" defaultValue={1} />
                   </div>
                   <div className="input_ty02 flex_right">
                     <label htmlFor="" className="stamp_signup">
@@ -142,12 +143,12 @@ export default function ChallengeAdd() {
                 </div>
                 <div className="flex_box flex_box_mb">
                   <div className="input_ty02 flex_left">
-                    <label htmlFor="">적립 기한</label>
-                    <input type="text" defaultValue={"2023.05.30 - 2023.07.08"} />
+                    <label htmlFor="">최대 적립 개수</label>
+                    <input type="text" defaultValue={90} />
                   </div>
                   <div className="flex_right"></div>
                 </div>
-                <button className="btn_del"></button>
+                {/* <button className="btn_del"></button> */}
               </div>
             </div>
           </div>
@@ -160,11 +161,11 @@ export default function ChallengeAdd() {
                   {/* btn_plus 클릭시 numBox 추가  */}
                   <span className="label">
                     포인트 지급{" "}
-                    <button type="button" className="btn_plus">
+                    {/* <button type="button" className="btn_plus">
                       <img src={plus} alt="" className="icon" />
-                    </button>
+                    </button> */}
                   </span>
-                  {selecBoxHtml[1]}
+                  {/* {selecBoxHtml[1]} */}
                 </div>
               </div>
               <div className="numBox">
@@ -183,48 +184,15 @@ export default function ChallengeAdd() {
                 <div className="flex_box flex_box_mb">
                   <div className="input_ty02 flex_left">
                     <label htmlFor="">포인트 지급 시점</label>
-                    <input type="text" defaultValue={"도장 3개 적립 시"} />
-                  </div>
-                  <div className="input_ty02 flex_right">
-                    <label htmlFor="" className="point_signup">
-                      지급 기한
-                    </label>
-                    <input type="text" defaultValue={"2023.05.10 - 2050.12.31"} />
+                    <input type="text" placeholder="포인트가 지급되는 도장 개수를 숫자로 입력해주세요." />
                   </div>
                 </div>
-                <button className="btn_del"></button>
-              </div>
-              <div className="numBox">
-                <div className="flex_box">
-                  <div className="input_ty02 flex_left">
-                    <label htmlFor="">포인트명</label>
-                    <input type="text" defaultValue={"데일리 챌린지 참여"} />
-                  </div>
-                  <div className="input_ty02 flex_right">
-                    <label htmlFor="" className="point_signup">
-                      지급 포인트 금액
-                    </label>
-                    <input type="text" defaultValue={"1,000"} />
-                  </div>
-                </div>
-                <div className="flex_box flex_box_mb">
-                  <div className="input_ty02 flex_left">
-                    <label htmlFor="">포인트 지급 시점</label>
-                    <input type="text" defaultValue={"도장 3개 적립 시"} />
-                  </div>
-                  <div className="input_ty02 flex_right">
-                    <label htmlFor="" className="point_signup">
-                      지급 기한
-                    </label>
-                    <input type="text" defaultValue={"2023.05.10 - 2050.12.31"} />
-                  </div>
-                </div>
-                <button className="btn_del"></button>
+                {/* <button className="btn_del"></button> */}
               </div>
             </div>
           </div>
         </div>
-        <div className="table_wrap line">
+        {/* <div className="table_wrap line">
           <table className="table banner_table">
             <colgroup>
               <col width={"80px"} />
@@ -272,7 +240,7 @@ export default function ChallengeAdd() {
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> */}
       </div>
     </>
   );
