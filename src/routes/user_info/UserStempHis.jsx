@@ -8,7 +8,7 @@ import Pagination from "../../components/Pagination";
 export default function UserStempHis() {
   const { pathname } = useLocation();
   const { mb_no, postData, setResData } = useCheckToken();
-  const { date, before3m, start_at, end_at } = useDatePicker();
+  const { date, start_at, end_at } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     sort_join: ["최신 순", "오래된 순"],
     promotion_sort: ["데일리 챌린지", "데일리 챌린지2", "데일리 챌린지_데일리 탄소 줄이기"],

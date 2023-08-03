@@ -166,7 +166,7 @@ export default function BannerAdd() {
           <button type="button" className="btn_ty01 cancel" onClick={() => navigate(-1)}>
             취소
           </button>
-          <button type="button" className="btn_ty01">
+          <button type="button" className="btn_ty01" onClick={dataSubmit}>
             등록
           </button>
         </div>

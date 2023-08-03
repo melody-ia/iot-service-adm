@@ -13,8 +13,8 @@
 // 데일리 챌린지 상세보기 모달
 .ch_list_modal{padding:35px 20px;
     .filter_wrap{padding:0;}
-    .table_wrap{max-height:400px; margin:20px 0; overflow:auto;
-        .table{min-width:500px; border:1px solid #EBEFF2;
+    .table_wrap{max-height:640px; height:100vh;  margin:20px 0; overflow:auto;
+        .table{min-width:600px; border:1px solid #EBEFF2;
         tr{height:55px;}
         .main_tit{border-bottom:1px solid #EBEFF2;}
         }
@@ -78,7 +78,7 @@
             }
         }
     }
-    .icon{@include conSize(24px, 24px, null); display:inline-block; vertical-align:middle; margin-left:10px; object-fit:contain;}
+    .icon{@include conSize(24px, 24px, null); display:inline-block; vertical-align:middle; margin-left:10px; object-fit:contain; &.click{cursor: pointer;}}
 
     .numBox{position:relative; padding:28px;
         &:nth-child(odd){background:#FBFCFC;}

@@ -274,7 +274,7 @@
 		@include desktop-sm{flex-direction:column; margin-bottom:0;}
 		
 		label,
-		.label{max-width:250px; width:100%;
+		.label{display: flex; max-width:250px; width:100%;
             @include desktop{max-width:180px;}
 			@include desktop-sm{max-width:150px; margin:0 10px 10px 0; font-size:14px;}
 		}

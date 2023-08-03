@@ -53,8 +53,6 @@ export default function UserInfo() {
     setSelectedValue({ ...selectBoxData });
   };
 
-  console.log(resData);
-
   const editUserData = async () => {
     const type = pathname.includes("Delete") ? "leave" : "all";
     const formCopy = { ...form };
@@ -363,7 +361,7 @@ export default function UserInfo() {
             className="btn_ty01"
             disabled={!validPass()}
             onClick={() => {
-              alert("완료");
+              editUserData();
             }}
           >
             수정

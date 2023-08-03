@@ -21,6 +21,7 @@ import UserQnaHis from "./routes/user_info/UserQnaHis";
 import UserQnaHisDetail from "./routes/user_info/UserQnaHisDetail";
 import ChallengeList from "./routes/event/ChallengeList";
 import ChallengeListDetail from "./routes/event/ChallengeListDetail";
+import ChallengeDetail from "./routes/event/ChallengeDetail";
 import ChallengeAdd from "./routes/event/ChallengeAdd";
 import RankingSetting from "./routes/event/RankingSetting";
 import BannerRanking from "./routes/event/BannerRanking";
@@ -77,7 +78,8 @@ function App() {
         <Route path="UserQnaHis/:id" element={<UserQnaHis />} />
         <Route path="UserQnaHis/:id/:id" element={<UserQnaHisDetail />} />
         <Route path="ChallengeList" element={<ChallengeList />} />
-        <Route path="ChallengeList/:id/:id" element={<ChallengeListDetail />} />
+        {/* <Route path="ChallengeList/:id/:id" element={<ChallengeListDetail />} /> */}
+        <Route path="ChallengeList/:id/:id" element={<ChallengeDetail />} />
         <Route path="ChallengeList/add" element={<ChallengeAdd />} />
         <Route path="RankingSetting" element={<RankingSetting />} />
         <Route path="BannerRanking" element={<BannerRanking />} />

@@ -8,7 +8,7 @@ export default function UserQnaHis() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { pathname } = useLocation();
-  const { date, before3m, start_at, end_at } = useDatePicker();
+  const { date, start_at, end_at } = useDatePicker();
   const { mb_no, postData, resData } = useCheckToken();
   const [categoryList, setCategoryList] = useState();
   const { selectedValues, setSelectedValue, selecBoxHtml } = useSelectBox({
@@ -17,7 +17,7 @@ export default function UserQnaHis() {
     inquiry_sort: categoryList || ["전체"],
   });
 
-  const loadPostData = async defaultDate => {
+  const loadPostData = async () => {
     // const order = selectedValues.inquiry_date_history === "최근 문의일 순" ? "desc" : "asc";
     const order = { "최근 문의일 순": "desc", "오래된 문의일 순": "asc", "최근 답변일 순": "desc", "오래된 답변일 순": "asc" }[
       selectedValues.inquiry_date_history
@@ -32,7 +32,7 @@ export default function UserQnaHis() {
     const qa_category = selectedValues.inquiry_sort === "전체" ? "all" : categoryList.indexOf(selectedValues.inquiry_sort);
     const res = await postData("inquire/index", {
       mb_no,
-      start_at: defaultDate ? defaultDate : start_at,
+      start_at: start_at,
       end_at,
       qa_type,
       order,
@@ -44,7 +44,7 @@ export default function UserQnaHis() {
   };
 
   useEffect(() => {
-    loadPostData(before3m);
+    loadPostData();
   }, []);
 
   return (

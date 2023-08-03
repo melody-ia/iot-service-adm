@@ -8,7 +8,7 @@ import Pagination from "../../components/Pagination";
 export default function UserPointHis() {
   const { id } = useParams();
   const { pathname } = useLocation();
-  const { date, before3m, start_at, end_at } = useDatePicker();
+  const { date, start_at, end_at } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     point_history: ["전체", "지급 내역", "사용 내역"],
   });
@@ -31,13 +31,13 @@ export default function UserPointHis() {
     setAddPointData({ ...addPointData, [type]: value });
   };
 
-  const loadHisData = async defaultDate => {
+  const loadHisData = async () => {
     const filter = { 전체: "all", "지급 내역": "added", "사용 내역": "used" }[selectedValues.point_history];
     const data = {
       mb_no,
       target_id: id,
       target_id: "admin",
-      start_at: defaultDate ? defaultDate : start_at,
+      start_at: start_at,
       end_at,
       filter: filter,
     };
@@ -47,7 +47,6 @@ export default function UserPointHis() {
     setCurPage(1);
     if (!res.data.pointInfo[0]) setResData({ ...resData, pointInfo: [] });
   };
-  console.log(resData);
 
   const loadPageData = async page => {
     const res = await postData("member/show/point", { ...beforeFilter, cur_page: page });
@@ -93,7 +92,7 @@ export default function UserPointHis() {
   };
 
   useEffect(() => {
-    loadHisData(before3m);
+    loadHisData();
   }, []);
 
   return (

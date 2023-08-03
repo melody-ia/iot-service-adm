@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 export function useDatePicker() {
   const defaultDataS = new Date();
-  defaultDataS.setDate(1);
+  defaultDataS.setMonth(defaultDataS.getMonth() - 6);
   const { pathname } = useLocation();
   const [fixedDate] = useState(new Date());
   const [startDate, setStartDate] = useState(defaultDataS);
@@ -120,17 +120,19 @@ export function useDatePicker() {
     ),
   };
 
-  useEffect(() => {
-    const before3mPage = ["UserQnaHis", "UserPointHis", "UserStempHis"];
-    if (before3mPage.some(el => pathname.includes(el))) {
-      setStartDate(before3m);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const before3mPage = ["UserQnaHis", "UserPointHis", "UserStempHis"];
+  //   if (before3mPage.some(el => pathname.includes(el))) {
+  //     setStartDate(before3m);
+  //   }
+  // }, []);
 
   return {
     date,
     start_at: startDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1),
     end_at: endDate.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1),
-    before3m: before3m.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1),
+    // before3m: before3m.toLocaleDateString().split(".").join("-").replace(/\s/g, "").slice(0, -1),
+    setStartDate,
+    setEndDate,
   };
 }
