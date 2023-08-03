@@ -54,7 +54,7 @@ export default function ChallengeAdd() {
     [...checkContents, "ch_status"].forEach(el => {
       data[el] = challengeContents[el];
     });
-    ["ch_stamp_count", "ch_stamp_count", "ch_max_stamp", "ch_point_price", "stamp_to_point", "ch_status"].forEach(el => {
+    ["ch_stamp_board", "ch_stamp_count", "ch_stamp_count", "ch_max_stamp", "ch_point_price", "stamp_to_point", "ch_status"].forEach(el => {
       data[el] = Number(data[el]);
     });
     const ch_no = challengeContents.ch_no;
