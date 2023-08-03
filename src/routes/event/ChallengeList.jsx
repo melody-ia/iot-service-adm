@@ -1,14 +1,12 @@
 import { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../components/bundle_components";
+import { Link, useNavigate } from "react-router-dom";
+import { Lnb, CurrentBox, Pagination, RadioBtn } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
 import { serverUrl } from "../../variables/bundle_variables";
 import copy from "../../assets/img/icon/copy.png";
 
 export default function ChallengeList() {
   const navigate = useNavigate();
-
-  const { id } = useParams();
   const { mb_no, postData, resData } = useCheckToken();
   const { date, start_at, end_at } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
@@ -17,7 +15,7 @@ export default function ChallengeList() {
   });
 
   const loadChallengeData = async () => {
-    const order = selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";
+    const order = selectedValues.sort_date === "최근 등록일 순" ? "desc" : "asc";
     const ch_status = { 전체: "all", 진행중: 0, 종료: 1 }[selectedValues.search_state];
     postData("challenge/index", { mb_no, ch_status, order, start_at, end_at });
   };
