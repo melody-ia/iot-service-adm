@@ -22,6 +22,8 @@ export default function BannerSetting() {
     else setCheckedList([]);
   };
 
+  console.log(categoryList);
+
   const loadBannerData = async () => {
     const data = {
       mb_no,
@@ -32,7 +34,10 @@ export default function BannerSetting() {
     if (selectedValues.banner_location !== "전체") data.bn_alt = categoryList.indexOf(selectedValues.banner_location) - 1;
     if (selectedValues.upload_state !== "전체") data.bn_status = ["공개", "비공개"].indexOf(selectedValues.upload_state);
     const res = await postData("banner/index", data);
+    if (!res || res.code !== 200) return;
     if (!categoryList[0]) {
+      console.log("뭐하는데");
+      console.log(res.data.category);
       setCategoryList(["전체", ...res.data.category]);
       setSelectedValue({ ...selectedValues, banner_location: "전체" });
     }
@@ -129,6 +134,7 @@ export default function BannerSetting() {
               })}
             </tbody>
           </table>
+          {!resData?.bannerInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
         <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} {...btnEvent} />
         <Pagination />

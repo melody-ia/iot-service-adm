@@ -30,6 +30,7 @@ export default function Faq() {
     const order = selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";
     const data = { mb_no, start_at, end_at, category, faq_subject, wr_status, order };
     const res = await postData("community/index", { ...data });
+    if (!res || res.data?.code !== 200) return;
     setBeforeFilter({ ...data });
     setPageData(res.page);
     setCurPage(1);
@@ -121,6 +122,7 @@ export default function Faq() {
               })}
             </tbody>
           </table>
+          {!resData?.boardInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
         <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} setCurPage={setCurPage} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}

@@ -4,13 +4,13 @@ import Chart from "react-apexcharts";
 export default function ChartArea() {
   const [series, setSeries] = useState([
     {
-      name: 'series1',
-      data: [10, 50, 30, 80]
+      name: "series1",
+      data: [10, 50, 30, 80, 50, 60, 8],
     },
   ]);
   const [options, setOptions] = useState({
     chart: {
-      zoom: {enabled: false},
+      zoom: { enabled: false },
       toolbar: { show: false },
       background: "transparent",
     },
@@ -26,21 +26,21 @@ export default function ChartArea() {
     stroke: {
       curve: "smooth",
       width: 2,
-      colors: ["#42A0F0"]
+      colors: ["#42A0F0"],
     },
     grid: { show: false },
     yaxis: { show: false },
-    xaxis: { 
+    xaxis: {
       labels: { show: false },
-      axisTicks: { show: false }, 
+      axisTicks: { show: false },
       axisBorder: { show: false },
       tooltip: {
         enabled: false,
-      }
+      },
     },
     tooltip: {
       enabled: false,
-    }
+    },
   });
 
   return (

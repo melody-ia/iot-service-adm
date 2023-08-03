@@ -42,6 +42,7 @@ export default function UserPointHis() {
       filter: filter,
     };
     const res = await postData("member/show/point", data);
+    if (!res || res.data?.code !== 200) return;
     setBeforeFilter({ ...data });
     setPageData(res.page);
     setCurPage(1);
@@ -189,6 +190,8 @@ export default function UserPointHis() {
               <PointItem checkedList={checkedList} setCheckedList={setCheckedList} /> */}
             </tbody>
           </table>
+
+          {!resData?.boardInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
 
         <CurrentBox btns={["del", "down"]} tit="포인트 지급/사용 내역" hideTit={true} {...btnEvent} />

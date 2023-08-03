@@ -23,6 +23,7 @@ export default function UserList() {
       order,
       type: "all",
     });
+    if (!res || res.data?.code !== 200) return;
     setPageData(res.page);
   };
 
@@ -87,6 +88,7 @@ export default function UserList() {
               })}
             </tbody>
           </table>
+          {!resData?.memberResult[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
         <CurrentBox btns={["add", "down"]} hideTit={true} {...btnEvent} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} />}

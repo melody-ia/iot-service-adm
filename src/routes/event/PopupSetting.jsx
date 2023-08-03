@@ -4,7 +4,7 @@ import banner from "../../assets/img/banner.png";
 import { useNavigate } from "react-router-dom";
 
 export default function PopupSetting() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { date, startDate, endDate } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
@@ -13,16 +13,16 @@ export default function PopupSetting() {
   });
 
   const btnEvent = {
-    add(){
-        navigate('/PopupSetting/add');
-    }
-}
+    add() {
+      navigate("/PopupSetting/add");
+    },
+  };
 
   return (
     <>
       <Lnb lnbType="event" />
       {/* <CurrentBox add={true} mod={true} del={true} down={true} tit="팝업 리스트" /> */}
-      <CurrentBox btns={["add", "mod", "del", "down"]} tit="팝업 리스트" {...btnEvent}/>
+      <CurrentBox btns={["add", "mod", "del", "down"]} tit="팝업 리스트" {...btnEvent} />
       <div className="popup_setting box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -125,7 +125,7 @@ export default function PopupSetting() {
           </table>
         </div>
         {/* <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} /> */}
-        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} {...btnEvent}/>
+        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} {...btnEvent} />
         <Pagination />
       </div>
     </>

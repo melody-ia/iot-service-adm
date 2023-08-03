@@ -24,6 +24,7 @@ export default function DeletedUserList() {
       order,
       type: "leave",
     });
+    if (!res || res.data?.code !== 200) return;
     setPageData(res.page);
   };
 
@@ -87,6 +88,7 @@ export default function DeletedUserList() {
               })}
             </tbody>
           </table>
+          {!resData?.memberResult[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
         {/* <CurrentBox res={true} del={true} down={true} hideTit={true} /> */}
         <CurrentBox btns={["down"]} hideTit={true} />

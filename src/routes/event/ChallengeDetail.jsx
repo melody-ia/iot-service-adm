@@ -30,11 +30,10 @@ export default function ChallengeAdd() {
 
   const loadChallengeData = async () => {
     const res = await postData("challenge/show", { mb_no, ch_no: Number(id) });
-    if (res.code === 200) {
-      setChallengeContents({ ...res.data.challengeInfo[0] });
-      setStartDate(new Date(res.data.challengeInfo[0].start_at));
-      setEndDate(new Date(res.data.challengeInfo[0].end_at));
-    }
+    if (!res || res.data?.code !== 200) return;
+    setChallengeContents({ ...res.data.challengeInfo[0] });
+    setStartDate(new Date(res.data.challengeInfo[0].start_at));
+    setEndDate(new Date(res.data.challengeInfo[0].end_at));
   };
 
   const deleteChallenge = async () => {

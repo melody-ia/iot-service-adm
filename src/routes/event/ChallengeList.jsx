@@ -4,6 +4,7 @@ import { Lnb, CurrentBox, Pagination, RadioBtn } from "../../components/bundle_c
 import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
 import { serverUrl } from "../../variables/bundle_variables";
 import copy from "../../assets/img/icon/copy.png";
+import { useState } from "react";
 
 export default function ChallengeList() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function ChallengeList() {
 
   const loadChallengeData = async () => {
     const order = selectedValues.sort_date === "최근 등록일 순" ? "desc" : "asc";
-    const ch_status = { 전체: "all", 진행중: 0, 종료: 1 }[selectedValues.search_state];
+    const ch_status = { 전체: "all", 진행중: "on", 종료: "off" }[selectedValues.search_state];
     postData("challenge/index", { mb_no, ch_status, order, start_at, end_at });
   };
 
@@ -100,6 +101,7 @@ export default function ChallengeList() {
               })}
             </tbody>
           </table>
+          {!resData?.challengeInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
         {/* <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} /> */}
         <CurrentBox btns={["add", "down"]} hideTit={true} {...btnEvent} />
@@ -110,9 +112,15 @@ export default function ChallengeList() {
 }
 
 function ChallengeItem({ data }) {
+  const [challengeContents, setChallengeContents] = useState({ ...data });
+
   const copyUrl = () => {
     navigator.clipboard.writeText(serverUrl + "ChallengeWrite/" + data.ch_no);
   };
+
+  useEffect(() => {
+    setChallengeContents({ ...data });
+  }, [data]);
 
   return (
     <tr>
@@ -121,15 +129,15 @@ function ChallengeItem({ data }) {
         <Link to={"/ChallengeList/ChallengeListDetail/" + data.ch_no}>{data.ch_title}</Link>
         <img src={copy} onClick={copyUrl} title={serverUrl + "ChallengeWrite/" + data.ch_no} />
       </td>
-      <td>{data.created_at.replace(/-/g, ".")}</td>
+      <td>{challengeContents.created_at.replace(/-/g, ".")}</td>
       <td>
-        {data.start_at.replace(/-/g, ".")} – <br />
-        {data.end_at.replace(/-/g, ".")}
+        {challengeContents.start_at.replace(/-/g, ".")} – <br />
+        {challengeContents.end_at.replace(/-/g, ".")}
       </td>
-      <td>{Number(data.sum_member).toLocaleString("ko-KR")}</td>
-      <td>{Number(data.sum_board).toLocaleString("ko-KR")}</td>
-      <td>{Number(data.sum_stamp).toLocaleString("ko-KR")}</td>
-      <td>{Number(data.sum_point).toLocaleString("ko-KR")}</td>
+      <td>{Number(challengeContents.sum_member).toLocaleString("ko-KR")}</td>
+      <td>{Number(challengeContents.sum_board).toLocaleString("ko-KR")}</td>
+      <td>{Number(challengeContents.sum_stamp).toLocaleString("ko-KR")}</td>
+      <td>{Number(challengeContents.sum_point).toLocaleString("ko-KR")}</td>
       <td>
         <div className="radio_group d-flex w100">
           {[
@@ -142,10 +150,11 @@ function ChallengeItem({ data }) {
                 for={el[1] + data.ch_no}
                 id={el[1] + data.ch_no}
                 name={"isShow" + data.ch_no}
-                checked={data.ch_status == el[2]}
+                checked={challengeContents.ch_status == el[2]}
                 text={el[0]}
                 dataType={"ch_status"}
                 dataValue={el[2]}
+                disabled
                 // onClick={handlePostContents}
               />
             );

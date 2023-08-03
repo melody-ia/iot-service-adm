@@ -40,6 +40,7 @@ export default function UserQnaHis() {
       qa_category,
       target_id: id,
     });
+    if (!res || res.data?.code !== 200) return;
     if (!categoryList) setCategoryList(res.data.category);
   };
 
@@ -120,6 +121,7 @@ export default function UserQnaHis() {
               })}
             </tbody>
           </table>
+          {!resData?.boardInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
         <CurrentBox btns={["down"]} tit="1:1문의 내역" hideTit={true} />
       </div>

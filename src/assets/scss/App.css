@@ -809,6 +809,12 @@ body::-webkit-scrollbar-track, body textarea::-webkit-scrollbar-track {
   cursor: pointer;
 }
 
+.no_data_wrap {
+  margin: 24px 0;
+  width: 100%;
+  text-align: center;
+}
+
 .dim {
   width: 100%;
   height: 100%;

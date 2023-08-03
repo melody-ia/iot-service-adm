@@ -23,6 +23,7 @@ export default function Qna() {
     const qa_category = selectedValues.inquiry_sort === "전체" ? "all" : categoryList.indexOf(selectedValues.inquiry_sort);
     const data = { mb_no, start_at, end_at, qa_status, qa_category, order };
     const res = await postData("inquire/index", { ...data });
+    if (!res || res.data?.code !== 200) return;
     setBeforeFilter({ ...data });
     setPageData(res.page);
     setCurPage(1);
@@ -130,6 +131,7 @@ export default function Qna() {
               </tr> */}
             </tbody>
           </table>
+          {!resData?.inquireInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
         <CurrentBox btns={["down"]} hideTit={true} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}

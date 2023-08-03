@@ -43,6 +43,7 @@ export default function CalculatorList() {
       end_at,
     };
     const res = await postData("calculator/list", data);
+    if (!res || res.data?.code !== 200) return;
     setBeforeFilter({ ...data });
     setPageData(res.page);
     setCurPage(1);
@@ -118,6 +119,7 @@ export default function CalculatorList() {
                 ))}
             </tbody>
           </table>
+          {!resData && <div className="no_data_wrap">데이터 없음</div>}
         </div>
         <CurrentBox btns={["down"]} hideTit={true} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}

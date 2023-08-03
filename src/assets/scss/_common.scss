@@ -260,7 +260,7 @@ body{background:#F1F4F5;
 // box
 .box_ty01{background-color:#fff; border-radius:5px;}
 
-// copy_wrap
+// copy wrap
 .copy_wrap{
 	img{
 		margin-left: 8px;
@@ -268,6 +268,13 @@ body{background:#F1F4F5;
 		height: 18px;
 		cursor: pointer;
 	}
+}
+
+// no data
+.no_data_wrap{
+	margin: 24px 0;
+	width: 100%;
+	text-align: center
 }
 
 .dim{@include conSize(100%, 100%, null); position:fixed; top:0; left:0; z-index:90; background:rgba(0,0,0,0.5); transition:all .4s;}

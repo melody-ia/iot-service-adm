@@ -36,13 +36,19 @@ export default function UserAdd() {
     console.log(joinData);
   };
 
+  const btnEvent = {
+    add() {
+      dataSubmit();
+    },
+  };
+
   const navigate = useNavigate();
 
   return (
     <>
       <Lnb lnbType="user" />
       {/* <CurrentBox can={true} add={true} tit="신규 회원 등록" /> */}
-      <CurrentBox btns={["can", "add"]} tit="신규 회원 등록" />
+      <CurrentBox btns={["can", "add"]} tit="신규 회원 등록" {...btnEvent} />
       <div className="user_add box_ty01">
         <div className="write_type">
           <div className="essential_area">

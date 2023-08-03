@@ -11,7 +11,9 @@ export default function NewsDetail() {
   const [postContents, setPostContents] = useState();
 
   const loadPostData = async () => {
+    if (!state) return;
     const res = await postData("community/show", { mb_no, wr_id: state.wr_id, category: state.wr_subject });
+    if (!res || res.data?.code !== 200) return;
     setPostContents(res.data.boardInfo[0]);
   };
 
