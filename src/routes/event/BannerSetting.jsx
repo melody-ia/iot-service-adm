@@ -36,7 +36,6 @@ export default function BannerSetting() {
     const res = await postData("banner/index", data);
     if (!res || res.code !== 200) return;
     if (!categoryList[0]) {
-      console.log("뭐하는데");
       console.log(res.data.category);
       setCategoryList(["전체", ...res.data.category]);
       setSelectedValue({ ...selectedValues, banner_location: "전체" });

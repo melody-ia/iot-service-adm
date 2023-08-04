@@ -35,7 +35,7 @@ export default function BannerAdd() {
     if (!fileData[0]) return alert("이미지를 등록해주세요.");
     const formData = new FormData();
     formData.append("mb_no", mb_no);
-    formData.append("bn_alt", state.categoryList.indexOf(selectedValues.banner_location));
+    formData.append("bn_alt", state.categoryList.indexOf(selectedValues.banner_location) - 1);
     formData.append("bn_url", postContents.bn_url);
     formData.append("bn_begin_time", start_at);
     formData.append("bn_end_time", end_at);
