@@ -41,7 +41,7 @@ export default function UserPromoHisDetail() {
       <CurrentBox btns={["down"]} tit="프로모션 참여 상세 내역" />
       <div className="user_history_pro_detail detail_form box_ty01 table_type">
         <div className="table_wrap line">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"auto"} />

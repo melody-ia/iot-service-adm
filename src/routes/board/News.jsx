@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../components/bundle_components";
 import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 export default function News() {
   const navigate = useNavigate();
@@ -91,19 +90,6 @@ export default function News() {
           </button>
         </div>
         <div className="table_wrap line part">
-          <ReactHTMLTableToExcel // id: ReactHTMLTableToExcel 컴포넌트의 ID
-            id="tableToExcelBtn"
-            // className : button의 className
-            className="download-table-xls-button"
-            // table : Mapping할 table Element의 id
-            table="table"
-            // filename : 엑셀 파일 명칭
-            filename="tableName"
-            // sheet : 엑셀 sheet의 명칭
-            sheet="tableSheet"
-            // buttonText : 버튼 이름
-            buttonText="엑셀 다운로드"
-          />
           <table className="table" id="table">
             <colgroup>
               <col width={"auto"} />

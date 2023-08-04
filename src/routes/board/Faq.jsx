@@ -83,7 +83,7 @@ export default function Faq() {
           </button>
         </div>
         <div className="table_wrap line part">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"auto"} />
               <col width={"80px"} />

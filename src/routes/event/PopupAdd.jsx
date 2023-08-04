@@ -37,7 +37,7 @@ export default function PopupAdd() {
           </ul>
         </div>
         <div className="table_wrap line">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"300px"} />

@@ -49,7 +49,7 @@ export default function DeletedUserList() {
           </button>
         </div>
         <div className="table_wrap part">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               {/* <col width={"42px"} /> */}
               <col width={"50px"} />

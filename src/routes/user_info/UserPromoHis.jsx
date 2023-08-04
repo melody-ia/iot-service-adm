@@ -50,7 +50,7 @@ export default function UserPromoHis() {
         {resData?.challengeResult.map((el, idx) => {
           return (
             <div key={idx} className="table_wrap line">
-              <table className="table">
+              <table className="table" id="table">
                 <colgroup>
                   <col width={"80px"} />
                 </colgroup>

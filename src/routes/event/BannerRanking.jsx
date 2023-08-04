@@ -21,7 +21,7 @@ export default function BannerRanking() {
               <img src={plus} alt="" />
             </button>
           </h4>
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"80px"} />
@@ -110,7 +110,7 @@ export default function BannerRanking() {
               <img src={plus} alt="" />
             </button>
           </h4>
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"80px"} />
@@ -161,7 +161,7 @@ export default function BannerRanking() {
               <img src={plus} alt="" />
             </button>
           </h4>
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"80px"} />
@@ -212,7 +212,7 @@ export default function BannerRanking() {
               <img src={plus} alt="" />
             </button>
           </h4>
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"80px"} />
@@ -263,7 +263,7 @@ export default function BannerRanking() {
               <img src={plus} alt="" />
             </button>
           </h4>
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"80px"} />
@@ -314,7 +314,7 @@ export default function BannerRanking() {
               <img src={plus} alt="" />
             </button>
           </h4>
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"80px"} />
@@ -365,7 +365,7 @@ export default function BannerRanking() {
               <img src={plus} alt="" />
             </button>
           </h4>
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"80px"} />
@@ -416,7 +416,7 @@ export default function BannerRanking() {
               <img src={plus} alt="" />
             </button>
           </h4>
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"80px"} />
@@ -467,7 +467,7 @@ export default function BannerRanking() {
               <img src={plus} alt="" />
             </button>
           </h4>
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"80px"} />

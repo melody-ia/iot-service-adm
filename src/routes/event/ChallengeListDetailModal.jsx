@@ -62,7 +62,7 @@ export default function ChallengeListDetailModal({ modalClose, ch_no }) {
           </button>
         </div>
         <div className="table_wrap">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"150px"} />
               <col width={"auto"} />

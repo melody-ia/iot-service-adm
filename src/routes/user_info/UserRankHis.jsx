@@ -8,34 +8,34 @@ export default function UserRankHis() {
   const [pageData, setPageData] = useState();
   const [curPage, setCurPage] = useState(1);
   const { pathname } = useLocation();
-  const {mb_no,postData,resData,setResData} = useCheckToken();
+  const { mb_no, postData, resData, setResData } = useCheckToken();
   const { date, start_at, end_at } = useDatePicker();
   const [beforeFilter, setBeforeFilter] = useState();
 
   const user_no = Number(useParams().id);
 
-  const loadHistory = async() => {
+  const loadHistory = async () => {
     const data = {
-      mb_no, 
-      user_no, 
-      start_at, 
-      end_at
-    }
-    const res = await postData('point/myranking', data);
+      mb_no,
+      user_no,
+      start_at,
+      end_at,
+    };
+    const res = await postData("point/myranking", data);
     setBeforeFilter({ ...data });
     setPageData(res.page);
     setCurPage(1);
     if (!res.data) setResData([]);
-  }
+  };
 
-  const loadPageData = async(page) => {
-    const res = await postData('point/myranking', { ...beforeFilter, cur_page: page });
+  const loadPageData = async page => {
+    const res = await postData("point/myranking", { ...beforeFilter, cur_page: page });
     setPageData(res.page);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     loadHistory();
-  },[])
+  }, []);
 
   return (
     <>
@@ -53,7 +53,7 @@ export default function UserRankHis() {
           </button>
         </div>
         <div className="table_wrap line">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"auto"} />
               <col width={"auto"} />
@@ -62,23 +62,26 @@ export default function UserRankHis() {
             </colgroup>
             <thead>
               <tr>
-                  <th>NO</th>
-                  <th>생성일</th>
-                  <th>포인트 </th>
-                  <th>순위 </th>
-                </tr>
+                <th>NO</th>
+                <th>생성일</th>
+                <th>포인트 </th>
+                <th>순위 </th>
+              </tr>
             </thead>
             <tbody>
-              {resData && resData?.map((el,idx) => {
-                return el && (
-                    <tr key={idx}>
-                      <td>{el.idx}</td>
-                      <td>{el.create_at}</td>
-                      <td>{el.po_point.toLocaleString("ko-KR") || 0}</td>
-                      <td>{el.ranking}</td>
-                    </tr>
-                );
-              })}
+              {resData &&
+                resData?.map((el, idx) => {
+                  return (
+                    el && (
+                      <tr key={idx}>
+                        <td>{el.idx}</td>
+                        <td>{el.create_at}</td>
+                        <td>{el.po_point.toLocaleString("ko-KR") || 0}</td>
+                        <td>{el.ranking}</td>
+                      </tr>
+                    )
+                  );
+                })}
             </tbody>
           </table>
         </div>

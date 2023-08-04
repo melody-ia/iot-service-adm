@@ -75,7 +75,7 @@ export default function CalculatorList() {
           </button>
         </div>
         <div className="table_wrap">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"100px"} />

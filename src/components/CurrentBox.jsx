@@ -1,4 +1,4 @@
-import { useBtnEvent } from "../hooks/useBtnEvent";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 export default function CurrentBox(props) {
   const btnList = [
     ["복원", "res"],
@@ -19,10 +19,24 @@ export default function CurrentBox(props) {
             return (
               <button type="button" key={idx} className={"btn_ty01 btn_bg " + el[1]} data-btn={el[1]} onClick={props[el[1]]}>
                 {el[0]}
+                {el[1] === "down" && (
+                  <ReactHTMLTableToExcel
+                    id="tableToExcelBtn"
+                    // className : button의 className
+                    className="download-table-xls-button"
+                    // table : Mapping할 table Element의 id
+                    table="table"
+                    // filename : 엑셀 파일 명칭
+                    filename="tableName"
+                    // sheet : 엑셀 sheet의 명칭
+                    sheet="tableSheet"
+                    // buttonText : 버튼 이름
+                    buttonText="엑셀 다운로드"
+                  />
+                )}
               </button>
             );
         })}
-        {}
       </div>
     </div>
   );

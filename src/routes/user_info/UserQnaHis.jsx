@@ -77,7 +77,7 @@ export default function UserQnaHis() {
           </button>
         </div>
         <div className="table_wrap line part">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"150px"} />

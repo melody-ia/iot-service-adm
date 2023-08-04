@@ -5,32 +5,32 @@ import { useEffect, useState } from "react";
 export default function RankingSetting() {
   const [pageData, setPageData] = useState();
   const [curPage, setCurPage] = useState(1);
-  const {mb_no,postData,resData,setResData} = useCheckToken();
+  const { mb_no, postData, resData, setResData } = useCheckToken();
   const { date, start_at, end_at } = useDatePicker();
   const [beforeFilter, setBeforeFilter] = useState();
 
-  const loadHistory = async() => {
+  const loadHistory = async () => {
     const data = {
-      mb_no, 
-      start_at, 
-      end_at
-    }
-    const res = await postData('point/ranking', data);
+      mb_no,
+      start_at,
+      end_at,
+    };
+    const res = await postData("point/ranking", data);
     setBeforeFilter({ ...data });
     setPageData(res.page);
     setCurPage(1);
     if (!res.data) setResData([]);
-  }
+  };
 
-  const loadPageData = async(page) => {
-    const res = await postData('point/ranking', { ...beforeFilter, cur_page: page });
+  const loadPageData = async page => {
+    const res = await postData("point/ranking", { ...beforeFilter, cur_page: page });
     setPageData(res.page);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     loadHistory();
-  },[])
-  
+  }, []);
+
   return (
     <>
       <Lnb lnbType="event" />
@@ -47,15 +47,14 @@ export default function RankingSetting() {
           </button>
         </div>
         <div className="table_wrap line">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
-              <col width={"auto"}/>
-              <col width={"auto"}/>
-              <col width={"auto"}/>
-              <col width={"auto"}/>
-              <col width={"auto"}/>
-              <col width={"auto"}/>
-
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
+              <col width={"auto"} />
             </colgroup>
             <thead>
               <tr>
@@ -68,16 +67,19 @@ export default function RankingSetting() {
               </tr>
             </thead>
             <tbody>
-              {resData && resData?.map((el,idx) => {
-                return  <tr key={idx}>
-                          <td>{el.ranking}</td>
-                          <td>{el.mb_id}</td>
-                          <td>{el.mb_sex ? el.mb_sex : "-"}</td>
-                          <td>{el.mb_birth ? el.mb_birth : "-"}</td>
-                          <td>{el.certify ? el.certify : "-"}</td>
-                          <td>{el.po_point ? el.po_point.toLocaleString("ko-KR") : 0}</td>
-                        </tr>
-              })}
+              {resData &&
+                resData?.map((el, idx) => {
+                  return (
+                    <tr key={idx}>
+                      <td>{el.ranking}</td>
+                      <td>{el.mb_id}</td>
+                      <td>{el.mb_sex ? el.mb_sex : "-"}</td>
+                      <td>{el.mb_birth ? el.mb_birth : "-"}</td>
+                      <td>{el.certify ? el.certify : "-"}</td>
+                      <td>{el.po_point ? el.po_point.toLocaleString("ko-KR") : 0}</td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </div>

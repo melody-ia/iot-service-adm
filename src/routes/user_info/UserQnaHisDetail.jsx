@@ -30,7 +30,7 @@ export default function UserQnaHisDetail() {
       <CurrentBox btns={["mod", "down"]} tit="1:1문의 내역 상세보기" {...btnEvent} />
       <div className="user_history_qna_detail detail_form box_ty01 table_type table_comm">
         <div className="table_wrap line">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"110px"} />
               <col width={"200px"} />

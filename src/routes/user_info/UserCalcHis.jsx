@@ -1,8 +1,7 @@
+import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useSelectBox, useCheckToken, useDatePicker } from "../../hooks/bundle_hooks";
 import { Lnb, CurrentBox, Pagination } from "../../components/bundle_components";
-import CheckBox from "../../components/CheckBox";
-import { useEffect, useState } from "react";
 
 const calTotalLength = (data, keys) => {
   return keys.reduce((acc, cur, idx) => {
@@ -101,6 +100,7 @@ export default function UserCalcHis() {
       order,
     };
     const res = await postData("calculator/detail", data);
+    if (!res || res.data?.code !== 200) return;
     setBeforeFilter({ ...data });
     setPageData(res.page);
     setCurPage(1);
@@ -120,7 +120,8 @@ export default function UserCalcHis() {
     <>
       <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       {/* <CurrentBox del={true} down={true} tit="탄소발자국 계산 내역" /> */}
-      <CurrentBox btns={["down"]} tit="탄소발자국 계산 내역" />
+      {/* <CurrentBox btns={["down"]} tit="탄소발자국 계산 내역" /> */}
+
       <div className="user_history_calc box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
@@ -136,7 +137,7 @@ export default function UserCalcHis() {
         </div>
 
         <div className="table_wrap line">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               {/* <col width={"80px"} /> */}
               <col width={"auto"} />
@@ -158,6 +159,7 @@ export default function UserCalcHis() {
               </tr>
             </thead>
           </table>
+          {!resData && <div className="no_data_wrap">데이터 없음</div>}
         </div>
 
         {resData &&
@@ -179,7 +181,7 @@ const HistoryItem = ({ idx, date, data }) => {
 
   return (
     <div className="table_wrap line" key={idx}>
-      <table className="table">
+      <table className="table" id="table">
         <colgroup>
           {/* <col width={"80px"} /> */}
           <col width={"auto"} />

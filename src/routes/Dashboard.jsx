@@ -90,7 +90,7 @@ export default function Dashboard() {
               <h4 className="tit">신규 가입 회원</h4>
               <button className="dot_menu"></button>
             </div>
-            <table className="table">
+            <table className="table" id="table">
               <thead>
                 <tr>
                   <th className="id">아이디</th>

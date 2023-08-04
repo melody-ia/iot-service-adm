@@ -15,7 +15,7 @@ export default function ChallengeListDetail() {
       <CurrentBox btns={["mod", "del", "down"]} tit="데일리 챌린지 상세보기" />
       <div className="ch_list_detail detail_form box_ty01 table_type">
         <div className="table_wrap line">
-          <table className="table">
+          <table className="table" id="table">
             <colgroup>
               <col width={"50px"} />
               <col width={"180px"} />
