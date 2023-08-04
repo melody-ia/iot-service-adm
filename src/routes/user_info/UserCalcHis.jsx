@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
 import CheckBox from "../../components/CheckBox";
 import Pagination from "../../components/Pagination";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 export default function UserCalcHis() {
   const { pathname } = useLocation();
@@ -31,7 +32,20 @@ export default function UserCalcHis() {
           </button>
         </div>
         <div className="table_wrap line">
-          <table className="table">
+          <ReactHTMLTableToExcel
+            id="tableToExcelBtn"
+            // className : button의 className
+            className="download-table-xls-button"
+            // table : Mapping할 table Element의 id
+            table="table"
+            // filename : 엑셀 파일 명칭
+            filename="tableName"
+            // sheet : 엑셀 sheet의 명칭
+            sheet="tableSheet"
+            // buttonText : 버튼 이름
+            buttonText="엑셀 다운로드"
+          />
+          <table className="table" id="table">
             <colgroup>
               <col width={"80px"} />
               <col width={"80px"} />
