@@ -51,7 +51,7 @@ export default function Dashboard() {
           </div>
           <div className="box_body d-flex flex-js">
             <div className="box_body_left">
-              <p className="text">text</p>
+              <p className="text"></p>
               <span className="date c_gray">Last 7 days</span>
               <strong>0</strong>
               <div className="figure_wrap">

@@ -4,11 +4,11 @@ import Chart from "react-apexcharts";
 export default function ChartAreaStacked() {
   const [series, setSeries] = useState([
     {
-      name: "text1",
+      name: "프로모션1",
       data: [50, 200, 150, 250, 150, 270, 100],
     },
     {
-      name: "text2",
+      name: "프로모션2",
       data: [50, 200, 150, 250, 150, 270, 100],
     },
   ]);
@@ -25,7 +25,7 @@ export default function ChartAreaStacked() {
         opacityTo: 0.08,
       },
     },
-    labels: ["text", "text", "text", "text", "text", "text", "text"],
+    labels: ["월", "화", "수", "목", "금", "토", "일"],
     dataLabels: {
       enabled: false,
     },
