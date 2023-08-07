@@ -70,12 +70,12 @@ export default function SideMenu(props) {
           </div>
           <div className="btn_wrap point">
             <button type="button" className="list_btn" onClick={toggleClass}>
-              도장/포인트 관리
+              포인트 관리
             </button>
             <ul className="sub_menu_list">
-              <li className={pathname === "/Stamp" ? "list active" : "list"} onClick={sideClose}>
+              {/* <li className={pathname === "/Stamp" ? "list active" : "list"} onClick={sideClose}>
                 <Link to="/Stamp">도장 관리</Link>
-              </li>
+              </li> */}
               <li className={pathname === "/Point" ? "list active" : "list"} onClick={sideClose}>
                 <Link to="/Point">포인트 관리</Link>
               </li>
