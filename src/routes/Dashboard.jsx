@@ -8,52 +8,52 @@ export default function Dashboard() {
     <div className="dashboard">
       <div className="row row1">
         <div className="box_ty01">
-          <span className="circle_icon graph"></span>
+          <span className="circle_icon people"></span>
           <div className="text_wrap">
-            <h4 className="tit">TEXT</h4>
-            <strong className="text">558588</strong>
+            <h4 className="tit sm">총 회원수</h4>
+            <strong className="text">0</strong>
           </div>
         </div>
         <div className="box_ty01">
           <span className="circle_icon dollar"></span>
           <div className="text_wrap">
-            <h4 className="tit">TEXT</h4>
-            <strong className="text">558588</strong>
+            <h4 className="tit">총 지급된 포인트</h4>
+            <strong className="text">0</strong>
           </div>
         </div>
         <div className="box_ty01">
-          <span className="circle_icon people"></span>
+          <span className="circle_icon graph"></span>
           <div className="text_wrap">
-            <h4 className="tit sm">TEXT</h4>
-            <strong className="text">558588</strong>
+            <h4 className="tit">탄소 발자국 계산기 사용 수</h4>
+            <strong className="text">0</strong>
           </div>
         </div>
         <div className="box_ty01">
           <span className="circle_icon document"></span>
           <div className="text_wrap">
-            <h4 className="tit">TEXT</h4>
-            <strong className="text">558588</strong>
+            <h4 className="tit">챌린지 참여 게시글</h4>
+            <strong className="text">0</strong>
           </div>
         </div>
         <div className="box_ty01">
           <span className="circle_icon card"></span>
           <div className="text_wrap">
-            <h4 className="tit">TEXT</h4>
-            <strong className="text">558588</strong>
+            <h4 className="tit">IoT 기기 등록 수 </h4>
+            <strong className="text">0</strong>
           </div>
         </div>
       </div>
       <div className="row row2">
         <div className="box_ty01 graph_ty01">
           <div className="box_head d-flex flex-js">
-            <h4 className="tit">TEXT</h4>
+            <h4 className="tit">신규 가입자 수</h4>
             <button className="dot_menu"></button>
           </div>
           <div className="box_body d-flex flex-js">
             <div className="box_body_left">
               <p className="text">text</p>
               <span className="date c_gray">Last 7 days</span>
-              <strong>555415</strong>
+              <strong>0</strong>
               <div className="figure_wrap">
                 <span className="up">6%</span>
                 <span className="c_gray">vs last 7 days</span>
@@ -66,7 +66,7 @@ export default function Dashboard() {
         </div>
         <div className="box_ty01 graph_ty02">
           <div className="box_head d-flex flex-js">
-            <h4 className="tit">TEXT</h4>
+            <h4 className="tit">디바이스 별 접속률</h4>
             <button className="dot_menu"></button>
           </div>
           <div className="box_body">
@@ -75,7 +75,7 @@ export default function Dashboard() {
         </div>
         <div className="box_ty01 graph_ty03">
           <div className="box_head d-flex flex-js">
-            <h4 className="tit">TEXT</h4>
+            <h4 className="tit">챌린지(프로모션) 참여율</h4>
             <button className="dot_menu"></button>
           </div>
           <div className="box_body">
