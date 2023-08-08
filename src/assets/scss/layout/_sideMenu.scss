@@ -37,7 +37,9 @@
                 }
             }  
             &.point{
-                .list_btn{background-image:url(../img/icon/menu_point.svg);}
+                .list_btn{background-image:url(../img/icon/menu_point.svg);
+                    &::after{display:none !important;}
+                }
             } 
             &.board{
                 .list_btn{background-image:url(../img/icon/menu_board.svg);}

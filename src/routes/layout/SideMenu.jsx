@@ -68,19 +68,24 @@ export default function SideMenu(props) {
               탄소발자국 계산내역 관리
             </Link>
           </div>
-          <div className="btn_wrap point">
+          <div className="btn_wrap point" onClick={sideClose}>
+            <Link to="/Point" className="list_btn" onClick={toggleClass}>
+              포인트 관리
+            </Link>
+          </div>
+          {/* <div className="btn_wrap ">
             <button type="button" className="list_btn" onClick={toggleClass}>
               포인트 관리
             </button>
             <ul className="sub_menu_list">
-              {/* <li className={pathname === "/Stamp" ? "list active" : "list"} onClick={sideClose}>
+              <li className={pathname === "/Stamp" ? "list active" : "list"} onClick={sideClose}>
                 <Link to="/Stamp">도장 관리</Link>
-              </li> */}
+              </li>
               <li className={pathname === "/Point" ? "list active" : "list"} onClick={sideClose}>
                 <Link to="/Point">포인트 관리</Link>
               </li>
             </ul>
-          </div>
+          </div> */}
           <div className="btn_wrap board">
             <button type="button" className="list_btn" onClick={toggleClass}>
               게시판 관리

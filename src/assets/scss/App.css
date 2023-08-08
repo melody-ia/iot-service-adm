@@ -1976,6 +1976,9 @@ input, textarea {
 .side_menu_list .btn_wrap.point .list_btn {
   background-image: url(../img/icon/menu_point.svg);
 }
+.side_menu_list .btn_wrap.point .list_btn::after {
+  display: none !important;
+}
 .side_menu_list .btn_wrap.board .list_btn {
   background-image: url(../img/icon/menu_board.svg);
 }
