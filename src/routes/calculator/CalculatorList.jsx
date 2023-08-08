@@ -113,8 +113,8 @@ export default function CalculatorList() {
                     <td>{el.mb_sex}</td>
                     <td>{el.mb_birth}</td>
                     <td>{el.mb_certify}</td>
-                    <td>{el.total_carbon}</td>
-                    <td>{el.needed_tree}</td>
+                    <td>{el.total_carbon.toLocaleString("ko-KR") || 0}</td>
+                    <td>{el.needed_tree.toLocaleString("ko-KR") || 0}</td>
                   </tr>
                 ))}
             </tbody>

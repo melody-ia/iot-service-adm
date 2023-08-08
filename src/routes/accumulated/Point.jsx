@@ -50,10 +50,10 @@ export default function Point() {
 
   const del = async(e) => {
 
-    let freshArray = editItemList.filter(el => el.hasOwnProperty('idx') === true);
+    let freshArray = editItemList.filter(el => el.hasOwnProperty('idx') === true && el.idx > 3);
 
     if(freshArray.length <= 0){
-      alert('1개 이상 선택을 해주세요.');
+      alert('1개 이상 선택을 해주세요. (랭킹달성만 삭제 가능합니다.)');
       return false
     };
 
@@ -216,7 +216,7 @@ function AddPoint({isChecked,onChange,editItemList,setEditItemList}) {
   });
 
   useEffect(()=>{
-    setSelectedValue({...selectedValues,pay_step:['지급중지','지급중'][data.state]})
+    setSelectedValue({...selectedValues,pay_step:['지급중지','지급중'][data.state]});
     setStartDate(new Date(data.start_at));
     setEndDate(new Date(data.end_at));
   },[])
