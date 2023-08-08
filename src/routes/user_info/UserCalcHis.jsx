@@ -226,7 +226,7 @@ const HistoryItem = ({ idx, date, data }) => {
 };
 
 const SecondHistoryItem = ({ data }) => {
-  if (!data) return false;
+  if(Object.keys(data).length <= 0) return false;
 
   const { firstKey, totalLength, totalCarbon, neededTree, firstDataLength, firstDataCarbon, firstDataArrange, firstDataArrangeShift, newData } =
     handleData(data);
