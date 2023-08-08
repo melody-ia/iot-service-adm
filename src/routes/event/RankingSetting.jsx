@@ -67,7 +67,7 @@ export default function RankingSetting() {
               </tr>
             </thead>
             <tbody>
-              {resData &&
+              {resData?.length > 0 ?
                 resData?.map((el, idx) => {
                   return (
                     <tr key={idx}>
@@ -79,7 +79,7 @@ export default function RankingSetting() {
                       <td>{el.po_point ? el.po_point.toLocaleString("ko-KR") : 0}</td>
                     </tr>
                   );
-                })}
+                }):<tr><td colSpan="6">데이터 없음</td></tr>}
             </tbody>
           </table>
         </div>
