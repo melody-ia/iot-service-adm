@@ -126,7 +126,7 @@ export default function ChallengeAdd() {
                     </label>
                     <input
                       type="text"
-                      value={serverUrl + "ChallengeWrite/" + challengeContents.ch_no}
+                      value={serverUrl.replace("-api", "").replace("api.", "") + "ChallengeWrite/" + challengeContents.ch_no}
                       placeholder="챌린지 등록 시 URL이 발급 됩니다."
                       disabled
                     />

@@ -127,7 +127,7 @@ function ChallengeItem({ data }) {
       <td className="num">2</td>
       <td className="copy_wrap">
         <Link to={"/ChallengeList/ChallengeListDetail/" + data.ch_no}>{data.ch_title}</Link>
-        <img src={copy} onClick={copyUrl} title={serverUrl + "ChallengeWrite/" + data.ch_no} />
+        <img src={copy} onClick={copyUrl} title={serverUrl.replace("-api", "").replace("api.", "") + "ChallengeWrite/" + data.ch_no} />
       </td>
       <td>{challengeContents.created_at.replace(/-/g, ".")}</td>
       <td>
