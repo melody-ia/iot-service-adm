@@ -97,7 +97,7 @@ export default function UserCalcHis() {
       user_no,
       start_at,
       end_at,
-      order,
+      order
     };
     const res = await postData("calculator/detail", data);
     if (!res || res?.code !== 200) return;
@@ -108,7 +108,7 @@ export default function UserCalcHis() {
   };
 
   const loadPageData = async page => {
-    const res = await postData("calculator/detail", { ...beforeFilter, cur_page: page });
+    const res = await postData("calculator/detail", { ...beforeFilter, cur_page: page});
     setPageData(res.page);
   };
 
@@ -159,13 +159,12 @@ export default function UserCalcHis() {
               </tr>
             </thead>
           </table>
-          {!resData && <div className="no_data_wrap">데이터 없음</div>}
         </div>
 
-        {resData &&
+        {resData?.length > 0 ?
           resData?.map(el => {
             return <HistoryItem key={el.idx} idx={el.idx} date={el.create_at} data={el.carbon} />;
-          })}
+          }):<div className="no_data_wrap">데이터 없음</div>}
 
         <CurrentBox btns={["down"]} hideTit={true} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}

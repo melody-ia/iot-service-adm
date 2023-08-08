@@ -90,7 +90,7 @@ export default function CalculatorList() {
             <thead>
               <tr>
                 <th className="num">NO</th>
-                <th>계산일</th>
+                <th>최근계산일</th>
                 <th>아이디</th>
                 <th>지역</th>
                 <th>성별</th>
@@ -101,7 +101,7 @@ export default function CalculatorList() {
               </tr>
             </thead>
             <tbody>
-              {resData &&
+              {resData?.length > 0 ?
                 resData?.map(el => (
                   <tr key={el.idx}>
                     <td>{el.idx}</td>
@@ -116,10 +116,10 @@ export default function CalculatorList() {
                     <td>{el.total_carbon.toLocaleString("ko-KR") || 0}</td>
                     <td>{el.needed_tree.toLocaleString("ko-KR") || 0}</td>
                   </tr>
-                ))}
+                )) : <tr><td colSpan="9">데이터 없음</td></tr>}
             </tbody>
           </table>
-          {!resData && <div className="no_data_wrap">데이터 없음</div>}
+          {/* {!resData && <div className="no_data_wrap">데이터 없음</div>} */}
         </div>
         <CurrentBox btns={["down"]} hideTit={true} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
