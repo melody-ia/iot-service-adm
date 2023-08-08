@@ -16,7 +16,7 @@ export default function QnaDetail() {
   const loadPostData = async () => {
     if (!state) return;
     const res = await postData("inquire/show", { mb_no, qa_id: state.qa_id });
-    if (!res || res.data?.code !== 200) return;
+    if (!res || res?.code !== 200) return;
     setAnswerData({ qa_answer_content: res.data.inquireInfo[0].qa_answer_content, qa_memo: res.data.inquireInfo[0].qa_1 });
   };
 

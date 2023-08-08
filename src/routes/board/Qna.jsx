@@ -23,7 +23,7 @@ export default function Qna() {
     const qa_category = selectedValues.inquiry_sort === "전체" ? "all" : categoryList.indexOf(selectedValues.inquiry_sort);
     const data = { mb_no, start_at, end_at, qa_status, qa_category, order };
     const res = await postData("inquire/index", { ...data });
-    if (!res || res.data?.code !== 200) return;
+    if (!res || res?.code !== 200) return;
     setBeforeFilter({ ...data });
     setPageData(res.page);
     setCurPage(1);

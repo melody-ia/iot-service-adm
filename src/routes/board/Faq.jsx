@@ -30,7 +30,7 @@ export default function Faq() {
     const order = selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";
     const data = { mb_no, start_at, end_at, category, faq_subject, wr_status, order };
     const res = await postData("community/index", { ...data });
-    if (!res || res.data?.code !== 200) return;
+    if (!res || res?.code !== 200) return;
     setBeforeFilter({ ...data });
     setPageData(res.page);
     setCurPage(1);

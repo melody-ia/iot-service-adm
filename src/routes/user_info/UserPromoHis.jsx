@@ -103,7 +103,7 @@ export default function UserPromoHis() {
             </div>
           );
         })}
-        {!resData?.boardInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
+        {!resData?.challengeResult[0] && <div className="no_data_wrap">데이터 없음</div>}
         <Pagination />
       </div>
     </>

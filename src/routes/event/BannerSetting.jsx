@@ -34,7 +34,7 @@ export default function BannerSetting() {
     if (selectedValues.banner_location !== "전체") data.bn_alt = categoryList.indexOf(selectedValues.banner_location) - 1;
     if (selectedValues.upload_state !== "전체") data.bn_status = ["공개", "비공개"].indexOf(selectedValues.upload_state);
     const res = await postData("banner/index", data);
-    if (!res || res.code !== 200) return;
+    if (!res || res?.code !== 200) return;
     if (!categoryList[0]) {
       console.log(res.data.category);
       setCategoryList(["전체", ...res.data.category]);

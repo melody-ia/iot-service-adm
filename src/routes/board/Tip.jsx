@@ -35,7 +35,7 @@ export default function Tip() {
       order,
     };
     const res = await postData("community/index", { ...data });
-    if (!res || res.data?.code !== 200) return;
+    if (!res || res?.code !== 200) return;
     setBeforeFilter({ ...data });
     setPageData(res.page);
     setCurPage(1);

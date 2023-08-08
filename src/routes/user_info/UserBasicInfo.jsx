@@ -33,7 +33,7 @@ export default function UserInfo() {
   const loadUserData = async () => {
     const type = pathname.includes("Delete") ? "leave" : "all";
     const res = await postData("member/show", { mb_no, target_id: id, type });
-    if (!res || res.data?.code !== 200) return;
+    if (!res || res?.code !== 200) return;
     const essentialInfo = {};
     const choiceInfo = {};
     const selectBoxData = {};

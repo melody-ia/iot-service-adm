@@ -26,7 +26,7 @@ export default function FaqEdit() {
   const loadPostData = async () => {
     if (!state) return;
     const res = await postData("community/show", { mb_no, wr_id: state.wr_id, category: "faq" });
-    if (!res || res.data?.code !== 200) return;
+    if (!res || res?.code !== 200) return;
     setPostContents(res.data.boardInfo[0]);
     setSelectedValue({ ...selectedValues, faq_sort: res.data.boardInfo[0].wr_subject });
   };

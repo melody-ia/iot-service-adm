@@ -24,7 +24,7 @@ export default function DeletedUserList() {
       order,
       type: "leave",
     });
-    if (!res || res.data?.code !== 200) return;
+    if (!res || res?.code !== 200) return;
     setPageData(res.page);
   };
 

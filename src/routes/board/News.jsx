@@ -41,7 +41,7 @@ export default function News() {
       // list_items: 1,
     };
     const res = await postData("community/index", { ...data });
-    if (!res || res.data?.code !== 200) return;
+    if (!res || res?.code !== 200) return;
     setPageData(res.page);
     setBeforeFilter({ ...data });
     setCurPage(1);

@@ -100,7 +100,7 @@ export default function UserCalcHis() {
       order,
     };
     const res = await postData("calculator/detail", data);
-    if (!res || res.data?.code !== 200) return;
+    if (!res || res?.code !== 200) return;
     setBeforeFilter({ ...data });
     setPageData(res.page);
     setCurPage(1);
