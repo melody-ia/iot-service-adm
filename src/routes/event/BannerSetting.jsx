@@ -22,7 +22,7 @@ export default function BannerSetting() {
     else setCheckedList([]);
   };
 
-  console.log(categoryList);
+  // console.log(categoryList);
 
   const loadBannerData = async () => {
     const data = {
@@ -36,7 +36,7 @@ export default function BannerSetting() {
     const res = await postData("banner/index", data);
     if (!res || res?.code !== 200) return;
     if (!categoryList[0]) {
-      console.log(res.data.category);
+      // console.log(res.data.category);
       setCategoryList(["전체", ...res.data.category]);
       setSelectedValue({ ...selectedValues, banner_location: "전체" });
     }

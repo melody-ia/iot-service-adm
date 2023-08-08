@@ -33,7 +33,7 @@ export default function UserAdd() {
       joinData[prop] = form[prop].val;
     }
     joinData = { ...joinData, ...choiceForm, profile_picture: formData };
-    console.log(joinData);
+    // console.log(joinData);
   };
 
   const btnEvent = {

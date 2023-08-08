@@ -99,7 +99,7 @@ export default function ChallengeListDetailModal({ modalClose, ch_no }) {
 function UserItem({ data, idx, ch_no }) {
   const navigate = useNavigate();
 
-  console.log(ch_no);
+  // console.log(ch_no);
   return (
     <tr>
       <td>{idx}</td>

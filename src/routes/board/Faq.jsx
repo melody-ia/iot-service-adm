@@ -64,7 +64,7 @@ export default function Faq() {
     loadPostData();
   }, []);
 
-  console.log(resData?.boardInfo);
+  // console.log(resData?.boardInfo);
 
   // if (resData && pageData)
   return (

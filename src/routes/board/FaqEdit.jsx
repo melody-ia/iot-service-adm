@@ -52,14 +52,14 @@ export default function FaqEdit() {
         formData.append("communityfile", el.file);
       });
     }
-    console.log(formData.getAll("mb_no"));
-    console.log(formData.getAll("wr_id"));
-    console.log(formData.getAll("wr_subject"));
-    console.log(formData.getAll("wr_seo_title"));
-    console.log(formData.getAll("wr_content"));
-    console.log(formData.getAll("wr_status"));
-    console.log(formData.getAll("wr_memo"));
-    console.log(formData.getAll("communityfile"));
+    // console.log(formData.getAll("mb_no"));
+    // console.log(formData.getAll("wr_id"));
+    // console.log(formData.getAll("wr_subject"));
+    // console.log(formData.getAll("wr_seo_title"));
+    // console.log(formData.getAll("wr_content"));
+    // console.log(formData.getAll("wr_status"));
+    // console.log(formData.getAll("wr_memo"));
+    // console.log(formData.getAll("communityfile"));
     const res = await postData("community/update", formData);
     if (res.code === 200) {
       alert("수정되었습니다.");

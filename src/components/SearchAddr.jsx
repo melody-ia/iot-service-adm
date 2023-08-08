@@ -11,7 +11,7 @@ export default function FindAddr(props) {
     const url = `https://business.juso.go.kr/addrlink/addrLinkApi.do?confmKey=devU01TX0FVVEgyMDIzMDUxNzE0MDgzNjExMzc4Mjg=&keyword=${keyword}&currentPage=1&countPerPage=100&resultType=json`;
     const res = await axios.get(url);
     const data = res.data;
-    // console.log(data);
+    // // console.log(data);
     var errCode = data.results.common.errorCode;
     var errDesc = data.results.common.errorMessage;
     if (errCode != "0") {

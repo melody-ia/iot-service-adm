@@ -1,5 +1,5 @@
 export default function RadioBtn(props) {
-  // console.log(props.id, props.checked);
+  // // console.log(props.id, props.checked);
   return (
     <div className="check_type radio">
       <label htmlFor={props.for}>

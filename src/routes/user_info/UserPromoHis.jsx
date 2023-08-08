@@ -25,7 +25,7 @@ export default function UserPromoHis() {
       start_at,
       end_at,
     });
-    console.log(res);
+    // console.log(res);
   };
 
   useEffect(() => {

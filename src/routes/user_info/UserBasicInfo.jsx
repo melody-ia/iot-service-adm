@@ -93,7 +93,7 @@ export default function UserInfo() {
     if (Object.values(choiceForm).some(el => el)) setChoiceForm({ ...choiceForm, ...selectedValues });
   }, [selectedValues]);
 
-  // console.log(choiceForm);
+  // // console.log(choiceForm);
 
   return (
     <>

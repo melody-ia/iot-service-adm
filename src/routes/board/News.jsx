@@ -24,7 +24,7 @@ export default function News() {
     else setCheckedList([]);
   };
 
-  // console.log(resData);
+  // // console.log(resData);
 
   const loadPostData = async () => {
     const category = { 전체: "all", 이벤트: "event", 뉴스: "news" }[selectedValues.division_sort];
@@ -117,7 +117,7 @@ export default function News() {
             </thead>
             <tbody>
               {resData?.boardInfo.map((el, idx) => {
-                console.log(el);
+                // console.log(el);
                 return (
                   <PostItem
                     key={idx}
