@@ -9,8 +9,10 @@ export default function SideMenu(props) {
 
   const toggleClass = (el) => {
     const listBtn = document.querySelectorAll(".list_btn");
-    listBtn.forEach((el) => el.classList.remove("active"));
-    if (el.target.classList[1] !== "active") {
+    if (el.target.classList[1] === "active") {
+      listBtn.forEach((el) => el.classList.remove("active"));
+    } else {
+      listBtn.forEach((el) => el.classList.remove("active"));
       el.target.classList.toggle("active");
     }
   };
