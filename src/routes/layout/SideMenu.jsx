@@ -7,15 +7,20 @@ export default function SideMenu(props) {
   const { pathname } = useLocation();
   const { id } = useParams();
 
-  const toggleClass = el => {
+  const toggleClass = (el) => {
     const listBtn = document.querySelectorAll(".list_btn");
-
-    listBtn.forEach(el => el.classList.remove("active"));
-    el.target.classList.toggle("active");
+    listBtn.forEach((el) => el.classList.remove("active"));
+    if (el.target.classList[1] !== "active") {
+      el.target.classList.toggle("active");
+    }
   };
 
   return (
-    <div className={sideState ? "side_menu wide" : "side_menu"} onMouseOver={sideOpen} onMouseLeave={sideClose}>
+    <div
+      className={sideState ? "side_menu wide" : "side_menu"}
+      onMouseOver={sideOpen}
+      onMouseLeave={sideClose}
+    >
       <div className="inner">
         <Link to="/" className="logo" onClick={sideClose}>
           <img src={logoImg} alt="" />
@@ -26,10 +31,18 @@ export default function SideMenu(props) {
               회원관리
             </button>
             <ul className="sub_menu_list">
-              <li className={pathname === "/UserList" ? "list active" : "list"} onClick={sideClose}>
+              <li
+                className={pathname === "/UserList" ? "list active" : "list"}
+                onClick={sideClose}
+              >
                 <Link to="UserList">회원 리스트</Link>
               </li>
-              <li className={pathname === "/DeletedUserList" ? "list active" : "list"} onClick={sideClose}>
+              <li
+                className={
+                  pathname === "/DeletedUserList" ? "list active" : "list"
+                }
+                onClick={sideClose}
+              >
                 <Link to="DeletedUserList">탈퇴/삭제 회원</Link>
               </li>
             </ul>
@@ -41,7 +54,9 @@ export default function SideMenu(props) {
             <ul className="sub_menu_list">
               <li
                 className={
-                  pathname === "/ChallengeList" || pathname === "/ChallengeList/add" || pathname === "/ChallengeList/ChallengeListDetail" + id
+                  pathname === "/ChallengeList" ||
+                  pathname === "/ChallengeList/add" ||
+                  pathname === "/ChallengeList/ChallengeListDetail" + id
                     ? "list active"
                     : "list"
                 }
@@ -49,22 +64,47 @@ export default function SideMenu(props) {
               >
                 <Link to="ChallengeList">데일리 챌린지 관리</Link>
               </li>
-              <li className={pathname === "/RankingSetting" ? "list active" : "list"} onClick={sideClose}>
+              <li
+                className={
+                  pathname === "/RankingSetting" ? "list active" : "list"
+                }
+                onClick={sideClose}
+              >
                 <Link to="RankingSetting">탄소 중립 랭킹 관리</Link>
               </li>
               {/* <li className={pathname==="/BannerRanking"? "list active" : "list"} onClick={sideClose}>
                 <Link to="BannerRanking">공개 배너 순위 관리</Link>
               </li> */}
-              <li className={pathname === "/BannerSetting" || pathname === "/BannerSetting/add" ? "list active" : "list"} onClick={sideClose}>
+              <li
+                className={
+                  pathname === "/BannerSetting" ||
+                  pathname === "/BannerSetting/add"
+                    ? "list active"
+                    : "list"
+                }
+                onClick={sideClose}
+              >
                 <Link to="BannerSetting">배너 관리</Link>
               </li>
-              <li className={pathname === "/PopupSetting" || pathname === "/PopupSetting/add" ? "list active" : "list"} onClick={sideClose}>
+              <li
+                className={
+                  pathname === "/PopupSetting" ||
+                  pathname === "/PopupSetting/add"
+                    ? "list active"
+                    : "list"
+                }
+                onClick={sideClose}
+              >
                 <Link to="PopupSetting">팝업 관리</Link>
               </li>
             </ul>
           </div>
           <div className="btn_wrap calc" onClick={sideClose}>
-            <Link to="CalculatorList" className="list_btn" onClick={toggleClass}>
+            <Link
+              to="CalculatorList"
+              className="list_btn"
+              onClick={toggleClass}
+            >
               탄소발자국 계산내역 관리
             </Link>
           </div>
@@ -91,16 +131,40 @@ export default function SideMenu(props) {
               게시판 관리
             </button>
             <ul className="sub_menu_list">
-              <li className={pathname === "/News" || pathname === "/News/add" ? "list active" : "list"} onClick={sideClose}>
+              <li
+                className={
+                  pathname === "/News" || pathname === "/News/add"
+                    ? "list active"
+                    : "list"
+                }
+                onClick={sideClose}
+              >
                 <Link to="/News">이벤트/뉴스관리</Link>
               </li>
-              <li className={pathname === "/Tip" || pathname === "/Tip/add" ? "list active" : "list"} onClick={sideClose}>
+              <li
+                className={
+                  pathname === "/Tip" || pathname === "/Tip/add"
+                    ? "list active"
+                    : "list"
+                }
+                onClick={sideClose}
+              >
                 <Link to="/Tip">탄소중립TIP 자료실 관리</Link>
               </li>
-              <li className={pathname === "/Faq" || pathname === "/Faq/add" ? "list active" : "list"} onClick={sideClose}>
+              <li
+                className={
+                  pathname === "/Faq" || pathname === "/Faq/add"
+                    ? "list active"
+                    : "list"
+                }
+                onClick={sideClose}
+              >
                 <Link to="/Faq">FAQ 관리</Link>
               </li>
-              <li className={pathname === "/Qna" ? "list active" : "list"} onClick={sideClose}>
+              <li
+                className={pathname === "/Qna" ? "list active" : "list"}
+                onClick={sideClose}
+              >
                 <Link to="/Qna">1:1문의 관리</Link>
               </li>
             </ul>
@@ -113,7 +177,10 @@ export default function SideMenu(props) {
               <li className="list" onClick={sideClose}>
                 <Link to="">기기 목록 관리</Link>
               </li>
-              <li className={pathname === "/Product" ? "list active" : "list"} onClick={sideClose}>
+              <li
+                className={pathname === "/Product" ? "list active" : "list"}
+                onClick={sideClose}
+              >
                 <Link to="/Product">GL 추천제품 관리</Link>
               </li>
             </ul>
