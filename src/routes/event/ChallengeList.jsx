@@ -1,7 +1,16 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Lnb, CurrentBox, Pagination, RadioBtn } from "../../components/bundle_components";
-import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
+import {
+  Lnb,
+  CurrentBox,
+  Pagination,
+  RadioBtn,
+} from "../../components/bundle_components";
+import {
+  useSelectBox,
+  useDatePicker,
+  useCheckToken,
+} from "../../hooks/bundle_hooks";
 import { serverUrl } from "../../variables/bundle_variables";
 import copy from "../../assets/img/icon/copy.png";
 import { useState } from "react";
@@ -16,8 +25,11 @@ export default function ChallengeList() {
   });
 
   const loadChallengeData = async () => {
-    const order = selectedValues.sort_date === "최근 등록일 순" ? "desc" : "asc";
-    const ch_status = { 전체: "all", 진행중: "on", 종료: "off" }[selectedValues.search_state];
+    const order =
+      selectedValues.sort_date === "최근 등록일 순" ? "desc" : "asc";
+    const ch_status = { 전체: "all", 진행중: "on", 종료: "off" }[
+      selectedValues.search_state
+    ];
     postData("challenge/index", { mb_no, ch_status, order, start_at, end_at });
   };
 
@@ -35,7 +47,11 @@ export default function ChallengeList() {
     <>
       <Lnb lnbType="event" />
       {/* <CurrentBox add={true} mod={true} del={true} down={true} tit="데일리 챌린지 리스트" /> */}
-      <CurrentBox btns={["add", "down"]} tit="데일리 챌린지 리스트" {...btnEvent} />
+      <CurrentBox
+        btns={["add", "down"]}
+        tit="데일리 챌린지 리스트"
+        {...btnEvent}
+      />
       <div className="ch_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -43,7 +59,11 @@ export default function ChallengeList() {
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <button type="button" className="btn_ty01 btn_search" onClick={loadChallengeData}>
+          <button
+            type="button"
+            className="btn_ty01 btn_search"
+            onClick={loadChallengeData}
+          >
             검색
           </button>
         </div>
@@ -97,11 +117,13 @@ export default function ChallengeList() {
             </thead>
             <tbody>
               {resData?.challengeInfo.map((el, idx) => {
-                return <ChallengeItem key={idx} data={el} />;
+                return <ChallengeItem key={idx} data={el} no={idx} />;
               })}
             </tbody>
           </table>
-          {!resData?.challengeInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
+          {!resData?.challengeInfo[0] && (
+            <div className="no_data_wrap">데이터 없음</div>
+          )}
         </div>
         {/* <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} /> */}
         <CurrentBox btns={["add", "down"]} hideTit={true} {...btnEvent} />
@@ -111,7 +133,7 @@ export default function ChallengeList() {
   );
 }
 
-function ChallengeItem({ data }) {
+function ChallengeItem({ no, data }) {
   const [challengeContents, setChallengeContents] = useState({ ...data });
 
   const copyUrl = () => {
@@ -124,10 +146,21 @@ function ChallengeItem({ data }) {
 
   return (
     <tr>
-      <td className="num">2</td>
+      <td className="num">{no + 1}</td>
       <td className="copy_wrap">
-        <Link to={"/ChallengeList/ChallengeListDetail/" + data.ch_no}>{data.ch_title}</Link>
-        <img src={copy} onClick={copyUrl} title={serverUrl.replace("-api", "").replace("api.", "") + "ChallengeWrite/" + data.ch_no} />
+        <Link to={"/ChallengeList/ChallengeListDetail/" + data.ch_no}>
+          {data.ch_title}
+        </Link>
+        <img
+          alt="챌린지링크"
+          src={copy}
+          onClick={copyUrl}
+          title={
+            serverUrl.replace("-api", "").replace("api.", "") +
+            "ChallengeWrite/" +
+            data.ch_no
+          }
+        />
       </td>
       <td>{challengeContents.created_at.replace(/-/g, ".")}</td>
       <td>

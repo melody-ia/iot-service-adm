@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Lnb, CurrentBox, CheckBox, Pagination } from "../../components/bundle_components";
-import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
+import {
+  Lnb,
+  CurrentBox,
+  CheckBox,
+  Pagination,
+} from "../../components/bundle_components";
+import {
+  useSelectBox,
+  useDatePicker,
+  useCheckToken,
+} from "../../hooks/bundle_hooks";
 
 export default function UserList() {
   const navigate = useNavigate();
@@ -14,10 +23,11 @@ export default function UserList() {
   const [curPage, setCurPage] = useState(1);
 
   const loadUserData = async () => {
-    const order = selectedValues.signUp_date === "최근 가입일 순" ? "desc" : "asc";
+    const order =
+      selectedValues.sort_join === "최근 가입일 순" ? "desc" : "asc";
     const res = await postData("member/index", {
       mb_no,
-      start_at: "2021-03-01",
+      start_at,
       end_at,
       cur_page: curPage,
       order,
@@ -48,7 +58,11 @@ export default function UserList() {
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <button type="button" className="m-txt-4 btn_ty01 btn_search" onClick={loadUserData}>
+          <button
+            type="button"
+            className="m-txt-4 btn_ty01 btn_search"
+            onClick={loadUserData}
+          >
             검색
           </button>
         </div>
@@ -65,7 +79,7 @@ export default function UserList() {
               <col width={"100px"} />
               <col width={"100px"} />
               <col width={"108px"} />
-              <col width={"170px"} />
+              {/* <col width={"170px"} /> */}
             </colgroup>
             <thead>
               <tr>
@@ -79,35 +93,43 @@ export default function UserList() {
                 <th className="phone">휴대폰 번호</th>
                 <th className="joinDate">가입일</th>
                 <th className="active">계정활성화여부</th>
-                <th className="etc">비고</th>
+                {/* <th className="etc">비고</th> */}
               </tr>
             </thead>
             <tbody>
               {resData?.memberResult.map((el, idx) => {
-                return <UserItem key={idx} data={el} />;
+                return <UserItem key={idx} data={el} no={idx} />;
               })}
             </tbody>
           </table>
-          {!resData?.memberResult[0] && <div className="no_data_wrap">데이터 없음</div>}
+          {!resData?.memberResult[0] && (
+            <div className="no_data_wrap">데이터 없음</div>
+          )}
         </div>
         <CurrentBox btns={["add", "down"]} hideTit={true} {...btnEvent} />
-        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} />}
+        {pageData && (
+          <Pagination
+            pageData={pageData}
+            curPage={curPage}
+            setCurPage={setCurPage}
+          />
+        )}
       </div>
     </>
   );
 }
 
-function UserItem({ data }) {
+function UserItem({ no, data }) {
   return (
     <tr>
-      <td className="num">100</td>
-      <td className="id disabled">
+      <td className="num">{no + 1}</td>
+      <td className="id">
         <Link to={"/UserBasicInfo/" + data.mb_id}>{data.mb_id}</Link>
       </td>
       <td className="name">{data.mb_name}</td>
       <td className="gender">{data.mb_sex}</td>
       <td className="birth">{data.mb_birth}</td>
-      <td className="people">{data.mb_certify}</td>
+      <td className="people">{data.mb_family}</td>
       <td className="email">
         {data.mb_email.split("@")[0]}
         <br />
@@ -115,10 +137,10 @@ function UserItem({ data }) {
       </td>
       <td className="phone">{data.mb_hp}</td>
       <td className="joinDate">{data.mb_datetime}</td>
-      <td className="active">X</td>
-      <td className="etc input_ty02 userlist">
-        <input type="text" placeholder="직접입력" defaultValue={data.mb_2} readOnly />
-      </td>
+      <td className="active">{data.mb_open === 0 ? "O" : "X"}</td>
+      {/* <td className="etc input_ty02 userlist">
+        <input type="text" placeholder="직접입력" defaultValue={data.mb_2} />
+      </td> */}
     </tr>
   );
 }
