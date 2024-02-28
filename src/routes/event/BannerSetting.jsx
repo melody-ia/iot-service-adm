@@ -1,7 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../components/bundle_components";
-import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
+import {
+  Lnb,
+  CurrentBox,
+  CheckBox,
+  Pagination,
+  RadioBtn,
+} from "../../components/bundle_components";
+import {
+  useSelectBox,
+  useDatePicker,
+  useCheckToken,
+} from "../../hooks/bundle_hooks";
 import { serverUrl } from "../../variables/bundle_variables";
 import banner from "../../assets/img/banner.png";
 
@@ -15,10 +25,16 @@ export default function BannerSetting() {
     banner_location: categoryList,
   });
   const [checkedList, setCheckedList] = useState([]);
-  const [modList, setModeList] = useState({ bn_id: [], bn_status: [], bn_memo: [], bn_priority: [] });
+  const [modList, setModeList] = useState({
+    bn_id: [],
+    bn_status: [],
+    bn_memo: [],
+    bn_priority: [],
+  });
 
-  const checkAll = e => {
-    if (e.target.checked) setCheckedList(resData.bannerInfo.map(el => el.bn_id));
+  const checkAll = (e) => {
+    if (e.target.checked)
+      setCheckedList(resData.bannerInfo.map((el) => el.bn_id));
     else setCheckedList([]);
   };
 
@@ -31,8 +47,10 @@ export default function BannerSetting() {
       bn_end_time: end_at,
       order: "asc",
     };
-    if (selectedValues.banner_location !== "전체") data.bn_alt = categoryList.indexOf(selectedValues.banner_location) - 1;
-    if (selectedValues.upload_state !== "전체") data.bn_status = ["공개", "비공개"].indexOf(selectedValues.upload_state);
+    if (selectedValues.banner_location !== "전체")
+      data.bn_alt = categoryList.indexOf(selectedValues.banner_location) - 1;
+    if (selectedValues.upload_state !== "전체")
+      data.bn_status = ["공개", "비공개"].indexOf(selectedValues.upload_state);
     const res = await postData("banner/index", data);
     if (!res || res?.code !== 200) return;
     if (!categoryList[0]) {
@@ -74,7 +92,11 @@ export default function BannerSetting() {
   return (
     <>
       <Lnb lnbType="event" />
-      <CurrentBox btns={["add", "mod", "del"]} tit="배너 리스트" {...btnEvent} />
+      <CurrentBox
+        btns={["add", "mod", "del"]}
+        tit="배너 리스트"
+        {...btnEvent}
+      />
       <div className="banner_setting box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -82,7 +104,11 @@ export default function BannerSetting() {
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <button type="button" className="btn_ty01 btn_search" onClick={loadBannerData}>
+          <button
+            type="button"
+            className="btn_ty01 btn_search"
+            onClick={loadBannerData}
+          >
             검색
           </button>
         </div>
@@ -112,6 +138,7 @@ export default function BannerSetting() {
                 <th>NO</th>
                 <th>배너 이미지</th>
                 <th>배너 위치</th>
+                등록 일자
                 <th>공개 기한</th>
                 <th>공개 여부</th>
                 <th>순위설정</th>
@@ -128,12 +155,15 @@ export default function BannerSetting() {
                     setCheckedList={setCheckedList}
                     modList={modList}
                     setModeList={setModeList}
+                    no={idx}
                   />
                 );
               })}
             </tbody>
           </table>
-          {!resData?.bannerInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
+          {!resData?.bannerInfo[0] && (
+            <div className="no_data_wrap">데이터 없음</div>
+          )}
         </div>
         <CurrentBox btns={["add", "mod", "del"]} hideTit={true} {...btnEvent} />
         <Pagination />
@@ -142,7 +172,14 @@ export default function BannerSetting() {
   );
 }
 
-function BannerItem({ data, checkedList, setCheckedList, modList, setModeList }) {
+function BannerItem({
+  data,
+  checkedList,
+  setCheckedList,
+  modList,
+  setModeList,
+  no,
+}) {
   const [postContents, setPostContents] = useState({
     bn_id: data.bn_id,
     bn_status: data.bn_status,
@@ -150,12 +187,12 @@ function BannerItem({ data, checkedList, setCheckedList, modList, setModeList })
     bn_priority: data.bn_priority,
   });
 
-  const checkItem = e => {
+  const checkItem = (e) => {
     if (e.target.checked) setCheckedList([...checkedList, data.bn_id]);
-    else setCheckedList([...checkedList].filter(el => el !== data.bn_id));
+    else setCheckedList([...checkedList].filter((el) => el !== data.bn_id));
   };
 
-  const handlePostContents = e => {
+  const handlePostContents = (e) => {
     const type = e.target.dataset.type;
     const value = e.target.dataset.value || e.target.value;
     let copy = { ...postContents };
@@ -168,7 +205,7 @@ function BannerItem({ data, checkedList, setCheckedList, modList, setModeList })
     if (!checkedList.includes(data.bn_id)) {
       if (copy.bn_id.includes(data.bn_id)) {
         const idx = copy.bn_id.indexOf(data.bn_id);
-        ["bn_id", "bn_status", "bn_memo", "bn_priority"].forEach(el => {
+        ["bn_id", "bn_status", "bn_memo", "bn_priority"].forEach((el) => {
           copy[el].splice(idx, 1);
         });
         return setModeList(copy);
@@ -177,12 +214,12 @@ function BannerItem({ data, checkedList, setCheckedList, modList, setModeList })
     }
     if (copy.bn_id.includes(data.bn_id)) {
       const idx = copy.bn_id.indexOf(data.bn_id);
-      ["bn_id", "bn_status", "bn_memo", "bn_priority"].forEach(el => {
+      ["bn_id", "bn_status", "bn_memo", "bn_priority"].forEach((el) => {
         copy[el].splice(idx, 1);
         copy[el].push(postContents[el]);
       });
     } else {
-      ["bn_id", "bn_status", "bn_memo", "bn_priority"].forEach(el => {
+      ["bn_id", "bn_status", "bn_memo", "bn_priority"].forEach((el) => {
         copy[el].push(postContents[el]);
       });
     }
@@ -200,9 +237,15 @@ function BannerItem({ data, checkedList, setCheckedList, modList, setModeList })
   return (
     <tr>
       <td className="check">
-        <CheckBox for={data.bn_id} id={data.bn_id} name={data.bn_id} checked={checkedList.includes(data.bn_id)} onClick={checkItem} />
+        <CheckBox
+          for={data.bn_id}
+          id={data.bn_id}
+          name={data.bn_id}
+          checked={checkedList.includes(data.bn_id)}
+          onClick={checkItem}
+        />
       </td>
-      <td>4</td>
+      <td>{no + 1}</td>
       {/* <td className="basic">
       <RadioBtn for="wr_1" id="wr_1" name="wr_1" />
     </td> */}
@@ -210,9 +253,10 @@ function BannerItem({ data, checkedList, setCheckedList, modList, setModeList })
         <img src={serverUrl + "images" + data.bannerImage} alt="" />
       </td>
       <td>{data.bannerType}</td>
-      {/* <td>2023.05.08</td> */}
+      <td>{data.bn_datetime.replace(/-/g, ".")}</td>
       <td>
-        {data.bn_begin_time.replace(/-/g, ".")} – {data.bn_end_time.replace(/-/g, ".")}
+        {data.bn_begin_time.replace(/-/g, ".")} –{" "}
+        {data.bn_end_time.replace(/-/g, ".")}
       </td>
       <td>
         <div className="radio_group flex_right">
@@ -240,12 +284,24 @@ function BannerItem({ data, checkedList, setCheckedList, modList, setModeList })
       </td>
       <td>
         <div className="input_ty02">
-          <input type="number" placeholder={"직접 입력"} value={postContents.bn_priority} data-type="bn_priority" onChange={handlePostContents} />
+          <input
+            type="number"
+            placeholder={"직접 입력"}
+            value={postContents.bn_priority}
+            data-type="bn_priority"
+            onChange={handlePostContents}
+          />
         </div>
       </td>
       <td>
         <div className="input_ty02">
-          <input type="text" placeholder={"직접 입력"} value={postContents.bn_memo} data-type="bn_memo" onChange={handlePostContents} />
+          <input
+            type="text"
+            placeholder={"직접 입력"}
+            value={postContents.bn_memo}
+            data-type="bn_memo"
+            onChange={handlePostContents}
+          />
         </div>
       </td>
     </tr>

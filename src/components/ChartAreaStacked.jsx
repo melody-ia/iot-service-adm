@@ -1,15 +1,19 @@
 import { useState } from "react";
 import Chart from "react-apexcharts";
 
-export default function ChartAreaStacked() {
+export default function ChartAreaStacked({ chartData }) {
   const [series, setSeries] = useState([
     {
       name: "프로모션1",
-      data: [50, 200, 150, 250, 150, 270, 100],
-    },
-    {
-      name: "프로모션2",
-      data: [50, 200, 150, 250, 150, 270, 100],
+      data: [
+        parseInt(chartData[0].week_ch_count),
+        parseInt(chartData[1].week_ch_count),
+        parseInt(chartData[2].week_ch_count),
+        parseInt(chartData[3].week_ch_count),
+        parseInt(chartData[4].week_ch_count),
+        parseInt(chartData[5].week_ch_count),
+        parseInt(chartData[6].week_ch_count),
+      ],
     },
   ]);
   const [options, setOptions] = useState({
@@ -25,7 +29,15 @@ export default function ChartAreaStacked() {
         opacityTo: 0.08,
       },
     },
-    labels: ["월", "화", "수", "목", "금", "토", "일"],
+    labels: [
+      chartData[0].date,
+      chartData[1].date,
+      chartData[2].date,
+      chartData[3].date,
+      chartData[4].date,
+      chartData[5].date,
+      chartData[6].date,
+    ],
     dataLabels: {
       enabled: false,
     },

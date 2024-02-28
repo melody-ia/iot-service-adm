@@ -1,7 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
-import { useSelectBox, useCheckToken, useUploadFile } from "../../hooks/bundle_hooks";
+import {
+  useSelectBox,
+  useCheckToken,
+  useUploadFile,
+} from "../../hooks/bundle_hooks";
 import { serverUrl } from "../../variables/bundle_variables";
 
 export default function NewsEdit() {
@@ -15,7 +19,7 @@ export default function NewsEdit() {
   const [topImage, setTopImage] = useState([]);
   const [communityfile, setCommunityfile] = useState([]);
 
-  const handlePostContents = e => {
+  const handlePostContents = (e) => {
     const type = e.target.dataset.type;
     const value = e.target.dataset.value || e.target.value;
     let copy = { ...postContents };
@@ -25,30 +29,41 @@ export default function NewsEdit() {
 
   const loadPostData = async () => {
     if (!state) return;
-    const res = await postData("community/show", { mb_no, wr_id: state.wr_id, category: state.wr_subject });
+    const res = await postData("community/show", {
+      mb_no,
+      wr_id: state.wr_id,
+      category: state.wr_subject,
+    });
     if (!res || res?.code !== 200) return;
-    const getSelectedValue = { event: "이벤트", news: "뉴스" }[res.data.boardInfo[0].wr_subject];
+    const getSelectedValue = { event: "이벤트", news: "뉴스" }[
+      res.data.boardInfo[0].wr_subject
+    ];
     setPostContents(res.data.boardInfo[0]);
     setSelectedValue({ ...selectedValues, subject: getSelectedValue });
   };
 
   const dataSubmit = async () => {
-    if (!postContents.wr_seo_title || !postContents.wr_content) return alert("제목과 내용을 입력하세요.");
+    if (!postContents.wr_seo_title || !postContents.wr_content)
+      return alert("제목과 내용을 입력하세요.");
     const formData = new FormData();
     formData.append("mb_no", mb_no);
     formData.append("wr_id", state.wr_id);
-    formData.append("wr_subject", { 이벤트: "event", 뉴스: "news" }[selectedValues.subject]);
+    formData.append(
+      "wr_subject",
+      { 이벤트: "event", 뉴스: "news" }[selectedValues.subject]
+    );
     formData.append("wr_seo_title", postContents.wr_seo_title);
     formData.append("wr_content", postContents.wr_content);
     formData.append("wr_status", postContents.wr_status);
-    if (postContents.wr_1) formData.append("wr_memo", postContents.wr_1);
+    formData.append("wr_memo", postContents.wr_1);
+
     if (topImage[0]) {
-      topImage.forEach(el => {
+      topImage.forEach((el) => {
         formData.append("topimage", el.file);
       });
     }
     if (communityfile[0]) {
-      communityfile.forEach(el => {
+      communityfile.forEach((el) => {
         formData.append("communityfile", el.file);
       });
     }
@@ -56,7 +71,7 @@ export default function NewsEdit() {
     if (res.code === 200) {
       alert("수정되었습니다.");
       history("/News");
-    }
+    } else alert(res.msg);
   };
 
   const btnEvent = {
@@ -73,7 +88,11 @@ export default function NewsEdit() {
     return (
       <>
         <Lnb lnbType="board" />
-        <CurrentBox btns={["add", "del", "down"]} tit="이벤트/뉴스 등록/수정" {...btnEvent} />
+        <CurrentBox
+          btns={["add", "del", "down"]}
+          tit="이벤트/뉴스 등록/수정"
+          {...btnEvent}
+        />
         <div className="news_add box_ty01 view_form add">
           <div className="write_type">
             <div className="wirte_area">
@@ -145,7 +164,12 @@ export default function NewsEdit() {
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">등록일</label>
-                  <input type="text" placeholder="직접입력" defaultValue={postContents.wr_datetime.replace(/-/g, ".")} readOnly />
+                  <input
+                    type="text"
+                    placeholder="직접입력"
+                    defaultValue={postContents.wr_datetime.replace(/-/g, ".")}
+                    readOnly
+                  />
                 </div>
               </div>
               <div className="flex_box">
@@ -163,13 +187,19 @@ export default function NewsEdit() {
               <div className="flex_box find_file">
                 <div className="flex_left w100 flex_box_mr">
                   <label htmlFor="">상단 이미지</label>
-                  <FileItemTop setTopImage={setTopImage} postContents={postContents} />
+                  <FileItemTop
+                    setTopImage={setTopImage}
+                    postContents={postContents}
+                  />
                 </div>
               </div>
               <div className="flex_box find_file">
                 <div className="flex_left w100 flex_box_mr">
                   <label htmlFor="">첨부파일</label>
-                  <FileItemEtc setCommunityfile={setCommunityfile} postContents={postContents} />
+                  <FileItemEtc
+                    setCommunityfile={setCommunityfile}
+                    postContents={postContents}
+                  />
                 </div>
               </div>
               <div className="flex_box">
@@ -187,7 +217,11 @@ export default function NewsEdit() {
             </div>
           </div>
           <div className="bottom_btn_wrap">
-            <button type="button" className="btn_ty01 cancel" onClick={() => history(-1)}>
+            <button
+              type="button"
+              className="btn_ty01 cancel"
+              onClick={() => history(-1)}
+            >
               취소
             </button>
             <button type="button" className="btn_ty01" onClick={dataSubmit}>
@@ -201,10 +235,14 @@ export default function NewsEdit() {
 
 function FileItemTop({ setTopImage, postContents }) {
   const allowType = ["jpg", "jpeg", "png", "gif"];
-  const { fileData, setFileData, uploadFile, deleteFile } = useUploadFile(allowType, 8, 1);
+  const { fileData, setFileData, uploadFile, deleteFile } = useUploadFile(
+    allowType,
+    8,
+    1
+  );
   const fileRef = useRef(null);
 
-  const convertURLtoFile = async url => {
+  const convertURLtoFile = async (url) => {
     url = serverUrl + "images" + url;
     const response = await fetch(url);
     const data = await response.blob();
@@ -223,7 +261,7 @@ function FileItemTop({ setTopImage, postContents }) {
     }
     fileRef.current.files = dataTranster.files;
     const fileArr = Array.from(dataTranster.files);
-    const newFileData = fileArr.map(el => {
+    const newFileData = fileArr.map((el) => {
       return { file: el, url: URL.createObjectURL(el) };
     });
     setFileData(newFileData);
@@ -261,7 +299,11 @@ function FileItemTop({ setTopImage, postContents }) {
 }
 
 function FileItemEtc({ setCommunityfile, postContents }) {
-  const { fileData, setFileData, uploadFile, deleteFile } = useUploadFile(null, 8, 3);
+  const { fileData, setFileData, uploadFile, deleteFile } = useUploadFile(
+    null,
+    8,
+    3
+  );
   const fileRef = useRef(null);
 
   const convertURLtoFile = async (url, filename) => {
@@ -279,13 +321,16 @@ function FileItemEtc({ setCommunityfile, postContents }) {
     const urlArr = postContents.community_file;
     let idx = 0;
     for (let el of urlArr) {
-      const convData = await convertURLtoFile(el, postContents.community_origin[idx]);
+      const convData = await convertURLtoFile(
+        el,
+        postContents.community_origin[idx]
+      );
       dataTranster.items.add(convData);
       idx++;
     }
     fileRef.current.files = dataTranster.files;
     const fileArr = Array.from(dataTranster.files);
-    const newFileData = fileArr.map(el => {
+    const newFileData = fileArr.map((el) => {
       return { file: el, url: URL.createObjectURL(el) };
     });
     setFileData(newFileData);
@@ -316,7 +361,13 @@ function FileItemEtc({ setCommunityfile, postContents }) {
               );
             })}
         </label>
-        <input ref={fileRef} type="file" className="file" onChange={uploadFile} multiple />
+        <input
+          ref={fileRef}
+          type="file"
+          className="file"
+          onChange={uploadFile}
+          multiple
+        />
       </div>
     );
 }
