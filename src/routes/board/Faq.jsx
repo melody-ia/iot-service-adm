@@ -1,7 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Lnb, CurrentBox, CheckBox, Pagination, RadioBtn } from "../../components/bundle_components";
-import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
+import {
+  Lnb,
+  CurrentBox,
+  CheckBox,
+  Pagination,
+  RadioBtn,
+} from "../../components/bundle_components";
+import {
+  useSelectBox,
+  useDatePicker,
+  useCheckToken,
+} from "../../hooks/bundle_hooks";
 
 export default function Faq() {
   const navigate = useNavigate();
@@ -16,19 +26,34 @@ export default function Faq() {
   const [checkedList, setCheckedList] = useState([]);
   const [curPage, setCurPage] = useState(1);
   const [beforeFilter, setBeforeFilter] = useState();
-  const [modList, setModeList] = useState({ wr_id: [], wr_status: [], wr_memo: [] });
+  const [modList, setModeList] = useState({
+    wr_id: [],
+    wr_status: [],
+    wr_memo: [],
+  });
 
-  const checkAll = e => {
-    if (e.target.checked) setCheckedList(resData.boardInfo.map(el => el.wr_id));
+  const checkAll = (e) => {
+    if (e.target.checked)
+      setCheckedList(resData.boardInfo.map((el) => el.wr_id));
     else setCheckedList([]);
   };
 
   const loadPostData = async () => {
     const category = "faq";
-    const faq_subject = selectedValues.faq_sort === "전체" ? "all" : selectedValues.faq_sort;
+    const faq_subject =
+      selectedValues.faq_sort === "전체" ? "all" : selectedValues.faq_sort;
     const wr_status = { 공개: 0, 비공개: 1 }[selectedValues.open_state];
-    const order = selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";
-    const data = { mb_no, start_at, end_at, category, faq_subject, wr_status, order };
+    const order =
+      selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";
+    const data = {
+      mb_no,
+      start_at,
+      end_at,
+      category,
+      faq_subject,
+      wr_status,
+      order,
+    };
     const res = await postData("community/index", { ...data });
     if (!res || res?.code !== 200) return;
     setBeforeFilter({ ...data });
@@ -37,13 +62,21 @@ export default function Faq() {
     if (!res.data) setResData([]);
   };
 
-  const loadPageData = async page => {
-    const res = await postData("community/index", { ...beforeFilter, cur_page: page });
+  const loadPageData = async (page) => {
+    const res = await postData("community/index", {
+      ...beforeFilter,
+      cur_page: page,
+    });
     setPageData(res.page);
   };
 
-  const modPostData = async type => {
-    await postData("community/edit", { mb_no, type, wr_subject: "faq", ...modList });
+  const modPostData = async (type) => {
+    await postData("community/edit", {
+      mb_no,
+      type,
+      wr_subject: "faq",
+      ...modList,
+    });
     loadPostData();
     setCheckedList([]);
   };
@@ -70,7 +103,11 @@ export default function Faq() {
   return (
     <>
       <Lnb lnbType="board" />
-      <CurrentBox btns={["add", "mod", "del", "down"]} tit="FAQ 리스트" {...btnEvent} />
+      <CurrentBox
+        btns={["add", "mod", "del", "down"]}
+        tit="FAQ 리스트"
+        {...btnEvent}
+      />
       <div className="faq box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -78,7 +115,11 @@ export default function Faq() {
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <button type="button" className="btn_ty01 btn_search" onClick={loadPostData}>
+          <button
+            type="button"
+            className="btn_ty01 btn_search"
+            onClick={loadPostData}
+          >
             검색
           </button>
         </div>
@@ -97,7 +138,13 @@ export default function Faq() {
             <thead>
               <tr>
                 <th className="check">
-                  <CheckBox for="wr_all" id="wr_all" name="wr_all" checked={resData?.boardInfo.length === checkedList.length} onClick={checkAll} />
+                  <CheckBox
+                    for="wr_all"
+                    id="wr_all"
+                    name="wr_all"
+                    checked={resData?.boardInfo.length === checkedList.length}
+                    onClick={checkAll}
+                  />
                 </th>
                 <th className="num">NO</th>
                 <th>구분</th>
@@ -122,10 +169,24 @@ export default function Faq() {
               })}
             </tbody>
           </table>
-          {!resData?.boardInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
+          {!resData?.boardInfo[0] && (
+            <div className="no_data_wrap">데이터 없음</div>
+          )}
         </div>
-        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} setCurPage={setCurPage} />
-        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
+        <CurrentBox
+          btns={["add", "mod", "del", "down"]}
+          hideTit={true}
+          setCurPage={setCurPage}
+          {...btnEvent}
+        />
+        {pageData && (
+          <Pagination
+            pageData={pageData}
+            curPage={curPage}
+            setCurPage={setCurPage}
+            onClick={loadPageData}
+          />
+        )}
       </div>
     </>
   );
@@ -134,14 +195,18 @@ export default function Faq() {
 function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
   const navigate = useNavigate();
   const division = [data.wr_subject];
-  const [postContents, setPostContents] = useState({ wr_id: data.wr_id, wr_status: data.wr_status, wr_memo: data.wr_memo });
+  const [postContents, setPostContents] = useState({
+    wr_id: data.wr_id,
+    wr_status: data.wr_status,
+    wr_memo: data.wr_memo,
+  });
 
-  const checkItem = e => {
+  const checkItem = (e) => {
     if (e.target.checked) setCheckedList([...checkedList, data.wr_id]);
-    else setCheckedList([...checkedList].filter(el => el !== data.wr_id));
+    else setCheckedList([...checkedList].filter((el) => el !== data.wr_id));
   };
 
-  const handlePostContents = e => {
+  const handlePostContents = (e) => {
     const type = e.target.dataset.type;
     const value = e.target.dataset.value || e.target.value;
     let copy = { ...postContents };
@@ -154,7 +219,7 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
     if (!checkedList.includes(data.wr_id)) {
       if (copy.wr_id.includes(data.wr_id)) {
         const idx = copy.wr_id.indexOf(data.wr_id);
-        ["wr_id", "wr_status", "wr_memo"].forEach(el => {
+        ["wr_id", "wr_status", "wr_memo"].forEach((el) => {
           copy[el].splice(idx, 1);
         });
         return setModeList(copy);
@@ -163,12 +228,12 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
     }
     if (copy.wr_id.includes(data.wr_id)) {
       const idx = copy.wr_id.indexOf(data.wr_id);
-      ["wr_id", "wr_status", "wr_memo"].forEach(el => {
+      ["wr_id", "wr_status", "wr_memo"].forEach((el) => {
         copy[el].splice(idx, 1);
         copy[el].push(postContents[el]);
       });
     } else {
-      ["wr_id", "wr_status", "wr_memo"].forEach(el => {
+      ["wr_id", "wr_status", "wr_memo"].forEach((el) => {
         copy[el].push(postContents[el]);
       });
     }
@@ -182,14 +247,22 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
   return (
     <tr>
       <td className="check">
-        <CheckBox for={data.wr_id} id={data.wr_id} name={data.wr_id} checked={checkedList.includes(data.wr_id)} onClick={checkItem} />
+        <CheckBox
+          for={data.wr_id}
+          id={data.wr_id}
+          name={data.wr_id}
+          checked={checkedList.includes(data.wr_id)}
+          onClick={checkItem}
+        />
       </td>
       <td className="num">{data.wr_id}</td>
       <td>{division}</td>
       <td
         style={{ cursor: "pointer" }}
         onClick={() => {
-          navigate("/Faq/FaqDetail", { state: { wr_subject: data.wr_subject, wr_id: data.wr_id } });
+          navigate("/Faq/FaqDetail", {
+            state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
+          });
         }}
       >
         {data.wr_seo_title}
@@ -222,7 +295,13 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
       </td>
       <td>
         <div className="input_ty02">
-          <input type="text" placeholder={"직접 입력"} value={postContents.wr_memo} data-type="wr_memo" onChange={handlePostContents} />
+          <input
+            type="text"
+            placeholder={"직접 입력"}
+            value={postContents.wr_memo}
+            data-type="wr_memo"
+            onChange={handlePostContents}
+          />
         </div>
       </td>
     </tr>

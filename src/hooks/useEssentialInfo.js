@@ -22,7 +22,7 @@ export function useEssentialInfo(option) {
       val: "",
       isValid: false,
     },
-    mb_certify: {
+    mb_family: {
       val: "",
       isValid: false,
     },
@@ -51,7 +51,7 @@ export function useEssentialInfo(option) {
     mb_hp: "휴대폰번호 입력 형식이 잘못되었습니다.",
   };
 
-  const valid = e => {
+  const valid = (e) => {
     let val = e.target.dataset.value || e.target.value;
     val = val.replace(/ /g, "");
     const type = e.target.dataset.type;
@@ -62,11 +62,13 @@ export function useEssentialInfo(option) {
       //영문으로 시작하는 영문, 숫자 조합 6자 이상 30자 이하
       mb_password: /^[a-zA-Z0-9!@#$%^&*]{4,30}$/,
       //영문, 숫자, 특수문자를 최소 한가지씩 조합 4자 이상 30자 이하
-      mb_certify: /^[0-9]+$/,
+      mb_family: /^[0-9]+$/,
       //숫자만 입력
-      mb_email: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+      mb_email:
+        /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
       //이메일 형식
-      mb_birth: /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/,
+      mb_birth:
+        /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/,
       //19 혹은 20 으로 시작하는 8자리 숫자
       // ph: /(^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g,
       mb_hp: /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/,
@@ -74,7 +76,11 @@ export function useEssentialInfo(option) {
     };
     switch (type) {
       case "id": {
-        setForm({ ...form, [type]: { val, isValid: exp[type].test(val) }, mb_id_dup: { isValid: false } });
+        setForm({
+          ...form,
+          [type]: { val, isValid: exp[type].test(val) },
+          mb_id_dup: { isValid: false },
+        });
         break;
       }
       // case "pw": {
@@ -123,7 +129,7 @@ export function useEssentialInfo(option) {
     }
   };
 
-  const dupCheck = async e => {
+  const dupCheck = async (e) => {
     e.preventDefault();
     let result = await "중복체크api요청";
     // setForm({ ...form, id_dup: {isValid:result} });
@@ -132,29 +138,41 @@ export function useEssentialInfo(option) {
 
   const validPass = () => {
     if (option) {
-      return option.every(el => form[el].isValid);
-    } else return Object.values(form).every(el => el.isValid);
+      return option.every((el) => form[el].isValid);
+    } else return Object.values(form).every((el) => el.isValid);
   };
 
-  const errorCheck = type => {
+  const errorCheck = (type) => {
     switch (type) {
       case "mb_id_dup": {
         if (form["mb_id"].val && !form["mb_id"].isValid) {
-          return { state: "error", alert: <p className="error_text">{errorText["id"]}</p> };
+          return {
+            state: "error",
+            alert: <p className="error_text">{errorText["id"]}</p>,
+          };
         } else if (form["mb_id"].isValid && !form[type].isValid) {
-          return { state: "error", alert: <p className="error_text">{errorText[type]}</p> };
+          return {
+            state: "error",
+            alert: <p className="error_text">{errorText[type]}</p>,
+          };
         }
         break;
       }
       case "mb_email": {
         if (form[type].val && !form[type].isValid) {
-          return { state: "error", alert: <p className="error_text">{errorText[type]}</p> };
+          return {
+            state: "error",
+            alert: <p className="error_text">{errorText[type]}</p>,
+          };
         }
         break;
       }
       default: {
         if (form[type].val && !form[type].isValid) {
-          return { state: "error", alert: <p className="error_text">{errorText[type]}</p> };
+          return {
+            state: "error",
+            alert: <p className="error_text">{errorText[type]}</p>,
+          };
         }
       }
     }

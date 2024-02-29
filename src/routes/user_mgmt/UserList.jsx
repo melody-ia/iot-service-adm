@@ -50,7 +50,7 @@ export default function UserList() {
   return (
     <>
       <Lnb lnbType="user" />
-      <CurrentBox btns={["add", "down"]} tit="회원리스트" {...btnEvent} />
+      <CurrentBox btns={["down"]} tit="회원리스트" {...btnEvent} />
       <div className="user_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -67,7 +67,7 @@ export default function UserList() {
           </button>
         </div>
         <div className="table_wrap part">
-          <table className="table reTable ">
+          <table className="table reTable " id="table">
             <colgroup>
               <col width={"50px"} />
               <col width={"192px"} />
@@ -106,7 +106,7 @@ export default function UserList() {
             <div className="no_data_wrap">데이터 없음</div>
           )}
         </div>
-        <CurrentBox btns={["add", "down"]} hideTit={true} {...btnEvent} />
+        <CurrentBox btns={["down"]} hideTit={true} {...btnEvent} />
         {pageData && (
           <Pagination
             pageData={pageData}

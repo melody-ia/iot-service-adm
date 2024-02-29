@@ -61,7 +61,7 @@ export default function TipEdit() {
     if (res.code === 200) {
       alert("수정되었습니다.");
       navigate("/Tip");
-    }
+    } else alert(res.msg);
   };
 
   const btnEvent = {
@@ -217,10 +217,9 @@ function FileItemTop({ setTopImage, postContents }) {
   const loadFileData = async () => {
     const dataTranster = new DataTransfer();
     const urlArr = postContents.top_image;
-    for (let el of urlArr) {
-      const convData = await convertURLtoFile(el);
-      dataTranster.items.add(convData);
-    }
+
+    const convData = await convertURLtoFile(urlArr);
+    dataTranster.items.add(convData);
     fileRef.current.files = dataTranster.files;
     const fileArr = Array.from(dataTranster.files);
     const newFileData = fileArr.map((el) => {

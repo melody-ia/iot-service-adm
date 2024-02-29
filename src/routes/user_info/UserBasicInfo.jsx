@@ -3,30 +3,59 @@ import { useLocation, useParams } from "react-router-dom";
 import Radio from "../../components/RadioBtn";
 import img from "../../assets/img/img.png";
 import { Lnb, CurrentBox, FindAddr } from "../../components/bundle_components";
-import { useEssentialInfo, useSelectInfo, useSelectBox, useUploadFile, useCheckToken } from "../../hooks/bundle_hooks";
+import {
+  useEssentialInfo,
+  useSelectInfo,
+  useSelectBox,
+  useUploadFile,
+  useCheckToken,
+} from "../../hooks/bundle_hooks";
 import { serverUrl } from "../../variables/bundle_variables";
+import { useNavigate } from "react-router-dom";
 
 export default function UserInfo() {
   const { id } = useParams();
   const { pathname } = useLocation();
   const { mb_no, postData, resData } = useCheckToken();
+  const history = useNavigate();
   const { form, setForm, valid, validPass, errorCheck } = useEssentialInfo([
     "mb_id",
     "mb_name",
     "mb_sex",
     "mb_birth",
-    "mb_certify",
+    "mb_family",
     "mb_email",
     "mb_hp",
   ]);
   const { choiceForm, setChoiceForm, dataSel } = useSelectInfo();
   const { selectedValues, setSelectedValue, selecBoxHtml } = useSelectBox({
-    transportation: ["자가용", "지하철", "버스", "기차", "오토바이", "자전거", "도보"],
+    transportation: [
+      "자가용",
+      "지하철",
+      "버스",
+      "기차",
+      "오토바이",
+      "자전거",
+      "도보",
+    ],
     car_type: ["경형", "소형", "준중형", "중형", "준대형", "대형", "스포츠카"],
     oil_type: ["가솔린", "디젤", "하이브리드", "LPG", "전기", "수도"],
     job: ["주부", "공무원", "회사원", "자영업", "학생", "무직"],
-    handling: ["음식물처리기", "공동주택 세대별 카드", "공동주택 종량제 스티커", "음식물 전용 봉투 및 전용 용기"],
-    graduation: ["대학원", "대학", "전문대", "고등학교", "중학교", "초등학교", "해당사항 없음"],
+    handling: [
+      "음식물처리기",
+      "공동주택 세대별 카드",
+      "공동주택 종량제 스티커",
+      "음식물 전용 봉투 및 전용 용기",
+    ],
+    graduation: [
+      "대학원",
+      "대학",
+      "전문대",
+      "고등학교",
+      "중학교",
+      "초등학교",
+      "해당사항 없음",
+    ],
   });
   const [addrBox, setAddrBox] = useState("");
 
@@ -38,16 +67,17 @@ export default function UserInfo() {
     const choiceInfo = {};
     const selectBoxData = {};
     Object.keys(form)
-      .filter(el => el !== "mb_id_dup")
-      .forEach(el => {
+      .filter((el) => el !== "mb_id_dup")
+      .forEach((el) => {
         essentialInfo[el] = {
           val: res.data.memberInfo[0][el],
           isValid: true,
         };
       });
-    Object.keys(choiceForm).forEach(el => {
+    Object.keys(choiceForm).forEach((el) => {
       choiceInfo[el] = res.data.memberInfo[0][el];
-      if (Object.keys(selectedValues).includes(el)) selectBoxData[el] = res.data.memberInfo[0][el];
+      if (Object.keys(selectedValues).includes(el))
+        selectBoxData[el] = res.data.memberInfo[0][el];
     });
     setForm({ ...form, ...essentialInfo });
     setChoiceForm({ ...choiceInfo });
@@ -60,7 +90,19 @@ export default function UserInfo() {
     const chioceFormCopy = { ...choiceForm };
     const totalInfo = {};
     for (let prop in formCopy) {
-      if (["mb_id", "mb_id_dup", "mb_name", "mb_birth", "mb_hp", "mb_email", "mb_sex", "mb_datetime"].includes(prop)) continue;
+      if (
+        [
+          "mb_id",
+          "mb_id_dup",
+          "mb_name",
+          "mb_birth",
+          "mb_hp",
+          "mb_email",
+          "mb_sex",
+          "mb_datetime",
+        ].includes(prop)
+      )
+        continue;
       totalInfo[prop] = formCopy[prop]["val"];
     }
     for (let prop in chioceFormCopy) {
@@ -90,14 +132,17 @@ export default function UserInfo() {
   }, []);
 
   useEffect(() => {
-    if (Object.values(choiceForm).some(el => el)) setChoiceForm({ ...choiceForm, ...selectedValues });
+    if (Object.values(choiceForm).some((el) => el))
+      setChoiceForm({ ...choiceForm, ...selectedValues });
   }, [selectedValues]);
 
   // // console.log(choiceForm);
 
   return (
     <>
-      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
+      <Lnb
+        lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"}
+      />
       {/* <CurrentBox mod={true} del={true} down={true} tit="회원 정보" /> */}
       <CurrentBox btns={["mod", "down"]} tit="회원 정보" {...btnEvent} />
       {/* 계정이 비활성화계정일 시 noactive 클래스 추가 */}
@@ -110,7 +155,14 @@ export default function UserInfo() {
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">아이디</label>
                   <div className="d-flex ip_box id_wrap">
-                    <input type="text" placeholder="직접입력" value={form.mb_id.val} data-type="mb_id" onChange={valid} readOnly />
+                    <input
+                      type="text"
+                      placeholder="직접입력"
+                      value={form.mb_id.val}
+                      data-type="mb_id"
+                      onChange={valid}
+                      readOnly
+                    />
                     {/* <button type="button" className="btn_ty01 btn_search" onClick={dupCheck}>
                       중복확인
                     </button> */}
@@ -121,7 +173,13 @@ export default function UserInfo() {
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">비밀번호</label>
                   <div className="d-flex ip_box">
-                    <input type="password" placeholder="직접입력" value={form.mb_password.val} data-type="mb_password" onChange={valid} />
+                    <input
+                      type="password"
+                      placeholder="직접입력"
+                      value={form.mb_password.val}
+                      data-type="mb_password"
+                      onChange={valid}
+                    />
                     {errorCheck("mb_password")?.alert}
                   </div>
                 </div>
@@ -130,7 +188,14 @@ export default function UserInfo() {
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">이름</label>
                   <div className="d-flex ip_box">
-                    <input type="text" placeholder="직접입력" value={form.mb_name.val} data-type="mb_name" onChange={valid} readOnly />
+                    <input
+                      type="text"
+                      placeholder="직접입력"
+                      value={form.mb_name.val}
+                      data-type="mb_name"
+                      onChange={valid}
+                      readOnly
+                    />
                     {errorCheck("mb_name")?.alert}
                   </div>
                 </div>
@@ -163,15 +228,28 @@ export default function UserInfo() {
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">생년월일</label>
                   <div className="d-flex ip_box">
-                    <input type="text" placeholder="직접입력" data-type="mb_birth" value={form.mb_birth.val} onChange={valid} readOnly />
+                    <input
+                      type="text"
+                      placeholder="직접입력"
+                      data-type="mb_birth"
+                      value={form.mb_birth.val}
+                      onChange={valid}
+                      readOnly
+                    />
                     {errorCheck("mb_birth")?.alert}
                   </div>
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">거주인원 수</label>
                   <div className="d-flex ip_box">
-                    <input type="text" placeholder="직접입력" data-type="mb_certify" value={form.mb_certify.val} onChange={valid} />
-                    {errorCheck("mb_certify")?.alert}
+                    <input
+                      type="text"
+                      placeholder="직접입력"
+                      data-type="mb_family"
+                      value={form.mb_family.val}
+                      onChange={valid}
+                    />
+                    {errorCheck("mb_family")?.alert}
                   </div>
                 </div>
               </div>
@@ -179,14 +257,27 @@ export default function UserInfo() {
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">이메일</label>
                   <div className="d-flex ip_box">
-                    <input type="mb_email" placeholder="직접입력" data-type="mb_email" value={form.mb_email.val} onChange={valid} readOnly />
+                    <input
+                      type="mb_email"
+                      placeholder="직접입력"
+                      data-type="mb_email"
+                      value={form.mb_email.val}
+                      onChange={valid}
+                      readOnly
+                    />
                     {errorCheck("mb_email")?.alert}
                   </div>
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">휴대폰 번호</label>
                   <div className="d-flex ip_box">
-                    <input type="text" placeholder="직접입력" data-type="mb_hp" value={form.mb_hp.val} onChange={valid} />
+                    <input
+                      type="text"
+                      placeholder="직접입력"
+                      data-type="mb_hp"
+                      value={form.mb_hp.val}
+                      onChange={valid}
+                    />
                     {errorCheck("mb_hp")?.alert}
                   </div>
                 </div>
@@ -199,7 +290,11 @@ export default function UserInfo() {
               <div className="flex_box">
                 <div className="flex_left">
                   <span className="label">프로필 사진</span>
-                  <FileItemProfile imgaeUrl={resData?.memberInfo[0].mb_profile} choiceForm={choiceForm} setChoiceForm={setChoiceForm} />
+                  <FileItemProfile
+                    imgaeUrl={resData?.memberInfo[0].mb_profile}
+                    choiceForm={choiceForm}
+                    setChoiceForm={setChoiceForm}
+                  />
                 </div>
                 <div className="row">
                   <div className="flex_right">
@@ -216,7 +311,12 @@ export default function UserInfo() {
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">주소</label>
                   <div className="addr_wrap">
-                    <input type="text" placeholder="직접입력" value={choiceForm.addr} readOnly />
+                    <input
+                      type="text"
+                      placeholder="직접입력"
+                      value={choiceForm.addr}
+                      readOnly
+                    />
                     <button
                       type="button"
                       className="btn_ty01 btn_search"
@@ -230,13 +330,25 @@ export default function UserInfo() {
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">차종 배기량(CC)</label>
-                  <input type="text" placeholder="직접입력" data-type="cc" value={choiceForm.cc} onChange={dataSel} />
+                  <input
+                    type="text"
+                    placeholder="직접입력"
+                    data-type="cc"
+                    value={choiceForm.cc}
+                    onChange={dataSel}
+                  />
                 </div>
               </div>
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">상세주소</label>
-                  <input type="text" placeholder="직접입력" data-type="detail_addr" value={choiceForm.detail_addr} onChange={dataSel} />
+                  <input
+                    type="text"
+                    placeholder="직접입력"
+                    data-type="detail_addr"
+                    value={choiceForm.detail_addr}
+                    onChange={dataSel}
+                  />
                 </div>
                 <div className="flex_right">
                   <span className="label">유종</span>
@@ -271,7 +383,9 @@ export default function UserInfo() {
                           dataType="ownership"
                           dataValue={el[0]}
                           onClick={dataSel}
-                          checked={choiceForm["ownership"] === el[0] ? true : false}
+                          checked={
+                            choiceForm["ownership"] === el[0] ? true : false
+                          }
                         />
                       );
                     })}
@@ -291,7 +405,12 @@ export default function UserInfo() {
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">가입일</label>
-                  <input type="text" placeholder="직접입력" defaultValue={"2023.05.30"} readOnly />
+                  <input
+                    type="text"
+                    placeholder="직접입력"
+                    defaultValue={"2023.05.30"}
+                    readOnly
+                  />
                 </div>
                 <div className="flex_right">
                   <span className="label">최종학력</span>
@@ -316,7 +435,9 @@ export default function UserInfo() {
                           dataType="mb_open"
                           dataValue={el[1]}
                           onClick={dataSel}
-                          checked={el[1] == choiceForm["mb_open"] ? true : false}
+                          checked={
+                            el[1] == choiceForm["mb_open"] ? true : false
+                          }
                         />
                       );
                     })}
@@ -339,7 +460,9 @@ export default function UserInfo() {
                           dataType="marriage"
                           dataValue={el[0]}
                           onClick={dataSel}
-                          checked={el[0] === choiceForm["marriage"] ? true : false}
+                          checked={
+                            el[0] === choiceForm["marriage"] ? true : false
+                          }
                         />
                       );
                     })}
@@ -348,13 +471,22 @@ export default function UserInfo() {
               </div>
               <div className="input_ty02 flex_box">
                 <label htmlFor="">비고</label>
-                <textarea placeholder="직접입력" data-type="mb_memo" value={choiceForm.mb_memo} onChange={dataSel}></textarea>
+                <textarea
+                  placeholder="직접입력"
+                  data-type="mb_memo"
+                  value={choiceForm.mb_memo}
+                  onChange={dataSel}
+                ></textarea>
               </div>
             </div>
           </div>
         </div>
         <div className="bottom_btn_wrap">
-          <button type="button" className="btn_ty01 cancel">
+          <button
+            type="button"
+            className="btn_ty01 cancel"
+            onClick={() => history("/UserList")}
+          >
             취소
           </button>
           <button
@@ -370,17 +502,26 @@ export default function UserInfo() {
         </div>
       </div>
 
-      <FindAddr addrBox={addrBox} setAddrBox={setAddrBox} choiceForm={choiceForm} setChoiceForm={setChoiceForm} />
+      <FindAddr
+        addrBox={addrBox}
+        setAddrBox={setAddrBox}
+        choiceForm={choiceForm}
+        setChoiceForm={setChoiceForm}
+      />
     </>
   );
 }
 
 function FileItemProfile({ imageUrl, choiceForm, setChoiceForm }) {
   const allowType = ["jpg", "jpeg", "png", "gif"];
-  const { fileData, setFileData, deleteFile, uploadFile } = useUploadFile(allowType, 1, 1);
+  const { fileData, setFileData, deleteFile, uploadFile } = useUploadFile(
+    allowType,
+    1,
+    1
+  );
   const fileRef = useRef(null);
 
-  const convertURLtoFile = async url => {
+  const convertURLtoFile = async (url) => {
     url = serverUrl + "images" + url;
     const response = await fetch(url);
     const data = await response.blob();
@@ -399,7 +540,7 @@ function FileItemProfile({ imageUrl, choiceForm, setChoiceForm }) {
     }
     fileRef.current.files = dataTranster.files;
     const fileArr = Array.from(dataTranster.files);
-    const newFileData = fileArr.map(el => {
+    const newFileData = fileArr.map((el) => {
       return { file: el, url: URL.createObjectURL(el) };
     });
     setFileData(newFileData);
@@ -427,7 +568,11 @@ function FileItemProfile({ imageUrl, choiceForm, setChoiceForm }) {
           <img src={fileData[0]?.url || img} alt="" />
           <div className="hover">
             <span className="file_name">{fileData[0]?.file.name}</span>
-            <button className="btn_del" data-url={fileData[0]?.url} onClick={deleteFile}>
+            <button
+              className="btn_del"
+              data-url={fileData[0]?.url}
+              onClick={deleteFile}
+            >
               파일 삭제
             </button>
           </div>

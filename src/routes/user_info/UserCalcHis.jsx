@@ -1,11 +1,22 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { useSelectBox, useCheckToken, useDatePicker } from "../../hooks/bundle_hooks";
-import { Lnb, CurrentBox, Pagination } from "../../components/bundle_components";
+import {
+  useSelectBox,
+  useCheckToken,
+  useDatePicker,
+} from "../../hooks/bundle_hooks";
+import {
+  Lnb,
+  CurrentBox,
+  Pagination,
+} from "../../components/bundle_components";
 
 const calTotalLength = (data, keys) => {
   return keys.reduce((acc, cur, idx) => {
-    if (typeof data[cur] === "object" && !data[cur].hasOwnProperty("거주인원수")) {
+    if (
+      typeof data[cur] === "object" &&
+      !data[cur].hasOwnProperty("거주인원수")
+    ) {
       acc += Object.keys(data[cur]).length;
     } else {
       acc += 1;
@@ -20,12 +31,14 @@ const deleteObj = (obj, keys) =>
     return r;
   }, obj);
 
-const handleData = data => {
+const handleData = (data) => {
   const keys = Object.keys(data),
     firstKey = keys[0],
     firstData = data[firstKey],
     totalCarbon = data["총계산"] ? data["총계산"].toLocaleString("ko-KR") : 0,
-    neededTree = data["필요나무"] ? data["필요나무"].toLocaleString("ko-KR") : 0,
+    neededTree = data["필요나무"]
+      ? data["필요나무"].toLocaleString("ko-KR")
+      : 0,
     firstDataKeys = Object.keys(firstData);
   let totalLength = calTotalLength(data, keys),
     firstDataLength = firstDataKeys.includes("거주인원수")
@@ -40,11 +53,17 @@ const handleData = data => {
     values = null,
     carbon = 0;
 
-  if (firstData.hasOwnProperty("거주인원수")) {
+  if (
+    firstData.hasOwnProperty("거주인원수") ||
+    firstData.hasOwnProperty("동승인원")
+  ) {
     values = Object.values(firstData);
     carbon = values.pop(); // 계산
     firstDataCarbon = carbon;
-    firstDataArrangeShift = { words: `${values.join(" / ")}`, carbon: firstDataCarbon.toLocaleString("ko-KR") || 0 };
+    firstDataArrangeShift = {
+      words: `${values.join(" / ")}`,
+      carbon: firstDataCarbon.toLocaleString("ko-KR") || 0,
+    };
   } else {
     if (firstData.hasOwnProperty("계산")) delete firstData["계산"];
 
@@ -54,13 +73,16 @@ const handleData = data => {
         carbon = values.pop() || firstData[cur];
         firstDataCarbon += carbon;
         let tmpObj = {};
-        tmpObj[idx] = { words: `${cur.replace(/\(여행\)/g, "")} / ${values.join(" / ")}`, carbon: carbon.toLocaleString("ko-KR") || 0 };
+        tmpObj[idx] = {
+          words: `${cur.replace(/\(여행\)/g, "")} / ${values.join(" / ")}`,
+          carbon: carbon.toLocaleString("ko-KR") || 0,
+        };
         acc.push(tmpObj);
       }
       return acc;
     }, []);
 
-    firstDataArrangeShift = firstDataArrange.shift()[0]; // 첫번째 아이템 가져온 후 제거
+    firstDataArrangeShift = firstDataArrange; // 첫번째 아이템 가져온 후 제거
   }
   const newData = { ...data };
 
@@ -82,24 +104,26 @@ export default function UserCalcHis() {
   const [curPage, setCurPage] = useState(1);
   const { pathname } = useLocation();
   const { date, start_at, end_at } = useDatePicker();
+  const { id } = useParams();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     order: ["최신 순", "오래된 순"],
   });
   const [beforeFilter, setBeforeFilter] = useState();
   const { mb_no, postData, resData, setResData } = useCheckToken();
 
-  const user_no = Number(useParams().id);
-
   const loadHistory = async () => {
-    const order = { "최신 순": "desc", "오래된 순": "asc" }[selectedValues["order"]];
+    const order = { "최신 순": "desc", "오래된 순": "asc" }[
+      selectedValues["order"]
+    ];
     const data = {
       mb_no,
-      user_no,
+      target_id: id,
       start_at,
       end_at,
-      order
+      order,
     };
     const res = await postData("calculator/detail", data);
+
     if (!res || res?.code !== 200) return;
     setBeforeFilter({ ...data });
     setPageData(res.page);
@@ -107,8 +131,11 @@ export default function UserCalcHis() {
     if (!res.data) setResData([]);
   };
 
-  const loadPageData = async page => {
-    const res = await postData("calculator/detail", { ...beforeFilter, cur_page: page});
+  const loadPageData = async (page) => {
+    const res = await postData("calculator/detail", {
+      ...beforeFilter,
+      cur_page: page,
+    });
     setPageData(res.page);
   };
 
@@ -118,7 +145,9 @@ export default function UserCalcHis() {
 
   return (
     <>
-      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
+      <Lnb
+        lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"}
+      />
       {/* <CurrentBox del={true} down={true} tit="탄소발자국 계산 내역" /> */}
       {/* <CurrentBox btns={["down"]} tit="탄소발자국 계산 내역" /> */}
 
@@ -131,7 +160,11 @@ export default function UserCalcHis() {
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <button type="button" className="btn_ty01 btn_search" onClick={loadHistory}>
+          <button
+            type="button"
+            className="btn_ty01 btn_search"
+            onClick={loadHistory}
+          >
             검색
           </button>
         </div>
@@ -161,13 +194,30 @@ export default function UserCalcHis() {
           </table>
         </div>
 
-        {resData?.length > 0 ?
-          resData?.map(el => {
-            return <HistoryItem key={el.idx} idx={el.idx} date={el.create_at} data={el.carbon} />;
-          }):<div className="no_data_wrap">데이터 없음</div>}
+        {resData?.length > 0 ? (
+          resData?.map((el) => {
+            return (
+              <HistoryItem
+                key={el.idx}
+                idx={el.idx}
+                date={el.create_at}
+                data={el.carbon}
+              />
+            );
+          })
+        ) : (
+          <div className="no_data_wrap">데이터 없음</div>
+        )}
 
         <CurrentBox btns={["down"]} hideTit={true} />
-        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
+        {pageData && (
+          <Pagination
+            pageData={pageData}
+            curPage={curPage}
+            setCurPage={setCurPage}
+            onClick={loadPageData}
+          />
+        )}
         <Pagination />
       </div>
     </>
@@ -175,8 +225,17 @@ export default function UserCalcHis() {
 }
 
 const HistoryItem = ({ idx, date, data }) => {
-  const { firstKey, totalLength, totalCarbon, neededTree, firstDataLength, firstDataCarbon, firstDataArrange, firstDataArrangeShift, newData } =
-    handleData(data);
+  const {
+    firstKey,
+    totalLength,
+    totalCarbon,
+    neededTree,
+    firstDataLength,
+    firstDataCarbon,
+    firstDataArrange,
+    firstDataArrangeShift,
+    newData,
+  } = handleData(data);
 
   return (
     <div className="table_wrap line" key={idx}>
@@ -200,7 +259,9 @@ const HistoryItem = ({ idx, date, data }) => {
             <td rowSpan={totalLength}>{date}</td>
 
             <td rowSpan={firstDataLength}>{firstKey}</td>
-            <td rowSpan={firstDataLength}>{firstDataCarbon.toLocaleString("ko-KR") || 0}</td>
+            <td rowSpan={firstDataLength}>
+              {firstDataCarbon.toLocaleString("ko-KR") || 0}
+            </td>
 
             <td>{firstDataArrangeShift.words}</td>
             <td>{firstDataArrangeShift.carbon}</td>
@@ -212,8 +273,8 @@ const HistoryItem = ({ idx, date, data }) => {
             const obj = el[idx + 1];
             return (
               <tr key={idx}>
-                <td>{obj.words}</td>
-                <td>{obj.carbon}</td>
+                <td>{el[0].words}</td>
+                <td>{el[0].carbon}</td>
               </tr>
             );
           })}
@@ -225,16 +286,27 @@ const HistoryItem = ({ idx, date, data }) => {
 };
 
 const SecondHistoryItem = ({ data }) => {
-  if(Object.keys(data).length <= 0) return false;
+  if (Object.keys(data).length <= 0) return false;
 
-  const { firstKey, totalLength, totalCarbon, neededTree, firstDataLength, firstDataCarbon, firstDataArrange, firstDataArrangeShift, newData } =
-    handleData(data);
+  const {
+    firstKey,
+    totalLength,
+    totalCarbon,
+    neededTree,
+    firstDataLength,
+    firstDataCarbon,
+    firstDataArrange,
+    firstDataArrangeShift,
+    newData,
+  } = handleData(data);
 
   return (
     <>
       <tr>
         <td rowSpan={firstDataLength}>{firstKey}</td>
-        <td rowSpan={firstDataLength}>{firstDataCarbon.toLocaleString("ko-KR") || 0}</td>
+        <td rowSpan={firstDataLength}>
+          {firstDataCarbon.toLocaleString("ko-KR") || 0}
+        </td>
         <td>{firstDataArrangeShift.words}</td>
         <td>{firstDataArrangeShift.carbon}</td>
       </tr>
@@ -249,7 +321,11 @@ const SecondHistoryItem = ({ data }) => {
         );
       })}
 
-      {Object.keys(newData).length > 0 ? <SecondHistoryItem data={newData} /> : <></>}
+      {Object.keys(newData).length > 0 ? (
+        <SecondHistoryItem data={newData} />
+      ) : (
+        <></>
+      )}
     </>
   );
 };

@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
-import { Lnb, CurrentBox, Pagination } from "../../components/bundle_components";
-import { useSelectBox, useCheckToken, useDatePicker } from "../../hooks/bundle_hooks";
+import {
+  Lnb,
+  CurrentBox,
+  Pagination,
+} from "../../components/bundle_components";
+import {
+  useSelectBox,
+  useCheckToken,
+  useDatePicker,
+} from "../../hooks/bundle_hooks";
 import { useEffect, useState } from "react";
 
 export default function CalculatorList() {
@@ -36,8 +44,14 @@ export default function CalculatorList() {
   const loadCalcData = async () => {
     const data = {
       mb_no,
-      order: { 전체: "all", "CO2 발생량 높은 순": "co2_desc", "CO2 발생량 낮은 순": "co2_asc" }[selectedValues.order],
-      gender: { "전체(성별)": "all", 남성: "male", 여성: "female" }[selectedValues.gender],
+      order: {
+        전체: "all",
+        "CO2 발생량 높은 순": "co2_desc",
+        "CO2 발생량 낮은 순": "co2_asc",
+      }[selectedValues.order],
+      gender: { "전체(성별)": "all", 남성: "male", 여성: "female" }[
+        selectedValues.gender
+      ],
       city: selectedValues.city,
       start_at,
       end_at,
@@ -50,8 +64,11 @@ export default function CalculatorList() {
     if (!res.data) setResData([]);
   };
 
-  const loadPageData = async page => {
-    const res = await postData("calculator/list", { ...beforeFilter, cur_page: page });
+  const loadPageData = async (page) => {
+    const res = await postData("calculator/list", {
+      ...beforeFilter,
+      cur_page: page,
+    });
     setPageData(res.page);
   };
 
@@ -70,7 +87,11 @@ export default function CalculatorList() {
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <button type="button" className="btn_ty01 btn_search" onClick={loadCalcData}>
+          <button
+            type="button"
+            className="btn_ty01 btn_search"
+            onClick={loadCalcData}
+          >
             검색
           </button>
         </div>
@@ -101,13 +122,13 @@ export default function CalculatorList() {
               </tr>
             </thead>
             <tbody>
-              {resData?.length > 0 ?
-                resData?.map(el => (
+              {resData?.length > 0 ? (
+                resData?.map((el) => (
                   <tr key={el.idx}>
                     <td>{el.idx}</td>
                     <td>{el.create_at}</td>
                     <td>
-                      <Link to={`/UserCalcHis/${el.idx}`}>{el.mb_id}</Link>
+                      <Link to={`/UserCalcHis/${el.mb_id}`}>{el.mb_id}</Link>
                     </td>
                     <td>{el.addr}</td>
                     <td>{el.mb_sex}</td>
@@ -116,13 +137,25 @@ export default function CalculatorList() {
                     <td>{el.total_carbon.toLocaleString("ko-KR") || 0}</td>
                     <td>{el.needed_tree.toLocaleString("ko-KR") || 0}</td>
                   </tr>
-                )) : <tr><td colSpan="9">데이터 없음</td></tr>}
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="9">데이터 없음</td>
+                </tr>
+              )}
             </tbody>
           </table>
           {/* {!resData && <div className="no_data_wrap">데이터 없음</div>} */}
         </div>
         <CurrentBox btns={["down"]} hideTit={true} />
-        {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
+        {pageData && (
+          <Pagination
+            pageData={pageData}
+            curPage={curPage}
+            setCurPage={setCurPage}
+            onClick={loadPageData}
+          />
+        )}
       </div>
     </>
   );

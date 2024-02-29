@@ -1,6 +1,10 @@
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox } from "../../components/bundle_components";
-import { useSelectBox, useDatePicker, useCheckToken } from "../../hooks/bundle_hooks";
+import {
+  useSelectBox,
+  useDatePicker,
+  useCheckToken,
+} from "../../hooks/bundle_hooks";
 import arrowRightGreen from "../../assets/img/icon/angle_right_green.svg";
 import Pagination from "../../components/Pagination";
 import { useEffect } from "react";
@@ -16,11 +20,12 @@ export default function UserPromoHis() {
   const { mb_no, resData, postData } = useCheckToken();
 
   const loadUserPromoData = async () => {
-    const filter = { 진행기간: "in_date", 참여기간: "ch_date" }[selectedValues.duration];
+    const filter = { 진행기간: "in_date", 참여기간: "ch_date" }[
+      selectedValues.duration
+    ];
     const res = await postData("member/show/challenge", {
       mb_no,
       target_id: id,
-      target_id: "admin",
       filter,
       start_at,
       end_at,
@@ -34,7 +39,9 @@ export default function UserPromoHis() {
 
   return (
     <>
-      <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
+      <Lnb
+        lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"}
+      />
       <CurrentBox btns={["down"]} tit="프로모션 참여 내역" />
       <div className="user_history_pro box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
@@ -43,7 +50,11 @@ export default function UserPromoHis() {
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
           </div>
-          <button type="button" className="btn_ty01 btn_search" onClick={loadUserPromoData}>
+          <button
+            type="button"
+            className="btn_ty01 btn_search"
+            onClick={loadUserPromoData}
+          >
             검색
           </button>
         </div>
@@ -64,20 +75,29 @@ export default function UserPromoHis() {
                       className="promotion"
                       colSpan={3}
                       onClick={() => {
-                        navigate("/UserPromoHis/UserPromoHisDetail/" + id, { state: { challenge_no: el.challenge_no } });
+                        navigate("/UserPromoHis/UserPromoHisDetail/" + id, {
+                          state: { challenge_no: el.challenge_no },
+                        });
                       }}
                     >
-                      {el.ch_title} <img src={arrowRightGreen} alt="오른쪽 화살표 아이콘" className="arrow_right" />
+                      {el.ch_title}{" "}
+                      <img
+                        src={arrowRightGreen}
+                        alt="오른쪽 화살표 아이콘"
+                        className="arrow_right"
+                      />
                     </td>
                   </tr>
                   <tr>
                     <th className="tit">프로모션 진행 기간</th>
                     <td className="date">
-                      {el.in_start.replace(/-/g, ".")} – {el.in_end.replace(/-/g, ".")}
+                      {el.in_start.replace(/-/g, ".")} –{" "}
+                      {el.in_end.replace(/-/g, ".")}
                     </td>
                     <th className="tit">프로모션 참여 기간</th>
                     <td className="date">
-                      {el.ch_start.replace(/-/g, ".")} - {el.ch_end.replace(/-/g, ".")}
+                      {el.ch_start.replace(/-/g, ".")} -{" "}
+                      {el.ch_end.replace(/-/g, ".")}
                     </td>
                   </tr>
                   <tr>
@@ -103,7 +123,9 @@ export default function UserPromoHis() {
             </div>
           );
         })}
-        {!resData?.challengeResult[0] && <div className="no_data_wrap">데이터 없음</div>}
+        {!resData?.challengeResult[0] && (
+          <div className="no_data_wrap">데이터 없음</div>
+        )}
         <Pagination />
       </div>
     </>

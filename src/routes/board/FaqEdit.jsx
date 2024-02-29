@@ -1,7 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Lnb, CurrentBox, RadioBtn } from "../../components/bundle_components";
-import { useSelectBox, useCheckToken, useUploadFile } from "../../hooks/bundle_hooks";
+import {
+  useSelectBox,
+  useCheckToken,
+  useUploadFile,
+} from "../../hooks/bundle_hooks";
 import { apiUrl, serverUrl } from "../../variables/bundle_variables";
 
 export default function FaqEdit() {
@@ -15,7 +19,7 @@ export default function FaqEdit() {
   // const [topImage, setTopImage] = useState([]);
   const [communityfile, setCommunityfile] = useState([]);
 
-  const handlePostContents = e => {
+  const handlePostContents = (e) => {
     const type = e.target.dataset.type;
     const value = e.target.dataset.value || e.target.value;
     let copy = { ...postContents };
@@ -25,14 +29,22 @@ export default function FaqEdit() {
 
   const loadPostData = async () => {
     if (!state) return;
-    const res = await postData("community/show", { mb_no, wr_id: state.wr_id, category: "faq" });
+    const res = await postData("community/show", {
+      mb_no,
+      wr_id: state.wr_id,
+      category: "faq",
+    });
     if (!res || res?.code !== 200) return;
     setPostContents(res.data.boardInfo[0]);
-    setSelectedValue({ ...selectedValues, faq_sort: res.data.boardInfo[0].wr_subject });
+    setSelectedValue({
+      ...selectedValues,
+      faq_sort: res.data.boardInfo[0].wr_subject,
+    });
   };
 
   const dataSubmit = async () => {
-    if (!postContents.wr_seo_title || !postContents.wr_content) return alert("제목과 내용을 입력하세요.");
+    if (!postContents.wr_seo_title || !postContents.wr_content)
+      return alert("제목과 내용을 입력하세요.");
     const formData = new FormData();
     formData.append("mb_no", mb_no);
     formData.append("wr_id", state.wr_id);
@@ -41,14 +53,10 @@ export default function FaqEdit() {
     formData.append("wr_seo_title", postContents.wr_seo_title);
     formData.append("wr_content", postContents.wr_content);
     formData.append("wr_status", postContents.wr_status);
-    if (postContents.wr_1) formData.append("wr_memo", postContents.wr_1);
-    // if (topImage[0]) {
-    //   topImage.forEach(el => {
-    //     formData.append("topimage", el.file);
-    //   });
-    // }
+    formData.append("wr_memo", postContents.wr_1);
+
     if (communityfile[0]) {
-      communityfile.forEach(el => {
+      communityfile.forEach((el) => {
         formData.append("communityfile", el.file);
       });
     }
@@ -64,7 +72,7 @@ export default function FaqEdit() {
     if (res.code === 200) {
       alert("수정되었습니다.");
       history("/Faq");
-    }
+    } else alert(res.msg);
   };
 
   const btnEvent = {
@@ -81,7 +89,11 @@ export default function FaqEdit() {
     return (
       <>
         <Lnb lnbType="board" />
-        <CurrentBox btns={["add", "del", "down"]} tit="FAQ 등록/수정" {...btnEvent} />
+        <CurrentBox
+          btns={["add", "del", "down"]}
+          tit="FAQ 등록/수정"
+          {...btnEvent}
+        />
 
         <div className="faq_add box_ty01 view_form add">
           <div className="write_type">
@@ -118,11 +130,21 @@ export default function FaqEdit() {
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
                   <label htmlFor="">제목</label>
-                  <input type="text" value={postContents.wr_seo_title} data-type="wr_seo_title" onChange={handlePostContents} />
+                  <input
+                    type="text"
+                    value={postContents.wr_seo_title}
+                    data-type="wr_seo_title"
+                    onChange={handlePostContents}
+                  />
                 </div>
                 <div className="input_ty02 flex_right">
                   <label htmlFor="">등록일</label>
-                  <input type="text" placeholder="직접입력" defaultValue={new Date().toLocaleDateString()} readOnly />
+                  <input
+                    type="text"
+                    placeholder="직접입력"
+                    defaultValue={new Date().toLocaleDateString()}
+                    readOnly
+                  />
                 </div>
               </div>
               <div className="flex_box">
@@ -140,7 +162,10 @@ export default function FaqEdit() {
               <div className="flex_box find_file">
                 <div className="flex_left w100 flex_box_mr">
                   <label htmlFor="">첨부파일</label>
-                  <FileItemEtc setCommunityfile={setCommunityfile} postContents={postContents} />
+                  <FileItemEtc
+                    setCommunityfile={setCommunityfile}
+                    postContents={postContents}
+                  />
                 </div>
               </div>
 
@@ -159,7 +184,11 @@ export default function FaqEdit() {
             </div>
           </div>
           <div className="bottom_btn_wrap">
-            <button type="button" className="btn_ty01 cancel" onClick={() => history(-1)}>
+            <button
+              type="button"
+              className="btn_ty01 cancel"
+              onClick={() => history(-1)}
+            >
               취소
             </button>
             <button type="button" className="btn_ty01" onClick={dataSubmit}>
@@ -172,10 +201,14 @@ export default function FaqEdit() {
 }
 
 function FileItemEtc({ setCommunityfile, postContents }) {
-  const { fileData, setFileData, uploadFile, deleteFile } = useUploadFile(null, 8, 3);
+  const { fileData, setFileData, uploadFile, deleteFile } = useUploadFile(
+    null,
+    8,
+    3
+  );
   const fileRef = useRef(null);
 
-  const convertURLtoFile = async url => {
+  const convertURLtoFile = async (url) => {
     url = serverUrl + "images" + url;
     const response = await fetch(url);
     const data = await response.blob();
@@ -194,7 +227,7 @@ function FileItemEtc({ setCommunityfile, postContents }) {
     }
     fileRef.current.files = dataTranster.files;
     const fileArr = Array.from(dataTranster.files);
-    const newFileData = fileArr.map(el => {
+    const newFileData = fileArr.map((el) => {
       return { file: el, url: URL.createObjectURL(el) };
     });
     setFileData(newFileData);
@@ -225,7 +258,13 @@ function FileItemEtc({ setCommunityfile, postContents }) {
               );
             })}
         </label>
-        <input ref={fileRef} type="file" className="file" onChange={uploadFile} multiple />
+        <input
+          ref={fileRef}
+          type="file"
+          className="file"
+          onChange={uploadFile}
+          multiple
+        />
       </div>
     );
 }
