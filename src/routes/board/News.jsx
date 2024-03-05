@@ -77,7 +77,7 @@ export default function News() {
   return (
     <>
       <Lnb lnbType="board" />
-      <CurrentBox btns={["add", "mod", "del", "down"]} tit="이벤트/뉴스 리스트" {...btnEvent} />
+      <CurrentBox btns={["add", "mod", "del", /* "down" */]} tit="이벤트/뉴스 리스트" {...btnEvent} />
       <div className="news box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -133,7 +133,7 @@ export default function News() {
           </table>
           {!resData?.boardInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
-        <CurrentBox btns={["add", "mod", "del", "down"]} hideTit={true} {...btnEvent} />
+        <CurrentBox btns={["add", "mod", "del", /* "down" */]} hideTit={true} {...btnEvent} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
       </div>
     </>

@@ -36,7 +36,7 @@ export default function DeletedUserList() {
     <>
       <Lnb lnbType="user" />
       {/* <CurrentBox res={true} del={true} down={true} tit="탈퇴/삭제 회원 리스트" /> */}
-      <CurrentBox btns={["down"]} tit="탈퇴/삭제 회원 리스트" />
+      <CurrentBox btns={[/* "down" */]} tit="탈퇴/삭제 회원 리스트" />
       <div className="deleted_user_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -91,7 +91,7 @@ export default function DeletedUserList() {
           {!resData?.memberResult[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
         {/* <CurrentBox res={true} del={true} down={true} hideTit={true} /> */}
-        <CurrentBox btns={["down"]} hideTit={true} />
+        <CurrentBox btns={[/* "down" */]} hideTit={true} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} />}
       </div>
     </>

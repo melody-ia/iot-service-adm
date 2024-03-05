@@ -42,7 +42,7 @@ export default function UserPromoHis() {
       <Lnb
         lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"}
       />
-      <CurrentBox btns={["down"]} tit="프로모션 참여 내역" />
+      <CurrentBox btns={[/* "down" */]} tit="프로모션 참여 내역" />
       <div className="user_history_pro box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>

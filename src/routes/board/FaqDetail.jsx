@@ -30,7 +30,7 @@ export default function FaqDetail() {
     return (
       <>
         <Lnb lnbType="board" />
-        <CurrentBox btns={["mod", "del", "down"]} tit="FAQ 상세보기" {...btnEvent} />
+        <CurrentBox btns={["mod", "del", /* "down" */]} tit="FAQ 상세보기" {...btnEvent} />
         <div className="faq_detail box_ty01 view_form">
           <div className="write_type">
             <div className="wirte_area">

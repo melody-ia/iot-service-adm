@@ -41,7 +41,7 @@ export default function UserRankHis() {
     <>
       <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       {/* <CurrentBox mod={true} del={true} down={true} tit="탄소 중립 랭킹 변동 내역" /> */}
-      <CurrentBox btns={["down"]} tit="탄소 중립 랭킹 변동 내역" />
+      <CurrentBox btns={[/* "down" */]} tit="탄소 중립 랭킹 변동 내역" />
       <div className="user_history_rank box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="date_input_wrap d-flex">
@@ -86,7 +86,7 @@ export default function UserRankHis() {
           </table>
         </div>
 
-        <CurrentBox btns={["down"]} hideTit={true} />
+        <CurrentBox btns={[/* "down" */]} hideTit={true} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
         <Pagination />
       </div>

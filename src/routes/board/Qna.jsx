@@ -44,7 +44,7 @@ export default function Qna() {
     <>
       <Lnb lnbType="board" />
       {/* <CurrentBox mod={true} del={true} down={true} tit="1:1문의 리스트" /> */}
-      <CurrentBox btns={["down"]} tit="1:1문의 리스트" />
+      <CurrentBox btns={[/* "down" */]} tit="1:1문의 리스트" />
       <div className="qna box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -133,7 +133,7 @@ export default function Qna() {
           </table>
           {!resData?.inquireInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
-        <CurrentBox btns={["down"]} hideTit={true} />
+        <CurrentBox btns={[/* "down" */]} hideTit={true} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
       </div>
     </>

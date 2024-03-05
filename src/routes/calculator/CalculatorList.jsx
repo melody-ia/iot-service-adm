@@ -79,7 +79,7 @@ export default function CalculatorList() {
   return (
     <>
       <Lnb lnbType="calcHistory" />
-      <CurrentBox btns={["down"]} tit="탄소발자국 계산 내역 리스트" />
+      <CurrentBox btns={[/* "down" */]} tit="탄소발자국 계산 내역 리스트" />
       <div className="calc_list box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
@@ -147,7 +147,7 @@ export default function CalculatorList() {
           </table>
           {/* {!resData && <div className="no_data_wrap">데이터 없음</div>} */}
         </div>
-        <CurrentBox btns={["down"]} hideTit={true} />
+        <CurrentBox btns={[/* "down" */]} hideTit={true} />
         {pageData && (
           <Pagination
             pageData={pageData}

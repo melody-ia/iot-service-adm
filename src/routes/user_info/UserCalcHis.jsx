@@ -209,7 +209,7 @@ export default function UserCalcHis() {
           <div className="no_data_wrap">데이터 없음</div>
         )}
 
-        <CurrentBox btns={["down"]} hideTit={true} />
+        <CurrentBox btns={[/* "down" */]} hideTit={true} />
         {pageData && (
           <Pagination
             pageData={pageData}

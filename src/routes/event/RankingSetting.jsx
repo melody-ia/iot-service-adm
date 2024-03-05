@@ -35,7 +35,7 @@ export default function RankingSetting() {
     <>
       <Lnb lnbType="event" />
       {/* <CurrentBox mod={true} del={true} down={true} tit="탄소 중립 랭킹 관리" /> */}
-      <CurrentBox btns={["down"]} tit="탄소 중립 랭킹 관리" />
+      <CurrentBox btns={[/* "down" */]} tit="탄소 중립 랭킹 관리" />
       <div className="ranking_setting box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="date_input_wrap d-flex">
@@ -84,7 +84,7 @@ export default function RankingSetting() {
           </table>
         </div>
         {/* <CurrentBox add={false} mod={true} del={true} down={true} hideTit={true} /> */}
-        <CurrentBox btns={["down"]} hideTit={true} />
+        <CurrentBox btns={[/* "down" */]} hideTit={true} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
         <Pagination />
       </div>

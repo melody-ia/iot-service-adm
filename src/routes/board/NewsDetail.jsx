@@ -31,7 +31,7 @@ export default function NewsDetail() {
     return (
       <>
         <Lnb lnbType="board" />
-        <CurrentBox btns={["mod", "del", "down"]} tit="이벤트/뉴스 상세보기" {...btnEvent} />
+        <CurrentBox btns={["mod", "del", /* "down" */]} tit="이벤트/뉴스 상세보기" {...btnEvent} />
         <div className="news_detail box_ty01 view_form">
           <div className="write_type">
             <div className="wirte_area">

@@ -48,7 +48,7 @@ export default function ChallengeList() {
       <Lnb lnbType="event" />
       {/* <CurrentBox add={true} mod={true} del={true} down={true} tit="데일리 챌린지 리스트" /> */}
       <CurrentBox
-        btns={["add", "down"]}
+        btns={["add",/*  "down" */]}
         tit="데일리 챌린지 리스트"
         {...btnEvent}
       />
@@ -126,7 +126,7 @@ export default function ChallengeList() {
           )}
         </div>
         {/* <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} /> */}
-        <CurrentBox btns={["add", "down"]} hideTit={true} {...btnEvent} />
+        <CurrentBox btns={["add", /* "down" */]} hideTit={true} {...btnEvent} />
         <Pagination />
       </div>
     </>

@@ -84,7 +84,7 @@ export default function ChallengeAdd() {
     return (
       <>
         <Lnb lnbType="event" />
-        <CurrentBox btns={["mod", "del", "down"]} tit="데일리 챌린지 수정" {...btnEvent} />
+        <CurrentBox btns={["mod", "del", /* "down" */]} tit="데일리 챌린지 수정" {...btnEvent} />
         <div className="ch_add">
           <div className="box_ty01">
             <div className="write_type">

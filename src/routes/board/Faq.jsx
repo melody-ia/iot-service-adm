@@ -104,7 +104,7 @@ export default function Faq() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox
-        btns={["add", "mod", "del", "down"]}
+        btns={["add", "mod", "del", /* "down" */]}
         tit="FAQ 리스트"
         {...btnEvent}
       />
@@ -174,7 +174,7 @@ export default function Faq() {
           )}
         </div>
         <CurrentBox
-          btns={["add", "mod", "del", "down"]}
+          btns={["add", "mod", "del",/*  "down" */]}
           hideTit={true}
           setCurPage={setCurPage}
           {...btnEvent}

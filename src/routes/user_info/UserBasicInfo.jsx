@@ -144,7 +144,7 @@ export default function UserInfo() {
         lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"}
       />
       {/* <CurrentBox mod={true} del={true} down={true} tit="회원 정보" /> */}
-      <CurrentBox btns={["mod", "down"]} tit="회원 정보" {...btnEvent} />
+      <CurrentBox btns={["mod", /* "down" */]} tit="회원 정보" {...btnEvent} />
       {/* 계정이 비활성화계정일 시 noactive 클래스 추가 */}
       <div className="user_info box_ty01 noActive">
         <div className="write_type">

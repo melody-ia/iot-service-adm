@@ -42,7 +42,7 @@ export default function QnaDetail() {
     <>
       <Lnb lnbType="board" />
       {/* <CurrentBox mod={true} del={true} down={true} tit="1:1문의 상세보기" /> */}
-      <CurrentBox btns={["mod", "down"]} tit="1:1문의 상세보기" {...btnEvent} />
+      <CurrentBox btns={["mod", /* "down" */]} tit="1:1문의 상세보기" {...btnEvent} />
       <div className="qna_detail box_ty01 view_form">
         <div className="write_type">
           <div className="wirte_area">

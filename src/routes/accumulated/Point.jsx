@@ -85,7 +85,7 @@ export default function Point() {
     <>
       <Lnb lnbType="accumulated" />
       {/* <CurrentBox add={true} del={true} down={true} tit="포인트 관리" /> */}
-      <CurrentBox btns={["mod", "del", "down"]} tit="포인트 관리" mod={mod} del={del} />
+      <CurrentBox btns={["mod", "del", /* "down" */]} tit="포인트 관리" mod={mod} del={del} />
       <div className="point box_ty01 table_type table_comm accumulated">
         <div className="filter_wrap d-flex">
           <div className="date_input_wrap d-flex"></div>

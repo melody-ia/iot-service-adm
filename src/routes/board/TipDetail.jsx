@@ -31,7 +31,7 @@ export default function TipDetail() {
     return (
       <>
         <Lnb lnbType="board" />
-        <CurrentBox btns={["mod", "del", "down"]} tit="탄소중립 TIP 자료실 상세보기" {...btnEvent} />
+        <CurrentBox btns={["mod", "del", /* "down" */]} tit="탄소중립 TIP 자료실 상세보기" {...btnEvent} />
         <div className="tip_detail box_ty01 view_form">
           <div className="write_type">
             <div className="wirte_area">

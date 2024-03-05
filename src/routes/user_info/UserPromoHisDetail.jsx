@@ -38,7 +38,7 @@ export default function UserPromoHisDetail() {
   return (
     <>
       <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
-      <CurrentBox btns={["down"]} tit="프로모션 참여 상세 내역" />
+      <CurrentBox btns={[/* "down" */]} tit="프로모션 참여 상세 내역" />
       <div className="user_history_pro_detail detail_form box_ty01 table_type">
         <div className="table_wrap line">
           <table className="table" id="table">
@@ -112,7 +112,7 @@ export default function UserPromoHisDetail() {
           </table>
         </div>
 
-        <CurrentBox btns={["down"]} hideTit={true} />
+        <CurrentBox btns={[/* "down" */]} hideTit={true} />
         {pageData && <Pagination pageData={pageData} curPage={curPage} setCurPage={setCurPage} onClick={loadPageData} />}
       </div>
     </>

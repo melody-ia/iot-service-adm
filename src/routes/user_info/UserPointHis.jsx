@@ -117,7 +117,7 @@ export default function UserPointHis() {
         lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"}
       />
       <CurrentBox
-        btns={["del", "down"]}
+        btns={[/* "del", "down" */]}
         tit="포인트 지급/사용 내역"
         {...btnEvent}
       />
@@ -255,7 +255,7 @@ export default function UserPointHis() {
         </div>
 
         <CurrentBox
-          btns={["del", "down"]}
+          btns={[/* "del", "down" */]}
           tit="포인트 지급/사용 내역"
           hideTit={true}
           {...btnEvent}

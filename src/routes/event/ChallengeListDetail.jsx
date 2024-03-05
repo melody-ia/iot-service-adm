@@ -12,7 +12,7 @@ export default function ChallengeListDetail() {
     <>
       <Lnb lnbType="event" />
       {/* <CurrentBox mod={true} del={true} down={true} tit="데일리 챌린지 상세보기"/> */}
-      <CurrentBox btns={["mod", "del", "down"]} tit="데일리 챌린지 상세보기" />
+      <CurrentBox btns={["mod", "del", /* "down" */]} tit="데일리 챌린지 상세보기" />
       <div className="ch_list_detail detail_form box_ty01 table_type">
         <div className="table_wrap line">
           <table className="table" id="table">

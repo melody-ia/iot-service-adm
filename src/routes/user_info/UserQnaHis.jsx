@@ -52,7 +52,7 @@ export default function UserQnaHis() {
     <>
       <Lnb lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"} />
       {/* <CurrentBox mod={true} del={true} down={true} tit="1:1문의 내역" /> */}
-      <CurrentBox btns={["down"]} tit="1:1문의 내역" />
+      <CurrentBox btns={[/* "down" */]} tit="1:1문의 내역" />
       <div className="user_history_qna box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <div className="select_input_wrap d-flex">
@@ -123,7 +123,7 @@ export default function UserQnaHis() {
           </table>
           {!resData?.inquireInfo[0] && <div className="no_data_wrap">데이터 없음</div>}
         </div>
-        <CurrentBox btns={["down"]} tit="1:1문의 내역" hideTit={true} />
+        <CurrentBox btns={[/* "down" */]} tit="1:1문의 내역" hideTit={true} />
       </div>
     </>
   );
