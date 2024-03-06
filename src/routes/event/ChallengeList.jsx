@@ -48,7 +48,7 @@ export default function ChallengeList() {
       <Lnb lnbType="event" />
       {/* <CurrentBox add={true} mod={true} del={true} down={true} tit="데일리 챌린지 리스트" /> */}
       <CurrentBox
-        btns={["add",/*  "down" */]}
+        btns={["add" /*  "down" */]}
         tit="데일리 챌린지 리스트"
         {...btnEvent}
       />
@@ -126,7 +126,7 @@ export default function ChallengeList() {
           )}
         </div>
         {/* <CurrentBox add={true} mod={true} del={true} down={true} hideTit={true} /> */}
-        <CurrentBox btns={["add", /* "down" */]} hideTit={true} {...btnEvent} />
+        <CurrentBox btns={["add" /* "down" */]} hideTit={true} {...btnEvent} />
         <Pagination />
       </div>
     </>
@@ -148,9 +148,7 @@ function ChallengeItem({ no, data }) {
     <tr>
       <td className="num">{no + 1}</td>
       <td className="copy_wrap">
-        <Link to={"/ChallengeList/ChallengeListDetail/" + data.ch_no}>
-          {data.ch_title}
-        </Link>
+        <Link to={"/ChallengeDetail/" + data.ch_no}>{data.ch_title}</Link>
         <img
           alt="챌린지링크"
           src={copy}
@@ -167,10 +165,10 @@ function ChallengeItem({ no, data }) {
         {challengeContents.start_at.replace(/-/g, ".")} – <br />
         {challengeContents.end_at.replace(/-/g, ".")}
       </td>
-      <td>{Number(challengeContents.sum_member).toLocaleString("ko-KR")}</td>
-      <td>{Number(challengeContents.sum_board).toLocaleString("ko-KR")}</td>
-      <td>{Number(challengeContents.sum_stamp).toLocaleString("ko-KR")}</td>
-      <td>{Number(challengeContents.sum_point).toLocaleString("ko-KR")}</td>
+      <td>{Number(challengeContents.sum_member).toLocaleString("ko-KR")}명</td>
+      <td>{Number(challengeContents.sum_board).toLocaleString("ko-KR")}개</td>
+      <td>{Number(challengeContents.sum_stamp).toLocaleString("ko-KR")}개</td>
+      <td>{Number(challengeContents.sum_point).toLocaleString("ko-KR")}p</td>
       <td>
         <div className="radio_group d-flex w100">
           {[
