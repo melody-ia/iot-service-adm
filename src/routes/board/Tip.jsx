@@ -156,6 +156,8 @@ export default function Tip() {
                     setCheckedList={setCheckedList}
                     modList={modList}
                     setModeList={setModeList}
+                    num={idx}
+                    pageData={pageData}
                   />
                 );
               })}
@@ -184,7 +186,15 @@ export default function Tip() {
   );
 }
 
-function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
+function PostItem({
+  data,
+  checkedList,
+  setCheckedList,
+  modList,
+  setModeList,
+  num,
+  pageData,
+}) {
   const navigate = useNavigate();
   const [postContents, setPostContents] = useState({
     wr_id: data.wr_id,
@@ -250,7 +260,7 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
           onClick={checkItem}
         />
       </td>
-      <td className="num">{data.wr_id}</td>
+      <td className="num">{pageData.offset + num + 1}</td>
       <td
         style={{ cursor: "pointer" }}
         onClick={() => {

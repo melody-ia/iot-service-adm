@@ -130,10 +130,9 @@ export default function Faq() {
               <col width={"80px"} />
               <col width={"120px"} />
               <col width={"400px"} />
-              <col width={"150px"} />
               <col width={"100px"} />
+              <col width={"200px"} />
               <col width={"240px"} />
-              <col width={"250px"} />
             </colgroup>
             <thead>
               <tr>
@@ -152,7 +151,6 @@ export default function Faq() {
                 <th>등록일</th>
                 <th>공개여부</th>
                 <th>비고</th>
-                <th>메모</th>
               </tr>
             </thead>
             <tbody>
@@ -279,7 +277,6 @@ function PostItem({
         {data.wr_seo_title}
       </td>
       <td>{data.wr_datetime.replace(/-/g, ". ") + "."}</td>
-      <td>{data.wr_status === 0 ? "공개" : "비공개"}</td>
       <td>
         <div className="radio_group">
           <div className="radio_wrap">
