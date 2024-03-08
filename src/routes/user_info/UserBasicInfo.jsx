@@ -42,7 +42,6 @@ export default function UserInfo() {
     oil_type: ["가솔린", "디젤", "하이브리드", "LPG", "전기", "수도"],
     job: ["주부", "공무원", "회사원", "자영업", "학생", "무직"],
     handling: [
-      "음식물처리기",
       "공동주택 세대별 카드",
       "공동주택 종량제 스티커",
       "음식물 전용 봉투 및 전용 용기",
@@ -144,7 +143,7 @@ export default function UserInfo() {
         lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"}
       />
       {/* <CurrentBox mod={true} del={true} down={true} tit="회원 정보" /> */}
-      <CurrentBox btns={["mod", /* "down" */]} tit="회원 정보" {...btnEvent} />
+      <CurrentBox btns={["mod" /* "down" */]} tit="회원 정보" {...btnEvent} />
       {/* 계정이 비활성화계정일 시 noactive 클래스 추가 */}
       <div className="user_info box_ty01 noActive">
         <div className="write_type">
@@ -397,10 +396,14 @@ export default function UserInfo() {
                   <span className="label">직업</span>
                   {selecBoxHtml[3]}
                 </div>
-                <div className="flex_right">
-                  <span className="label">음식물 쓰레기 처리 방식</span>
-                  {selecBoxHtml[4]}
-                </div>
+                {choiceForm["ownership"] === "있음" ? (
+                  ""
+                ) : (
+                  <div className="flex_right">
+                    <span className="label">음식물 쓰레기 처리 방식</span>
+                    {selecBoxHtml[4]}
+                  </div>
+                )}
               </div>
               <div className="flex_box">
                 <div className="input_ty02 flex_left">
@@ -436,7 +439,7 @@ export default function UserInfo() {
                           dataValue={el[1]}
                           onClick={dataSel}
                           checked={
-                            el[1] == choiceForm["mb_open"] ? true : false
+                            el[1] === choiceForm["mb_open"] ? true : false
                           }
                         />
                       );

@@ -88,7 +88,7 @@ export default function SideMenu(props) {
               >
                 <Link to="BannerSetting">배너 관리</Link>
               </li>
-              <li
+              {/* <li
                 className={
                   pathname === "/PopupSetting" ||
                   pathname === "/PopupSetting/add"
@@ -98,7 +98,7 @@ export default function SideMenu(props) {
                 onClick={sideClose}
               >
                 <Link to="PopupSetting">팝업 관리</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="btn_wrap calc" onClick={sideClose}>
@@ -173,7 +173,7 @@ export default function SideMenu(props) {
           </div>
           <div className="btn_wrap device">
             <button type="button" className="list_btn" onClick={toggleClass}>
-              기기 관리
+              기기 관리(준비중)
             </button>
             <ul className="sub_menu_list">
               <li className="list" onClick={sideClose}>
@@ -183,7 +183,8 @@ export default function SideMenu(props) {
                 className={pathname === "/Product" ? "list active" : "list"}
                 onClick={sideClose}
               >
-                <Link to="/Product">GL 추천제품 관리</Link>
+                {/* <Link to="/Product">GL 추천제품 관리</Link> */}
+                <Link to="">GL 추천제품 관리</Link>
               </li>
             </ul>
           </div>

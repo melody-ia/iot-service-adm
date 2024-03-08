@@ -117,14 +117,21 @@ export default function UserPointHis() {
         lnbType={pathname.includes("Delete") ? "deleteUserInfo" : "userInfo"}
       />
       <CurrentBox
-        btns={[/* "del", "down" */]}
+        btns={
+          [
+            /* "del", "down" */
+          ]
+        }
         tit="포인트 지급/사용 내역"
         {...btnEvent}
       />
       <div className="user_history_point box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
           <p className="user_point_total">
-            총 보유 포인트 : <span>{resData?.userPoint.mb_point}</span>
+            총 보유 포인트 :{" "}
+            <span>
+              {Number(resData?.userPoint.mb_point).toLocaleString("Ko-KR")}p
+            </span>
           </p>
           <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
           <div className="date_input_wrap d-flex">
@@ -145,16 +152,15 @@ export default function UserPointHis() {
           <table className="table" id="table">
             <colgroup>
               <col width={"100px"} />
-              <col width={"100px"} />
               <col width={"200px"} />
               <col width={"auto"} />
               <col width={"200px"} />
               <col width={"200px"} />
-              <col width={"300px"} />
+              <col width={"200px"} />
             </colgroup>
             <thead>
               <tr>
-                <th className="check">
+                {/* <th className="check">
                   <CheckBox
                     for="wr_all"
                     id="wr_all"
@@ -162,21 +168,19 @@ export default function UserPointHis() {
                     checked={resData?.pointInfo.length === checkedList.length}
                     onClick={checkAll}
                   />
-                </th>
+                </th> */}
                 <th className="num">NO</th>
                 <th>날짜</th>
                 <th>지급/사용 내역</th>
-                <th>+ P</th>
-                <th>- P</th>
-                <th>비고</th>
+                <th>지급</th>
+                <th>사용</th>
+                <th></th>
+                {/* <th>비고</th> */}
               </tr>
             </thead>
             <tbody>
               <tr className="write_row">
-                <td className="check">
-                  <CurrentBox btns={["give"]} {...btnEvent} />
-                </td>
-                <td className="num">0</td>
+                <td className="num"></td>
                 <td className="date">
                   <div className="input_ty02">
                     <input
@@ -221,7 +225,10 @@ export default function UserPointHis() {
                     />
                   </div>
                 </td>
-                <td>
+                <td className="check">
+                  <CurrentBox btns={["give"]} {...btnEvent} />
+                </td>
+                {/* <td>
                   <div className="input_ty02">
                     <input
                       type="text"
@@ -231,13 +238,15 @@ export default function UserPointHis() {
                       onChange={handlePoinData}
                     />
                   </div>
-                </td>
+                </td> */}
               </tr>
               {resData?.pointInfo.map((el, idx) => {
                 return (
                   <PointItem
                     key={idx}
+                    num={idx}
                     data={el}
+                    pageData={pageData}
                     checkedList={checkedList}
                     setCheckedList={setCheckedList}
                   />
@@ -255,7 +264,11 @@ export default function UserPointHis() {
         </div>
 
         <CurrentBox
-          btns={[/* "del", "down" */]}
+          btns={
+            [
+              /* "del", "down" */
+            ]
+          }
           tit="포인트 지급/사용 내역"
           hideTit={true}
           {...btnEvent}
@@ -273,7 +286,7 @@ export default function UserPointHis() {
   );
 }
 
-function PointItem({ data, checkedList, setCheckedList }) {
+function PointItem({ num, data, pageData, checkedList, setCheckedList }) {
   const checkItem = (e) => {
     if (e.target.checked) setCheckedList([...checkedList, data.po_id]);
     else setCheckedList([...checkedList].filter((el) => el !== data.po_id));
@@ -281,7 +294,7 @@ function PointItem({ data, checkedList, setCheckedList }) {
 
   return (
     <tr>
-      <td className="check">
+      {/* <td className="check">
         <CheckBox
           for={data.po_id}
           id={data.po_id}
@@ -289,12 +302,16 @@ function PointItem({ data, checkedList, setCheckedList }) {
           checked={checkedList.includes(data.po_id)}
           onClick={checkItem}
         />
-      </td>
-      <td className="num">1</td>
+      </td> */}
+      <td className="num">{pageData.offset + (num + 1)}</td>
       <td className="date">{data.po_datetime.replace(/-/g, ".")}</td>
       <td>{data.po_content}</td>
-      <td>{data.po_point > 0 && data.po_point}</td>
-      <td>{data.po_point < 0 && -1 * data.po_point}</td>
+      <td>
+        {data.type === "acc" && Number(data.po_point).toLocaleString("Ko-KR")}
+      </td>
+      <td>
+        {data.type === "use" && Number(data.po_point).toLocaleString("Ko-KR")}
+      </td>
       <td></td>
     </tr>
   );

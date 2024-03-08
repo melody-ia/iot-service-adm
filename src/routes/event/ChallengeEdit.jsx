@@ -154,7 +154,7 @@ export default function ChallengeEdit() {
                   </div>
                 </div>
                 <div className="flex_box">
-                  <div className="input_ty02 flex_left">
+                  {/* <div className="input_ty02 flex_left">
                     <label htmlFor="">
                       글쓰기 URL
                       <img
@@ -173,7 +173,7 @@ export default function ChallengeEdit() {
                       placeholder="챌린지 등록 시 URL이 발급 됩니다."
                       disabled
                     />
-                  </div>
+                  </div> */}
                   <div className="input_ty02 flex_right">
                     <label htmlFor="">프로모션 진행 기간</label>
                     <div className="date_input input_ty02">{date.start}</div>
@@ -257,7 +257,7 @@ export default function ChallengeEdit() {
                   </div>
                   <div className="input_ty02 flex_right">
                     <label htmlFor="" className="stamp_signup">
-                      도장 등록 개수
+                      도장 적립 개수
                     </label>
                     <input
                       type="text"

@@ -16,7 +16,6 @@ export default function Dashboard() {
 
     if (!res || res?.code !== 200) return;
     setPageData(res.data);
-    console.log(res.data);
   };
 
   useEffect(() => {
@@ -104,14 +103,14 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="box_ty01 graph_ty02">
+        {/* <div className="box_ty01 graph_ty02">
           <div className="box_head d-flex flex-js">
             <h4 className="tit">디바이스 별 접속률</h4>
           </div>
           <div className="box_body">
             <ChartCircle />
           </div>
-        </div>
+        </div> */}
         <div className="box_ty01 graph_ty03">
           <div className="box_head d-flex flex-js">
             <h4 className="tit">챌린지(프로모션) 참여율</h4>
@@ -162,10 +161,10 @@ export default function Dashboard() {
             </table>
           </div>
         </div>
-        <div className="bar_graph box_ty01">
+        {/* <div className="bar_graph box_ty01">
           <h4 className="tit">주간 방문자 수</h4>
           <ChartColumn />
-        </div>
+        </div> */}
       </div>
     </div>
   );

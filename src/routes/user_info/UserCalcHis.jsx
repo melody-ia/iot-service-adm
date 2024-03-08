@@ -195,13 +195,15 @@ export default function UserCalcHis() {
         </div>
 
         {resData?.length > 0 ? (
-          resData?.map((el) => {
+          resData?.map((el, idx) => {
             return (
               <HistoryItem
                 key={el.idx}
                 idx={el.idx}
                 date={el.create_at}
                 data={el.carbon}
+                num={idx}
+                pageData={pageData}
               />
             );
           })
@@ -209,7 +211,14 @@ export default function UserCalcHis() {
           <div className="no_data_wrap">데이터 없음</div>
         )}
 
-        <CurrentBox btns={[/* "down" */]} hideTit={true} />
+        <CurrentBox
+          btns={
+            [
+              /* "down" */
+            ]
+          }
+          hideTit={true}
+        />
         {pageData && (
           <Pagination
             pageData={pageData}
@@ -224,7 +233,7 @@ export default function UserCalcHis() {
   );
 }
 
-const HistoryItem = ({ idx, date, data }) => {
+const HistoryItem = ({ idx, date, data, num, pageData }) => {
   const {
     firstKey,
     totalLength,
@@ -254,7 +263,7 @@ const HistoryItem = ({ idx, date, data }) => {
               <CheckBox for="wr_2" id="wr_2" name="wr_2" />
             </td> */}
             <td rowSpan={totalLength} className="num">
-              {idx}
+              {pageData.offset + (num + 1)}
             </td>
             <td rowSpan={totalLength}>{date}</td>
 

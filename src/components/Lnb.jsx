@@ -20,7 +20,7 @@ export default function Lnb(props) {
       ["도장 적립 내역", "/DeleteUserStempHis/" + id],
       ["포인트 지급/사용 내역", "/DeleteUserPointHis/" + id],
       ["1:1문의 내역", "/DeleteUserQnaHis/" + id],
-      ["등록 기기 내역", "/DeleteUserDeviceHis/" + id],
+      //["등록 기기 내역", "/DeleteUserDeviceHis/" + id],
     ],
     userInfo: [
       ["회원 정보", "/UserBasicInfo/" + id],
@@ -30,14 +30,14 @@ export default function Lnb(props) {
       // ["도장 적립 내역", "/UserStempHis/" + id],
       ["포인트 지급/사용 내역", "/UserPointHis/" + id],
       ["1:1문의 내역", "/UserQnaHis/" + id],
-      ["등록 기기 내역", "/UserDeviceHis/" + id],
+      //["등록 기기 내역", "/UserDeviceHis/" + id],
     ],
     event: [
       ["데일리 챌린지 관리", "/ChallengeList"],
       ["탄소 중립 랭킹 관리", "/RankingSetting"],
       // ["공개 배너 순위 관리", "/BannerRanking"],
       ["배너 관리", "/BannerSetting"],
-      ["팝업 관리", "/PopupSetting"],
+      // ["팝업 관리", "/PopupSetting"],
     ],
     calcHistory: [["탄소 발자국 계산 내역", "/CalculatorList"]],
     accumulated: [
@@ -76,7 +76,10 @@ export default function Lnb(props) {
       <Swiper className="lnb_tab_slide" {...slideTab}>
         {lnbTab[lnbType].map((el, idx) => {
           return (
-            <SwiperSlide key={idx} className={pathname.includes(el[1].replace(id, "")) && "active"}>
+            <SwiperSlide
+              key={idx}
+              className={pathname.includes(el[1].replace(id, "")) && "active"}
+            >
               <Link to={el[1]} className="lnb_btn">
                 {el[0]}
               </Link>

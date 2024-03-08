@@ -104,7 +104,7 @@ export default function Faq() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox
-        btns={["add", "mod", "del", /* "down" */]}
+        btns={["add", "mod", "del" /* "down" */]}
         tit="FAQ 리스트"
         {...btnEvent}
       />
@@ -152,6 +152,7 @@ export default function Faq() {
                 <th>등록일</th>
                 <th>공개여부</th>
                 <th>비고</th>
+                <th>메모</th>
               </tr>
             </thead>
             <tbody>
@@ -164,6 +165,8 @@ export default function Faq() {
                     setCheckedList={setCheckedList}
                     modList={modList}
                     setModeList={setModeList}
+                    num={idx}
+                    pageData={pageData}
                   />
                 );
               })}
@@ -174,7 +177,7 @@ export default function Faq() {
           )}
         </div>
         <CurrentBox
-          btns={["add", "mod", "del",/*  "down" */]}
+          btns={["add", "mod", "del" /*  "down" */]}
           hideTit={true}
           setCurPage={setCurPage}
           {...btnEvent}
@@ -192,7 +195,15 @@ export default function Faq() {
   );
 }
 
-function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
+function PostItem({
+  data,
+  checkedList,
+  setCheckedList,
+  modList,
+  setModeList,
+  num,
+  pageData,
+}) {
   const navigate = useNavigate();
   const division = [data.wr_subject];
   const [postContents, setPostContents] = useState({
@@ -255,7 +266,7 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
           onClick={checkItem}
         />
       </td>
-      <td className="num">{data.wr_id}</td>
+      <td className="num">{pageData.offset + num + 1}</td>
       <td>{division}</td>
       <td
         style={{ cursor: "pointer" }}
@@ -267,7 +278,7 @@ function PostItem({ data, checkedList, setCheckedList, modList, setModeList }) {
       >
         {data.wr_seo_title}
       </td>
-      <td>{data.wr_datetime.replace(/-/g, " .") + "."}</td>
+      <td>{data.wr_datetime.replace(/-/g, ". ") + "."}</td>
       <td>{data.wr_status === 0 ? "공개" : "비공개"}</td>
       <td>
         <div className="radio_group">
