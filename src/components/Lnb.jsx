@@ -26,7 +26,7 @@ export default function Lnb(props) {
       ["회원 정보", "/UserBasicInfo/" + id],
       ["프로모션 참여 내역", "/UserPromoHis/" + id],
       ["탄소발자국 계산 내역", "/UserCalcHis/" + id],
-      ["탄소 중립 랭킹 변동 내역", "/UserRankHis/" + id],
+      /* ["탄소 중립 랭킹 변동 내역", "/UserRankHis/" + id], */
       // ["도장 적립 내역", "/UserStempHis/" + id],
       ["포인트 지급/사용 내역", "/UserPointHis/" + id],
       ["1:1문의 내역", "/UserQnaHis/" + id],

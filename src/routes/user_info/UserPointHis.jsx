@@ -22,7 +22,7 @@ export default function UserPointHis() {
   const [beforeFilter, setBeforeFilter] = useState();
   const [checkedList, setCheckedList] = useState([]);
   const [addPointData, setAddPointData] = useState({
-    po_datetime: "",
+    po_datetime: new Date().toISOString().slice(0, 10),
     po_content: "",
     po_point: null,
     po_minus_point: null,
@@ -31,10 +31,11 @@ export default function UserPointHis() {
 
   const handlePoinData = (e) => {
     const type = e.target.dataset.type;
-    const value = type.includes("po_point")
+    const value = type.includes("po_point") || type.includes("po_minus_point")
       ? e.target.value.replace(/[^0-9]/, "")
       : e.target.value;
     setAddPointData({ ...addPointData, [type]: value });
+    
   };
 
   const loadHisData = async () => {
@@ -47,6 +48,7 @@ export default function UserPointHis() {
       start_at: start_at,
       end_at,
       filter: filter,
+      order : "desc",
     };
     const res = await postData("member/show/point", data);
     if (!res || res?.code !== 200) return;
@@ -189,6 +191,7 @@ export default function UserPointHis() {
                       value={addPointData.po_datetime}
                       data-type="po_datetime"
                       onChange={handlePoinData}
+                      disabled
                     />
                   </div>
                 </td>

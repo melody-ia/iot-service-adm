@@ -93,10 +93,16 @@ export default function ChallengeEdit() {
 
   const btnEvent = {
     mod() {
-      dataSubmit();
+      if(window.confirm("수정 하시겠습니까?"))
+      {
+        dataSubmit();
+      }
     },
     del() {
-      deleteChallenge();
+      if(window.confirm("삭제 하시겠습니까?"))
+      {
+        deleteChallenge();
+      }
     },
   };
 
@@ -185,12 +191,12 @@ export default function ChallengeEdit() {
                   <div className="input_ty02 flex_left">
                     <label htmlFor="">
                       총 참여 회원 수{" "}
-                      <img
+                     {/*  <img
                         src={arrowRight}
                         alt=""
                         className="icon click"
                         onClick={() => setModalOpen(true)}
-                      />
+                      /> */}
                     </label>
                     <input
                       type="text"
@@ -246,7 +252,7 @@ export default function ChallengeEdit() {
                 </div>
                 <div className="flex_box">
                   <div className="input_ty02 flex_left mr12">
-                    <label htmlFor="">글 등록 개수(1일)</label>
+                    <label htmlFor="">달성 기준 게시글 수(1일)</label>
                     <input
                       type="text"
                       value={challengeContents.ch_stamp_board}
@@ -257,7 +263,7 @@ export default function ChallengeEdit() {
                   </div>
                   <div className="input_ty02 flex_right">
                     <label htmlFor="" className="stamp_signup">
-                      도장 적립 개수
+                    달성시 도장 적립 개수
                     </label>
                     <input
                       type="text"
@@ -270,7 +276,7 @@ export default function ChallengeEdit() {
                 </div>
                 <div className="flex_box flex_box_mb">
                   <div className="input_ty02 flex_left">
-                    <label htmlFor="">최대 적립 개수</label>
+                    <label htmlFor="">최대 도장 적립 개수</label>
                     <input
                       type="text"
                       value={challengeContents.ch_max_stamp}
@@ -317,7 +323,7 @@ export default function ChallengeEdit() {
                 </div>
                 <div className="flex_box flex_box_mb">
                   <div className="input_ty02 flex_left">
-                    <label htmlFor="">포인트 지급 조건</label>
+                    <label htmlFor="">포인트 지급 조건(도장)</label>
                     <input
                       type="text"
                       placeholder="포인트가 지급되는 도장 횟수를 숫자로 입력해주세요."

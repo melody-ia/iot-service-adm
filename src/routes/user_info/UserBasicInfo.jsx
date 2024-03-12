@@ -122,7 +122,10 @@ export default function UserInfo() {
 
   const btnEvent = {
     mod() {
-      editUserData();
+      if(window.confirm("수정 하시겠습니까?"))
+      {
+        editUserData();
+      }      
     },
   };
 
@@ -497,7 +500,10 @@ export default function UserInfo() {
             className="btn_ty01"
             disabled={!validPass()}
             onClick={() => {
-              editUserData();
+              if(window.confirm("수정 하시겠습니까?"))
+              {
+                editUserData();
+              }
             }}
           >
             수정

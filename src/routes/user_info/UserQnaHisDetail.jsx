@@ -44,7 +44,7 @@ export default function UserQnaHisDetail() {
             <tbody>
               <tr>
                 <th>NO</th>
-                <td>100</td>
+                <td>{resData?.inquireInfo[0].qa_id}</td>
                 <th>문의일</th>
                 <td>{resData?.inquireInfo[0].inquire_date}</td>
                 <th>답변일</th>
@@ -114,7 +114,9 @@ export default function UserQnaHisDetail() {
             </tbody>
           </table>
         </div>
-        <CurrentBox btns={["mod", /* "down" */]} tit="1:1문의 내역 상세보기" hideTit={true} />
+
+        {/* <CurrentBox btns={["mod"]} tit="1:1문의 내역 상세보기" hideTit={true} /> */}
+
       </div>
     </>
   );

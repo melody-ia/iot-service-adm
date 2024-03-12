@@ -34,7 +34,11 @@ export default function QnaDetail() {
 
   const btnEvent = {
     mod() {
-      dataSubmit();
+      if(window.confirm("수정 하시겠습니까?"))
+      {
+        dataSubmit();
+      }
+      
     },
   };
 

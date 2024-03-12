@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import {
   Lnb,
   CurrentBox,
@@ -135,13 +135,16 @@ export default function UserList() {
   );
 }
 
+
 function UserItem({ no, data }) {
+  const navigate = useNavigate();
   return (
-    <tr>
+    <tr 
+      onClick={() => {navigate("/UserBasicInfo/" + data.mb_id)}} 
+      style={{cursor : "pointer"}}
+    >
       <td className="num">{no + 1}</td>
-      <td className="id">
-        <Link to={"/UserBasicInfo/" + data.mb_id}>{data.mb_id}</Link>
-      </td>
+      <td className="id">{data.mb_id}</td>
       <td className="name">{data.mb_name}</td>
       <td className="gender">{data.mb_sex}</td>
       <td className="birth">{data.mb_birth}</td>

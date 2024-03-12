@@ -52,7 +52,7 @@ export default function UserPromoHis() {
       />
       <div className="user_history_pro box_ty01 table_type table_comm">
         <div className="filter_wrap d-flex">
-          <div className="select_input_wrap d-flex">{selecBoxHtml}</div>
+          {/* <div className="select_input_wrap d-flex">{selecBoxHtml}</div> */}
           <div className="date_input_wrap d-flex">
             <div className="date_input input_ty02">{date.start}</div>
             <div className="date_input input_ty02">{date.end}</div>
@@ -98,13 +98,13 @@ export default function UserPromoHis() {
                   <tr>
                     <th className="tit">프로모션 진행 기간</th>
                     <td className="date">
-                      {el.in_start.replace(/-/g, ".")} –{" "}
-                      {el.in_end.replace(/-/g, ".")}
-                    </td>
-                    <th className="tit">프로모션 참여 기간</th>
-                    <td className="date">
                       {el.ch_start.replace(/-/g, ".")} -{" "}
                       {el.ch_end.replace(/-/g, ".")}
+                    </td>
+                    <th className="tit">유저 프로모션 참여 기간</th>
+                    <td className="date">
+                      {el.in_start.replace(/-/g, ".")} –{" "}
+                      {el.in_end.replace(/-/g, ".")}
                     </td>
                   </tr>
                   <tr>

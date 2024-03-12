@@ -29,7 +29,8 @@ export default function UserQnaHis() {
       "오래된 답변일 순": "answer_date",
     }[selectedValues.inquiry_date_history];
     const qa_status = { 전체: "all", 답변완료: 1, 답변대기: 0 }[selectedValues.inquiry_state];
-    const qa_category = selectedValues.inquiry_sort === "전체" ? "all" : categoryList.indexOf(selectedValues.inquiry_sort);
+    const qa_category = selectedValues.inquiry_sort === "전체" ? "all" : categoryList.indexOf(selectedValues.inquiry_sort)-1;
+    
     const res = await postData("inquire/index", {
       mb_no,
       start_at: start_at,
@@ -41,7 +42,16 @@ export default function UserQnaHis() {
       target_id: id,
     });
     if (!res || res?.code !== 200) return;
-    if (!categoryList) setCategoryList(res.data.category);
+    if (!categoryList) 
+    {
+      
+      //배열 첫번째에 전체 추가
+      const newItem = "전체";
+      const sumItem = [newItem].concat(res.data.category);
+            
+      setCategoryList( sumItem);
+      /* setCategoryList( res.data.category); */
+    }
   };
 
   useEffect(() => {
@@ -101,7 +111,11 @@ export default function UserQnaHis() {
             <tbody>
               {resData?.inquireInfo.map((el, idx) => {
                 return (
-                  <tr key={idx}>
+                  <tr key={idx}
+                  onClick={() => {
+                    navigate("/UserQnaHis/UserQnaHisDetail/" + id, { state: { qa_id: el.qa_id } });
+                  }}
+                  >
                     <td className="num">{idx + 1}</td>
                     <td>{el.inquire_date}</td>
                     <td>{el.answer_date}</td>

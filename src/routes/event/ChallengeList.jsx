@@ -144,12 +144,17 @@ function ChallengeItem({ no, data }) {
     setChallengeContents({ ...data });
   }, [data]);
 
+  const navigate = useNavigate();
   return (
-    <tr>
+    
+    <tr 
+    onClick={() => {navigate("/ChallengeDetail/" + data.ch_no)}} 
+    style={{cursor : "pointer"}}
+    >
       <td className="num">{no + 1}</td>
       <td className="copy_wrap">
         <Link to={"/ChallengeDetail/" + data.ch_no}>{data.ch_title}</Link>
-        <img
+    {/*     <img
           alt="챌린지링크"
           src={copy}
           onClick={copyUrl}
@@ -158,7 +163,7 @@ function ChallengeItem({ no, data }) {
             "ChallengeWrite/" +
             data.ch_no
           }
-        />
+        /> */}
       </td>
       <td>{challengeContents.created_at.replace(/-/g, ".")}</td>
       <td>

@@ -115,9 +115,9 @@ export default function ChallengeListDetail() {
                   </td>
                 </tr>
                 <tr>
-                  <th colSpan={2}>글 등록 개수(1일)</th>
+                  <th colSpan={2}>달성 기준 게시글 수(1일)</th>
                   <td>{chInfo.ch_stamp_board}</td>
-                  <th>도장 적립 개수</th>
+                  <th>달성시 도장 적립 개수</th>
                   <td>{chInfo.ch_stamp_count}</td>
 
                   <th colSpan={2}>포인트명</th>
@@ -128,7 +128,7 @@ export default function ChallengeListDetail() {
                   </td>
                 </tr>
                 <tr>
-                  <th colSpan={2}>최대 적립 개수</th>
+                  <th colSpan={2}>최대 도장 적립 개수</th>
                   <td>{chInfo.ch_max_stamp}</td>
                   <td colSpan={2}></td>
                   <th colSpan={2}>
