@@ -79,7 +79,7 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="row row2">
-        <div className="box_ty01 graph_ty01">
+        <div className="box_ty01 graph_ty01" >
           <div className="box_head d-flex flex-js">
             <h4 className="tit">신규 가입자 수</h4>
           </div>
@@ -111,8 +111,8 @@ export default function Dashboard() {
             <ChartCircle />
           </div>
         </div> */}
-        <div className="box_ty01 graph_ty03">
-          <div className="box_head d-flex flex-js">
+        <div className="box_ty01 graph_ty03" style={{width: 'calc(75.3% - 16px)'}}>
+          <div className="box_head d-flex flex-js" >
             <h4 className="tit">챌린지(프로모션) 참여율</h4>
           </div>
           <div className="box_body">
@@ -123,7 +123,7 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="row row3">
-        <div className="table_wrap box_ty01">
+        <div className="table_wrap box_ty01"  style={{width: '100%'}}>
           <div className="table_type">
             <div className="box_head d-flex flex-js">
               <h4 className="tit">신규 가입 회원</h4>
