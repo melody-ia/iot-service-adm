@@ -38,30 +38,39 @@ export default function Point() {
       return false;
     }
 
-    await postData("point/config/update", { mb_no, config_arr: [...editItemList] }).then(result => {
-      if (result.code === 200 || result.msg === "OK") {
-        alert("정상적으로 변경되었습니다.");
-        window.location.reload();
-        return false;
-      }
-    });
+    if(window.confirm("수정 하시겠습니까?"))
+    {
+      await postData("point/config/update", { mb_no, config_arr: [...editItemList] }).then(result => {
+        if (result.code === 200 || result.msg === "OK") {
+          alert("정상적으로 변경되었습니다.");
+          window.location.reload();
+          return false;
+        }
+      });
+    }
+
   };
 
   const del = async e => {
-    let freshArray = editItemList.filter(el => el.hasOwnProperty("idx") === true && el.idx > 3);
+    //삭제 가능 인덱스 지정
+    let freshArray = editItemList.filter(el => el.hasOwnProperty("idx") === true && el.idx > 6);
 
     if (freshArray.length <= 0) {
       alert("1개 이상 선택을 해주세요. (랭킹달성만 삭제 가능합니다.)");
       return false;
     }
 
-    await postData("point/config/delete", { mb_no, config_arr: [...freshArray] }).then(result => {
-      if (result.code === 200 || result.msg === "OK") {
-        alert("정상적으로 삭제되었습니다.");
-        window.location.reload();
-        return false;
-      }
-    });
+    if(window.confirm("삭제 하시겠습니까?"))
+    {
+      await postData("point/config/delete", { mb_no, config_arr: [...freshArray] }).then(result => {
+        if (result.code === 200 || result.msg === "OK") {
+          alert("정상적으로 삭제되었습니다.");
+          window.location.reload();
+          return false;
+        }
+      });
+    }
+
   };
 
   const isChecked = (e, obj, setObj) => {
@@ -224,6 +233,7 @@ function JoinPoint({ data, isChecked, onChange, editItemList, setEditItemList })
   const [inputs, setInputs] = useState({
     idx: data.idx,
     sub_condition: 0,
+    sub_condition: data.sub_condition, // 불러올때 sub_condition도 가져오게 추가
     point: data.point,
     start_at: data.start_at,
     end_at: data.end_at,

@@ -18,7 +18,7 @@ export default function CalculatorList() {
   const { mb_no, postData, resData, setResData } = useCheckToken();
   const [beforeFilter, setBeforeFilter] = useState();
   const { selectedValues, selecBoxHtml } = useSelectBox({
-    order: ["전체", "CO2 발생량 높은 순", "CO2 발생량 낮은 순"],
+    order: ["CO2 발생량 높은 순", "CO2 발생량 낮은 순"],
     gender: ["전체(성별)", "남성", "여성"],
     city: [
       "전체(지역)",
