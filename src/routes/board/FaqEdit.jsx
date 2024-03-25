@@ -76,8 +76,11 @@ export default function FaqEdit() {
   };
 
   const btnEvent = {
-    add() {
-      dataSubmit();
+    mod() {
+      if(window.confirm("수정하시겠습니까?"))
+      {
+        dataSubmit();
+      }
     },
   };
 
@@ -90,7 +93,7 @@ export default function FaqEdit() {
       <>
         <Lnb lnbType="board" />
         <CurrentBox
-          btns={["add", "del", "down"]}
+          btns={["mod" /* "add", "del", "down" */]}
           tit="FAQ 등록/수정"
           {...btnEvent}
         />
@@ -184,7 +187,7 @@ export default function FaqEdit() {
             </div>
           </div>
           <div className="bottom_btn_wrap">
-            <button
+        {/*     <button
               type="button"
               className="btn_ty01 cancel"
               onClick={() => history(-1)}
@@ -193,7 +196,7 @@ export default function FaqEdit() {
             </button>
             <button type="button" className="btn_ty01" onClick={dataSubmit}>
               등록
-            </button>
+            </button> */}
           </div>
         </div>
       </>

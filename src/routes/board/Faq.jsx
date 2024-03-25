@@ -20,7 +20,7 @@ export default function Faq() {
   const { selectedValues, selecBoxHtml } = useSelectBox({
     signUp_date: ["최근 등록일 순", "오래된 등록일 순", "지급중지", "지급종료"],
     faq_sort: ["전체", "탄소발자국", "챌린지", "랭킹", "회원", "기타"],
-    open_state: ["공개", "비공개"],
+    open_state: ["전체", "공개", "비공개"],
   });
   const [pageData, setPageData] = useState();
   const [checkedList, setCheckedList] = useState([]);
@@ -42,7 +42,7 @@ export default function Faq() {
     const category = "faq";
     const faq_subject =
       selectedValues.faq_sort === "전체" ? "all" : selectedValues.faq_sort;
-    const wr_status = { 공개: 0, 비공개: 1 }[selectedValues.open_state];
+    const wr_status = { 전체 : "0,1", 공개: 0, 비공개: 1 }[selectedValues.open_state];
     const order =
       selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";
     const data = {
@@ -89,7 +89,17 @@ export default function Faq() {
       modPostData("edit");
     },
     del() {
-      modPostData("delete");
+      if(checkedList.length > 0)
+      {
+        if(window.confirm("삭제하시겠습니까?"))
+        {
+          modPostData("delete");
+        }
+      }
+      else
+      {
+        alert("1개 이상 선택을 해주세요.");
+      }
     },
   };
 
@@ -104,7 +114,7 @@ export default function Faq() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox
-        btns={["add", "mod", "del" /* "down" */]}
+        btns={["add", /* "mod", */ "del" /* "down" */]}
         tit="FAQ 리스트"
         {...btnEvent}
       />
@@ -175,7 +185,7 @@ export default function Faq() {
           )}
         </div>
         <CurrentBox
-          btns={["add", "mod", "del" /*  "down" */]}
+          btns={["add",/*  "mod" */, "del" /*  "down" */]}
           hideTit={true}
           setCurPage={setCurPage}
           {...btnEvent}
@@ -265,18 +275,32 @@ function PostItem({
         />
       </td>
       <td className="num">{pageData.offset + num + 1}</td>
-      <td>{division}</td>
       <td
         style={{ cursor: "pointer" }}
         onClick={() => {
-          navigate("/Faq/FaqDetail", {
+          navigate("/Faq/edit", {
+            state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
+          });
+        }}
+      >{division}</td>
+      <td
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          navigate("/Faq/edit", {
             state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
           });
         }}
       >
         {data.wr_seo_title}
       </td>
-      <td>{data.wr_datetime.replace(/-/g, ". ") + "."}</td>
+      <td
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          navigate("/Faq/edit", {
+            state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
+          });
+        }}
+      >{data.wr_datetime.replace(/-/g, ". ") + "."}</td>
       <td>
         <div className="radio_group">
           <div className="radio_wrap">
@@ -290,11 +314,13 @@ function PostItem({
                   for={el[1] + data.wr_id}
                   id={el[1] + data.wr_id}
                   name={"isShow" + data.wr_id}
-                  checked={postContents.wr_status == el[2]}
+                  /* checked={postContents.wr_status == el[2]} */
+                  checked={data.wr_status == el[2]}
                   text={el[0]}
                   dataType={"wr_status"}
                   dataValue={el[2]}
                   onClick={handlePostContents}
+                  disabled={true}
                 />
               );
             })}

@@ -83,7 +83,12 @@ export default function Qna() {
             <tbody>
               {resData?.inquireInfo.map((el, idx) => {
                 return (
-                  <tr key={idx}>
+                  <tr key={idx}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    navigate("/Qna/QnaDetail", { state: { qa_id: el.qa_id } });
+                  }}
+                  >
                     <td className="num">{idx + 1}</td>
                     <td>{el.mb_id}</td>
                     <td>{el.inquire_date}</td>

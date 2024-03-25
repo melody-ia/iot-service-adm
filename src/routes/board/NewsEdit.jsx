@@ -43,39 +43,43 @@ export default function NewsEdit() {
   };
 
   const dataSubmit = async () => {
-    if (!postContents.wr_seo_title || !postContents.wr_content)
-      return alert("제목과 내용을 입력하세요.");
-    const formData = new FormData();
-    formData.append("mb_no", mb_no);
-    formData.append("wr_id", state.wr_id);
-    formData.append(
-      "wr_subject",
-      { 이벤트: "event", 뉴스: "news" }[selectedValues.subject]
-    );
-    formData.append("wr_seo_title", postContents.wr_seo_title);
-    formData.append("wr_content", postContents.wr_content);
-    formData.append("wr_status", postContents.wr_status);
-    formData.append("wr_memo", postContents.wr_1);
+    if(window.confirm("수정하시겠습니까?"))
+    {
+      if (!postContents.wr_seo_title || !postContents.wr_content)
+        return alert("제목과 내용을 입력하세요.");
+      const formData = new FormData();
+      formData.append("mb_no", mb_no);
+      formData.append("wr_id", state.wr_id);
+      formData.append(
+        "wr_subject",
+        { 이벤트: "event", 뉴스: "news" }[selectedValues.subject]
+      );
+      formData.append("wr_seo_title", postContents.wr_seo_title);
+      formData.append("wr_content", postContents.wr_content);
+      formData.append("wr_status", postContents.wr_status);
+      formData.append("wr_memo", postContents.wr_1);
 
-    if (topImage[0]) {
-      topImage.forEach((el) => {
-        formData.append("topimage", el.file);
-      });
-    }
-    if (communityfile[0]) {
-      communityfile.forEach((el) => {
-        formData.append("communityfile", el.file);
-      });
-    }
-    const res = await postData("community/update", formData);
+      if (topImage[0]) {
+        topImage.forEach((el) => {
+          formData.append("topimage", el.file);
+        });
+      }
+      if (communityfile[0]) {
+        communityfile.forEach((el) => {
+          formData.append("communityfile", el.file);
+        });
+      }
+      const res = await postData("community/update", formData);
+      
     if (res.code === 200) {
       alert("수정되었습니다.");
       history("/News");
     } else alert(res.msg);
+  }
   };
 
   const btnEvent = {
-    add() {
+    mod() {
       dataSubmit();
     },
   };
@@ -89,7 +93,7 @@ export default function NewsEdit() {
       <>
         <Lnb lnbType="board" />
         <CurrentBox
-          btns={["add", "del", "down"]}
+          btns={["mod"/* , "del", "down" */]}
           tit="이벤트/뉴스 등록/수정"
           {...btnEvent}
         />
@@ -187,10 +191,11 @@ export default function NewsEdit() {
               <div className="flex_box find_file">
                 <div className="flex_left w100 flex_box_mr">
                   <label htmlFor="">상단 이미지</label>
-                  <FileItemTop
+{/*                   <FileItemTop
                     setTopImage={setTopImage}
                     postContents={postContents}
-                  />
+                  /> */}
+                   {postContents.top_image && <img src={serverUrl + "images" + postContents.top_image} alt="" />}
                 </div>
               </div>
               <div className="flex_box find_file">
@@ -217,7 +222,7 @@ export default function NewsEdit() {
             </div>
           </div>
           <div className="bottom_btn_wrap">
-            <button
+{/*             <button
               type="button"
               className="btn_ty01 cancel"
               onClick={() => history(-1)}
@@ -226,7 +231,7 @@ export default function NewsEdit() {
             </button>
             <button type="button" className="btn_ty01" onClick={dataSubmit}>
               등록
-            </button>
+            </button> */}
           </div>
         </div>
       </>

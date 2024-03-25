@@ -43,11 +43,11 @@ export default function NewsAdd() {
         formData.append("topimage", el.file);
       });
     }
-    // if (communityfile[0]) {
-    //   communityfile.forEach(el => {
-    //     formData.append("communityfile", el.file);
-    //   });
-    // }
+    if (communityfile[0]) {
+       communityfile.forEach(el => {
+         formData.append("communityfile", el.file);
+       });
+    }
     const res = await postData("community/create", formData);
     if (res.code === 200) {
       alert("등록되었습니다.");
@@ -64,7 +64,7 @@ export default function NewsAdd() {
   return (
     <>
       <Lnb lnbType="board" />
-      <CurrentBox btns={["add", "del", "down"]} tit="이벤트/뉴스 등록/수정" {...btnEvent} />
+      <CurrentBox btns={["add"/* , "del", "down" */]} tit="이벤트/뉴스 등록/수정" {...btnEvent} />
       <div className="news_add box_ty01 view_form add">
         <div className="write_type">
           <div className="wirte_area">
@@ -151,12 +151,12 @@ export default function NewsAdd() {
                 <FileItemTop setTopImage={setTopImage} />
               </div>
             </div>
-            {/* <div className="flex_box find_file">
+            <div className="flex_box find_file">
               <div className="flex_left w100 flex_box_mr">
                 <label htmlFor="">첨부파일</label>
                 <FileItemEtc setCommunityfile={setCommunityfile} />
               </div>
-            </div> */}
+            </div> 
             <div className="flex_box">
               <div className="input_ty02 flex_left w100">
                 <label htmlFor="">비고</label>
@@ -215,30 +215,28 @@ function FileItemTop({ setTopImage }) {
   );
 }
 
-// function FileItemEtc({ setCommunityfile }) {
-//   const { fileData, uploadFile, deleteFile } = useUploadFile(null, 8, 3);
-
-//   useEffect(() => {
-//     setCommunityfile(fileData);
-//   }, [fileData]);
-
-//   return (
-//     <div className="find_file_wrap">
-//       <label htmlFor="file" className="file_label">
-//         <span></span>파일첨부
-//         {fileData[0] &&
-//           fileData.map((el, idx) => {
-//             return (
-//               <>
-//                 <p key={idx}>{el.file.name}</p>
-//                 <button data-url={el.url} onClick={deleteFile}>
-//                   &times;
-//                 </button>
-//               </>
-//             );
-//           })}
-//       </label>
-//       <input type="file" className="file" onChange={uploadFile} multiple />
-//     </div>
-//   );
-// }
+function FileItemEtc({ setCommunityfile }) {
+  const { fileData, uploadFile, deleteFile } = useUploadFile(null, 8, 3);
+  useEffect(() => {
+    setCommunityfile(fileData);
+  }, [fileData]);
+  return (
+    <div className="find_file_wrap">
+      <label htmlFor="file" className="file_label">
+        <span></span>파일첨부
+        {fileData[0] &&
+          fileData.map((el, idx) => {
+            return (
+              <>
+                <p key={idx}>{el.file.name}</p>
+                <button data-url={el.url} onClick={deleteFile}>
+                  &times;
+                </button>
+              </>
+            );
+          })}
+      </label>
+      <input type="file" className="file" onChange={uploadFile} multiple />
+    </div>
+  );
+}

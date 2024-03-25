@@ -19,7 +19,7 @@ export default function Tip() {
   const { date, start_at, end_at } = useDatePicker();
   const { selectedValues, selecBoxHtml } = useSelectBox({
     signUp_date: ["최근 등록일 순", "오래된 등록일 순"],
-    open_state: ["공개", "비공개"],
+    open_state: ["전체", "공개", "비공개"],
   });
   const [pageData, setPageData] = useState();
   const [checkedList, setCheckedList] = useState([]);
@@ -39,7 +39,7 @@ export default function Tip() {
 
   const loadPostData = async () => {
     const category = "tip";
-    const wr_status = { 공개: 0, 비공개: 1 }[selectedValues.open_state];
+    const wr_status = { 전체 : "0,1", 공개: 0, 비공개: 1 }[selectedValues.open_state];
     const order =
       selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";
     const data = {
@@ -85,7 +85,17 @@ export default function Tip() {
       modPostData("edit");
     },
     del() {
-      modPostData("delete");
+      if(checkedList.length > 0)
+      {
+        if(window.confirm("삭제 하시겠습니까?"))
+        {
+          modPostData("delete");
+        }
+      }  
+      else
+      {
+        alert("1개 이상 선택을 해주세요.");
+      }
     },
   };
 
@@ -97,7 +107,7 @@ export default function Tip() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox
-        btns={["add", "mod", "del"]}
+        btns={["add",  "del"]}
         tit="탄소중립 TIP 자료실 리스트"
         {...btnEvent}
       />
@@ -168,7 +178,7 @@ export default function Tip() {
           )}
         </div>
         <CurrentBox
-          btns={["add", "mod", "del"]}
+          btns={["add",  "del"]}
           hideTit={true}
           setCurPage={setCurPage}
           {...btnEvent}
@@ -260,19 +270,37 @@ function PostItem({
           onClick={checkItem}
         />
       </td>
-      <td className="num">{pageData.offset + num + 1}</td>
+      <td className="num"
+       onClick={() => {
+        navigate("/Tip/Edit", {
+          state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
+        });
+      }}>
+        {pageData.offset + num + 1}</td>
       <td
         style={{ cursor: "pointer" }}
         onClick={() => {
-          navigate("/Tip/TipDetail", {
+          navigate("/Tip/Edit", {
             state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
           });
         }}
       >
         {data.wr_seo_title}
       </td>
-      <td>{data.wr_datetime.replace(/-/g, ".")}</td>
-      <td>{data.wr_status === 0 ? "공개" : "비공개"}</td>
+      <td
+       onClick={() => {
+        navigate("/Tip/Edit", {
+          state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
+        });
+      }}
+      >{data.wr_datetime.replace(/-/g, ".")}</td>
+      <td
+       onClick={() => {
+        navigate("/Tip/Edit", {
+          state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
+        });
+      }}
+      >{data.wr_status === 0 ? "공개" : "비공개"}</td>
       <td>
         <div className="radio_group">
           <div className="radio_wrap">
@@ -291,6 +319,7 @@ function PostItem({
                   dataType={"wr_status"}
                   dataValue={el[2]}
                   onClick={handlePostContents}
+                  disabled={true}
                 />
               );
             })}
@@ -301,10 +330,11 @@ function PostItem({
         <div className="input_ty02">
           <input
             type="text"
-            placeholder={"직접 입력"}
+            placeholder={""}
             value={postContents.wr_memo}
             data-type="wr_memo"
             onChange={handlePostContents}
+            disabled={true}
           />
         </div>
       </td>

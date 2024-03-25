@@ -65,8 +65,11 @@ export default function TipEdit() {
   };
 
   const btnEvent = {
-    add() {
-      dataSubmit();
+    mod() {
+      if(window.confirm("수정하시겠습니까?"))
+      {
+        dataSubmit();
+      }
     },
   };
 
@@ -79,7 +82,7 @@ export default function TipEdit() {
       <>
         <Lnb lnbType="board" />
         <CurrentBox
-          btns={["add", "del", "down"]}
+          btns={["mod"/* , "del", "down" */]}
           tit="탄소중립 TIP 자료실 등록/수정"
           {...btnEvent}
         />
@@ -179,7 +182,7 @@ export default function TipEdit() {
             </div>
           </div>
           <div className="bottom_btn_wrap">
-            <button
+{/*             <button
               type="button"
               className="btn_ty01 cancel"
               onClick={() => navigate(-1)}
@@ -188,7 +191,7 @@ export default function TipEdit() {
             </button>
             <button type="button" className="btn_ty01" onClick={dataSubmit}>
               등록
-            </button>
+            </button> */}
           </div>
         </div>
       </>

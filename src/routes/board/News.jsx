@@ -20,7 +20,7 @@ export default function News() {
   const { selectedValues, selecBoxHtml } = useSelectBox({
     signUp_date: ["최근 등록일 순", "오래된 등록일 순"],
     division_sort: ["전체", "이벤트", "뉴스"],
-    open_state: ["공개", "비공개"],
+    open_state: ["전체", "공개/진행중", "비공개/종료"],
   });
   const [pageData, setPageData] = useState();
   const [checkedList, setCheckedList] = useState([]);
@@ -45,7 +45,7 @@ export default function News() {
     const category = { 전체: "all", 이벤트: "event", 뉴스: "news" }[
       selectedValues.division_sort
     ];
-    const wr_status = { 공개: 0, 비공개: 1 }[selectedValues.open_state];
+    const wr_status = {"전체" : "0,1"  , "공개/진행중": 0, "비공개/종료": 1 }[selectedValues.open_state];
     const order =
       selectedValues.signUp_date === "최근 등록일 순" ? "desc" : "asc";
     const data = {
@@ -58,12 +58,16 @@ export default function News() {
       // cur_page: curPage,
       // list_items: 1,
     };
+    console.log("wr_status : " +wr_status );
+
     const res = await postData("community/index", { ...data });
     if (!res || res?.code !== 200) return;
     setPageData(res.page);
     setBeforeFilter({ ...data });
     setCurPage(1);
   };
+
+  
 
   const loadPageData = async (page) => {
     const res = await postData("community/index", {
@@ -92,7 +96,17 @@ export default function News() {
       modPostData("edit");
     },
     del() {
-      modPostData("delete");
+      if(checkedList.length > 0)
+      {
+        if(window.confirm("삭제 하시겠습니까?"))
+        {
+          modPostData("delete");
+        }
+      }
+      else
+      {
+        alert("1개 이상 선택을 해주세요.");
+      }
     },
   };
 
@@ -104,7 +118,7 @@ export default function News() {
     <>
       <Lnb lnbType="board" />
       <CurrentBox
-        btns={["add", "mod", "del" /* "down" */]}
+        btns={["add", "del" /*"mod", "del"  "down" */]}
         tit="이벤트/뉴스 리스트"
         {...btnEvent}
       />
@@ -178,7 +192,7 @@ export default function News() {
           )}
         </div>
         <CurrentBox
-          btns={["add", "mod", "del" /* "down" */]}
+          btns={["add", "del" /*"mod",  /* "down" */]}
           hideTit={true}
           {...btnEvent}
         />
@@ -270,27 +284,51 @@ function PostItem({
           onClick={checkItem}
         />
       </td>
-      <td className="num">{pageData.offset + num + 1}</td>
+      <td className="num"
+        onClick={() => {
+          navigate("/News/edit", {
+            state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
+          });
+        }}
+      >{pageData.offset + num + 1}</td>
       <td>{division}</td>
-      <td
+      <td 
         style={{ cursor: "pointer" }}
         onClick={() => {
-          navigate("/News/NewsDetail", {
+          navigate("/News/edit", {
             state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
           });
         }}
       >
         {data.wr_seo_title}
       </td>
-      <td>{data.wr_datetime.replace(/-/g, ".")}</td>
+      <td
+        onClick={() => {
+          navigate("/News/edit", {
+            state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
+          });
+        }}
+      >{data.wr_datetime.replace(/-/g, ".")}</td>
       {data.wr_subject === "event" ? (
-        <td>{data.wr_status === 0 ? "진행중" : "종료"}</td>
+        <td
+        onClick={() => {
+          navigate("/News/edit", {
+            state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
+          });
+        }}
+        >{data.wr_status === 0 ? "진행중" : "종료"}</td>
       ) : (
-        <td>{data.wr_status === 0 ? "공개" : "비공개"}</td>
+        <td
+        onClick={() => {
+          navigate("/News/edit", {
+            state: { wr_subject: data.wr_subject, wr_id: data.wr_id },
+          });
+        }}
+        >{data.wr_status === 0 ? "공개" : "비공개"}</td>
       )}
       <td>
-        <div className="radio_group">
-          <div className="radio_wrap">
+        <div className="radio_group"  >
+          <div className="radio_wrap" >
             {data.wr_subject === "event"
               ? [
                   ["진행중", "show", 0],
@@ -307,6 +345,7 @@ function PostItem({
                       dataType={"wr_status"}
                       dataValue={el[2]}
                       onClick={handlePostContents}
+                      disabled={true}
                     />
                   );
                 })
@@ -325,6 +364,7 @@ function PostItem({
                       dataType={"wr_status"}
                       dataValue={el[2]}
                       onClick={handlePostContents}
+                      disabled={true}
                     />
                   );
                 })}
@@ -335,10 +375,11 @@ function PostItem({
         <div className="input_ty02">
           <input
             type="text"
-            placeholder={"직접 입력"}
+            placeholder={""}
             value={postContents.wr_memo}
             data-type="wr_memo"
             onChange={handlePostContents}
+            disabled={true}
           />
         </div>
       </td>
